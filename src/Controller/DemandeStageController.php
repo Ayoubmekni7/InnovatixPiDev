@@ -47,7 +47,24 @@ class DemandeStageController extends AbstractController
         $emm->flush();
         return $this->redirectToRoute('demandeStage');
     }
-    
+    #[Route('/modifierDemande/{id}', name: 'modifierDemande')]
+    public function modifierDemande($id, ManagerRegistry $manager, DemandestageRepository $demandestageRepository, Request $request,): Response
+    {
+        
+        
+        $em = $manager->getManager();
+        $idData = $demandestageRepository->find($id);
+        $form = $this->createForm(DemandeStageType::class, $idData);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() and $form->isValid()) {
+            $em->persist($idData);
+            $em->flush();
+            return new Response("update with succcess");
+        }
+        return $this->renderForm('demande_stage/demande.html.twig', [
+            'Demandes' => $form
+        ]);
+    }
     
     
     
