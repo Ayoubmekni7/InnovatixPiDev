@@ -26,16 +26,16 @@
                                         <thead>
                                             <tr >
                                             
-                                                <th><strong>ID_demande</strong></th>
                                                 <th><strong>id_client</strong></th>
                                                 <th><strong>montant</strong></th>
                                                 <th><strong>stattus_client</strong></th>
-                                                <th><strong>date_debut</strong></th>
                                                 <th><strong>mensualite</strong></th>
+                                                <th><strong>date_debut</strong></th>
                                                 <th><strong>duree</strong></th>
                                                 <th><strong>taux_interet</strong></th>
+                                                <th><strong>status</strong></th>
                                                 <th><strong>frais_retard</strong></th>
-                                                <th><strong>consultation</strong></th>
+                                                
 
                                                 
 
@@ -43,18 +43,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% for credit in credits %}
                                             <tr>
                                                 
-                                                <td><strong>542448</strong></td>
-                                                <td>12545</td>
-                                                <td>2500d	</td>
-                                                <td>maison</td>
-                                                <td>employee</td>
-												<td>1200d</td>
-                                                <td>14mois</td>
-                                                <td>1.4</td>
-                                                <td>4000</td>
-                                                <td>OUI</td>
+                                                <td><strong>{{credit.idclient}}</strong></td>
+                                                <td>{{credit.montant}}</td>
+                                                <td>{{credit.statusclient}}</td>
+                                                <td>{{credit.mensualite}}</td>
+                                                <td>{{ credit.datedebut|date('Y-m-d') }}</td>
+												<td>{{credit.duree}}</td>
+                                                <td>{{credit.taux}}</td>
+                                                <td>{{credit.status}}</td>
+                                                <td>{{credit.fraisretard}}</td>
                                                 <td>
                                                     <div class="d-flex">
                                                         <button class="btn btn-success shadow btn-xs sharp me-1">Approuver</button>
@@ -78,6 +78,7 @@
 
 
                                             </tr>
+                                        {% endfor %}
 										
                                         </tbody>
                                     </table>

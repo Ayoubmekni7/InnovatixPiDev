@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CreditRepository::class)]
 class Credit
@@ -17,21 +18,40 @@ class Credit
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Le numéro d'inscription est obligatoire.")]
+    #[Assert\Length(
+        min: 8,
+        max: 8,
+        exactMessage: "Le numéro d'inscription doit contenir exactement 8 chiffres."
+    )]
     private ?int $id_client = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Le montant est obligatoire.")]
+
     private ?float $montant = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $status_client = null;
+    #[Assert\NotBlank(message: "Le statut du client est obligatoire.")]
+    #[Assert\Choice(
+        choices: ['employee', 'non employee'],
+        message: "Le statut du client doit être 'employee' ou 'non employee'."
+    )]
+    private ?string $statusclient = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: "La mensualité est obligatoire.")]
+    #[Assert\GreaterThan(value: 840, message: "La mensualité doit être supérieure à 840.")]
     private ?float $mensualite = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_debut = null;
+    #[Assert\NotBlank(message: "La date de début est obligatoire.")]
+
+    private ?\DateTimeInterface $datedebut = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: "La durée est obligatoire.")]
+    #[Assert\GreaterThanOrEqual(value: 11, message: "La durée doit être d'au moins 11.")]
     private ?int $duree = null;
 
     #[ORM\Column]
@@ -41,9 +61,9 @@ class Credit
     private ?string $status = null;
 
     #[ORM\Column]
-    private ?float $frais_retard = null;
+    private ?float $fraisretard = null;
 
-    #[ORM\OneToMany(mappedBy: 'credit', targetEntity: rdv::class)]
+    #[ORM\OneToMany(mappedBy: 'credit', targetEntity: Rdv::class)]
     private Collection $rdv;
 
     public function __construct()
@@ -82,12 +102,12 @@ class Credit
 
     public function getStatusClient(): ?string
     {
-        return $this->status_client;
+        return $this->statusclient;
     }
 
-    public function setStatusClient(string $status_client): static
+    public function setStatusClient(string $statusclient): static
     {
-        $this->status_client = $status_client;
+        $this->statusclient = $statusclient;
 
         return $this;
     }
@@ -104,14 +124,14 @@ class Credit
         return $this;
     }
 
-    public function getDateDebut(): ?\DateTimeInterface
+    public function getdatedebut(): ?\DateTimeInterface
     {
-        return $this->date_debut;
+        return $this->datedebut;
     }
 
-    public function setDateDebut(\DateTimeInterface $date_debut): static
+    public function setdatedebut(\DateTimeInterface $datedebut): static
     {
-        $this->date_debut = $date_debut;
+        $this->datedebut = $datedebut;
 
         return $this;
     }
@@ -152,14 +172,14 @@ class Credit
         return $this;
     }
 
-    public function getFraisRetard(): ?float
+    public function getfraisretard(): ?float
     {
-        return $this->frais_retard;
+        return $this->fraisretard;
     }
 
-    public function setFraisRetard(float $frais_retard): static
+    public function setfraisretard(float $fraisretard): static
     {
-        $this->frais_retard = $frais_retard;
+        $this->fraisretard = $fraisretard;
 
         return $this;
     }
