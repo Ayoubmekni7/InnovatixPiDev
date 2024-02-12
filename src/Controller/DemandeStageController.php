@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Demandestage;
 use App\Form\DemandeStageType;
+use App\Repository\DemandestageRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,4 +28,14 @@ class DemandeStageController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    #[Route('/AffichageDesDemandes', name: 'AffichageDesDemandes')]
+    public function AffichageDesDemandes(DemandestageRepository $demandestageRepository): Response
+    {
+        $liste = $demandestageRepository->findAll();
+        return $this->render('demande_stage/affichage.html.twig', [
+            'Demandes' => $liste,
+        ]);
+    }
+    
+    
 }

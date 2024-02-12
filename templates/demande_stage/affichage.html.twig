@@ -1,0 +1,79 @@
+{% extends 'base.html.twig'  %}
+{% block title %} Les demandes de stages{% endblock %}
+
+
+{% block body %}
+
+
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Lien pour ajouter un nouveau crédit -->
+
+            </div>
+
+
+            <!-- row -->
+
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Liste des demande</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <table class="table table-responsive-md">
+                                    <thead>
+                                    <tr >
+
+                                        <th><strong>ID_demande</strong></th>
+                                        <th><strong>Nom</strong></th>
+                                        <th><strong>Prénom</strong></th>
+                                        <th><strong>Email</strong></th>
+                                        <th><strong>Numéro de téléphone</strong></th>
+                                        <th><strong>CV</strong></th>
+                                        <th><strong>Lettre De Motivation</strong></th>
+                                        <th><strong>Domaine</strong></th>
+                                        <th><strong>action</strong></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for a in Demandes %}
+                                    <tr>
+                                        <td>{{a.id }}</td>
+                                        <td>{{ a.nom }}</td>
+                                        <td>{{ a.prenom }}</td>
+                                        <td>{{ a.email }}</td>
+                                        <td>{{ a.numerotelephone }}</td>
+                                        <td>{{ a.cv }}</td>
+                                        <td>{{ a.lettremotivation }}</td>
+                                        <td>{{ a.domaine }}</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <button class="btn btn-success shadow btn-xs sharp me-1">Approuver</button>
+                                                <button class="btn btn-danger shadow btn-xs sharp">Rejeter</button>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
