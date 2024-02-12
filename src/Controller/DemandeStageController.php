@@ -9,6 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DemandeStageController extends AbstractController
@@ -36,6 +37,18 @@ class DemandeStageController extends AbstractController
             'Demandes' => $liste,
         ]);
     }
+    
+    #[Route('/deleteDemande/{id}', name: 'deleteDemande')]
+    public function deleteDemande($id, ManagerRegistry $manager, DemandestageRepository $repo,MailerInterface $mailer): Response
+    {
+        $emm = $manager->getManager();
+        $idremove = $repo->find($id);
+        $emm->remove($idremove);
+        $emm->flush();
+        return $this->redirectToRoute('demandeStage');
+    }
+    
+    
     
     
 }
