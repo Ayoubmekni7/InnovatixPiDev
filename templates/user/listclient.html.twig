@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+    
+        <div class="content-body">
+            <div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<!-- Lien afficher list des clients -->
+						
+						</div>
+						
+				
+                <!-- row -->
+
+                <div class="row">
+                   
+					<div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Liste des clients</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-responsive-md">
+                                        <thead>
+                                            <tr >
+                                            
+                            
+                                                <th><strong>id</strong></th>
+                                                <th><strong>nom</strong></th>
+                                                <th><strong>Email</strong></th>
+                                                <th><strong>date_naissance</strong></th>
+                                                <th><strong>tel</strong></th>
+                                                <th><strong>adresse</strong></th>
+                                                <th><strong>RIB</strong></th>
+                                                <th><strong>revenues mensuels</strong></th>
+                                                <th><strong>profession</strong></th>
+
+                                                
+
+												<th><strong>action</strong></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                
+                                                <td><strong>542448</strong></td>
+                                                <td>mariem mhamdi</td>
+                                                <td>mariem@client.com	</td>
+                                                <td>6 aout 2000 </td>
+                                                <td>99400500</td>
+												<td>arianna</td>
+                                                <td>223456890</td>
+                                                <td>1000</td>
+                                                <td>ingenieure</td>
+                                               
+                                                <td>
+                                                    <div class="d-flex">
+            
+                                                        <button class="btn btn-success shadow btn-xs sharp me-1">Approuver</button>
+                                                        <button class="btn btn-danger shadow btn-xs sharp">Rejeter</button>
+                                                    </div>
+                                                </td>
+                                               <td>
+   
+                                                <div class="d-flex">
+                                                    <div class="d-flex">
+                                                        <button type="button" class="btn btn-primary shadow btn-xs sharp me-1">
+                                                            <i class="bi bi-pencil"></i> <!-- Utilisation de l'icône de modification -->
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger shadow btn-xs sharp">
+                                                            <i class="fa fa-trash"></i> <!-- Garder l'icône de suppression -->
+                                                        </button>
+                                                    </div>
+                                                    
+
+</td>
+
+
+                                            </tr>
+										
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					
+                </div>
+            </div>
+        </div>
+    {% endblock %}
