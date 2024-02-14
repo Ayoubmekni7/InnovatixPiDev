@@ -50,8 +50,11 @@
                                         <td>{{ a.prenom }}</td>
                                         <td>{{ a.email }}</td>
                                         <td>{{ a.numerotelephone }}</td>
-{#                                        <td>{{ a.cv }}"></td>#}
-                                        <td><a href="{{ asset('upload/cv' ~ a.cv) }}"></a></td>
+{#                                        <td>{{ a.cv }}</td>#}
+{#                                        <td><a href="{{ asset('upload/CV' ~ a.cv) }}"></a></td>#}
+                                        <td>
+                                        <a href="{{ asset('upload/CV/' ~ a.cv) }}" target="_blank"><button>Ouvrir PDF</button></a>
+                                        <a href="{{ asset('upload/CV/' ~ a.cv) }}" download="{{ a.nom ~ '_' ~ a.prenom ~ '.pdf' }}"><button class="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3">Télécharger</button></a></td>
                                         <td>{{ a.lettremotivation }}</td>
                                         <td>{{ a.domaine }}</td>
                                         <td>

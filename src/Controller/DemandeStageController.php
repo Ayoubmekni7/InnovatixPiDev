@@ -35,7 +35,7 @@ class DemandeStageController extends AbstractController
             );
             
             
-            
+            $demande->setCv($fileName);
             $x = $managerRegistry->getManager();
             $x->persist($demande);
             $x->flush();
