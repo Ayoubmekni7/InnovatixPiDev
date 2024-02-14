@@ -51,4 +51,40 @@ class CreditController extends AbstractController
         return $this->render('credit/ajoutercredit.html.twig',[
             'form' => $form->createView(),
         ]);
-}}
+}
+
+#[Route('/editcredit/{id}', name: 'app_modifiercredit')]
+public function modifiercredit(ManagerRegistry $doctrine,$id,CreditRepository $creditRepository,Request $request):Response{
+    $credit=$creditRepository->find($id);
+    $form=$this->createForm(CreditType::class,$credit);
+    $form->handleRequest($request);
+    if($form->isSubmitted() && $form->isValid()){
+        $em=$doctrine->getManager();
+        $em->persist($credit);
+        $em->flush();
+        return $this->redirectToRoute('app_listecredit');
+    }
+    return $this->render('credit/editcredit.html.twig',[
+        'formc' => $form->createView(),
+    ]);
+}
+#[Route('/deletecredit/{id}',name:"app_deletecredit")]
+    public function delete_auther(CreditRepository $creditRepository,ManagerRegistry $doctrine,$id){
+        $credit=$creditRepository->find($id);
+        $em=$doctrine->getManager();
+        $em->remove($credit);
+        $em->flush();
+        return $this->redirectToRoute('app_listecredit');
+        
+    }
+
+
+
+
+
+}
+
+
+
+
+

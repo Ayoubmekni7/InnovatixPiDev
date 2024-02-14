@@ -18,7 +18,7 @@ class Rdv
     private ?int $id_client = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date_rdv = null;
+    private ?\DateTimeInterface $daterdv = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $heure = null;
@@ -27,7 +27,7 @@ class Rdv
     private ?string $methode = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $employe_name = null;
+    private ?string $employename = null;
 
     #[ORM\ManyToOne(inversedBy: 'rdv')]
     private ?Credit $credit = null;
@@ -51,12 +51,12 @@ class Rdv
 
     public function getDateRdv(): ?\DateTimeInterface
     {
-        return $this->date_rdv;
+        return $this->daterdv;
     }
 
-    public function setDateRdv(\DateTimeInterface $date_rdv): static
+    public function setDateRdv(\DateTimeInterface $daterdv): static
     {
-        $this->date_rdv = $date_rdv;
+        $this->daterdv = $daterdv;
 
         return $this;
     }
@@ -87,12 +87,12 @@ class Rdv
 
     public function getEmployeName(): ?string
     {
-        return $this->employe_name;
+        return $this->employename;
     }
 
-    public function setEmployeName(string $employe_name): static
+    public function setEmployeName(string $employename): static
     {
-        $this->employe_name = $employe_name;
+        $this->employename = $employename;
 
         return $this;
     }

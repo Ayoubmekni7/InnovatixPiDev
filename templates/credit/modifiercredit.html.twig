@@ -1,35 +1,15 @@
-{% extends 'base.html.twig' %}
 
     {% block body %}
-    {% block nompage %}ajouter credit{% endblock %}
-        <script>
-            window.onload = function() {
-                // Fonction pour calculer automatiquement les frais de retard et le taux d'intérêt
-                function calculerFraisTaux() {
-                    var montant = parseFloat(document.getElementById("montant").value);
-                    var duree = parseInt(document.getElementById("duree").value);
-                    var mensualite = parseFloat(document.getElementById("mensualite").value);
+    {% block nompage %}modifier creditf{% endblock %}
+     
     
-                    // Calcul des frais de retard (exemple: 1% du montant)
-                    var frais_retard = montant * 0.01;
-                    document.getElementById("fraisretard").value = frais_retard.toFixed(2);
-    
-                    var taux_interet = (((mensualite * duree - montant) / montant) * 12) / duree;
-                    document.getElementById("taux").value = taux_interet.toFixed(2);
-                }
-    
-                document.getElementById("montant").addEventListener("input", calculerFraisTaux);
-                document.getElementById("mensualite").addEventListener("input", calculerFraisTaux);
-                document.getElementById("duree").addEventListener("input", calculerFraisTaux);
-            }
-        </script>
     
         <div class="container">
             <div class="row justify-content-center mt-5">
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title text-center mb-4">Formulaire pour ajouter une demande de crédit</h5>
+                            <h5 class="card-title text-center mb-4">Formulaire pour modifier une demande de crédit</h5>
                             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
                             <div class="mb-3">
                                 {{ form_row(form.id_client, {'attr': {'class': 'form-control'}, 'id': 'id_client'}) }}
@@ -69,5 +49,3 @@
             </div>
         </div>
     {% endblock %}
-    
-    

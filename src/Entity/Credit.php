@@ -50,7 +50,7 @@ class Credit
     private ?\DateTimeInterface $datedebut = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank(message: "La durée est obligatoire.")]
+     #[Assert\NotBlank(message: "La durée est obligatoire.")]
     #[Assert\GreaterThanOrEqual(value: 11, message: "La durée doit être d'au moins 11.")]
     private ?int $duree = null;
 

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+    {% block nompage %}demander rdv{% endblock %}
+
+        <div class="container">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center mb-4">Formulaire pour prendre un rendez-vous</h5>
+                            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                            
+                            <div class="mb-3">
+                                {{ form_row(form.id_client, {'attr': {'class': 'form-control'}, 'id': 'id_client'}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(form.daterdv, {'attr': {'class': 'form-control'}, 'id': 'date_rendez_vous'}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(form.heure, {'attr': {'class': 'form-control'}, 'id': 'heure'}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(form.methode, {'attr': {'class': 'form-control'}, 'id': 'methode'}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_row(form.employename, {'attr': {'class': 'form-control'}, 'id': 'int_employee'}) }}
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    
