@@ -217,12 +217,23 @@
 
          
 
-        <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+         <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
             <i class="bi bi-newspaper"></i>
             <span class="nav-text">Actualités</span>
         </a>
         <ul aria-expanded="false">
-            <li><a href="listeArticle.html">Liste des articles</a></li>
+            <li><a href="{{path('app_listeArticles')}}">Articles</a></li>
+            <li><a href="{{path('app_commentaire')}}">Commentaires</a></li>
+         </ul>
+
+        </li>
+        <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+            <i class="fa fa-exclamation-circle"></i>
+            <span class="nav-text">Réclammation</span>
+        </a>
+        <ul aria-expanded="false">
+            <li><a href="{{path('app_reclamation')}}">Réclamations</a></li>
+            <li><a href="{{path('app_reponse')}}">Réponses</a></li>
          </ul>
 
         </li>
