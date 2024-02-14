@@ -11,16 +11,31 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class DemandeStageController extends AbstractController
 {
     #[Route('/demandeStage', name: 'demandeStage')]
-    public function demandeStage(Request $request,ManagerRegistry $managerRegistry): Response
+    public function demandeStage(Request $request,ManagerRegistry $managerRegistry,SluggerInterface $slugger): Response
     {
         $demande = new Demandestage();
         $form = $this->createForm(DemandeStageType::class, $demande);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $file =  $form->get('cv')->getData();
+     
+            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $fileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+            
+            
+            $file->move(
+                $this->getParameter('uploads_directory'),
+                $fileName
+            );
+            
+            
+            
             $x = $managerRegistry->getManager();
             $x->persist($demande);
             $x->flush();
@@ -62,7 +77,7 @@ class DemandeStageController extends AbstractController
             return new Response("update with succcess");
         }
         return $this->renderForm('demande_stage/demande.html.twig', [
-            'Demandes' => $form
+            'form' => $form
         ]);
     }
     

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig'  %}
 {% block title %} Les demandes de stages{% endblock %}
-
+{% block nompage %} Les demandes de stages{% endblock %}
 
 {% block body %}
 
@@ -50,12 +50,13 @@
                                         <td>{{ a.prenom }}</td>
                                         <td>{{ a.email }}</td>
                                         <td>{{ a.numerotelephone }}</td>
-                                        <td>{{ a.cv }}</td>
+{#                                        <td>{{ a.cv }}"></td>#}
+                                        <td><a href="{{ asset('upload/cv' ~ a.cv) }}"></a></td>
                                         <td>{{ a.lettremotivation }}</td>
                                         <td>{{ a.domaine }}</td>
                                         <td>
                                             <div class="d-flex">
-                                                <button class="btn btn-success shadow btn-xs sharp me-1">Approuver</button>
+                                               <a href="{{ path('modifierDemande', {'id':a.id}) }}"> <button class="btn btn-success shadow btn-xs sharp me-1">Approuver</button></a>
                                                 <button class="btn btn-danger shadow btn-xs sharp">Rejeter</button>
                                             </div>
                                         </td>
