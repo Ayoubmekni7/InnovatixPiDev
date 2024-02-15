@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Contrat;
 use App\Form\ContratType;
-use App\Form\StageType;
 use App\Repository\ContratRepository;
 use App\Repository\StageRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -49,7 +48,6 @@ class ContratController extends AbstractController
             'contrat' => $liste,
         ]);
     }
-    
     #[Route('/deleteContrat/{id}', name: 'deleteContrat')]
     public function deleteContrat($id, ManagerRegistry $manager, ContratRepository $contratRepository): Response
     {
