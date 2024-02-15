@@ -47,6 +47,9 @@ class Demandestage
     #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
     private ?\DateInterval $date = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $etat = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -144,6 +147,18 @@ class Demandestage
     public function setDate(\DateInterval $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function isEtat(): ?bool
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(?bool $etat): static
+    {
+        $this->etat = $etat;
 
         return $this;
     }
