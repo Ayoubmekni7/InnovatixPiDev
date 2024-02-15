@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Wizard-v3</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Font-->
+    <!-- Font-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('/formCompte/css/roboto-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/formCompte/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
+    <!-- datepicker -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('/formCompte/css/jquery-ui.min.css') }}">
+    <!-- Main Style Css -->
+    <link rel="stylesheet" href="{{ asset('/formCompte/css/style.css') }}">
+</head>
+
+<body>
+<div class="page-content" style="background-image: url('Controller/shayma.jpg')">
+    <div class="wizard-v3-content">
+        <div class="wizard-form">
+            <div class="wizard-header">
+                <h3 class="heading">Demande de Création de Compte</h3>
+            </div>
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-register'}}) }}
+            {{ form_row(form._token) }}
+                <div id="form-total">
+
+                    <h2>
+                        <span class="step-icon"><i class="zmdi zmdi-account"></i></span>
+                        <span class="step-text">A propos</span>
+                    </h2>
+                    <section>
+                        <div class="inner">
+                            <h3>Information sur le Compte:</h3>
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                   <label> {{ form_label(form.Email, 'Email', {'label_attr': {'class': 'form-label'}}) }} </label>
+                                    <div > {{ form_widget(form.Email, {'attr': {'class': 'form-control'}}) }}</div>
+                                    {{ form_errors(form.Email, {'attr': {'class': 'form-text text-danger'}}) }}
+                                </div>
+                                </div>
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                <label class="form-label">  {{ form_label(form.confirmationEmail, 'confirmationEmail', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                <div>{{ form_widget(form.confirmationEmail, {'attr': {'class': 'form-control'}}) }}</div>
+                                {{ form_errors(form.confirmationEmail, {'attr': {'class': 'form-text text-danger'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                <label  class="form-label"> {{ form_label(form.cin, 'cin', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                <div>{{ form_widget(form.cin, {'attr': {'class': 'form-control'},'id': 'mon_id'}) }}</div>
+                                {{ form_errors(form.cin, {'attr': {'class': 'form-text text-danger'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-holder form-holder-2">
+                                <label  class="form-label"> {{ form_label(form.DateDelivranceCin, 'DateDelivranceCin', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                <div>{{ form_widget(form.DateDelivranceCin, {'attr': {'class': ''}}) }}</div>
+                                {{ form_errors(form.DateDelivranceCin, {'attr': {'class': 'form-text text-danger'}}) }}
+                            </div>
+                        </div>
+                        </div>
+                    </section>
+                        <h2>
+                            <span class="step-icon" ><i class="zmdi zmdi-lock"></i></span>
+                            <span class="step-text">Information personnelle</span>
+                        </h2>
+                    <section>
+                        <div class="inner">
+                            <h3>Information personelle:</h3>
+                            <div class="form-row">
+                                <div class="form-holder">
+                                    <label class="form-label" >  {{ form_label(form.nom, 'nom', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                    <div >   {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }} </div>
+                                    {{ form_errors(form.nom, {'attr': {'class': 'form-text text-danger'}}) }}
+                                </div>
+                                <div class="form-holder">
+                                    <label class="form-label" >  {{ form_label(form.prenom, 'prenom', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                    <div >   {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }} </div>
+                                    {{ form_errors(form.prenom, {'attr': {'class': 'form-text text-danger'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div >
+                                    <label class="form-label" >  {{ form_label(form.sexe, 'sexe', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                    <div >   {{ form_widget(form.sexe, {'attr': {'class': 'form-control'}}) }} </div>
+                                    {{ form_errors(form.sexe, {'attr': {'class': 'form-text text-danger'}}) }}
+
+                                </div>
+                            </div>
+                                <div class="form-row">
+                                    <div>
+                                        <label class="form-label">{{ form_label(form.DateNaissance) }}</label>
+                                        <div>{{ form_widget(form.DateNaissance, {'attr': {'class': 'form-control'}}) }}</div>
+                                        {{ form_errors(form.DateNaissance, {'attr': {'class': 'form-text text-danger'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2">
+                                        <label class="form-label" >  {{ form_label(form.proffesion, 'proffesion', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                        <div >   {{ form_widget(form.proffesion, {'attr': {'class': 'form-control'}}) }} </div>
+                                        {{ form_errors(form.proffesion, {'attr': {'class': 'form-text text-danger'}}) }}
+                                    </div>
+                                </div>
+
+                            </div>
+                    </section>
+                    <h2>
+                        <span class="step-icon" ><i class="zmdi zmdi-receipt"></i></span>
+                        <span class="step-text" style="padding-right:50px ;">Type de Compte</span>
+                    </h2>
+                    <section>
+                        <div class="inner">
+                            <h3> votre Compte :</h3>
+                            <div class="table">
+                                <div class="form-select">
+                                    <label class="form-label" >  {{ form_label(form.typeCompte, 'typeCompte', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                    <div >   {{ form_widget(form.typeCompte, {'attr': {'class': 'form-control'}}) }} </div>
+                                    {{ form_errors(form.typeCompte, {'attr': {'class': 'form-text text-danger'}}) }}
+
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin: 20px;">
+                                <div class="form-holder form-holder-1">
+                                    <label class="form-label" >  {{ form_label(form.Montant, 'Montant', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                    <div >   {{ form_widget(form.Montant, {'attr': {'class': 'form-control'}}) }} </div>
+                                    {{ form_errors(form.Montant, {'attr': {'class': 'form-text text-danger'}}) }}
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                    <!-- SECTION 4 -->
+                    <h2>
+                        <span class="step-icon"><i class="zmdi zmdi-receipt"></i></span>
+                        <span class="step-text">Confirmation</span>
+                    </h2>
+                    <section>
+                        <div class="inner">
+                            <h3>Confirmation de création de Compte:</h3>
+                            <div class="form-row table-responsive">
+                                <table class="table">
+                                    <tbody>
+
+                                    <tr class="space-row">
+                                        <th>Nom :</th>
+                                        <td>{{ Compte.nom }}</td>
+                                    </tr>
+                                    <tr class="space-row">
+                                        <th>Prénom :</th>
+                                        <td>{{ Compte.prenom }}</td>
+                                    </tr>
+                                    <tr class="space-row">
+                                        <th>Email :</th>
+                                        <td>{{ Compte.Email}}</td>
+                                    </tr>
+                                    <tr class="space-row">
+                                        <th>proffesion :</th>
+                                        <td>{{Compte.proffesion }}</td>
+                                    </tr>
+                                    <tr class="space-row">
+                                        <th>cin:</th>
+                                        <td id="mon_id"></td>
+                                    </tr>
+                                    <tr class="space-row">
+                                        <th>typeCompte:</th>
+                                        <td>{{ Compte.typeCompte}}</td>
+                                    </tr>
+
+                                    <tr class="space-row">
+                                        <th>Montant :</th>
+                                        <td>{{ Compte.Montant }}</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="{{ asset('/formCompte/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{ asset('/formCompte/js/jquery.steps.js') }}"></script>
+<script src="{{ asset('/formCompte/js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('/formCompte/js/main.js') }}"></script>
+</body>
+</html>
+
+

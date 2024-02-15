@@ -1,120 +1,74 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello CompteController!{% endblock %}
+{% block nompage %}Liste des Comptes{% endblock %}
 
 {% block body %}
-    {% block nompage %}Comptes{% endblock %}
-
     <div class="content-body">
-        <div class="container-fluid">
+    <div class="container-fluid">
 
-            <!-- row -->
+    <!-- row -->
 
-            <div class="row">
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="card">
+    <div class="card-body">
+    <div class="table-responsive">
+    <table class="table table-sm mb-0 table-striped">
+        <thead>
+        <tr>
+            <th ><strong>Email</strong></th>
+            <th ><strong>Cin</strong></th>
+            <th ><strong>DateDelivranceCin</strong></th>
+            <th ><strong>nom</strong></th>
+            <th ><strong>prenom </strong></th>
+            <th ><strong>sexe</strong></th>
+            <th ><strong>Date de Naissance</strong></th>
+            <th ><strong>Proffesion</strong></th>
+            <th ><strong>type de Compte</strong></th>
+            <th ><strong>Montant de depot initial </strong></th>
 
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Liste des Comptes</h4>
-                            <div class="mb-4">
-                                <a href="AjouterComte.html" class="btn btn-outline-success btn-rounded fs-16">+ Nouveau Compte</a>
-
+        </tr>
+        </thead>
+        <tbody id="customers" >
+        {% for comptes in comptes %}
+            <tr class="btn-reveal-trigger" >
+                <td class="py-3" >
+                    <a href="#">
+                        <div class="media d-flex align-items-center">
+                            <div class="media-body">
+                                {{comptes.cin}}
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-responsive-md">
-                                    <thead>
-                                    <tr>
+                    </a>
+                </td>
+                <td class="py-2">{{comptes.DateDelivranceCin }}</td>
+                <td class="py-2">{{comptes.Email }}</a></td>
+                <td class="py-2">{{comptes.nom }}</td>
+                <td class="py-2">{{comptes.prenom}}</td>
+                <td class="py-2">{{comptes.sexe}}</td>
+                <td class="py-2">{{comptes.DateNaissance}}</td>
+                <td class="py-2">{{comptes.proffesion}}</td>
+                <td class="py-2">{{comptes.typeCompte}}</td>
+                <td class="py-2">{{comptes.Montant}}</td>
 
-                                        <th><strong>RIB</strong></th>
-                                        <th><strong>Nom et Prenom</strong></th>
-                                        <th><strong>Email</strong></th>
-                                        <th><strong>Date de naissance</strong></th>
-                                        <th><strong>Numéro de téléphone</strong></th>
-                                        <th><strong>Type de Compte</strong></th>
-                                        <th><strong>Actions</strong></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td><strong>542448</strong></td>
-                                        <td>
-                                            <div class="d-flex align-items-center"><img
-                                                        src="images/avatar/1.jpg" class="rounded-lg me-2" width="24"
-                                                        alt=""> <span class="w-space-no">Yesser khaloui</span></div>
-                                        </td>
-                                        <td>exemple@exemple.com </td>
-                                        <td>13 Octobre 1998</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">99652314</div>
-                                        </td>
-                                        <td>Courant</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i
-                                                            class="fas fa-pencil-alt"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i
-                                                            class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
+                <
+                <td class="py-2 ps-5">
+                    <div class="d-flex">
+                        <a href="{{ path('app_compte_show', {'id': comptes.cin}) }}" class="btn btn-primary shadow btn-xs sharp me-1"> <i class="bi bi-reply"> </i></a>
+                        <a href="{{ path('app_compte_delete', {'id': comptes.cin}) }}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
 
-                                        <td><strong>542596</strong></td>
-                                        <td>
-                                            <div class="d-flex align-items-center"><img
-                                                        src="images/avatar/2.jpg" class="rounded-lg me-2" width="24"
-                                                        alt=""> <span class="w-space-no">Shayma Ouerhani</span>
-                                            </div>
-                                        </td>
-                                        <td>exemple@exemple.com </td>
-                                        <td>15 Mars 2000</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">98623547</div>
-                                        </td>
-                                        <td>Epargne</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i
-                                                            class="fas fa-pencil-alt"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i
-                                                            class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
 
-                                        <td><strong>542945</strong></td>
-                                        <td>
-                                            <div class="d-flex align-items-center"><img
-                                                        src="images/avatar/3.jpg" class="rounded-lg me-2" width="24"
-                                                        alt=""> <span class="w-space-no">Mariem Mhamdi</span></div>
-                                        </td>
-                                        <td>exemple@exemple.com </td>
-                                        <td>21 Mai 1996</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">25896413</div>
-                                        </td>
-                                        <td>Courant</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i
-                                                            class="fas fa-pencil-alt"></i></a>
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i
-                                                            class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+
                     </div>
-                </div>
+                </td>
 
-            </div>
-        </div>
-    </div>
+            </tr>
 
+
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

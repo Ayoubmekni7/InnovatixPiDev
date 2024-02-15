@@ -2,7 +2,7 @@
 
 {# Inclure les styles CSS directement dans le même fichier Twig #}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<title>Demande de Chéque Bancaire</title>
+<title>Demande de Virement Bancaire</title>
 <style>
     /* Ajoutez vos styles personnalisés ici */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
@@ -88,41 +88,32 @@
 <body class="body" >
 <div class="container-fluid">
     <form class="form" >
-        <h4 class="text-center">Demande de Chèque Bancaire</h4>
+        <h4 class="text-center">Demande de Virement Bancaire</h4>
         <div class="mb-3">
-            <label class="form-label">  {{ form_label(form.compte , 'compteID', {'label_attr': {'class': 'form-label'}}) }} </label>
-            <div > {{ form_widget(form.compte , {'attr': {'class': 'form-control', 'placeholder': 'compteID'}}) }}</div>
-            {{ form_errors(form.compte , {'attr': {'class': 'form-text text-danger'}}) }}
+            <label class="form-label">  {{ form_label(form.numCompte, 'numCompte', {'label_attr': {'class': 'form-label'}}) }} </label>
+            <div > {{ form_widget(form.numCompte, {'attr': {'class': 'form-control', 'placeholder': 'numCompte'}}) }}</div>
+            {{ form_errors(form.numCompte, {'attr': {'class': 'form-text text-danger'}}) }}
         </div>
         <div class="mb-3">
-            <label class="form-label">  {{ form_label(form.numeroCompte, 'numeroCompte', {'label_attr': {'class': 'form-label'}}) }} </label>
-            <div > {{ form_widget(form.numeroCompte, {'attr': {'class': 'form-control', 'placeholder': 'numeroCompte'}}) }}</div>
-            {{ form_errors(form.numeroCompte, {'attr': {'class': 'form-text text-danger'}}) }}
+            <label class="form-label">  {{ form_label(form.NometPrenom, 'nomBeneficiare', {'label_attr': {'class': 'form-label'}}) }} </label>
+            <div > {{ form_widget(form.NometPrenom, {'attr': {'class': 'form-control', 'placeholder': 'NometPrenom'}}) }}</div>
+            {{ form_errors(form.NometPrenom, {'attr': {'class': 'form-text text-danger'}}) }}
         </div>
+
         <div class="mb-3">
-            <label class="form-label">  {{ form_label(form.NomBeneficiaire, 'NomBeneficiaire', {'label_attr': {'class': 'form-label'}}) }} </label>
-            <div > {{ form_widget(form.NomBeneficiaire, {'attr': {'class': 'form-control', 'placeholder': 'NomBeneficiaire'}}) }}</div>
-            {{ form_errors(form.NomBeneficiaire, {'attr': {'class': 'form-text text-danger'}}) }}
-        </div>
-        <div class="mb-3">
-            <label class="form-label" >  {{ form_label(form.titulaireCompte, 'titulaireCompte', {'label_attr': {'class': 'form-label'}}) }}</label>
-            <div >   {{ form_widget(form.titulaireCompte, {'attr': {'class': 'form-control', 'placeholder': 'titulaireCompte'}}) }} </div>
-            {{ form_errors(form.titulaireCompte, {'attr': {'class': 'form-text text-danger'}}) }}
-        </div>
-        <div class="mb-3">
-            <label class="form-label">  {{ form_label(form.Email, 'Email', {'label_attr': {'class': 'form-label'}}) }}</label>
-            <div>{{ form_widget(form.Email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}</div>
-            {{ form_errors(form.Email, {'attr': {'class': 'form-text text-danger'}}) }}
+            <label class="form-label">  {{ form_label(form.TypeVirement, 'email', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div>{{ form_widget(form.TypeVirement, {'attr': {'class': 'form-control', 'placeholder': 'TypeVirement'}}) }}</div>
+            {{ form_errors(form.TypeVirement, {'attr': {'class': 'form-text text-danger'}}) }}
         </div>
         <div class="mb-3 mt-5">
-            <label  class="form-label"> {{ form_label(form.telephone, 'telephone', {'label_attr': {'class': 'form-label'}}) }}</label>
-            <div>{{ form_widget(form.telephone, {'attr': {'class': 'form-control', 'placeholder': 'telephone'}}) }}</div>
-            {{ form_errors(form.telephone, {'attr': {'class': 'form-text text-danger'}}) }}
+            <label  class="form-label"> {{ form_label(form.transferezA, 'Numéro de téléphone', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div>{{ form_widget(form.transferezA, {'attr': {'class': 'form-control', 'placeholder': 'transferezA'}}) }}</div>
+            {{ form_errors(form.transferezA, {'attr': {'class': 'form-text text-danger'}}) }}
         </div>
         <div>
-            <label class="form-label">  {{ form_label(form.Beneficiaire, 'Beneficiaire', {'label_attr': {'class': 'form-label'}}) }}</label>
-            <div > {{ form_widget(form.Beneficiaire, {'attr': {'class': 'form-control'}}) }} </div>
-            {{ form_errors(form.Beneficiaire, {'attr': {'class': 'form-text text-danger'}}) }}
+            <label class="form-label">  {{ form_label(form.NumBeneficiare, 'Beneficiaire', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div > {{ form_widget(form.NumBeneficiare, {'attr': {'class': 'form-control'}}) }} </div>
+            {{ form_errors(form.NumBeneficiare, {'attr': {'class': 'form-text text-danger'}}) }}
             {#            {{ form_row(form._token) }}#}
         </div>
         <div class="mb-3">

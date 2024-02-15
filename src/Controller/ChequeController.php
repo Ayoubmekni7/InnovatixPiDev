@@ -25,7 +25,7 @@ class ChequeController extends AbstractController
 
             $em->persist($cheque);
             $em->flush();
-            return new Response("shayma");
+            return new Response('ajout avec succes');
         }
 
         return $this->render('cheque/add.html.twig', [
