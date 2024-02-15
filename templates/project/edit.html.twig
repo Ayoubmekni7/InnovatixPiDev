@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% block nompage %}modifier projet{% endblock %}
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center mb-4">Formulaire pour modifier un projet</h5>
+                        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                        <div class="mb-3">
+                            {{ form_row(form.nom_projet, {'attr': {'class': 'form-control'}, 'id': 'nom_projet'}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.categorie, {'attr': {'class': 'form-control'}, 'id': 'categorie'}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.description_projet, {'attr': {'class': 'form-control'}, 'id': 'description_projet'}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.budget_projet, {'attr': {'class': 'form-control'}, 'id': 'budget_projet'}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.date_creation, {'attr': {'class': 'form-control'}, 'id': 'date_creation'}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.duree_projet, {'attr': {'class': 'form-control'}, 'id': 'duree_projet'}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.statut_projet, {'attr': {'class': 'form-control'}, 'id': 'statut_projet'}) }}
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
