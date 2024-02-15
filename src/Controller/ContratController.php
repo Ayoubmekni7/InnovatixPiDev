@@ -44,7 +44,7 @@ class ContratController extends AbstractController
     public function AffichageDesContrats(ContratRepository $contratRepository): Response
     {
         $liste = $contratRepository->findAll();
-        return $this->render('demande_stage/affichage.html.twig', [
+        return $this->render('contrat/affichageContrat.html.twig', [
             'contrat' => $liste,
         ]);
     }
