@@ -92,38 +92,38 @@
         <div class="mb-3">
             <label class="form-label">  {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }} </label>
            <div > {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}</div>
-            {{ form_errors(form.nom, {'attr': {'class': 'form-text text-danger'}}) }}
+            {{ form_errors(form.nom, {'attr': {'class': 'valid-feedback'}}) }}
         </div>
         <div class="mb-3">
             <label class="form-label" >  {{ form_label(form.prenom, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}</label>
             <div >   {{ form_widget(form.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }} </div>
-            {{ form_errors(form.prenom, {'attr': {'class': 'form-text text-danger'}}) }}
+            {{ form_errors(form.prenom, {'attr': {'class': 'valid-feedback'}}) }}
         </div>
         <div class="mb-3">
             <label class="form-label">  {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}</label>
             <div>{{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}</div>
-            {{ form_errors(form.email, {'attr': {'class': 'form-text text-danger'}}) }}
+            {{ form_errors(form.email, {'attr': {'class': 'valid-feedback'}}) }}
         </div>
         <div class="mb-3 mt-5">
                 <label  class="form-label"> {{ form_label(form.numerotelephone, 'Numéro de téléphone', {'label_attr': {'class': 'form-label'}}) }}</label>
                 <div>{{ form_widget(form.numerotelephone, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de téléphone'}}) }}</div>
-                {{ form_errors(form.numerotelephone, {'attr': {'class': 'form-text text-danger'}}) }}
+                {{ form_errors(form.numerotelephone, {'attr': {'class': 'valid-feedback'}}) }}
         </div>
             <div>
                 <label class="form-label">  {{ form_label(form.domaine, 'Domaine', {'label_attr': {'class': 'form-label'}}) }}</label>
                 <div > {{ form_widget(form.domaine, {'attr': {'class': 'form-control'}}) }} </div>
-                {{ form_errors(form.domaine, {'attr': {'class': 'form-text text-danger'}}) }}
+                {{ form_errors(form.domaine, {'attr': {'class': 'valid-feedback'}}) }}
                 {#            {{ form_row(form._token) }}#}
             </div>
         <div class="mb-3">
             <label class="form-label" > {{ form_label(form.lettremotivation, 'Lettre de motivation', {'label_attr': {'class': 'form-label'}}) }}</label>
             <div >{{ form_widget(form.lettremotivation, {'attr': {'class': 'form-control', 'placeholder': 'Lettre de motivation'}}) }}</div>
-            {{ form_errors(form.lettremotivation, {'attr': {'class': 'form-text text-danger'}}) }}
+            {{ form_errors(form.lettremotivation, {'attr': {'class': 'valid-feedback'}}) }}
         </div>
         <div class="mb-3">
              <label class="form-label" > {{ form_label(form.lettremotivation, 'cv', {'label_attr': {'class': 'form-label'}}) }}</label>
             <div >{{ form_widget(form.cv, {'attr': {'class': 'form-control', 'placeholder': 'entrer votre cv'}}) }}</div>
-            {{ form_errors(form.lettremotivation, {'attr': {'class': 'form-text text-danger'}}) }}
+            {{ form_errors(form.lettremotivation, {'attr': {'class': 'valid-feedback'}}) }}
         </div>
 
         <button type="submit" class="btn btn-success mt-5">Soumettre</button>

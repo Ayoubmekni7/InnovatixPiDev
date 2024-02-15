@@ -15,7 +15,7 @@ class Demandestage
     private ?int $id = null;
 
     #[ORM\Column(length: 30)]
-        #[Assert\NotBlank(message: 'Veuillez saisir votre nom')]   
+    #[Assert\NotBlank(message: 'Veuillez saisir votre nom')]
 
     private ?string $nom = null;
 

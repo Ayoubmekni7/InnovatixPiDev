@@ -15,18 +15,23 @@ class Contrat
     private ?int $id = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[Assert\NotBlank(message: 'Veuillez coisir le stagiaire')]
     private ?Stagiaire $stagiare = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez saisir la date de début du stage')]
     private ?\DateTimeInterface $dateDebut = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuillez saisir la durée du stage')]
     private ?int $dure = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuillez saisir la date de fin du stage')]
     private ?\DateTimeInterface $datefin = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'Veuillez saisir le sujet de stage')]
     private ?string $sujet = null;
 
     public function getId(): ?int

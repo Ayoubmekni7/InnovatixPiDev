@@ -25,6 +25,7 @@ class Stage
     private ?\DateInterval $dateDebut = null;
 
     #[ORM\OneToMany(mappedBy: 'idStage', targetEntity: Stagiaire::class, orphanRemoval: true)]
+    #[Assert\NotBlank(message: 'Veuillez entrer le stagiaire')]
     private Collection $idStagiare;
 
     public function __construct()
