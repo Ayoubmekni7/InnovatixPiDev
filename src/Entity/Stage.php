@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -21,6 +23,14 @@ class Stage
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez entrer la date du stage')]
     private ?\DateInterval $dateDebut = null;
+
+    #[ORM\OneToMany(mappedBy: 'idStage', targetEntity: Stagiaire::class, orphanRemoval: true)]
+    private Collection $idStagiare;
+
+    public function __construct()
+    {
+        $this->idStagiare = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -50,4 +60,43 @@ class Stage
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Stagiaire>
+     */
+    public function getIdStagiare(): Collection
+    {
+        return $this->idStagiare;
+    }
+
+    public function addIdStagiare(Stagiaire $idStagiare): static
+    {
+        if (!$this->idStagiare->contains($idStagiare)) {
+            $this->idStagiare->add($idStagiare);
+            $idStagiare->setIdStage($this);
+        }
+
+        return $this;
+    }
+    
+    public function removeIdStagiare(Stagiaire $idStagiare): static
+    {
+        if ($this->idStagiare->removeElement($idStagiare)) {
+            // set the owning side to null (unless already changed)
+            if ($idStagiare->getIdStage() === $this) {
+                $idStagiare->setIdStage(null);
+            }
+        }
+
+        return $this;
+    }
+    
+    public function __toString(): string
+    {
+       
+        return (String)$this->getIdStagiare();
+    }
+    
+    
+    
 }
