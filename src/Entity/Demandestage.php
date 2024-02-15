@@ -43,6 +43,10 @@ class Demandestage
     #[Assert\NotBlank(message: 'Veuillez choisir un domaine')]
     private ?string $domaine = null;
 
+    #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
+    private ?\DateInterval $date = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -128,6 +132,18 @@ class Demandestage
     public function setDomaine(?string $domaine): static
     {
         $this->domaine = $domaine;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateInterval
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateInterval $date): static
+    {
+        $this->date = $date;
 
         return $this;
     }
