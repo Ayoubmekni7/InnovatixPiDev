@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+{% block nompage %}Articles{% endblock %}
+{% block body %}
+
+
+<div class="content-body">
+            <div class="container-fluid">
+				<div class="row page-titles">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active">Ajouter un article</li>
+					</ol>
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-xl-12 col-xxl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Première étape</h4>
+                            </div>
+                            <div class="card-body">
+								<div id="smartwizard" class="form-wizard order-create">
+                                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+									<ul class="nav nav-wizard">
+										<li><a class="nav-link" href="#wizard_Service"> 
+											<span>1</span> 
+										</a></li>
+										<li><a class="nav-link" href="#wizard_Time">
+											<span>2</span>
+										</a></li>
+										<li><a class="nav-link" href="#wizard_Details">
+											<span>3</span>
+										</a></li>
+									</ul>
+									<div class="tab-content">
+										<div id="wizard_Service" class="tab-pane" role="tabpanel">
+											<div class="row">
+												<div class="col-lg-6 mb-2">
+													
+												</div>
+												<div class="col-lg-6 mb-2">
+													<div class="mb-3">
+														<label class="text-label form-label">Titre Article*</label>
+                                                          {{ form_row(form.titreArt, {'attr': {'class': 'form-control'}, 'placeholder': "Entrez le titre de l'article"}) }}
+
+													</div>
+												</div>
+												<div class="col-lg-6 mb-2">
+													<div class="mb-3">
+														<label class="text-label form-label">Catégorie*</label>
+                                                          {{ form_row(form.categArt, {'attr': {'class': 'form-control'}, 'placeholder': "Choisir la catégorie"}) }}
+
+													</div>
+												</div>
+							
+												<div class="col-lg-12 mb-3">
+													<div class="mb-3">
+														<label class="text-label form-label">Contenu*</label>
+                                                        {{ form_row(form.contenuArt, {'attr': {'class': 'form-control'}, 'placeholder': "Entrez le contenu ici"}) }}
+
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="wizard_Time" class="tab-pane" role="tabpanel">
+											<div class="row">
+												<div class="col-lg-6 mb-2">
+													<div class="mb-3">
+														<label class="text-label form-label">Adresse de l'auteur*</label>
+                                                        {{ form_row(form.auteurArt, {'attr': {'class': 'form-control'}, 'placeholder': "auteur@exemple.com"}) }}
+
+													</div>
+												</div>
+												<div class="col-lg-6 mb-2">
+													<div class="mb-3">
+														<label class="text-label form-label">Date de publication*</label>
+                                                        {{ form_row(form.datePubArt, {'attr': {'class': 'form-control'}, 'placeholder': "Entrez la date de publication"}) }}
+
+													
+													</div>
+												</div>
+												<div class="col-lg-6 mb-2">
+													<div class="mb-3">
+														<label class="text-label form-label">Durée*</label>
+                                                        {{ form_row(form.dureeArt, {'attr': {'class': 'form-control'}, 'placeholder': "Entrez la date de publication"}) }}
+													</div>
+												</div>
+												<div class="col-lg-6 mb-2">
+													<div class="mb-3">
+														<label class="text-label form-label">Statut*</label>
+                                                        {{ form_row(form.statutArt, {'attr': {'class': 'form-control'}, 'placeholder': "Entrez le statut de publication"}) }}
+
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+										 <div class="container-contact1-form-btn">
+            <button class="contact1-form-btn" type="submit">
+                <span>
+                    Ajouter
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                </span>
+            </button>
+        </div>
+                                        {{ form_end(form) }}
+								
+										</div>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="{{ asset('vendor/global/global.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-steps/build/jquery.steps.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-validation/jquery.validate.min.js') }}"></script>
+    <!-- Form validate init -->
+    <script src="{{ asset('js/plugins-init/jquery.validate-init.js') }}"></script>
+    <!-- Form Steps -->
+    <script src="{{ asset('vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('js/custom.min.js') }}"></script>
+    <script src="{{ asset('js/dlabnav-init.js') }}"></script>
+    <script src="{{ asset('js/demo.js') }}"></script>
+    <script src="{{ asset('js/styleSwitcher.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            // SmartWizard initialize
+            $('#smartwizard').smartWizard(); 
+        });
+    </script>
+      {% endblock %}

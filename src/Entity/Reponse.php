@@ -6,6 +6,8 @@ use App\Repository\ReponseRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+
+
 #[ORM\Entity(repositoryClass: ReponseRepository::class)]
 class Reponse
 {
@@ -23,7 +25,7 @@ class Reponse
     #[ORM\Column(length: 255)]
     private ?string $contenuRep = null;
 
-    #[ORM\ManyToOne(inversedBy: 'reponses')]
+    #[ORM\ManyToOne(inversedBy: 'reponses' , targetEntity:Reclamation::class)]
     private ?Reclamation $reclamation = null;
 
     public function getId(): ?int

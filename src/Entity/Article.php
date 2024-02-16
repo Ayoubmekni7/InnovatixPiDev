@@ -14,7 +14,7 @@ class Article
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $idArt = null;
+    private ?int $idArt= null;
 
     #[ORM\Column(length: 255)]
     private ?string $titreArt = null;
@@ -37,13 +37,6 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $categArt = null;
 
-    #[ORM\OneToMany(mappedBy: 'idArt', targetEntity: Commentaire::class, orphanRemoval: true)]
-    private Collection $idComArt;
-
-    public function __construct()
-    {
-        $this->idComArt = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -134,33 +127,5 @@ class Article
         return $this;
     }
 
-    /**
-     * @return Collection<int, Commentaire>
-     */
-    public function getIdComArt(): Collection
-    {
-        return $this->idComArt;
-    }
 
-    public function addIdComArt(Commentaire $idComArt): static
-    {
-        if (!$this->idComArt->contains($idComArt)) {
-            $this->idComArt->add($idComArt);
-            $idComArt->setIdArt($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdComArt(Commentaire $idComArt): static
-    {
-        if ($this->idComArt->removeElement($idComArt)) {
-            // set the owning side to null (unless already changed)
-            if ($idComArt->getIdArt() === $this) {
-                $idComArt->setIdArt(null);
-            }
-        }
-
-        return $this;
-    }
 }

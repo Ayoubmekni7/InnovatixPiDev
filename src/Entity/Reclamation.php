@@ -5,8 +5,8 @@ namespace App\Entity;
 use App\Repository\ReclamationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReclamationRepository::class)]
 class Reclamation
@@ -16,18 +16,24 @@ class Reclamation
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message:"Veuillez saisir l'objet de la reclamation.")]
     #[ORM\Column(length: 255)]
     private ?string $objetRec = null;
 
+    #[Assert\NotBlank(message:"Veuillez saisir le contenu de la reclamation.")]
     #[ORM\Column(length: 255)]
     private ?string $contenuRec = null;
-
+    
+    #[Assert\Email(message:"'{{ value }}' n'est pas de la forme exemple@exemple.com")]
+    #[Assert\NotBlank(message: 'Veuillez saisir votre adresse')]
     #[ORM\Column(length: 255)]
     private ?string $adrRec = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE , nullable:true)]
-    private ?\DateTimeInterface $dateRec = null;
-
+    #[Assert\NotBlank(message: 'Veuillez saisir votre nom ')]
+    #[ORM\Column(length: 255)]
+    private ?string $nomAutRec = null;
+    
+    #[Assert\NotBlank(message: 'Veuillez choisir le département concerné ')]
     #[ORM\Column(length: 255)]
     private ?string $depRec = null;
 
@@ -37,6 +43,7 @@ class Reclamation
     #[ORM\OneToMany(mappedBy: 'reclamation', targetEntity: Reponse::class)]
     private Collection $reponses;
 
+    
     public function __construct()
     {
         $this->reponses = new ArrayCollection();
@@ -83,17 +90,7 @@ class Reclamation
         return $this;
     }
 
-    public function getDateRec(): ?\DateTimeInterface
-    {
-        return $this->dateRec;
-    }
-
-    public function setDateRec(\DateTimeInterface $dateRec): static
-    {
-        $this->dateRec = $dateRec;
-
-        return $this;
-    }
+    
 
     public function getDepRec(): ?string
     {
@@ -145,6 +142,18 @@ class Reclamation
                 $reponse->setReclamation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNomAutRec(): ?string
+    {
+        return $this->nomAutRec;
+    }
+
+    public function setNomAutRec(string $nomAutRec): static
+    {
+        $this->nomAutRec = $nomAutRec;
 
         return $this;
     }

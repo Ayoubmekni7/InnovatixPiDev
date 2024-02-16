@@ -25,11 +25,6 @@ class Commentaire
 
     #[ORM\Column(length: 255)]
     private ?string $contenuCom = null;
-
-    #[ORM\ManyToOne(inversedBy: 'idComArt')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?article $idArt = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -79,18 +74,6 @@ class Commentaire
     public function setContenuCom(string $contenuCom): static
     {
         $this->contenuCom = $contenuCom;
-
-        return $this;
-    }
-
-    public function getIdArt(): ?article
-    {
-        return $this->idArt;
-    }
-
-    public function setIdArt(?article $idArt): static
-    {
-        $this->idArt = $idArt;
 
         return $this;
     }

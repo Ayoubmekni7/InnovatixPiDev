@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Contact V1</title>
+	<title> Ajouter Réclamation</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ asset('reclamation/images/icons/favicon.ico') }}"/>
@@ -13,58 +13,53 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/css/main.css') }}">
     </head>
-    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-    {{ form_row(form._token) }}
     <body>
+<div class="contact1">
+    <div class="container-contact1">
+        <div class="contact1-pic js-tilt" data-tilt>
+            <img src="images/img-01.png" alt="IMG">
+        </div>
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'contact1-form validate-form'}}) }}
 
-	<div class="contact1">
-		<div class="container-contact1">
-			<div class="contact1-pic js-tilt" data-tilt>
-				<img src="reclamation/images/img-01.png" alt="IMG">
-			</div>
-           
-                
-			<form class="contact1-form validate-form"  method="post">
+        <span class="contact1-form-title">
+            Réclamation
+        </span>
+        <div class="wrap-input1 validate-input" data-validate="Adresse is required">
+            {{ form_row(form.nomAutRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Nom'}) }}
+        </div>
+        <div class="wrap-input1 validate-input" data-validate="Adresse is required">
+            {{ form_row(form.adrRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Adresse'}) }}
             
-				<span class="contact1-form-title">
-					Réclamation
-				</span>
-               
-				
-                <div class="wrap-input1 validate-input">
-                    {{ form_widget(form.adrRec, {'attr': {'class': 'input1', 'placeholder': 'Adresse'}}) }}
-					{{ form_errors(form.adrRec, {'attr': {'class': 'form-text text-danger'}}) }}
 
-                    <span class="shadow-input1"></span>
-				</div>
-                <div class="wrap-input1 validate-input">
-                    {{ form_widget(form.objetRec, {'attr': {'class': 'input1', 'placeholder': 'Objet'}}) }}
-					{{ form_errors(form.objetRec, {'attr': {'class': 'form-text text-danger'}}) }}
-					<span class="shadow-input1"></span>
-				</div>
-                 <div class="wrap-input1 validate-input">
-                    {{ form_widget(form.depRec, {'attr': {'class': 'input1', 'placeholder': 'Département'}}) }}
-					{{ form_errors(form.depRec, {'attr': {'class': 'form-text text-danger'}}) }}
-					<span class="shadow-input1"></span>
-				</div>
-                <div class="wrap-input1 validate-input">
-					{{ form_widget(form.contenuRec, {'attr': {'class': 'input1', 'placeholder': 'Contenu'}}) }}
-					{{ form_errors(form.contenuRec, {'attr': {'class': 'form-text text-danger'}}) }}
-					<span class="shadow-input1"></span>
-				</div>
+        </div>
 
-                 <div class="container-contact1-form-btn">
-                    <button type="submit" class="contact1-form-btn">
-                        <span>
-                            Envoyer
-                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                        </span>
-                    </button>
-				</div>
-			</form>
-		</div>
-	</div>
+        <div class="wrap-input1 validate-input" data-validate="Département is required" >
+            {{ form_row(form.depRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Département'}) }}
+        </div>
 
+
+        <div class="wrap-input1 validate-input" data-validate="Objet is required">
+            {{ form_row(form.objetRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Objet'}) }}
+        </div>
+
+        <div class="wrap-input1 validate-input" data-validate="Contenu is required">
+            {{ form_row(form.contenuRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Contenu'}) }}
+        </div>
+
+        
+        
+
+        <div class="container-contact1-form-btn">
+            <button class="contact1-form-btn" type="submit">
+                <span>
+                    Envoyer
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                </span>
+            </button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
 <!--===============================================================================================-->
 	<script src="{{ asset('vendor/jquery/jquery-3.2.1.min.js')}}"></script>
 <!--===============================================================================================-->
@@ -94,5 +89,5 @@
 	<script src="{{ asset('js/main.js')}}"></script>
 
 </body>
-{{ form_end(form) }}
+
 </html>

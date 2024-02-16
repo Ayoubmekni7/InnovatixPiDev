@@ -28,8 +28,8 @@
                 <div class="navbar-nav mr-auto py-0">
                    
                     <a href="{{path('app_actualite')}}" class="nav-item nav-link active">Acceuil</a>
-                    <a href="{{path('app_ajouterRec')}}" class="nav-item nav-link">Réclamation</a>
-                    <a href="{{path('app_reclamation')}}" class="nav-item nav-link">Contact</a>
+                    <a href="{{path('app_reclamation_new')}}" class="nav-item nav-link">Réclamation</a>
+                    <a href="{{path('app_reponse_new')}}" class="nav-item nav-link">Contact</a>
                 </div>
                 <div class="input-group ml-auto" style="width: 100%; max-width: 300px;">
                     <input type="text" class="form-control" placeholder="Rechercher">
@@ -60,31 +60,31 @@
                 <div class="d-flex">
                     <img src="front/img/actualite.jpg" style="width: 100px; height: 70px; object-fit: cover;">
                     <div class="d-flex align-items-center bg-light px-3" style="height: 80px;">
-                        <a class="text-secondary font-weight-semi-bold" href="">Actualités</a>
+                        <a class="text-secondary font-weight-semi-bold"  href="#act" >Actualités</a>
                     </div>
                 </div>
                 <div class="d-flex">
                     <img src="front/img/projet.png" style="width: 100px; height: 70px; object-fit: cover;">
                     <div class="d-flex align-items-center bg-light px-3" style="height: 80px;">
-                        <a class="text-secondary font-weight-semi-bold" href="">Projets</a>
+                        <a class="text-secondary font-weight-semi-bold" href="#projet">Projets</a>
                     </div>
                 </div>
                 <div class="d-flex">
                     <img src="front/img/evenement.jpg" style="width: 100px; height: 70px; object-fit: cover;">
                     <div class="d-flex align-items-center bg-light px-3" style="height: 80px;">
-                        <a class="text-secondary font-weight-semi-bold" href="">Evénements</a>
+                        <a class="text-secondary font-weight-semi-bold" href="#projet">Evénements</a>
                     </div>
                 </div>
                 <div class="d-flex">
                     <img src="front/img/stage.png" style="width: 100px; height: 70px; object-fit: cover;">
                     <div class="d-flex align-items-center bg-light px-3" style="height: 80px;">
-                        <a class="text-secondary font-weight-semi-bold" href="">Stages</a>
+                        <a class="text-secondary font-weight-semi-bold"  href="#sta">Stages</a>
                     </div>
                 </div>
                 <div class="d-flex">
                     <img src="front/img/credit.jpg" style="width: 100px; height: 70px; object-fit: cover;">
                     <div class="d-flex align-items-center bg-light px-3" style="height: 80px;">
-                        <a class="text-secondary font-weight-semi-bold" href="">Crédits</a>
+                        <a class="text-secondary font-weight-semi-bold" href="#cre">Crédits</a>
                     </div>
                 </div>
             </div>
@@ -101,62 +101,23 @@
                 <div class="col-lg-12">
                     <div class="owl-carousel owl-carousel-2 carousel-item-1 position-relative mb-3 mb-lg-0">
                         <div class="position-relative overflow-hidden" style="height: 435px;">
-                            <img class="img-fluid h-100" src="front/img/news-700x435-1.jpg" style="object-fit: cover;">
+                            <img class="img-fluid h-100" src="front/img/act.png" style="object-fit: cover;">
+                            
+                        </div>
+                        <div class="position-relative overflow-hidden" style="height: 435px;">
+                            <img class="img-fluid h-100" src="front/img/act3.png" style="object-fit: cover;">
                             <div class="overlay">
                                 <div class="mb-1">
                                     <a class="text-white" href="">E-Flex Bank</a>
                                     <span class="px-2 text-white">/</span>
                                     <a class="text-white" href="">Février 01, 2024</a>
                                 </div>
-                                <a class="h2 m-0 text-white font-weight-bold" href="">Vidéo Teasing</a>
-                            </div>
-                        </div>
-                        <div class="position-relative overflow-hidden" style="height: 435px;">
-                            <img class="img-fluid h-100" src="front/img/news-700x435-2.jpg" style="object-fit: cover;">
-                            <div class="overlay">
-                                <div class="mb-1">
-                                    <a class="text-white" href="">Technology</a>
-                                    <span class="px-2 text-white">/</span>
-                                    <a class="text-white" href="">January 01, 2045</a>
-                                </div>
-                                <a class="h2 m-0 text-white font-weight-bold" href="">Sanctus amet sed amet ipsum lorem. Dolores et erat et elitr sea sed</a>
+                                <a class="h2 m-0 text-white font-weight-bold" href="">EFB</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
-                        <h3 class="m-0">Services</h3>
-                        <a class="text-secondary font-weight-medium text-decoration-none" href="">Plus</a>
-                    </div>
-                    <div class="position-relative overflow-hidden mb-3" style="height: 80px;">
-                        <img class="img-fluid w-100 h-100" src="front/img/cat-500x80-1.jpg" style="object-fit: cover;">
-                        <a href="" class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
-                            Actualités
-                        </a>
-                    </div>
-                    <div class="position-relative overflow-hidden mb-3" style="height: 80px;">
-                        <img class="img-fluid w-100 h-100" src="front/img/cat-500x80-2.jpg" style="object-fit: cover;">
-                        <a href="" class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
-                            Projets et investissements
-                        </a>
-                    </div>
-                    <div class="position-relative overflow-hidden mb-3" style="height: 80px;">
-                        <img class="img-fluid w-100 h-100" src="front/img/cat-500x80-3.jpg" style="object-fit: cover;">
-                        <a href="" class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
-                            Offres de Stages
-                        </a>
-                    </div>
-                    <div class="position-relative overflow-hidden" style="height: 80px;">
-                        <img class="img-fluid w-100 h-100" src="front/img/cat-500x80-4.jpg" style="object-fit: cover;">
-                        <a href="" class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
-                            Apropos les crédits
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                
     <!-- Main News Slider End -->
 
 
@@ -164,12 +125,12 @@
     <div class="container-fluid py-3">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
-                <h3 class="m-0">Actualités</h3>
+                <h3 class="m-0" id="act">Actualités</h3>
                 <a class="text-secondary font-weight-medium text-decoration-none" href="">Plus</a>
             </div>
             <div class="owl-carousel owl-carousel-2 carousel-item-4 position-relative">
                 <div class="position-relative overflow-hidden" style="height: 300px;">
-                    <img class="img-fluid w-100 h-100" src="front/img/news-300x300-1.jpg" style="object-fit: cover;">
+                    <img class="img-fluid w-100 h-100" src="front/img/actu.png" style="object-fit: cover;">
                     <div class="overlay">
                         <div class="mb-1" style="font-size: 13px;">
                             <a class="text-white" href="">Technology</a>
@@ -180,7 +141,7 @@
                     </div>
                 </div>
                 <div class="position-relative overflow-hidden" style="height: 300px;">
-                    <img class="img-fluid w-100 h-100" src="front/img/news-300x300-2.jpg" style="object-fit: cover;">
+                    <img class="img-fluid w-100 h-100" src="front/img/actu1.png" style="object-fit: cover;">
                     <div class="overlay">
                         <div class="mb-1" style="font-size: 13px;">
                             <a class="text-white" href="">Technology</a>
@@ -191,7 +152,7 @@
                     </div>
                 </div>
                 <div class="position-relative overflow-hidden" style="height: 300px;">
-                    <img class="img-fluid w-100 h-100" src="front/img/news-300x300-3.jpg" style="object-fit: cover;">
+                    <img class="img-fluid w-100 h-100" src="front/img/actu2.png" style="object-fit: cover;">
                     <div class="overlay">
                         <div class="mb-1" style="font-size: 13px;">
                             <a class="text-white" href="">Technology</a>
@@ -202,7 +163,7 @@
                     </div>
                 </div>
                 <div class="position-relative overflow-hidden" style="height: 300px;">
-                    <img class="img-fluid w-100 h-100" src="front/img/news-300x300-4.jpg" style="object-fit: cover;">
+                    <img class="img-fluid w-100 h-100" src="front/img/actu3.png" style="object-fit: cover;">
                     <div class="overlay">
                         <div class="mb-1" style="font-size: 13px;">
                             <a class="text-white" href="">Technology</a>
@@ -213,7 +174,7 @@
                     </div>
                 </div>
                 <div class="position-relative overflow-hidden" style="height: 300px;">
-                    <img class="img-fluid w-100 h-100" src="front/img/news-300x300-5.jpg" style="object-fit: cover;">
+                    <img class="img-fluid w-100 h-100" src="front/img/actu4.jpg" style="object-fit: cover;">
                     <div class="overlay">
                         <div class="mb-1" style="font-size: 13px;">
                             <a class="text-white" href="">Technology</a>
@@ -236,80 +197,80 @@
             <div class="row">
                 <div class="col-lg-6 py-3">
                     <div class="bg-light py-2 px-4 mb-3">
-                        <h3 class="m-0">Projets et investissements</h3>
+                        <h3 class="m-0" id="projet">Projets et investissements</h3>
                     </div>
                     <div class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
                         <div class="position-relative">
-                            <img class="img-fluid w-100" src="front/img/news-500x280-1.jpg" style="object-fit: cover;">
+                            <img class="img-fluid w-100" src="front/img/actu5.jpg" style="object-fit: cover;" >
                             <div class="overlay position-relative bg-light">
                                 <div class="mb-2" style="font-size: 13px;">
-                                    <a href="">Technology</a>
+                                    <a href="">Projets</a>
                                     <span class="px-1">/</span>
-                                    <span>January 01, 2045</span>
+                                    <span>Janvier 01, 2024</span>
                                 </div>
-                                <a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
+                                <a class="h4 m-0" href="">Lancer vos projet...</a>
                             </div>
                         </div>
                         <div class="position-relative">
-                            <img class="img-fluid w-100" src="front/img/news-500x280-2.jpg" style="object-fit: cover;">
+                            <img class="img-fluid w-100" src="front/img/actu6.jpg" style="object-fit: cover;">
                             <div class="overlay position-relative bg-light">
                                 <div class="mb-2" style="font-size: 13px;">
-                                    <a href="">Technology</a>
+                                    <a href="">Ecoresponsabilité</a>
                                     <span class="px-1">/</span>
-                                    <span>January 01, 2045</span>
+                                    <span>Janvier 01, 2024</span>
                                 </div>
-                                <a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
+                                <a class="h4 m-0" href=""> Soyons Ecoresponsable ...</a>
                             </div>
                         </div>
                         <div class="position-relative">
                             <img class="img-fluid w-100" src="front/img/news-500x280-3.jpg" style="object-fit: cover;">
                             <div class="overlay position-relative bg-light">
                                 <div class="mb-2" style="font-size: 13px;">
-                                    <a href="">Technology</a>
+                                    <a href="">Investissement</a>
                                     <span class="px-1">/</span>
-                                    <span>January 01, 2045</span>
+                                    <span>Janvier 01, 2022</span>
                                 </div>
-                                <a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
+                                <a class="h4 m-0" href="">Investir ...</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 py-3">
                     <div class="bg-light py-2 px-4 mb-3">
-                        <h3 class="m-0">Offres de stage</h3>
+                        <h3 class="m-0" id="sta">Offres de stage</h3>
                     </div>
                     <div class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
                         <div class="position-relative">
-                            <img class="img-fluid w-100" src="front/img/news-500x280-4.jpg" style="object-fit: cover;">
+                            <img class="img-fluid w-100" src="front/img/stage.png" style="object-fit: cover;">
                             <div class="overlay position-relative bg-light">
                                 <div class="mb-2" style="font-size: 13px;">
-                                    <a href="">Technology</a>
+                                    <a href="">Stages</a>
                                     <span class="px-1">/</span>
-                                    <span>January 01, 2045</span>
+                                    <span>Mars 01, 2023</span>
                                 </div>
-                                <a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
+                                <a class="h4 m-0" href="">Rcherche de stage ...</a>
                             </div>
                         </div>
                         <div class="position-relative">
-                            <img class="img-fluid w-100" src="front/img/news-500x280-5.jpg" style="object-fit: cover;">
+                            <img class="img-fluid w-100" src="front/img/stage2.jpg" style="object-fit: cover;">
                             <div class="overlay position-relative bg-light">
                                 <div class="mb-2" style="font-size: 13px;">
-                                    <a href="">Technology</a>
+                                    <a href="">PFE Book</a>
                                     <span class="px-1">/</span>
-                                    <span>January 01, 2045</span>
+                                    <span>January 01, 2024</span>
                                 </div>
-                                <a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
+                                <a class="h4 m-0" href="">Diversité des stages</a>
                             </div>
                         </div>
                         <div class="position-relative">
-                            <img class="img-fluid w-100" src="front/img/news-500x280-6.jpg" style="object-fit: cover;">
+                            <img class="img-fluid w-100" src="front/img/stage1.jpg" style="object-fit: cover;">
                             <div class="overlay position-relative bg-light">
                                 <div class="mb-2" style="font-size: 13px;">
-                                    <a href="">Technology</a>
+                                    <a href="">Stage</a>
                                     <span class="px-1">/</span>
-                                    <span>January 01, 2045</span>
+                                    <span>Mars 01, 2023</span>
                                 </div>
-                                <a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
+                                <a class="h4 m-0" href="">Bon encadrement ...</a>
                             </div>
                         </div>
                     </div>
@@ -334,21 +295,21 @@
                     <div class="row mb-3">
                         <div class="col-12">
                             <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
-                                <h3 class="m-0">Apropos les crédits</h3>
+                                <h3 class="m-0" id="cre">Apropos les crédits</h3>
                                 <a class="text-secondary font-weight-medium text-decoration-none" href="">Plus</a>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="position-relative mb-3">
-                                <img class="img-fluid w-100" src="front/img/news-500x280-2.jpg" style="object-fit: cover;">
+                                <img class="img-fluid w-100" src="front/img/cre1.jpg" style="object-fit: cover;">
                                 <div class="overlay position-relative bg-light">
                                     <div class="mb-2" style="font-size: 14px;">
-                                        <a href="">Technology</a>
+                                        <a href="">Crédits</a>
                                         <span class="px-1">/</span>
-                                        <span>January 01, 2045</span>
+                                        <span>Janvier 01, 2024</span>
                                     </div>
-                                    <a class="h4" href="">Est stet amet ipsum stet clita rebum duo</a>
-                                    <p class="m-0">Rebum dolore duo et vero ipsum clita, est ea sed duo diam ipsum, clita at justo, lorem amet vero eos sed sit...</p>
+                                    <a class="h4" href="">EFB vous facilite vos crédit</a>
+                                    <p class="m-0">Un clic = crédit...</p>
                                 </div>
                                 
                                 
@@ -360,15 +321,15 @@
                         
                         <div class="col-lg-6">
                             <div class="position-relative mb-3">
-                                <img class="img-fluid w-100" src="front/img/news-500x280-2.jpg" style="object-fit: cover;">
+                                <img class="img-fluid w-100" src="front/img/cre2.jpg" style="object-fit: cover;">
                                 <div class="overlay position-relative bg-light">
                                     <div class="mb-2" style="font-size: 14px;">
-                                        <a href="">Technology</a>
+                                        <a href="">Interet</a>
                                         <span class="px-1">/</span>
-                                        <span>January 01, 2045</span>
+                                        <span>Février 01, 2024</span>
                                     </div>
-                                    <a class="h4" href="">Est stet amet ipsum stet clita rebum duo</a>
-                                    <p class="m-0">Rebum dolore duo et vero ipsum clita, est ea sed duo diam ipsum, clita at justo, lorem amet vero eos sed sit...</p>
+                                    <a class="h4" href="">Interet diminué</a>
+                                    <p class="m-0">EFB = taux d'interet diminués ...</p>
                                 </div>
                                 
                                 
@@ -433,6 +394,8 @@
 
 
     <!-- Footer Start -->
+    {% block footer %}
+    {% endblock %}
     <!-- Footer End -->
 
 
