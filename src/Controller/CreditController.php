@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 use App\Entity\Credit;
-
 use App\Repository\CreditRepository;
+
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\CreditType ;
@@ -29,14 +29,15 @@ class CreditController extends AbstractController
     
         return $this->render('credit/listecredit.html.twig',["credits"=>$credits]);
     }
-
-    #[Route('/listerdv', name: 'app_listerdv')]
-    public function listerdv(): Response
+    #[Route('/suivrecredit', name: 'app_suivrecredit')]
+    public function suivrecredit(CreditRepository $creditRepository): Response
     {
-        return $this->render('credit/listerdv.html.twig', [
-            'controller_name' => 'ActualiteController',
-        ]);
+        $credits=$creditRepository->findAll();
+    
+        return $this->render('credit/suivrecredit.html.twig',["credits"=>$credits]);
     }
+
+
     #[Route('/ajoutercredit', name: 'app_ajoutercredit')]
     public function ajoutercredit(ManagerRegistry $doctrine,Request $request):Response{
         $credit=new Credit();
@@ -68,15 +69,21 @@ public function modifiercredit(ManagerRegistry $doctrine,$id,CreditRepository $c
         'formc' => $form->createView(),
     ]);
 }
-#[Route('/deletecredit/{id}',name:"app_deletecredit")]
-    public function delete_auther(CreditRepository $creditRepository,ManagerRegistry $doctrine,$id){
-        $credit=$creditRepository->find($id);
-        $em=$doctrine->getManager();
-        $em->remove($credit);
-        $em->flush();
-        return $this->redirectToRoute('app_listecredit');
-        
+#[Route('/deletecredit/{id}', name: 'app_deletecredit')]
+public function deleteCredit(CreditRepository $creditRepository, ManagerRegistry $doctrine, $id): Response
+{
+    $credit = $creditRepository->find($id);
+
+    if (!$credit) {
+        throw $this->createNotFoundException('Credit not found');
     }
+
+    $em = $doctrine->getManager();
+    $em->remove($credit);
+    $em->flush();
+
+    return $this->redirectToRoute('app_listecredit');
+}
 
 
 

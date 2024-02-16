@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\RdvType ;
 
 use App\Entity\Rdv;
+use App\Repository\RdvRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,8 +20,16 @@ class RdvController extends AbstractController
             'controller_name' => 'RdvController',
         ]);
     }
+    #[Route('/listerdv', name: 'app_listerdv')]
+    public function listeacredit(RdvRepository $rdvRepository): Response
+    {
+        $rdvs=$rdvRepository->findAll();
+    
+        return $this->render('credit/listerdv.html.twig',["rdvs"=>$rdvs]);
+    }
     #[Route('/ajouterrdv', name: 'app_ajouterrdv')]
     public function ajoutercredit(ManagerRegistry $doctrine,Request $request):Response{
+
         $rdv=new Rdv();
         $form=$this->createForm(RdvType::class,$rdv);
         $form->handleRequest($request);
@@ -34,4 +43,35 @@ class RdvController extends AbstractController
             'form' => $form->createView(),
         ]);
 }
+#[Route('/editrdv/{id}', name: 'app_modifierrdv')]
+public function modifiercredit(ManagerRegistry $doctrine,$id,RdvRepository $rdvRepository,Request $request):Response{
+    $rdv=$rdvRepository->find($id);
+    $form=$this->createForm(RdvType::class,$rdv);
+    $form->handleRequest($request);
+    if($form->isSubmitted() && $form->isValid()){
+        $em=$doctrine->getManager();
+        $em->persist($rdv);
+        $em->flush();
+        return $this->redirectToRoute('app_listerdv');
+    }
+    return $this->render('credit/editrdv.html.twig',[
+        'formc' => $form->createView(),
+    ]);
+}
+#[Route('/deleterdv/{id}', name: 'app_deleterdv')]
+public function deleteCredit(RdvRepository $rdvRepository, ManagerRegistry $doctrine, $id): Response
+{
+    $credit = $rdvRepository->find($id);
+
+    if (!$credit) {
+        throw $this->createNotFoundException('rdv not found');
+    }
+
+    $em = $doctrine->getManager();
+    $em->remove($credit);
+    $em->flush();
+
+    return $this->redirectToRoute('app_listerdv');
+}
+
 }

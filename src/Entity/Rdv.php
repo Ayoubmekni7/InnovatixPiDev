@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RdvRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RdvRepository::class)]
 class Rdv
@@ -15,19 +16,32 @@ class Rdv
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $id_client = null;
+    #[Assert\Length(
+        min: 8,
+        max: 8,
+        exactMessage: "L'ID du client doit être composé de 8 chiffres exactement."
+    )]
+ 
+    private ?int $idclient = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $daterdv = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+   
     private ?\DateTimeInterface $heure = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Choice(
+        choices: ["en ligne", "présentiel"],
+        message: "La méthode doit être 'en ligne' ou 'présentiel'."
+    )]
     private ?string $methode = null;
 
     #[ORM\Column(length: 255)]
     private ?string $employename = null;
+
+  
 
     #[ORM\ManyToOne(inversedBy: 'rdv')]
     private ?Credit $credit = null;
@@ -39,12 +53,12 @@ class Rdv
 
     public function getIdClient(): ?int
     {
-        return $this->id_client;
+        return $this->idclient;
     }
 
-    public function setIdClient(int $id_client): static
+    public function setIdClient(int $idclient): static
     {
-        $this->id_client = $id_client;
+        $this->idclient = $idclient;
 
         return $this;
     }

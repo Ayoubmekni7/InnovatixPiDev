@@ -28,7 +28,6 @@
                                         <thead>
                                             <tr >
                                             
-                                                <th><strong>ID_rdv</strong></th>
                                                 <th><strong>id_client</strong></th>
                                                 <th><strong>date</strong></th>
                                                 <th><strong>heure</strong></th>
@@ -43,14 +42,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% for rdv in rdvs %}
+
                                             <tr>
                                                 
-                                                <td><strong>542448</strong></td>
-                                                <td>12545</td>
-                                                <td>12-04-2023	</td>
-                                                <td>13:00</td>
-                                                <td>en ligne</td>
-												<td>MR KARIM</td>
+                                                <td><strong>{{rdv.idclient}}</strong></td>
+                                                <td>{{rdv.daterdv|date('Y-m-d')}}</td>
+                                                <td>{{ rdv.heure|date('H:i:s') }}</td>                                                <td>{{rdv.methode}}</td>
+                                                <td>{{rdv.employename}}</td>
                                                 
                                                 <td>
                                                     <div class="d-flex">
@@ -62,10 +61,10 @@
    
                                                 <div class="d-flex">
                                                     <div class="d-flex">
-                                                        <button type="button" class="btn btn-primary shadow btn-xs sharp me-1">
+                                                        <button type="button" class="btn btn-primary shadow btn-xs sharp me-1" onclick="window.location.href='{{ path('app_modifierrdv', {'id': rdv.id}) }}'">
                                                             <i class="bi bi-pencil"></i> <!-- Utilisation de l'icône de modification -->
                                                         </button>
-                                                        <button type="button" class="btn btn-danger shadow btn-xs sharp">
+                                                        <button type="button" class="btn btn-danger shadow btn-xs sharp" onclick="window.location.href='{{ path('app_deleterdv', {'id': rdv.id}) }}'">
                                                             <i class="fa fa-trash"></i> <!-- Garder l'icône de suppression -->
                                                         </button>
                                                     </div>
@@ -75,7 +74,8 @@
 
 
                                             </tr>
-										
+                                        {% endfor %}
+
                                         </tbody>
                                     </table>
                                 </div>

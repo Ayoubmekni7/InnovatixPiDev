@@ -23,6 +23,7 @@
                                     <table class="table table-responsive-md">
                                         <thead>
                                             <tr>
+                                                <th><strong>ID </strong></th>
                                                 <th><strong>ID Client</strong></th>
                                                 <th><strong>Montant</strong></th>
                                                 <th><strong>Status Client</strong></th>
@@ -38,6 +39,7 @@
                                         <tbody>
                                             {% for credit in credits %}
                                                 <tr>
+                                                    <td>{{ credit.id }}</td>
                                                     <td>{{ credit.idclient }}</td>
                                                     <td>{{ credit.montant }}</td>
                                                     <td>{{ credit.statusclient }}</td>

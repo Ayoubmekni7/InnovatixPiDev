@@ -24,6 +24,7 @@ class Credit
         max: 8,
         exactMessage: "Le numéro d'inscription doit contenir exactement 8 chiffres."
     )]
+    
     private ?int $id_client = null;
 
     #[ORM\Column]
@@ -63,7 +64,7 @@ class Credit
     #[ORM\Column]
     private ?float $fraisretard = null;
 
-    #[ORM\OneToMany(mappedBy: 'credit', targetEntity: Rdv::class)]
+    #[ORM\OneToMany(mappedBy: 'credit', targetEntity: Rdv::class,cascade: ['remove'])]
     private Collection $rdv;
 
     public function __construct()
