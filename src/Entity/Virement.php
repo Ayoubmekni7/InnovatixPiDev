@@ -22,6 +22,7 @@ class Virement
     private ?string $NometPrenom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez choisir un type ')]
     private ?string $TypeVirement = null;
 
     #[ORM\Column(length: 255)]
@@ -37,7 +38,7 @@ class Virement
     private ?string $Montant = null;
 
     #[ORM\ManyToOne(inversedBy: 'idVirement')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Compte $compte = null;
 
     public function getId(): ?int
@@ -127,5 +128,8 @@ class Virement
         $this->compte = $compte;
 
         return $this;
+    }
+    public function __toString(){
+        return (String)$this->getId();
     }
 }

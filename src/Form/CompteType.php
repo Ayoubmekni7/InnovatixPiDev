@@ -19,14 +19,16 @@ class CompteType extends AbstractType
             ->add('DateDelivranceCin')
             ->add('nom')
             ->add('prenom')
-            ->add('sexe',  ChoiceType::class, [
+            ->add('sexe', ChoiceType::class, [
                 'choices' => [
-                    'femme' => 'Femme',
-                    'homme ' => 'Homme',
+                    'Femme' => 'femme',
+                    'Homme' => 'homme',
                 ],
-                'placeholder' => 'Sélectionnez une option', // optionnel
+                'expanded' => true, // Définit le champ comme des boutons radio
+                'multiple' => false, // Seul un choix peut être sélectionné
                 // Autres options du champ ChoiceType
             ])
+
             ->add('DateNaissance')
             ->add('proffesion')
             ->add('typeCompte', ChoiceType::class, [

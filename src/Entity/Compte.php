@@ -263,6 +263,10 @@ class Compte
         return (String)$this->getCin();
     }
 
+    public function  toString(){
+        return (String)$this->getTypeCompte();
+    }
+
 
 
 }

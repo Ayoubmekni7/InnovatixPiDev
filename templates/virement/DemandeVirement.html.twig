@@ -89,30 +89,35 @@
 <div class="container-fluid">
     <form class="form" >
         <h4 class="text-center">Demande de Virement Bancaire</h4>
+          <div class="mb-3">
+            <label class="form-label">  {{ form_label(form.compte , 'compte', {'label_attr': {'class': 'form-label'}}) }} </label>
+            <div > {{ form_widget(form.compte, {'attr': {'class': 'form-control', 'placeholder': 'compte'}}) }}</div>
+            {{ form_errors(form.compte , {'attr': {'class': 'form-text text-danger'}}) }}
+        </div>
         <div class="mb-3">
             <label class="form-label">  {{ form_label(form.numCompte, 'numCompte', {'label_attr': {'class': 'form-label'}}) }} </label>
             <div > {{ form_widget(form.numCompte, {'attr': {'class': 'form-control', 'placeholder': 'numCompte'}}) }}</div>
             {{ form_errors(form.numCompte, {'attr': {'class': 'form-text text-danger'}}) }}
         </div>
         <div class="mb-3">
-            <label class="form-label">  {{ form_label(form.NometPrenom, 'nomBeneficiare', {'label_attr': {'class': 'form-label'}}) }} </label>
+            <label class="form-label">  {{ form_label(form.NometPrenom, 'NometPrenom', {'label_attr': {'class': 'form-label'}}) }} </label>
             <div > {{ form_widget(form.NometPrenom, {'attr': {'class': 'form-control', 'placeholder': 'NometPrenom'}}) }}</div>
             {{ form_errors(form.NometPrenom, {'attr': {'class': 'form-text text-danger'}}) }}
         </div>
 
         <div class="mb-3">
-            <label class="form-label">  {{ form_label(form.TypeVirement, 'email', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <label class="form-label">  {{ form_label(form.TypeVirement, 'TypeVirement', {'label_attr': {'class': 'form-label'}}) }}</label>
             <div>{{ form_widget(form.TypeVirement, {'attr': {'class': 'form-control', 'placeholder': 'TypeVirement'}}) }}</div>
             {{ form_errors(form.TypeVirement, {'attr': {'class': 'form-text text-danger'}}) }}
         </div>
         <div class="mb-3 mt-5">
-            <label  class="form-label"> {{ form_label(form.transferezA, 'Numéro de téléphone', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <label  class="form-label"> {{ form_label(form.transferezA, 'transferezA ', {'label_attr': {'class': 'form-label'}}) }}</label>
             <div>{{ form_widget(form.transferezA, {'attr': {'class': 'form-control', 'placeholder': 'transferezA'}}) }}</div>
             {{ form_errors(form.transferezA, {'attr': {'class': 'form-text text-danger'}}) }}
         </div>
         <div>
-            <label class="form-label">  {{ form_label(form.NumBeneficiare, 'Beneficiaire', {'label_attr': {'class': 'form-label'}}) }}</label>
-            <div > {{ form_widget(form.NumBeneficiare, {'attr': {'class': 'form-control'}}) }} </div>
+            <label class="form-label">  {{ form_label(form.NumBeneficiare, 'NumBeneficiare', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div > {{ form_widget(form.NumBeneficiare, {'attr': {'class': 'form-control', 'placeholder': 'NumBeneficiare'}}) }} </div>
             {{ form_errors(form.NumBeneficiare, {'attr': {'class': 'form-text text-danger'}}) }}
             {#            {{ form_row(form._token) }}#}
         </div>
