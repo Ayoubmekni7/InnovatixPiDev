@@ -60,10 +60,9 @@
                 <td class="py-2">{{comptes.Montant}}</td>
                 <td class="py-2">{{comptes.NumeroTelephone}}</td>
 
-                <
                 <td class="py-2 ps-5">
-                    <div class="d-flex">
-                        <a href="{{ path('afficheCompte', {'id': comptes.cin}) }}" class="btn btn-primary shadow btn-xs sharp me-1"> <i class="bi bi-reply"> </i></a>
+                    <div class="d-flex"  style="padding-right: 90px">
+                        <a href="{{ path('afficheCompte', {'id': comptes.cin}) }}" class="btn btn-primary shadow btn-xs sharp me-1" > <i class="bi-check-lg"  > </i></a>
                         <a href="{{ path('deleteCompte', {'id': comptes.cin}) }}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
 
 

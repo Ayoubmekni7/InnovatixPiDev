@@ -13,17 +13,20 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/formCompte/css/jquery-ui.min.css') }}">
     <!-- Main Style Css -->
     <link rel="stylesheet" href="{{ asset('/formCompte/css/style.css') }}">
+
 </head>
 
 <body>
-<div class="page-content" style="background-image: url('Controller/shayma.jpg')">
-    <div class="wizard-v3-content">
+
+<div class="page-content" style="background-image: url({{ asset('images/tt.jpg')}}">
+     <div class="wizard-v3-content">
         <div class="wizard-form">
             <div class="wizard-header">
                 <h3 class="heading">Demande de Création de Compte</h3>
             </div>
             {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-register'}}) }}
             {{ form_row(form._token) }}
+
                 <div id="form-total">
 
                     <h2>
@@ -161,11 +164,11 @@
                     <!-- SECTION 4 -->
                     <h2>
                         <span class="step-icon"><i class="zmdi zmdi-receipt"></i></span>
-                        <span class="step-text">Communication </span>
+                        <span class="step-text">Contact </span>
                     </h2>
                     <section>
                         <div class="inner">
-                            <h3>Communication:</h3>
+                            <h3> Contact:</h3>
                             <div class="form-row">
                                 <div class="form-holder">
                                     <label class="form-label" >  {{ form_label(form.NumeroTelephone, 'NumeroTelephone', {'label_attr': {'class': 'form-label'}}) }}</label>
