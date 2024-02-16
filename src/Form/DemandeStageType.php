@@ -19,12 +19,7 @@ class DemandeStageType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('email')
-            ->add('cv',FileType::class, [
-                'label' => 'Upload PDF file',
-                'required' => true,
-            
-            ])
-            ->add('lettremotivation')
+            ->add('date')
             ->add('domaine', ChoiceType::class, [
                 'choices' => [
                     'Informatique' => 'Informatique',
@@ -37,7 +32,14 @@ class DemandeStageType extends AbstractType
                 ],
                 'placeholder' => 'Sélectionnez une option', // optionnel
                 // Autres options du champ ChoiceType
-            ]);
+            ])
+        ->add('cv',FileType::class, [
+        'label' => 'Upload PDF file',
+        'required' => true,
+    
+    ])
+        ->add('lettremotivation')
+            ->add('date');
       
     }
 

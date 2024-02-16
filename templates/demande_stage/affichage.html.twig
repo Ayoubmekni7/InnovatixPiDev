@@ -36,6 +36,7 @@
                                         <th><strong>Email</strong></th>
                                         <th><strong>Numéro de téléphone</strong></th>
                                         <th><strong>CV</strong></th>
+                                        <th><strong>date</strong></th>
                                         <th><strong>Lettre De Motivation</strong></th>
                                         <th><strong>Domaine</strong></th>
                                         <th><strong>action</strong></th>
@@ -55,12 +56,13 @@
                                         <td>
                                         <a href="{{ asset('upload/CV/' ~ a.cv) }}" target="_blank"><button>Ouvrir PDF</button></a>
                                         <a href="{{ asset('upload/CV/' ~ a.cv) }}" download="{{ a.nom ~ '_' ~ a.prenom ~ '.pdf' }}"><button class="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3">Télécharger</button></a></td>
+                                        <td>{{ a.date | date('d F Y')}}</td>
                                         <td>{{ a.lettremotivation }}</td>
                                         <td>{{ a.domaine }}</td>
                                         <td>
                                             <div class="d-flex">
                                                <a href="{{ path('modifierDemande', {'id':a.id}) }}"> <button class="btn btn-success shadow btn-xs sharp me-1">Approuver</button></a>
-                                                <button class="btn btn-danger shadow btn-xs sharp">Rejeter</button>
+                                                <a href="{{ path('deleteDemande', {'id':a.id}) }}"><button class="btn btn-danger shadow btn-xs sharp">Rejeter</button></a>
                                             </div>
                                         </td>
 

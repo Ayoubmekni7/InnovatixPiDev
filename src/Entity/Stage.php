@@ -19,10 +19,10 @@ class Stage
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'Veuillez entrer le sujet')]
     private ?string $sujet = null;
-
-    #[ORM\Column]
-    #[Assert\NotBlank(message: 'Veuillez entrer la date du stage')]
-    private ?\DateInterval $dateDebut = null;
+    
+    #[ORM\Column( nullable: true)]
+    #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
+    private ?\DateInterval $date = null;
 
     #[ORM\OneToMany(mappedBy: 'idStage', targetEntity: Stagiaire::class, orphanRemoval: true)]
     #[Assert\NotBlank(message: 'Veuillez entrer le stagiaire')]
@@ -50,18 +50,18 @@ class Stage
         return $this;
     }
 
-    public function getDateDebut(): ?\DateInterval
+    public function getDate(): ?\DateInterval
     {
-        return $this->dateDebut;
+        return $this->date;
     }
 
-    public function setDateDebut(\DateInterval $dateDebut): static
+    public function setDate(\DateInterval $date): static
     {
-        $this->dateDebut = $dateDebut;
+        $this->date = $date;
 
         return $this;
     }
-
+    
     /**
      * @return Collection<int, Stagiaire>
      */
@@ -97,7 +97,5 @@ class Stage
        
         return (String)$this->getIdStagiare();
     }
-    
-    
     
 }

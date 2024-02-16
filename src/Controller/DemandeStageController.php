@@ -54,7 +54,7 @@ class DemandeStageController extends AbstractController
     }
     
     #[Route('/deleteDemande/{id}', name: 'deleteDemande')]
-    public function deleteDemande($id, ManagerRegistry $manager, DemandestageRepository $repo,MailerInterface $mailer): Response
+    public function deleteDemande($id, ManagerRegistry $manager, DemandestageRepository $repo): Response
     {
         $emm = $manager->getManager();
         $idremove = $repo->find($id);
@@ -78,6 +78,16 @@ class DemandeStageController extends AbstractController
         }
         return $this->renderForm('demande_stage/demande.html.twig', [
             'form' => $form
+        ]);
+    }
+    #[Route('/rechercheDemande/{numero}', name: 'rechercheDemande')]
+    public function rechercheDemande($numero, DemandestageRepository $demandestageRepository): Response
+    {
+        
+        $idData = $demandestageRepository->find($numero);
+        
+        return $this->renderForm('demande_stage/demande.html.twig', [
+            'form' => $idData
         ]);
     }
     

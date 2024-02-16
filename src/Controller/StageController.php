@@ -18,7 +18,7 @@ class StageController extends AbstractController
     public function AfficheStage(StageRepository $stageRepository): Response
     {
         $stages = $stageRepository->findAll();
-        return $this->render('stage/index.html.twig', [
+        return $this->render('stage/liste.html.twig', [
             'stages' => $stages,
         ]);
     }
@@ -51,14 +51,14 @@ class StageController extends AbstractController
     {
         $emr = $manager->getManager();
         $idData = $stageRepository->find($id);
-        $form = $this->createForm(ContratType::class, $idData);
+        $form = $this->createForm(StageType::class, $idData);
         $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid()) {
             $emr->persist($idData);
             $emr->flush();
             return new Response("update with succcess");
         }
-        return $this->renderForm('stage/add.html.twig', [
+        return $this->renderForm('stage/addStage.html.twig', [
             'form' => $form
         ]);
     }

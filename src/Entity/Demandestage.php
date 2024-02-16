@@ -31,19 +31,21 @@ class Demandestage
     #[Assert\Length(min: 8, max: 8, exactMessage: 'Le numéro de téléphone doit contenir 8 chiffres')]
     #[Assert\Regex(pattern: '/^(2|5|9)[0-9]{7}$/', message: 'Le numéro de téléphone doit commencer par 2 ou 5 ou 9 et contenir 8 chiffres')]
     private ?int $numerotelephone = null;
+    
+    
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\NotBlank(message: 'Veuillez saisir une lettre de motivation')]
+    private ?string $lettremotivation = null;
 
     #[ORM\Column(length: 50, nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez entrer votre CV en pdf ')]
     private ?string $cv = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $lettremotivation = null;
-
+    
     #[ORM\Column(length: 50, nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez choisir un domaine')]
     private ?string $domaine = null;
 
-    #[ORM\Column]
+    #[ORM\Column( nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
     private ?\DateInterval $date = null;
 

@@ -92,9 +92,15 @@
             {{ form_errors(form.sujet, {'attr': {'class': 'form-text text-danger'}}) }}
         </div>
         <div class="mb-3">
-            <label class="form-label" >  {{ form_label(form.dateDebut, 'Date de début', {'label_attr': {'class': 'form-label'}}) }}</label>
-            <div >   {{ form_widget(form.dateDebut, {'attr': {'class': 'form-control', 'placeholder': 'Date'}}) }} </div>
-            {{ form_errors(form.dateDebut, {'attr': {'class': 'form-text text-danger'}}) }}
+            <label class="form-label" >  {{ form_label(form.date, 'Date de début', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div >   {{ form_widget(form.date, {'attr': {'class': 'form-control', 'placeholder': 'Date'}}) }} </div>
+            {{ form_errors(form.date, {'attr': {'class': 'form-text text-danger'}}) }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" >  {{ form_label(form.idStagiare, 'Date de début', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div >   {{ form_widget(form.idStagiare, {'attr': {'class': 'form-control', 'placeholder': 'Date'}}) }} </div>
+            {{ form_errors(form.idStagiare, {'attr': {'class': 'form-text text-danger'}}) }}
         </div>
         <button type="submit" class="btn btn-success mt-5">Soumettre</button>
     </form>

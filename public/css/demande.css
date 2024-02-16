@@ -1,0 +1,135 @@
+/* Ajoutez vos styles personnalisés ici */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /*background: linear-gradient(90deg, rgb(47, 129, 57) 0%, rgb(16, 220, 38) 35%, rgb(169, 241, 128) 100%);*/
+    /*background: #a19f9f;*/
+    background: linear-gradient(90deg, rgb(174, 238, 231) 0%, rgb(124, 241, 175) 50%, rgb(77, 241, 225) 100%);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Style pour le formulaire */
+.centered-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajustez la hauteur selon vos besoins */
+}
+
+.centered-form form {
+    width: 50%; /* Ajustez la largeur selon vos besoins */
+}
+form {
+    border-radius: 20px;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    width: 40% !important;
+    background-color: white !important;
+    padding: 50px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+/* Style pour les labels */
+.form-label {
+    font-weight: 800 !important;
+
+}
+
+/* Style pour les champs de saisie */
+.form-control {
+    color: rgb(50, 134, 60);
+    border-bottom-color: rgb(16, 220, 38);
+    box-shadow: none !important;
+    border: none;
+    border-bottom: 1px solid;
+    border-radius: 4px 4px 0 0;
+}
+
+/* Style pour les messages d'erreur */
+.form-text.text-danger {
+    color: red;
+}
+
+/* Style pour le bouton de soumission */
+.btn-success {
+    width: 100%;
+    border: none;
+    border-radius: 50px;
+//background: #0e3d8e;
+    background: linear-gradient(90deg, rgb(31, 122, 20) 0%, rgb(34, 164, 53) 35%, rgb(101, 231, 30) 100%);
+}
+
+/* Style pour le bouton de soumission au survol */
+.btn-primary:hover {
+    opacity: 0.8;
+}
+
+/* Style pour le titre */
+h4 {
+    font-size: 2rem !important;
+    font-weight: 700;
+}
+.wrap-input1 {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 20px;
+}
+.validate-input {
+    position: relative;
+}
+input.input1 {
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 30px;
+}
+input.input1 + .shadow-input1 {
+    border-radius: 25px;
+}
+
+textarea.input1 {
+    min-height: 150px;
+    border-radius: 25px;
+    padding: 12px 30px;
+}
+textarea.input1 + .shadow-input1 {
+    border-radius: 25px;
+}
+
+/*---------------------------------------------*/
+.wrap-input1 {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 20px;
+}
+
+.input1 {
+    display: block;
+    width: 100%;
+    background: #ffffff;
+    font-family: Montserrat-Bold;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #666666;
+}
+
+.shadow-input1 {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 0px 0px;
+    color: rgba(87,184,70, 0.5);
+}
