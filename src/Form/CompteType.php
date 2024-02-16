@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Compte;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -63,6 +64,7 @@ class CompteType extends AbstractType
                 'multiple' => false, // Seul un choix peut être sélectionné
                 // Autres options du champ ChoiceType
             ])
+            ->add('submit', SubmitType::class)
 
         ;
     }
