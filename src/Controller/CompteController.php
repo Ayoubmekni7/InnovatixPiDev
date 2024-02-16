@@ -47,5 +47,33 @@ class CompteController extends AbstractController
             'comptes' => $compte,
         ]);
     }
+    #[Route('/deleteCompte/{id}', name: 'deleteCompte')]
+public function  deleteCompte($id,ManagerRegistry $managerRegistry,CompteRepository $compteRepository):Response
+    {
+        $emm=$managerRegistry->getManager();
+        $idremove=$compteRepository->findAll();
+        $emm->remove($idremove);
+        $emm->flush();
+        return $this->redirectToRoute('listCompte.html.twig');
+
+    }
+#[Route('/modifierCompte/{id}', name: 'modifierCompte')]
+public function modifierCompte($id,ManagerRegistry $managerRegistry,CompteRepository $compteRepository,Request $request):Response
+{
+    $em=$managerRegistry->getManager();
+    $idData=$compteRepository->find($id);
+    $form=$this->createForm(CompteType::class,$idData);
+    $form->handleRequest($request);
+    if($form->isSubmitted() and $form->isValid()){
+        $em->persist($idData);
+        $em->flush();
+        return  new Response(("Bien modifié"));
+    }
+    return $this->renderForm('compte/creerCompte.html.twig',[
+        'form'=>$form
+    ]);
 
 }
+
+}
+

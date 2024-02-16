@@ -47,15 +47,23 @@
                                 {{ form_errors(form.confirmationEmail, {'attr': {'class': 'form-text text-danger'}}) }}
                             </div>
                         </div>
-                        <div class="form-row">
+                        {#  <div class="form-row">
                             <div class="form-holder form-holder-2">
-                                <label  class="form-label"> {{ form_label(form.cin, 'cin', {'label_attr': {'class': 'form-label'}}) }}</label>
-                                <div>{{ form_widget(form.cin, {'attr': {'class': 'form-control'},'id': 'mon_id'}) }}</div>
-                                {{ form_errors(form.cin, {'attr': {'class': 'form-text text-danger'}}) }}
+                                <label  class="form-label"> {{ form_label(form.TypeDeCin, 'TypeDeCin', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                <div>{{ form_widget(form.TypeDeCin, {'attr': {'class': 'form-control'},'id': 'mon_id'}) }}</div>
+                                {{ form_errors(form.TypeDeCin, {'attr': {'class': 'form-text text-danger'}}) }}
                             </div>
-                        </div>
+                        </div>#}
+
+                            <div class="form-row">
+                                <div class="form-holder form-holder-2">
+                                    <label  class="form-label"> {{ form_label(form.cin, 'cin', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                    <div>{{ form_widget(form.cin, {'attr': {'class': 'form-control'},'id': 'mon_id'}) }}</div>
+                                    {{ form_errors(form.cin, {'attr': {'class': 'form-text text-danger'}}) }}
+                                </div>
+                            </div>
                         <div class="form-row">
-                            <div class="form-holder form-holder-2">
+                            <div class="form-holder form-holder-2" style="margin-top: 20px">
                                 <label  class="form-label"> {{ form_label(form.DateDelivranceCin, 'DateDelivranceCin', {'label_attr': {'class': 'form-label'}}) }}</label>
                                 <div>{{ form_widget(form.DateDelivranceCin, {'attr': {'class': ''}}) }}</div>
                                 {{ form_errors(form.DateDelivranceCin, {'attr': {'class': 'form-text text-danger'}}) }}
@@ -82,28 +90,46 @@
                                     {{ form_errors(form.prenom, {'attr': {'class': 'form-text text-danger'}}) }}
                                 </div>
                             </div>
-                            <div class="form-row">
+                            <div class="form-row" style="margin: 20px">
                                 <div >
                                     <label class="form-label">  {{ form_label(form.sexe, 'sexe', {'label_attr': {'class': 'form-label'}}) }}</label>
-                                    <div >   {{ form_widget(form.sexe, {'attr': {'class': 'form-control'}}) }} </div>
+                                    <div style="margin-top: 20px" >   {{ form_widget(form.sexe, {'attr': {'class': 'form-control'}}) }} </div>
                                     {{ form_errors(form.sexe, {'attr': {'class': 'form-text text-danger'}}) }}
 
                                 </div>
                             </div>
-                                <div class="form-row">
+
+
+                                <div class="form-row" style="margin-top: 20px">
                                     <div>
-                                        <label class="form-label">{{ form_label(form.DateNaissance) }}</label>
-                                        <div>{{ form_widget(form.DateNaissance, {'attr': {'class': 'form-control'}}) }}</div>
+                                        <label class="form-label" >{{ form_label(form.DateNaissance) }}</label>
+                                        <div style="margin-top: 20px">{{ form_widget(form.DateNaissance, {'attr': {'class': 'form-control'}}) }}</div>
                                         {{ form_errors(form.DateNaissance, {'attr': {'class': 'form-text text-danger'}}) }}
                                     </div>
                                 </div>
-                                <div class="form-row">
+
+                            <div class="form-row" style="margin: 20px">
+                                <div >
+                                    <label class="form-label">  {{ form_label(form.StatutMarital, 'StatutMarital', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                    <div style="margin-top: 20px" >   {{ form_widget(form.StatutMarital, {'attr': {'class': 'form-control'}}) }} </div>
+                                    {{ form_errors(form.StatutMarital, {'attr': {'class': 'form-text text-danger'}}) }}
+
+                                </div>
+                            </div>
+                                <div class="form-row" style="margin-top: 40px">
                                     <div class="form-holder form-holder-2">
                                         <label class="form-label" >  {{ form_label(form.proffesion, 'proffesion', {'label_attr': {'class': 'form-label'}}) }}</label>
                                         <div >   {{ form_widget(form.proffesion, {'attr': {'class': 'form-control'}}) }} </div>
                                         {{ form_errors(form.proffesion, {'attr': {'class': 'form-text text-danger'}}) }}
                                     </div>
                                 </div>
+                            <div class="form-row" style="margin-top: 40px">
+                                <div class="form-holder form-holder-2">
+                                    <label class="form-label" >  {{ form_label(form.nationalite, 'Nationalite', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                    <div >   {{ form_widget(form.nationalite, {'attr': {'class': 'form-control'}}) }} </div>
+                                    {{ form_errors(form.nationalite, {'attr': {'class': 'form-text text-danger'}}) }}
+                                </div>
+                            </div>
 
                             </div>
                     </section>
@@ -117,7 +143,7 @@
                             <div class="table">
                                 <div class="form-select">
                                     <label class="form-label" >  {{ form_label(form.typeCompte, 'typeCompte', {'label_attr': {'class': 'form-label'}}) }}</label>
-                                    <div >   {{ form_widget(form.typeCompte, {'attr': {'class': 'form-control'}}) }} </div>
+                                    <div style="margin-top: 20px" >   {{ form_widget(form.typeCompte, {'attr': {'class': 'form-control'}}) }} </div>
                                     {{ form_errors(form.typeCompte, {'attr': {'class': 'form-text text-danger'}}) }}
 
                                 </div>
@@ -135,56 +161,33 @@
                     <!-- SECTION 4 -->
                     <h2>
                         <span class="step-icon"><i class="zmdi zmdi-receipt"></i></span>
-                        <span class="step-text">Confirmation</span>
+                        <span class="step-text">Communication </span>
                     </h2>
                     <section>
                         <div class="inner">
-                            <h3>Confirmation de création de Compte:</h3>
-                            <div class="form-row table-responsive">
-                                <table class="table">
-                                    <tbody>
+                            <h3>Communication:</h3>
+                            <div class="form-row">
+                                <div class="form-holder">
+                                    <label class="form-label" >  {{ form_label(form.NumeroTelephone, 'NumeroTelephone', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                    <div >   {{ form_widget(form.NumeroTelephone, {'attr': {'class': 'form-control'}}) }} </div>
+                                    {{ form_errors(form.NumeroTelephone, {'attr': {'class': 'form-text text-danger'}}) }}
+                                </div>
+                            </div>
+                            <div class="table">
+                                <div class="form-select">
+                                    <label class="form-label" >  {{ form_label(form.PreferenceCommunic, 'PreferencesDeCommunication', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                    <div style="margin-top: 20px" >   {{ form_widget(form.PreferenceCommunic, {'attr': {'class': 'form-control'}}) }} </div>
+                                    {{ form_errors(form.PreferenceCommunic, {'attr': {'class': 'form-text text-danger'}}) }}
 
-                                    <tr class="space-row">
-                                        <th>Nom :</th>
-                                        <td>{{ Compte.nom }}</td>
-                                    </tr>
-                                    <tr class="space-row">
-                                        <th>Prénom :</th>
-                                        <td>{{ Compte.prenom }}</td>
-                                    </tr>
-                                    <tr class="space-row">
-                                        <th>Email :</th>
-                                        <td>{{ Compte.Email}}</td>
-                                    </tr>
-                                    <tr class="space-row">
-                                        <th>proffesion :</th>
-                                        <td>{{Compte.proffesion }}</td>
-                                    </tr>
-                                    <tr class="space-row">
-                                        <th>cin:</th>
-                                        <td id="mon_id"></td>
-                                    </tr>
-                                    <tr class="space-row">
-                                        <th>typeCompte:</th>
-                                        <td>{{ Compte.typeCompte}}</td>
-                                    </tr>
-
-                                    <tr class="space-row">
-                                        <th>Montant :</th>
-                                        <td>{{ Compte.Montant }}</td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
+                                </div>
                             </div>
                         </div>
                     </section>
-
                 </div>
-
         </div>
     </div>
 </div>
+
 
 <script src="{{ asset('/formCompte/js/jquery-3.3.1.min.js')}}"></script>
 <script src="{{ asset('/formCompte/js/jquery.steps.js') }}"></script>

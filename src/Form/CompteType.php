@@ -16,6 +16,7 @@ class CompteType extends AbstractType
             ->add('Email')
             ->add('confirmationEmail')
             ->add('cin')
+
             ->add('DateDelivranceCin')
             ->add('nom')
             ->add('prenom')
@@ -30,17 +31,39 @@ class CompteType extends AbstractType
             ])
 
             ->add('DateNaissance')
+            ->add('StatutMarital',   ChoiceType::class, [
+                'choices' => [
+                    'Marié' => 'marie',
+                    'Célibataire ' => 'celebataire',
+                    'Divorcé ' => 'divorcé',
+                    'Veuf ' => 'veuf',
+                ],
+                'placeholder' => 'Sélectionnez une option', // optionnel
+                // Autres options du champ ChoiceType
+            ])
             ->add('proffesion')
+            ->add('nationalite')
             ->add('typeCompte', ChoiceType::class, [
                 'choices' => [
-                    'epargne' => 'Courant',
-                    'epargnePlanifie ' => 'Epargne planifié',
-                    'courant' => 'Courant',
+                    'Epargne' => 'epargne',
+                    'EpargnePlanifie ' => 'epargne planifié',
+                    'Courant' => 'courant',
                 ],
                 'placeholder' => 'Sélectionnez une option', // optionnel
                 // Autres options du champ ChoiceType
             ])
             ->add('Montant')
+            ->add('NumeroTelephone')
+            ->add('PreferenceCommunic', ChoiceType::class, [
+                'choices' => [
+                    'SMS' => 'sms',
+                    'Email' => 'email',
+                ],
+                'expanded' => true, // Définit le champ comme des boutons radio
+                'multiple' => false, // Seul un choix peut être sélectionné
+                // Autres options du champ ChoiceType
+            ])
+
         ;
     }
 

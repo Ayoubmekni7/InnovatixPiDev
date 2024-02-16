@@ -15,16 +15,21 @@
     <table class="table table-sm mb-0 table-striped">
         <thead>
         <tr>
+            <th ><strong></strong></th>
             <th ><strong>Email</strong></th>
             <th ><strong>Cin</strong></th>
-            <th ><strong>DateDelivranceCin</strong></th>
-            <th ><strong>nom</strong></th>
+           <th ><strong>Date Delivrance Cin</strong></th>
             <th ><strong>prenom </strong></th>
+            <th ><strong>nom</strong></th>
             <th ><strong>sexe</strong></th>
             <th ><strong>Date de Naissance</strong></th>
+            <th ><strong>Statut Marital</strong></th>
             <th ><strong>Proffesion</strong></th>
+            <th ><strong>Nationalité</strong></th>
             <th ><strong>type de Compte</strong></th>
             <th ><strong>Montant de depot initial </strong></th>
+            <th ><strong>Numéro de telephone</strong></th>
+            <th ><strong>Actions</strong></th>
 
         </tr>
         </thead>
@@ -40,21 +45,26 @@
                         </div>
                     </a>
                 </td>
-                <td class="py-2">{{comptes.DateDelivranceCin }}</td>
+
                 <td class="py-2">{{comptes.Email }}</a></td>
+                <td class="py-2">{{comptes.Cin }}</td>
+                <td class="py-2">{{comptes.DateDelivranceCin | date('d F Y')}}</td>
                 <td class="py-2">{{comptes.nom }}</td>
                 <td class="py-2">{{comptes.prenom}}</td>
                 <td class="py-2">{{comptes.sexe}}</td>
-                <td class="py-2">{{comptes.DateNaissance}}</td>
+                <td class="py-2">{{comptes.DateNaissance | date('d F Y')}}</td>
+                <td class="py-2">{{comptes.StatutMarital}}</td>
                 <td class="py-2">{{comptes.proffesion}}</td>
+                <td class="py-2">{{comptes.Nationalite}}</td>
                 <td class="py-2">{{comptes.typeCompte}}</td>
                 <td class="py-2">{{comptes.Montant}}</td>
+                <td class="py-2">{{comptes.NumeroTelephone}}</td>
 
                 <
                 <td class="py-2 ps-5">
                     <div class="d-flex">
-                        <a href="{{ path('app_compte_show', {'id': comptes.cin}) }}" class="btn btn-primary shadow btn-xs sharp me-1"> <i class="bi bi-reply"> </i></a>
-                        <a href="{{ path('app_compte_delete', {'id': comptes.cin}) }}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                        <a href="{{ path('afficheCompte', {'id': comptes.cin}) }}" class="btn btn-primary shadow btn-xs sharp me-1"> <i class="bi bi-reply"> </i></a>
+                        <a href="{{ path('deleteCompte', {'id': comptes.cin}) }}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
 
 
 
