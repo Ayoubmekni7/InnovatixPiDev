@@ -14,16 +14,16 @@ use Doctrine\Persistence\ManagerRegistry;
 #[Route('/project')]
 class ProjectController extends AbstractController
 {
-    #[Route('/projects', name: 'app_project_index', methods: ['GET'])]
+    #[Route('/list', name: 'app_project_index', methods: ['GET'])]
     public function index(ProjectRepository $projectRepository): Response
     {
-        return $this->render('projecta/projects.html.twig', [
+        return $this->render('project/projects.html.twig', [
             'projects' => $projectRepository->findAll(),
         ]);
     }
     
 
-    #[Route('/new', name: 'app_project_new', methods: ['GET', 'POST'])]
+    #[Route('/create', name: 'app_project_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $project = new Project();

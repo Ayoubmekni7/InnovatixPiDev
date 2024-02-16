@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ProjectRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 class Project
@@ -14,24 +16,31 @@ class Project
     #[ORM\Column]
     private ?int $id = null;
 
+     #[Assert\NotBlank(message: "saisir le nom de projet")]
     #[ORM\Column(length: 100)]
     private ?string $nomprojet = null;
 
+    #[Assert\NotBlank(message: "saisir la catégorie")]
     #[ORM\Column(length: 100)]
     private ?string $categorie = null;
 
+    #[Assert\NotBlank(message: "saisir la description du projet")]
     #[ORM\Column(length: 100)]
     private ?string $descriptionprojet = null;
 
+    #[Assert\NotBlank(message: "saisir le budget du projet")]
     #[ORM\Column]
     private ?float $budgetprojet = null;
 
+    #[Assert\NotBlank(message: "saisir la date de création du projet")]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $datecreation = null;
 
+    #[Assert\NotBlank(message: "saisir la durée du projet")]
     #[ORM\Column]
     private ?int $dureeprojet = null;
 
+    #[Assert\NotBlank(message: "saisir le statut du projet")]
     #[ORM\Column(length: 100)]
     private ?string $statutprojet = null;
 
@@ -39,6 +48,8 @@ class Project
     {
         return $this->id;
     }
+
+   
 
     public function getNomProjet(): ?string
     {

@@ -2,6 +2,10 @@
 
 {% block body %}
 
+<link href="{{ asset('vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+
+<!-- Style css -->
+<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 
 		<!--**********************************
@@ -19,6 +23,10 @@
 					<div class="col">
 						<div class="kanbanPreview-bx">
 							<div class="draggable-zone dropzoneContainer">
+
+        {% for evenement in evenements %}
+
+
 								<div class="card draggable-handle draggable">
 									<div class="card-body">
 										<div class="d-flex justify-content-between mb-2">
@@ -37,25 +45,33 @@
 													</svg>
 												</div>
 												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="javascript:void(0)">Delete</a>
-													<a class="dropdown-item" href="javascript:void(0)">Edit</a>
+													<a class="dropdown-item" href="{{ path('app_evenement_delete', {'id': evenement.id}) }}" >Supprimer</a>
+													<a class="dropdown-item" href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">Modifier</a>
+													<a class="dropdown-item" href="{{ path('app_evenement_show', {'id': evenement.id}) }}">afficher</a>
+
 												</div>
 											</div>
 										</div>
-										<p class="font-w600 fs-18"><a href="javascript:void(0);" class="text-black">Fusionner l'art du code pour des solutions uniques.</a></p>
+										<p class="font-w600 fs-18"><a href="javascript:void(0);" class="text-black">{{ evenement.description }}</a></p>
 										
 										<div class="row justify-content-between align-items-center kanban-user">
 											<ul class="users col-6">
-												<li><img src="images/contacts/pic11.jpg" alt=""></li>
-												<li><img src="images/contacts/pic22.jpg" alt=""></li>
-												<li><img src="images/contacts/pic33.jpg" alt=""></li>
-											</ul>
+											<li><img src="{{ asset('images/contacts/pic11.jpg') }}" alt=""></li>
+                                             <li><img src="{{ asset('images/contacts/pic22.jpg') }}" alt=""></li>
+                                             <li><img src="{{ asset('images/contacts/pic33.jpg') }}" alt=""></li>
+                                            </ul>
 											<div class="col-6 d-flex justify-content-end">
 												<span class="fs-14"><i class="far fa-clock me-2"></i>Due in 4 days</span>
 											</div>
 										</div>
 									</div>
 								</div>
+
+        {% endfor %}
+
+
+
+
 								<div class="card draggable-handle draggable">
 									<div class="card-body">
 										<div class="d-flex justify-content-between mb-2">
@@ -87,11 +103,11 @@
 										</div>
 										<div class="row justify-content-between align-items-center kanban-user">
 											<ul class="users col-6">
-												<li><img src="images/contacts/pic11.jpg" alt=""></li>
-												<li><img src="images/contacts/pic22.jpg" alt=""></li>
-												<li><img src="images/contacts/pic33.jpg" alt=""></li>
-												<li><img src="images/contacts/pic222.jpg" alt=""></li>
-											</ul>
+											<li><img src="{{ asset('images/contacts/pic11.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/pic22.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/pic33.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/pic222.jpg') }}" alt=""></li>
+</ul>
 											<div class="col-6 d-flex justify-content-end">
 												<span class="fs-14"><i class="far fa-clock me-2"></i>À rendre dans 10 jours</span>
 											</div>
@@ -136,10 +152,10 @@
 										</div>
 										<div class="row justify-content-between align-items-center kanban-user">
 											<ul class="users col-6">
-												<li><img src="images/contacts/pic11.jpg" alt=""></li>
-												<li><img src="images/contacts/pic22.jpg" alt=""></li>
-												<li><img src="images/contacts/pic33.jpg" alt=""></li>
-											</ul>
+											<li><img src="{{ asset('images/contacts/pic11.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/pic22.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/pic33.jpg') }}" alt=""></li>
+</ul>
 											<div class="col-6 d-flex justify-content-end">
 												<span class="fs-14"><i class="far fa-clock me-2"></i>Due in 4 days</span>
 											</div>
@@ -177,10 +193,10 @@
 										</div>
 										<div class="row justify-content-between align-items-center kanban-user">
 											<ul class="users col-6">
-												<li><img src="images/contacts/pic11.jpg" alt=""></li>
-												<li><img src="images/contacts/pic22.jpg" alt=""></li>
-												<li><img src="images/contacts/pic33.jpg" alt=""></li>
-											</ul>
+											<li><img src="{{ asset('images/contacts/pic11.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/pic22.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/pic33.jpg') }}" alt=""></li>
+</ul>
 											<div class="col-6 d-flex justify-content-end">
 												<span class="fs-14"><i class="far fa-clock me-2"></i>À rendre dans 6 jours</span>
 											</div>
@@ -225,10 +241,10 @@
 										</div>
 										<div class="row justify-content-between align-items-center kanban-user">
 											<ul class="users col-6">
-												<li><img src="images/contacts/pic11.jpg" alt=""></li>
-												<li><img src="images/contacts/pic22.jpg" alt=""></li>
-												<li><img src="images/contacts/pic33.jpg" alt=""></li>
-											</ul>
+											<li><img src="{{ asset('images/contacts/pic11.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/pic22.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/pic33.jpg') }}" alt=""></li>
+</ul>
 											<div class="col-6 d-flex justify-content-end">
 												<span class="fs-14"><i class="far fa-clock me-2"></i>À rendre dans 9 jours</span>
 											</div>
@@ -266,10 +282,10 @@
 										</div>
 										<div class="row justify-content-between align-items-center kanban-user">
 											<ul class="users col-6">
-												<li><img src="images/contacts/pic11.jpg" alt=""></li>
-												<li><img src="images/contacts/pic22.jpg" alt=""></li>
-												<li><img src="images/contacts/pic33.jpg" alt=""></li>
-											</ul>
+										<li><img src="{{ asset('images/contacts/pic11.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/pic22.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/pic33.jpg') }}" alt=""></li>
+	</ul>
 											<div class="col-6 d-flex justify-content-end">
 												<span class="fs-14"><i class="far fa-clock me-2"></i>À rendre dans 3 jours</span>
 											</div>
@@ -332,10 +348,10 @@
 										</div>
 										<div class="row justify-content-between align-items-center kanban-user">
 											<ul class="users col-6">
-												<li><img src="images/contacts/pic11.jpg" alt=""></li>
-												<li><img src="images/contacts/pic22.jpg" alt=""></li>
-												<li><img src="images/contacts/pic33.jpg" alt=""></li>
-											</ul>
+										<li><img src="{{ asset('images/contacts/pic11.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/pic22.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/pic33.jpg') }}" alt=""></li>
+	</ul>
 											<div class="col-6 d-flex justify-content-end">
 												<span class="fs-14"><i class="far fa-clock me-2"></i>Due in 4 days</span>
 											</div>
@@ -373,10 +389,10 @@
 										</div>
 										<div class="row justify-content-between align-items-center kanban-user">
 											<ul class="users col-6">
-												<li><img src="images/contacts/pic11.jpg" alt=""></li>
-												<li><img src="images/contacts/pic22.jpg" alt=""></li>
-												<li><img src="images/contacts/pic33.jpg" alt=""></li>
-											</ul>
+											<li><img src="{{ asset('images/contacts/new_pic1.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/new_pic2.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/new_pic3.jpg') }}" alt=""></li>
+</ul>
 											<div class="col-6 d-flex justify-content-end">
 												<span class="fs-14"><i class="far fa-clock me-2"></i>Due in 4 days</span>
 											</div>
@@ -424,10 +440,10 @@
 										</div>
 										<div class="row justify-content-between align-items-center kanban-user">
 											<ul class="users col-6">
-												<li><img src="images/contacts/pic11.jpg" alt=""></li>
-												<li><img src="images/contacts/pic22.jpg" alt=""></li>
-												<li><img src="images/contacts/pic33.jpg" alt=""></li>
-											</ul>
+										<li><img src="{{ asset('images/contacts/new_pic1.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/new_pic2.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/new_pic3.jpg') }}" alt=""></li>
+</ul>
 											<div class="col-6 d-flex justify-content-end">
 												<span class="fs-14"><i class="far fa-clock me-2"></i>Due in 4 days</span>
 											</div>
@@ -465,10 +481,10 @@
 										</div>
 										<div class="row justify-content-between align-items-center kanban-user">
 											<ul class="users col-6">
-												<li><img src="images/contacts/pic11.jpg" alt=""></li>
-												<li><img src="images/contacts/pic22.jpg" alt=""></li>
-												<li><img src="images/contacts/pic33.jpg" alt=""></li>
-											</ul>
+											<li><img src="{{ asset('images/contacts/new_pic1.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/new_pic2.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/new_pic3.jpg') }}" alt=""></li>
+</ul>
 											<div class="col-6 d-flex justify-content-end">
 												<span class="fs-14"><i class="far fa-clock me-2"></i>Due in 4 days</span>
 											</div>
@@ -506,10 +522,10 @@
 										</div>
 										<div class="row justify-content-between align-items-center kanban-user">
 											<ul class="users col-6">
-												<li><img src="images/contacts/pic11.jpg" alt=""></li>
-												<li><img src="images/contacts/pic22.jpg" alt=""></li>
-												<li><img src="images/contacts/pic33.jpg" alt=""></li>
-											</ul>
+										<li><img src="{{ asset('images/contacts/new_pic1.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/new_pic2.jpg') }}" alt=""></li>
+<li><img src="{{ asset('images/contacts/new_pic3.jpg') }}" alt=""></li>
+</ul>
 											<div class="col-6 d-flex justify-content-end">
 												<span class="fs-14"><i class="far fa-clock me-2"></i>Due in 4 days</span>
 											</div>
@@ -524,6 +540,13 @@
 				</div>	
             </div>
         </div>
+<script src="{{ asset('vendor/global/global.min.js') }}"></script>
+<script src="{{ asset('vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+<script src="{{ asset('vendor/draggable/draggable.js') }}"></script>
+<script src="{{ asset('js/custom.min.js') }}"></script>
+<script src="{{ asset('js/dlabnav-init.js') }}"></script>
+<script src="{{ asset('js/demo.js') }}"></script>
+<script src="{{ asset('js/styleSwitcher.js') }}"></script>
 
 
 {% endblock %}
