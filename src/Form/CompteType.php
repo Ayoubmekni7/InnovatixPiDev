@@ -16,8 +16,8 @@ class CompteType extends AbstractType
         $builder
             ->add('Email')
             ->add('confirmationEmail')
+            ->add('TypeCin')
             ->add('cin')
-
             ->add('DateDelivranceCin')
             ->add('nom')
             ->add('prenom')
@@ -34,7 +34,6 @@ class CompteType extends AbstractType
             ->add('DateNaissance')
             ->add('StatutMarital',   ChoiceType::class, [
                 'choices' => [
-                    'Marié' => 'marie',
                     'Célibataire ' => 'celebataire',
                     'Divorcé ' => 'divorcé',
                     'Veuf ' => 'veuf',

@@ -41,6 +41,9 @@ class Virement
     #[ORM\JoinColumn(nullable: true)]
     private ?Compte $compte = null;
 
+    #[ORM\Column]
+    private ?int $Cin = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -131,5 +134,17 @@ class Virement
     }
     public function __toString(){
         return (String)$this->getId();
+    }
+
+    public function getCin(): ?int
+    {
+        return $this->Cin;
+    }
+
+    public function setCin(int $Cin): static
+    {
+        $this->Cin = $Cin;
+
+        return $this;
     }
 }

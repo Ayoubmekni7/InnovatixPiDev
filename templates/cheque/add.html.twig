@@ -100,15 +100,23 @@
             {{ form_errors(form.numeroCompte, {'attr': {'class': 'form-text text-danger'}}) }}
         </div>
         <div class="mb-3">
-            <label class="form-label">  {{ form_label(form.NomBeneficiaire, 'NomBeneficiaire', {'label_attr': {'class': 'form-label'}}) }} </label>
-            <div > {{ form_widget(form.NomBeneficiaire, {'attr': {'class': 'form-control', 'placeholder': 'NomBeneficiaire'}}) }}</div>
-            {{ form_errors(form.NomBeneficiaire, {'attr': {'class': 'form-text text-danger'}}) }}
-        </div>
-        <div class="mb-3">
             <label class="form-label" >  {{ form_label(form.titulaireCompte, 'titulaireCompte', {'label_attr': {'class': 'form-label'}}) }}</label>
             <div >   {{ form_widget(form.titulaireCompte, {'attr': {'class': 'form-control', 'placeholder': 'titulaireCompte'}}) }} </div>
             {{ form_errors(form.titulaireCompte, {'attr': {'class': 'form-text text-danger'}}) }}
         </div>
+        <div class="mb-3">
+            <label class="form-label">  {{ form_label(form.Cin , 'Cin', {'label_attr': {'class': 'form-label'}}) }} </label>
+            <div > {{ form_widget(form.Cin , {'attr': {'class': 'form-control', 'placeholder': 'Cin'}}) }}</div>
+            {{ form_errors(form.Cin , {'attr': {'class': 'form-text text-danger'}}) }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">  {{ form_label(form.NomBeneficiaire, 'NomBeneficiaire', {'label_attr': {'class': 'form-label'}}) }} </label>
+            <div > {{ form_widget(form.NomBeneficiaire, {'attr': {'class': 'form-control', 'placeholder': 'NomBeneficiaire'}}) }}</div>
+            {{ form_errors(form.NomBeneficiaire, {'attr': {'class': 'form-text text-danger'}}) }}
+        </div>
+
+
         <div class="mb-3">
             <label class="form-label">  {{ form_label(form.Email, 'Email', {'label_attr': {'class': 'form-label'}}) }}</label>
             <div>{{ form_widget(form.Email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}</div>

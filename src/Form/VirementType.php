@@ -16,6 +16,7 @@ class VirementType extends AbstractType
             ->add('compte')
             ->add('numCompte')
             ->add('NometPrenom')
+            ->add('Cin')
             ->add('TypeVirement',  ChoiceType::class, [
                 'choices' => [
                     'Personne' => 'Personne',

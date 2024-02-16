@@ -16,6 +16,7 @@ class ChequeType extends AbstractType
             ->add('compte')
             ->add('numeroCompte')
             ->add('titulaireCompte')
+            ->add('Cin')
             ->add('Beneficiaire',  ChoiceType::class, [
                 'choices' => [
                     'Paiement' => 'Paiement',

@@ -81,6 +81,9 @@ class Compte
     #[ORM\Column(length: 255)]
     private ?string $PreferenceCommunic = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $TypeCin = null;
+
     public function __construct()
     {
         $this->idCheque = new ArrayCollection();
@@ -337,6 +340,18 @@ class Compte
     public function setPreferenceCommunic(string $PreferenceCommunic): static
     {
         $this->PreferenceCommunic = $PreferenceCommunic;
+
+        return $this;
+    }
+
+    public function getTypeCin(): ?string
+    {
+        return $this->TypeCin;
+    }
+
+    public function setTypeCin(string $TypeCin): static
+    {
+        $this->TypeCin = $TypeCin;
 
         return $this;
     }
