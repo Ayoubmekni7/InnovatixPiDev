@@ -18,7 +18,7 @@ class ContratController extends AbstractController
     #[Route('/contrat', name: 'app_contrat')]
     public function index(): Response
     {
-        return $this->render('contrat/index.html.twig', [
+        return $this->render('backOffice/contrat/index.html.twig', [
             'controller_name' => 'ContratController',
         ]);
     }
@@ -33,7 +33,7 @@ class ContratController extends AbstractController
             $x->persist($stage);
             $x->flush();
         }
-        return $this->render('contrat/add.html.twig', [
+        return $this->render('backOffice/contrat/add.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -44,7 +44,7 @@ class ContratController extends AbstractController
     public function AffichageDesContrats(ContratRepository $contratRepository): Response
     {
         $liste = $contratRepository->findAll();
-        return $this->render('contrat/affichageContrat.html.twig', [
+        return $this->render('backOffice/contrat/affichageContrat.html.twig', [
             'contrat' => $liste,
         ]);
     }
@@ -70,7 +70,7 @@ class ContratController extends AbstractController
             $emr->flush();
             return new Response("update with succcess");
         }
-        return $this->renderForm('contrat/add.html.twig', [
+        return $this->renderForm('backOffice/contrat/add.html.twig', [
             'form' => $form
         ]);
     }

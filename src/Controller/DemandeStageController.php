@@ -40,7 +40,7 @@ class DemandeStageController extends AbstractController
             $x->persist($demande);
             $x->flush();
         }
-        return $this->render('demande_stage/demande.html.twig', [
+        return $this->render('frontOffice/demande_stage/demande.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -48,7 +48,7 @@ class DemandeStageController extends AbstractController
     public function AffichageDesDemandes(DemandestageRepository $demandestageRepository): Response
     {
         $liste = $demandestageRepository->findAll();
-        return $this->render('demande_stage/affichage.html.twig', [
+        return $this->render('backOffice/demande_stage/affichage.html.twig', [
             'Demandes' => $liste,
         ]);
     }
@@ -86,7 +86,7 @@ class DemandeStageController extends AbstractController
         
         $idData = $demandestageRepository->find($numero);
         
-        return $this->renderForm('demande_stage/demande.html.twig', [
+        return $this->renderForm('frontOffice/demande_stage/demande.html.twig', [
             'form' => $idData
         ]);
     }

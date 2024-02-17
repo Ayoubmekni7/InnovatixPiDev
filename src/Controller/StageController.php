@@ -18,7 +18,7 @@ class StageController extends AbstractController
     public function AfficheStage(StageRepository $stageRepository): Response
     {
         $stages = $stageRepository->findAll();
-        return $this->render('stage/liste.html.twig', [
+        return $this->render('backOffice/stage/liste.html.twig', [
             'stages' => $stages,
         ]);
     }
@@ -33,7 +33,7 @@ class StageController extends AbstractController
             $em->persist($stage);
             $em->flush();
         }
-        return $this->render('stage/addStage.html.twig', [
+        return $this->render('backOffice/stage/addStage.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -58,7 +58,7 @@ class StageController extends AbstractController
             $emr->flush();
             return new Response("update with succcess");
         }
-        return $this->renderForm('stage/addStage.html.twig', [
+        return $this->renderForm('backOffice/stage/addStage.html.twig', [
             'form' => $form
         ]);
     }
