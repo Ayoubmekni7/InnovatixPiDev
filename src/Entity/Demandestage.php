@@ -52,6 +52,9 @@ class Demandestage
     #[ORM\Column(nullable: true)]
     private ?bool $etat = null;
 
+    #[ORM\ManyToOne(inversedBy: 'demande')]
+    private ?OffreStage $offreStage = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -161,6 +164,18 @@ class Demandestage
     public function setEtat(?bool $etat): static
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getOffreStage(): ?OffreStage
+    {
+        return $this->offreStage;
+    }
+
+    public function setOffreStage(?OffreStage $offreStage): static
+    {
+        $this->offreStage = $offreStage;
 
         return $this;
     }

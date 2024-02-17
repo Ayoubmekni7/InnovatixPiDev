@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OffreStageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -46,6 +48,17 @@ class OffreStage
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $motsCles = null;
+
+    #[ORM\OneToMany(mappedBy: 'offreStage', targetEntity: DemandeStage::class)]
+    private Collection $demande;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pfeBook = null;
+
+    public function __construct()
+    {
+        $this->demande = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -180,6 +193,48 @@ class OffreStage
     public function setMotsCles(?string $motsCles): static
     {
         $this->motsCles = $motsCles;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DemandeStage>
+     */
+    public function getDemande(): Collection
+    {
+        return $this->demande;
+    }
+
+    public function addDemande(DemandeStage $demande): static
+    {
+        if (!$this->demande->contains($demande)) {
+            $this->demande->add($demande);
+            $demande->setOffreStage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDemande(DemandeStage $demande): static
+    {
+        if ($this->demande->removeElement($demande)) {
+            // set the owning side to null (unless already changed)
+            if ($demande->getOffreStage() === $this) {
+                $demande->setOffreStage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPfeBook(): ?string
+    {
+        return $this->pfeBook;
+    }
+
+    public function setPfeBook(?string $pfeBook): static
+    {
+        $this->pfeBook = $pfeBook;
 
         return $this;
     }
