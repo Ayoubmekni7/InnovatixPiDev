@@ -8,6 +8,7 @@ use App\Repository\DemandestageRepository;
 use App\Service\Mailing;
 use App\Service\uploadFile;
 use Doctrine\Persistence\ManagerRegistry;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -84,17 +85,22 @@ class DemandeStageController extends AbstractController
     #[Route('/modifierDemande/{id}', name: 'modifierDemande')]
     public function modifierDemande($id, ManagerRegistry $manager, DemandestageRepository $demandestageRepository, Request $request, UploadFile $uploaderService): Response
     {
-        
-        
         $em = $manager->getManager();
         $idData = $demandestageRepository->find($id);
+        $ancienCv = $idData->getCv();
+        $idData->setCv(Null);
         $form = $this->createForm(DemandeStageType::class, $idData);
+        
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() and $form->isValid()) {
             $cv = $form->get('cv')->getData();
-//            if($cv) {
-//                $idData->setCv($uploaderService->uploadFile($cv,'uploads_directory'));
-//            }
+            if($cv) {
+                $idData->setCv($uploaderService->uploadFile($cv,'uploads_directory'));
+            }else{
+                $idData->setCv($ancienCv);
+            }
+            
             $em->persist($idData);
             $em->flush();
             $to = $idData->getEmail();
@@ -107,11 +113,12 @@ class DemandeStageController extends AbstractController
             $this->emailService->sendEmail($to,$subject,$html);
             return new Response("update with succcess");
         }
-        return $this->renderForm('frontOffice/demande_stage/demande.html.twig', [
+        return $this->renderForm('frontOffice/demande_stage/edit.html.twig', [
             'form' => $form,
-            'cv'=>  $idData->getCv()
+            'ancienCv'=> $ancienCv,
         ]);
     }
+    
     #[Route('/rechercheDemande/{numero}', name: 'rechercheDemande')]
     public function rechercheDemande($numero, DemandestageRepository $demandestageRepository): Response
     {

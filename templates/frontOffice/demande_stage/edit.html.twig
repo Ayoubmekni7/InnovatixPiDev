@@ -1,0 +1,147 @@
+{# templates/votre_template.html.twig #}
+
+{# Inclure les styles CSS directement dans le même fichier Twig #}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<title>Demande de stage</title>
+{#<style>#}
+{#    /*!* Ajoutez vos styles personnalisés ici *!*/#}
+{#    /*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');*/#}
+{#    /** {*/#}
+{#    /*    padding: 0;*/#}
+{#    /*    margin: 0;*/#}
+{#    /*    box-sizing: border-box;*/#}
+{#    /*}*/#}
+
+{#    /*body {*/#}
+{#    /*    !*background: linear-gradient(90deg, rgb(47, 129, 57) 0%, rgb(16, 220, 38) 35%, rgb(169, 241, 128) 100%);*!*/#}
+{#    /*    !*background: #a19f9f;*!*/#}
+{#    /*    background: linear-gradient(90deg, rgb(174, 238, 231) 0%, rgb(124, 241, 175) 50%, rgb(77, 241, 225) 100%);*/#}
+{#    /*    font-family: 'Poppins', sans-serif;*/#}
+{#    /*}*/#}
+
+{#    /*!* Style pour le formulaire *!*/#}
+{#    /*.centered-form {*/#}
+{#    /*    display: flex;*/#}
+{#    /*    justify-content: center;*/#}
+{#    /*    align-items: center;*/#}
+{#    /*    height: 100vh; !* Ajustez la hauteur selon vos besoins *!*/#}
+{#    /*}*/#}
+
+{#    /*.centered-form form {*/#}
+{#    /*    width: 50%; !* Ajustez la largeur selon vos besoins *!*/#}
+{#    /*}*/#}
+{#    /*form {*/#}
+{#    /*    border-radius: 20px;*/#}
+{#    /*    margin-top: 20px !important;*/#}
+{#    /*    width: 40% !important;*/#}
+{#    /*    background-color: white !important;*/#}
+{#    /*    padding: 50px;*/#}
+{#    /*    margin-left: auto;*/#}
+{#    /*    margin-right: auto;*/#}
+
+{#    /*}*/#}
+
+{#    /*!* Style pour les labels *!*/#}
+{#    /*.form-label {*/#}
+{#    /*    font-weight: 800 !important;*/#}
+
+{#    /*}*/#}
+
+{#    /*!* Style pour les champs de saisie *!*/#}
+{#    /*.form-control {*/#}
+{#    /*    color: rgb(50, 134, 60);*/#}
+{#    /*    border-bottom-color: rgb(16, 220, 38);*/#}
+{#    /*    box-shadow: none !important;*/#}
+{#    /*    border: none;*/#}
+{#    /*    border-bottom: 1px solid;*/#}
+{#    /*    border-radius: 4px 4px 0 0;*/#}
+{#    /*}*/#}
+
+{#    /*!* Style pour les messages d'erreur *!*/#}
+{#    /*.form-text.text-danger {*/#}
+{#    /*    color: red;*/#}
+{#    /*}*/#}
+
+{#    /*!* Style pour le bouton de soumission *!*/#}
+{#    /*.btn-success {*/#}
+{#    /*    width: 100%;*/#}
+{#    /*    border: none;*/#}
+{#    /*    border-radius: 50px;*/#}
+{#    /*    //background: #0e3d8e;*/#}
+{#    /*    background: linear-gradient(90deg, rgb(31, 122, 20) 0%, rgb(34, 164, 53) 35%, rgb(101, 231, 30) 100%);*/#}
+{#    /*}*/#}
+
+{#    /*!* Style pour le bouton de soumission au survol *!*/#}
+{#    /*.btn-primary:hover {*/#}
+{#    /*    opacity: 0.8;*/#}
+{#    /*}*/#}
+
+{#    /*!* Style pour le titre *!*/#}
+{#    /*h4 {*/#}
+{#    /*    font-size: 2rem !important;*/#}
+{#    /*    font-weight: 700;*/#}
+{#    /*}*/#}
+{#</style>#}
+<link rel="stylesheet" href="{{ asset('css/demande.css') }}">
+
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+{{ form_row(form._token) }}
+<body class="body">
+<div class="container-fluid">
+    <form class="form"  >
+        <h4 class="text-center">Demande de stage</h4>
+        <div class="mb-3">
+            <label class="form-label" style="margin-top: 10px">  {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }} </label>
+            <div > {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}</div>
+            {{ form_errors(form.nom, {'attr': {'class': 'valid-feedback'}}) }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" style="margin-top: 10px">  {{ form_label(form.prenom, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div >   {{ form_widget(form.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }} </div>
+            {{ form_errors(form.prenom, {'attr': {'class': 'valid-feedback'}}) }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label" style="margin-top: 10px">  {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div>{{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}</div>
+            {{ form_errors(form.email, {'attr': {'class': 'valid-feedback'}}) }}
+        </div>
+        <div class="mb-3 mt-5">
+            <label  class="form-label" > {{ form_label(form.numerotelephone, 'Numéro de téléphone', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div>{{ form_widget(form.numerotelephone, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de téléphone'}}) }}</div>
+            {{ form_errors(form.numerotelephone, {'attr': {'class': 'valid-feedback'}}) }}
+        </div>
+        <div>
+            <label class="form-label" style="margin-top: 10px">  {{ form_label(form.domaine, 'Domaine', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div > {{ form_widget(form.domaine, {'attr': {'class': 'form-control'}}) }} </div>
+            {{ form_errors(form.domaine, {'attr': {'class': 'valid-feedback'}}) }}
+            {#            {{ form_row(form._token) }}#}
+        </div>
+        <div class="mb-3">
+            <label class="wrap-input1 validate-input" style="margin-top: 10px"> {{ form_label(form.date, 'date de stage', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div >{{ form_widget(form.date, {'attr': {'class': 'input1', 'placeholder': 'date du stage'}}) }}</div>
+            {{ form_errors(form.date, {'attr': {'class': 'valid-feedback'}}) }}
+        </div>
+        <div class="mb-3">
+            <a href="{{ asset('upload/CV/' ~ ancienCv) }}" target="_blank"><button>Ouvrir PDF</button></a>
+            <a href="{{ asset('upload/CV/' ~ ancienCv) }}" download="{{ '_.pdf' }}"><button class="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3">Télécharger</button></a>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" style="margin-top: 10px"> {{ form_label(form.cv2, 'cv', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div >{{ form_widget(form.cv2, {'attr': {'class': 'form-control', 'placeholder': 'entrer votre cv'}}) }}</div>
+            {{ form_errors(form.cv2, {'attr': {'class': 'valid-feedback'}}) }}
+        </div>
+
+        <div class="mb-3">
+            <label class="wrap-input1 validate-input" style="margin-top: 10px"> {{ form_label(form.lettremotivation, 'Lettre de motivation', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div >{{ form_widget(form.lettremotivation, {'attr': {'class': 'input1', 'placeholder': 'Lettre de motivation'}}) }}</div>
+            {{ form_errors(form.lettremotivation, {'attr': {'class': 'valid-feedback'}}) }}
+        </div>
+
+        <button type="submit" class="btn btn-success mt-5">Soumettre</button>
+    </form>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+{{ form_end(form) }}

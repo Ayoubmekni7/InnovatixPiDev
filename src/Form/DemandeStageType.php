@@ -6,6 +6,7 @@ use App\Entity\Demandestage;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -33,13 +34,14 @@ class DemandeStageType extends AbstractType
                 'placeholder' => 'Sélectionnez une option', // optionnel
                 // Autres options du champ ChoiceType
             ])
-        ->add('cv',FileType::class, [
+        ->add('cv2',FileType::class, [
         'label' => 'Upload PDF file',
         'required' => true,
     
     ])
         ->add('lettremotivation')
-            ->add('date');
+            ->add('date')
+        ->add('submit',SubmitType::class);
       
     }
 
