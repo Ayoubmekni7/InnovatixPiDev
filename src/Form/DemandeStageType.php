@@ -34,7 +34,7 @@ class DemandeStageType extends AbstractType
                 'placeholder' => 'Sélectionnez une option', // optionnel
                 // Autres options du champ ChoiceType
             ])
-        ->add('cv2',FileType::class, [
+        ->add('cv',FileType::class, [
         'label' => 'Upload PDF file',
         'required' => true,
     

@@ -121,15 +121,11 @@
             <div >{{ form_widget(form.date, {'attr': {'class': 'input1', 'placeholder': 'date du stage'}}) }}</div>
             {{ form_errors(form.date, {'attr': {'class': 'valid-feedback'}}) }}
         </div>
-        <div class="mb-3">
-            <a href="{{ asset('upload/CV/' ~ ancienCv) }}" target="_blank"><button>Ouvrir PDF</button></a>
-            <a href="{{ asset('upload/CV/' ~ ancienCv) }}" download="{{ '_.pdf' }}"><button class="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3">Télécharger</button></a>
-        </div>
 
         <div class="mb-3">
-            <label class="form-label" style="margin-top: 10px"> {{ form_label(form.cv2, 'cv', {'label_attr': {'class': 'form-label'}}) }}</label>
-            <div >{{ form_widget(form.cv2, {'attr': {'class': 'form-control', 'placeholder': 'entrer votre cv'}}) }}</div>
-            {{ form_errors(form.cv2, {'attr': {'class': 'valid-feedback'}}) }}
+            <label class="form-label" style="margin-top: 10px"> {{ form_label(form.cv, 'cv', {'label_attr': {'class': 'form-label'}}) }}</label>
+            <div >{{ form_widget(form.cv, {'attr': {'class': 'form-control', 'placeholder': 'entrer votre cv'}}) }}</div>
+            {{ form_errors(form.cv, {'attr': {'class': 'valid-feedback'}}) }}
         </div>
 
         <div class="mb-3">
