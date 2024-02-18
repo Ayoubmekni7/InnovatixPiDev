@@ -45,4 +45,14 @@ class DemandestageRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    
+    public function findDemandesByOffre($offreId)
+    {
+        return $this->createQueryBuilder('b')
+            ->join('b.offre', 'a')
+            ->where('a.id = :offreId')
+            ->setParameter('offreId', $offreId)
+            ->getQuery()
+            ->getResult();
+    }
 }
