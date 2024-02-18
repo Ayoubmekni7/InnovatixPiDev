@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Demandestage;
+use App\Entity\DemandeStage;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -34,7 +34,7 @@ class DemandeStageType extends AbstractType
                 'placeholder' => 'Sélectionnez une option', // optionnel
                 // Autres options du champ ChoiceType
             ])
-        ->add('cv2',FileType::class, [
+        ->add('cv',FileType::class, [
         'label' => 'Upload PDF file',
         'required' => true,
     
@@ -48,7 +48,7 @@ class DemandeStageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Demandestage::class,
+            'data_class' => DemandeStage::class,
         ]);
     }
 }
