@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\DemandestageRepository;
+use App\Repository\DemandeStageRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-#[ORM\Entity(repositoryClass: DemandestageRepository::class)]
-class DemandeStage
+#[ORM\Entity(repositoryClass: DemandeStageRepository::class)]
+class Demandestage
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

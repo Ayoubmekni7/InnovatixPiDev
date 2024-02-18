@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\DemandeStage;
+use App\Entity\Demandestage;
 use App\Form\DemandeStageType;
-use App\Repository\DemandestageRepository;
+use App\Repository\DemandeStageRepository;
 use App\Service\Mailing;
 use App\Service\uploadFile;
 use Doctrine\Persistence\ManagerRegistry;
@@ -27,7 +27,7 @@ class DemandeStageController extends AbstractController
     #[Route('/demandeStage', name: 'demandeStage')]
     public function demandeStage(Request $request,ManagerRegistry $managerRegistry,SluggerInterface $slugger): Response
     {
-        $demande = new DemandeStage();
+        $demande = new Demandestage();
         $form = $this->createForm(DemandeStageType::class, $demande);
         $form->handleRequest($request);
         $to = $demande->getEmail();
@@ -60,7 +60,7 @@ class DemandeStageController extends AbstractController
         ]);
     }
     #[Route('/AffichageDesDemandes', name: 'AffichageDesDemandes')]
-    public function AffichageDesDemandes(DemandestageRepository $demandestageRepository): Response
+    public function AffichageDesDemandes(DemandeStageRepository $demandestageRepository): Response
     {
         $liste = $demandestageRepository->findAll();
         return $this->render('backOffice/demande_stage/affichage.html.twig', [
@@ -69,7 +69,7 @@ class DemandeStageController extends AbstractController
     }
     
     #[Route('/deleteDemande/{id}', name: 'deleteDemande')]
-    public function deleteDemande($id, ManagerRegistry $manager, DemandestageRepository $repo): Response
+    public function deleteDemande($id, ManagerRegistry $manager, DemandeStageRepository $repo): Response
     {
         $emm = $manager->getManager();
         $idremove = $repo->find($id);
@@ -83,7 +83,7 @@ class DemandeStageController extends AbstractController
         return $this->redirectToRoute('demandeStage');
     }
     #[Route('/modifierDemande/{id}', name: 'modifierDemande')]
-    public function modifierDemande($id, ManagerRegistry $manager, DemandestageRepository $demandestageRepository, Request $request, UploadFile $uploaderService): Response
+    public function modifierDemande($id, ManagerRegistry $manager, DemandeStageRepository $demandestageRepository, Request $request, UploadFile $uploaderService): Response
     {
         $em = $manager->getManager();
         $idData = $demandestageRepository->find($id);
@@ -120,7 +120,7 @@ class DemandeStageController extends AbstractController
     }
     
     #[Route('/rechercheDemande/{numero}', name: 'rechercheDemande')]
-    public function rechercheDemande($numero, DemandestageRepository $demandestageRepository): Response
+    public function rechercheDemande($numero, DemandeStageRepository $demandestageRepository): Response
     {
         
         $idData = $demandestageRepository->find($numero);

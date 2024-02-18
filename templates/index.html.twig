@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% block header %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,12 +18,13 @@
     <link rel="stylesheet" href="{{asset('front/assets/css/fontawesome.css')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/templatemo-finance-business.css')}}">
     <link rel="stylesheet" href="{{asset('front/assets/css/owl.css')}}">
-    {% block stylesheet %}
 
-    {% endblock %}
+
+
 
 
   </head>
+{% endblock %}
   <body>
     <div id="preloader">
         <div class="jumper">

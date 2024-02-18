@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\OffreStage;
 use App\Form\OffreStageType;
-use App\Repository\DemandestageRepository;
+use App\Repository\DemandeStageRepository;
 use App\Repository\OffreStageRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use phpDocumentor\Reflection\Types\This;
@@ -19,7 +19,7 @@ class OffreStagesController extends AbstractController
     public function index(OffreStageRepository $offreStageRepository): Response
     {
         $liste = $offreStageRepository->findAll();
-        return $this->render('frontOffice/offre_stage/recrutement.html.twig', [
+        return $this->render('frontOffice/offre_stages/recrutement.html.twig', [
             'offres' => $liste,
         ]);
     }
@@ -81,7 +81,7 @@ class OffreStagesController extends AbstractController
     }
     
     #[Route('/DemandeParOffres/{id}', name: 'DemandeParOffres')]
-    public function DemandeParOffres($id, DemandestageRepository $demandestageRepository): Response
+    public function DemandeParOffres($id, DemandeStageRepository $demandestageRepository): Response
     {
         $offre = $demandestageRepository->find($id);
         return $this->render('', [

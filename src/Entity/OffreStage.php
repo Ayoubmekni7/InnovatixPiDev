@@ -49,7 +49,7 @@ class OffreStage
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $motsCles = null;
 
-    #[ORM\OneToMany(mappedBy: 'offreStage', targetEntity: DemandeStage::class)]
+    #[ORM\OneToMany(mappedBy: 'offreStage', targetEntity: Demandestage::class)]
     private Collection $demande;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -198,14 +198,14 @@ class OffreStage
     }
 
     /**
-     * @return Collection<int, DemandeStage>
+     * @return Collection<int, Demandestage>
      */
     public function getDemande(): Collection
     {
         return $this->demande;
     }
 
-    public function addDemande(DemandeStage $demande): static
+    public function addDemande(Demandestage $demande): static
     {
         if (!$this->demande->contains($demande)) {
             $this->demande->add($demande);
@@ -215,7 +215,7 @@ class OffreStage
         return $this;
     }
 
-    public function removeDemande(DemandeStage $demande): static
+    public function removeDemande(Demandestage $demande): static
     {
         if ($this->demande->removeElement($demande)) {
             // set the owning side to null (unless already changed)
