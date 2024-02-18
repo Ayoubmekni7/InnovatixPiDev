@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Demandestage;
+use App\Entity\DemandeStage;
 use App\Form\DemandeStageType;
 use App\Repository\DemandestageRepository;
 use App\Service\Mailing;
@@ -27,7 +27,7 @@ class DemandeStageController extends AbstractController
     #[Route('/demandeStage', name: 'demandeStage')]
     public function demandeStage(Request $request,ManagerRegistry $managerRegistry,SluggerInterface $slugger): Response
     {
-        $demande = new Demandestage();
+        $demande = new DemandeStage();
         $form = $this->createForm(DemandeStageType::class, $demande);
         $form->handleRequest($request);
         $to = $demande->getEmail();
