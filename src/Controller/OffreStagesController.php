@@ -11,8 +11,11 @@ class OffreStagesController extends AbstractController
     #[Route('/offre/stages', name: 'app_offre_stages')]
     public function index(): Response
     {
-        return $this->render('offre_stages/index.html.twig', [
+        return $this->render('frontOffice/offre_stages/recrutement.html.twig', [
             'controller_name' => 'OffreStagesController',
         ]);
     }
+    
+    
+    
 }
