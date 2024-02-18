@@ -7,9 +7,7 @@
                 border-color: #93C572;
                 transition: border-color 0.3s ease;
             }
-            .hidden-credit-field option {
-    display: none;
-}
+            
     
             .form-control:focus {
                 border-color: #5cb85c; /* Change border color on focus */
@@ -17,7 +15,7 @@
     
             /* Change background color of the entire page to light gray with very slight opacity */
             body {
-                background-color: #93C572; /* Change to desired green color */
+                background-color: rgba(211, 211, 211, 0.95); /* Adjust opacity as needed */
             }
             .methode-choice {
     margin-right: 20px; /* Adjust this value to your preference */
@@ -68,7 +66,7 @@
                             
                             
                             <div class="mb-3">
-    {{ form_row(form.credit, {'attr': {'class': 'form-control'}, 'id': 'credit'}) }}
+    {{ form_row(form.credit, {'attr': {'class': 'form-control'}, 'id': 'idcredit'}) }}
 </div
 
                             <div class="text-center">
