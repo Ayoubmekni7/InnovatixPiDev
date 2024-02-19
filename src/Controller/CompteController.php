@@ -61,10 +61,10 @@ class CompteController extends AbstractController
 public function  deleteCompte($id,ManagerRegistry $managerRegistry,CompteRepository $compteRepository):Response
     {
         $emm=$managerRegistry->getManager();
-        $idremove=$compteRepository->findAll();
+        $idremove=$compteRepository->find($id);
         $emm->remove($idremove);
         $emm->flush();
-        return $this->redirectToRoute('listCompte.html.twig');
+        return $this->redirectToRoute('afficheCompte');
 
     }
 #[Route('/modifierCompte/{id}', name: 'modifierCompte')]
@@ -79,7 +79,7 @@ public function modifierCompte($id,ManagerRegistry $managerRegistry,CompteReposi
         $em->flush();
         return  new Response(("Bien modifié"));
     }
-    return $this->renderForm('compte/list.html.twig',[
+    return $this->renderForm('compte/creerCompte.html.twig',[
         'form'=>$form
     ]);
 
