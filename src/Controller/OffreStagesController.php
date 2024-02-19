@@ -15,14 +15,23 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OffreStagesController extends AbstractController
 {
-    #[Route('/offre/stages', name: 'app_offre_stages')]
-    public function index(OffreStageRepository $offreStageRepository): Response
+    #[Route('/Recrutement', name: 'Recrutement')]
+    public function Recrutement(OffreStageRepository $offreStageRepository): Response
     {
         $liste = $offreStageRepository->findAll();
-        return $this->render('frontOffice/offre_stage/recrutement.html.twig', [
+        return $this->render('frontOffice/offre_stage/recrutement.html.twig',[
             'offres' => $liste,
         ]);
     }
+    #[Route('/afficheOffreStages', name: 'afficheOffreStages')]
+    public function afficheOffreStages(OffreStageRepository $offreStageRepository): Response
+    {
+        $liste = $offreStageRepository->findAll();
+        return $this->render('backOffice/offre_stage/afficheOffreStages.html.twig',[
+            'offres' => $liste,
+        ]);
+    }
+    
     
     #[Route('/addOffre', name: 'addOffre')]
     public function addOffre(ManagerRegistry $managerRegistry,Request $request): Response
