@@ -48,10 +48,7 @@ class Cheque
     #[Assert\Regex(pattern: '/^(1|0)[0-9]{7}$/', message: 'Le numéro de cin doit commencer par 1 ou 0 et contenir 8 chiffres')]
     private ?int $Cin = null;
 
-    #[ORM\Column(type: Types::BIGINT)]
-    #[Assert\NotBlank(message: 'RIB obligatoire')]
-    #[Assert\Length(min: 13, max: 27, exactMessage: 'Le numéro de rib doit contenir au minimum 13 derniers chiffres')]
-    private ?string $RIB = null;
+
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez saisir votre nom et prenom')]
@@ -133,18 +130,6 @@ class Cheque
     public function setCin(int $Cin): static
     {
         $this->Cin = $Cin;
-
-        return $this;
-    }
-
-    public function getRIB(): ?string
-    {
-        return $this->RIB;
-    }
-
-    public function setRIB(string $RIB): static
-    {
-        $this->RIB = $RIB;
 
         return $this;
     }

@@ -33,7 +33,7 @@ class CompteController extends AbstractController
             {#return new Response('creation de compte');#}
 
             }}
-                return  $this->render('compte/creerCompte.html.twig',[
+                return  $this->render('frontoffice/compte/creerCompte.html.twig',[
             'form' => $form->createView(),
             'Compte'=>$compte
         ]);
@@ -42,7 +42,7 @@ class CompteController extends AbstractController
     #[Route('/succses', name: 'succses')]
     public function succses(): Response
     {
-        return $this->render('compte/succe.html.twig', [
+        return $this->render('frontoffice/compte/succe.html.twig', [
             'controller_name' => 'SuccsesController',
         ]);
     }
@@ -53,7 +53,7 @@ class CompteController extends AbstractController
     public function afficheCompte(CompteRepository $compteRepository ): Response
     {
         $compte=$compteRepository->findAll();
-        return $this->render('compte/listCompte.html.twig', [
+        return $this->render('backoffice/compte/listCompte.html.twig', [
             'comptes' => $compte,
         ]);
     }
@@ -79,7 +79,7 @@ public function modifierCompte($id,ManagerRegistry $managerRegistry,CompteReposi
         $em->flush();
         return  new Response(("Bien modifié"));
     }
-    return $this->renderForm('compte/creerCompte.html.twig',[
+    return $this->renderForm('frontoffice/compte/creerCompte.html.twig',[
         'form'=>$form
     ]);
 

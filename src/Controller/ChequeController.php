@@ -22,13 +22,12 @@ class ChequeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $em->persist($cheque);
             $em->flush();
             return new Response('ajout avec succes');
         }
 
-        return $this->render('cheque/add.html.twig', [
+        return $this->render('frontoffice/cheque/add.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -38,7 +37,7 @@ class ChequeController extends AbstractController
 
     {
         $liste= $chequeRepository->findAll();
-        return $this->render('cheque/list.html.twig',[
+        return $this->render('backoffice/cheque/list.html.twig',[
             'cheques'=>$liste,
         ]);
     }
@@ -65,7 +64,7 @@ public function modifierCheque($id,ManagerRegistry $managerRegistry,ChequeReposi
         return new Response("modification avec succes");
 
     }
-    return $this->renderForm('cheque/add.html.twig',[
+    return $this->renderForm('frontoffice/cheque/add.html.twig',[
         'form' => $form
     ]);
 }
