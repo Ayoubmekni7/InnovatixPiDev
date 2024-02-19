@@ -29,15 +29,25 @@ class CompteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $em->persist($compte);
             $em->flush();
-            return new Response('creation de compte');
+            return $this->redirectToRoute('succses');
+            {#return new Response('creation de compte');#}
 
-        }
-        return  $this->render('compte/creerCompte.html.twig',[
+            }}
+                return  $this->render('compte/creerCompte.html.twig',[
             'form' => $form->createView(),
             'Compte'=>$compte
         ]);
 
     }
+    #[Route('/succses', name: 'succses')]
+    public function succses(): Response
+    {
+        return $this->render('compte/succe.html.twig', [
+            'controller_name' => 'SuccsesController',
+        ]);
+    }
+
+
 
     #[Route('/afficheCompte', name: 'afficheCompte')]
     public function afficheCompte(CompteRepository $compteRepository ): Response
@@ -69,7 +79,7 @@ public function modifierCompte($id,ManagerRegistry $managerRegistry,CompteReposi
         $em->flush();
         return  new Response(("Bien modifié"));
     }
-    return $this->renderForm('compte/creerCompte.html.twig',[
+    return $this->renderForm('compte/list.html.twig',[
         'form'=>$form
     ]);
 

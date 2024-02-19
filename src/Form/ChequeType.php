@@ -14,22 +14,22 @@ class ChequeType extends AbstractType
     {
         $builder
             ->add('compte')
-            ->add('numeroCompte')
-            ->add('titulaireCompte')
+            ->add('RIB')
             ->add('Cin')
+            ->add('NomPrenom')
+            ->add('Email')
             ->add('Beneficiaire',  ChoiceType::class, [
                 'choices' => [
                     'Paiement' => 'Paiement',
-                    'PaiementEco ' => 'Paiment Ecoresponsabilté',
+                    'PaiementEco' => 'PaiementEco',
                     'Personne' => 'Personne',
                 ],
-                'placeholder' => 'Sélectionnez une option', // optionnel
+                'expanded' => true, // Définit le champ comme des boutons radio
+                'multiple' => false, // Seul un choix peut être sélectionné
                 // Autres options du champ ChoiceType
             ])
-            ->add('NomBeneficiaire')
-            ->add('Montant')
             ->add('telephone')
-            ->add('Email')
+            ->add('Montant')
         ;
     }
 

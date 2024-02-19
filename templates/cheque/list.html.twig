@@ -28,14 +28,13 @@
                                     <thead>
                                     <tr>
 
-                                        <th><strong>N°de Compte</strong></th>
-                                        <th><strong>Titulaire</strong></th>
+                                        <th><strong>RIB</strong></th>
                                         <th><strong>Cin</strong></th>
-                                        <th><strong>Bénéficiaire</strong></th>
-                                        <th><strong>Nom de Bénéficiare</strong></th>
-                                        <th><strong>Montant a payer</strong></th>
-                                        <th><strong>Numéro de téléphone</strong></th>
+                                        <th><strong>Nom et Prenom</strong></th>
                                         <th><strong>Email</strong></th>
+                                        <th><strong>Beneficiaire</strong></th>
+                                        <th><strong>Numéro de téléphone</strong></th>
+                                        <th><strong>Montant</strong></th>
                                         <th><strong>Actions</strong></th>
 
                                     </tr>
@@ -44,18 +43,17 @@
                                     {% for i in cheques  %}
                                     <tr>
 
-                                        <td><strong>{{ i.numeroCompte }}</strong></td>
-                                        <td>
-                                            <div class="d-flex align-items-center"> <span class="w-space-no">{{ i.titulaireCompte }}</span></div>
-                                        </td>
-                                        <td>{{ i.Cin}}
-                                        <td>{{ i.Beneficiaire }}</td>
-                                        <td>{{ i.NomBeneficiaire}} </td>
-                                        <td>{{ i.Montant }}</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">{{ i.telephone }}</div>
-                                        </td>
+                                        <td><strong>{{ i.compte }}</strong></td>
+                                        <td>{{ i.RIB}}</td>
+                                        <td>{{ i.Cin }}</td>
+                                        <td>{{ i.NomPrenom }}</td>
                                         <td>{{i.Email}} </td>
+                                        <td>{{ i.Beneficiaire}} </td>
+                                        <td>{{ i.telephone }}</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">{{ i.Montant }}</div>
+                                        </td>
+
 
                                         <td>
 

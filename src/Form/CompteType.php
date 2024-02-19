@@ -16,7 +16,14 @@ class CompteType extends AbstractType
         $builder
             ->add('Email')
             ->add('confirmationEmail')
-            ->add('TypeCin')
+            ->add('TypeCin' , ChoiceType::class, [
+                'choices' => [
+                    'Passeport ' => 'Passeport',
+                    'Cin' => 'Cin',
+                ],
+                'placeholder' => 'Sélectionnez une option', // optionnel
+                // Autres options du champ ChoiceType
+            ])
             ->add('cin')
             ->add('DateDelivranceCin')
             ->add('nom')
@@ -34,9 +41,10 @@ class CompteType extends AbstractType
             ->add('DateNaissance')
             ->add('StatutMarital',   ChoiceType::class, [
                 'choices' => [
-                    'Célibataire ' => 'celebataire',
-                    'Divorcé ' => 'divorcé',
-                    'Veuf ' => 'veuf',
+                    'Célibataire ' => 'Célibataire',
+                    'Marié' => 'Marié',
+                    'Divorcé' => 'Divorcé',
+                    'Autre' => 'Autre',
                 ],
                 'placeholder' => 'Sélectionnez une option', // optionnel
                 // Autres options du champ ChoiceType

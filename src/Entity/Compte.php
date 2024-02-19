@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CompteRepository::class)]
 class Compte
@@ -18,14 +19,22 @@ class Compte
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Email obligatoire')]
+    #[Assert\Regex(
+        pattern: "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/",
+        message: "L'adresse email '{{ value }}' n'est pas valide."
+    )]
     private ?string $Email = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Email obligatoire')]
+    #[Assert\Regex(
+        pattern: "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/",
+        message: "L'adresse email '{{ value }}' n'est pas valide."
+    )]
     private ?string $confirmationEmail = null;
 
     #[ORM\Column]
-    #[Assert\NotBlank(message: 'Veuillez saisir votre  cin')]
+    #[Assert\NotBlank(message: 'Veuillez saisir numéro de votre cin')]
     #[Assert\Length(min: 8, max: 8, exactMessage: 'Le numéro de cin doit contenir 8 chiffres')]
     #[Assert\Regex(pattern: '/^(1|0)[0-9]{7}$/', message: 'Le numéro de cin doit commencer par 1 ou 0 et contenir 8 chiffres')]
     private ?int $cin = null;
@@ -42,7 +51,7 @@ class Compte
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez saisir votre genre')]
+    #[Assert\NotBlank(message: 'Veuillez choisir votre genre')]
     private ?string $sexe = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -79,10 +88,15 @@ class Compte
     private ?int $NumeroTelephone = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez choisir votre pref de communication ')]
     private ?string $PreferenceCommunic = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez saisir le type de votre cin')]
     private ?string $TypeCin = null;
+
+    #[ORM\Column(type: Types::BIGINT, nullable: true)]
+    private ?string $RIB = null;
 
     public function __construct()
     {
@@ -289,7 +303,7 @@ class Compte
         return $this;
     }
     public function __toString(){
-        return (String)$this->getCin();
+        return (String)$this->getRIB();
     }
 
     public function  toString(){
@@ -352,6 +366,18 @@ class Compte
     public function setTypeCin(string $TypeCin): static
     {
         $this->TypeCin = $TypeCin;
+
+        return $this;
+    }
+
+    public function getRIB(): ?string
+    {
+        return $this->RIB;
+    }
+
+    public function setRIB(?string $RIB): static
+    {
+        $this->RIB = $RIB;
 
         return $this;
     }

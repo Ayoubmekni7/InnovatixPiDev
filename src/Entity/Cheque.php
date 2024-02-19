@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\ChequeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use PhpParser\Node\Expr\Cast\Double;
 use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ChequeRepository::class)]
 class Cheque
@@ -14,21 +16,9 @@ class Cheque
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    #[Assert\Length(min: 13, max: 24, exactMessage: 'Le numéro de compte doit contenir 24 chiffres ou les 13 dernier chiffres ')]
-    private ?int  $numeroCompte = null;
-
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez saisir le nom de Titulaire ')]
-    private ?string $titulaireCompte = null;
-
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez choisir un Type de Bénéficiare ')]
     private ?string $Beneficiaire = null;
-
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez saisir le nom de Bénéficiare ')]
-    private ?string $NomBeneficiaire = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez saisir le montant')]
@@ -42,6 +32,10 @@ class Cheque
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Email obligatoire')]
+    #[Assert\Regex(
+        pattern: "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/",
+        message: "L'adresse email '{{ value }}' n'est pas valide."
+    )]
     private ?string $Email = null;
 
     #[ORM\ManyToOne(inversedBy: 'idCheque')]
@@ -49,37 +43,26 @@ class Cheque
     private ?Compte $compte = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuillez saisir numéro de votre cin')]
+    #[Assert\Length(min: 8, max: 8, exactMessage: 'Le numéro de cin doit contenir 8 chiffres')]
+    #[Assert\Regex(pattern: '/^(1|0)[0-9]{7}$/', message: 'Le numéro de cin doit commencer par 1 ou 0 et contenir 8 chiffres')]
     private ?int $Cin = null;
+
+    #[ORM\Column(type: Types::BIGINT)]
+    #[Assert\NotBlank(message: 'RIB obligatoire')]
+    #[Assert\Length(min: 13, max: 27, exactMessage: 'Le numéro de rib doit contenir au minimum 13 derniers chiffres')]
+    private ?string $RIB = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez saisir votre nom et prenom')]
+    private ?string $NomPrenom = null;
+
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
-    public function getNumeroCompte(): ?int
-    {
-        return $this->numeroCompte;
-    }
-
-    public function setNumeroCompte(int $numeroCompte): static
-    {
-        $this->numeroCompte = $numeroCompte;
-
-        return $this;
-    }
-
-    public function getTitulaireCompte(): ?string
-    {
-        return $this->titulaireCompte;
-    }
-
-    public function setTitulaireCompte(string $titulaireCompte): static
-    {
-        $this->titulaireCompte = $titulaireCompte;
-
-        return $this;
-    }
-
     public function getBeneficiaire(): ?string
     {
         return $this->Beneficiaire;
@@ -91,19 +74,6 @@ class Cheque
 
         return $this;
     }
-
-    public function getNomBeneficiaire(): ?string
-    {
-        return $this->NomBeneficiaire;
-    }
-
-    public function setNomBeneficiaire(string $NomBeneficiaire): static
-    {
-        $this->NomBeneficiaire = $NomBeneficiaire;
-
-        return $this;
-    }
-
     public function getMontant(): ?float
     {
         return $this->Montant;
@@ -163,6 +133,42 @@ class Cheque
     public function setCin(int $Cin): static
     {
         $this->Cin = $Cin;
+
+        return $this;
+    }
+
+    public function getRIB(): ?string
+    {
+        return $this->RIB;
+    }
+
+    public function setRIB(string $RIB): static
+    {
+        $this->RIB = $RIB;
+
+        return $this;
+    }
+
+    public function getNometprenom(): ?string
+    {
+        return $this->nometprenom;
+    }
+
+    public function setNometprenom(string $nometprenom): static
+    {
+        $this->nometprenom = $nometprenom;
+
+        return $this;
+    }
+
+    public function getNomPrenom(): ?string
+    {
+        return $this->NomPrenom;
+    }
+
+    public function setNomPrenom(string $NomPrenom): static
+    {
+        $this->NomPrenom = $NomPrenom;
 
         return $this;
     }
