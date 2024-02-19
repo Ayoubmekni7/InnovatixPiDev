@@ -17,14 +17,38 @@ use Symfony\Component\Routing\Annotation\Route;
 class OffreStagesController extends AbstractController
 {
     #[Route('/Recrutement', name: 'Recrutement')]
-    public function Recrutement(OffreStageRepository $offreStageRepository): Response
+    public function Recrutement(OffreStageRepository $offreStageRepository,Request $request,DemandeStageRepository $demandeStageRepository): Response
     {
         $search = [];
         $form = $this->createForm(SearchType::class,$search);
-        $liste = $offreStageRepository->findAll();
+        $form->handleRequest($request);
+        $recherche= $form->getData('numero');
+        $domaine = $form->getData('domaine');
+        
+        if($domaine != null){
+            $liste = $offreStageRepository->findAll($recherche);
+        }else {
+            $liste = $offreStageRepository->findAll();
+        
+        }
+        if ($form ->isSubmitted() && $form->isValid()){
+            $demande = $demandeStageRepository->Recherche($recherche);
+            return $this->render('frontOffice/offre_stage/rechercheNumero.html.twig',[
+                'demande' => $demande,
+            ]);
+        }
+        
         return $this->render('frontOffice/offre_stage/recrutement.html.twig',[
             'offres' => $liste,
             'form' => $form->createView()
+        ]);
+    }
+    #[Route('/Recherche/{numero}', name: 'Recherche')]
+    public function Recherche($recherche,DemandeStageRepository $demandeStageRepository): Response
+    {
+        $demande = $demandeStageRepository->Recherche($recherche);
+        return $this->render('frontOffice/offre_stage/rechercheNumero.html.twig',[
+            'demande' => $demande,
         ]);
     }
     #[Route('/afficheOffreStages', name: 'afficheOffreStages')]

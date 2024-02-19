@@ -55,4 +55,11 @@ class DemandeStageRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function Recherche($id){
+        return $this->createQueryBuilder('B')
+            ->where('B.numerotelephone LIKE :numerotelephone')
+            ->setParameter('numerotelephone',$id)
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -43,19 +43,16 @@
     <body style="background:#7c7b7b;">
     {{ form_start(form) }}
     {{ form_row(form._token) }}
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="margin-top: 80px;-ms-background-position-x: center;">
-        <div style="position: relative; text-align: center; padding-bottom: 15px;padding-right: 420px; color: #fff; text-shadow: 0 5px 10px rgba(0, 0, 0, .2); font-size: 50px; height: auto;">
+        <div style="position: relative; margin-top: 100px; text-align: center; padding-bottom: 15px;padding-left:200px;padding-right: 730px; color: #fff; text-shadow: 0 5px 10px rgba(0, 0, 0, .2); font-size: 50px; height: auto;">
             <div class="d-flex justify-content-end">
                 <form class="form-inline" role="search">
-                    <div class="d-flex justify-content-end">
+                    <div style="border: 3px #0D0A0A; width: 10em;">
                     {{ form_widget(form.numero, {'attr': {'class': 'form-control me-2', 'placeholder': 'Saisir votre numéro pour suivre vos demande'}}) }}
                     </div>
-                      <div>  <button class="btn btn-outline-success" type="submit">Search</button></div>
-
                 </form>
             </div>
         </div>
-    </nav>
+    <div style="position: relative; padding-left: 900px"> <a href="{{ path('Recherche', {'id':form.vars.value.numero}) }}"> <button class="btn btn-outline-success" type="submit" style="">Search</button></a></div>
     <div style="position: relative; text-align: center; padding-bottom: 15px;padding-right: 420px; color: #fff; text-shadow: 0 5px 10px rgba(0, 0, 0, .2); font-size: 50px; height: auto;">
         <div class="d-flex justify-content-end">
             <form class="form-inline">
