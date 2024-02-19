@@ -75,7 +75,7 @@ class OffreStagesController extends AbstractController
     public function DetailsOffre($id,ManagerRegistry $managerRegistry,Request $request, OffreStageRepository $offreStageRepository): Response
     {
         $offre = $offreStageRepository->find($id);
-        return $this->render('', [
+        return $this->render('frontOffice/offre_stage/Details.html.twig', [
             'offre'=>$offre
         ]);
     }
@@ -84,7 +84,7 @@ class OffreStagesController extends AbstractController
     public function ChoixDemaine($domaine, OffreStageRepository $offreStageRepository): Response
     {
         $offre = $offreStageRepository->find($domaine);
-        return $this->render('', [
+        return $this->render('frontOffice/offre_stage/recrutement.html.twig', [
             'offre'=>$offre
         ]);
     }
@@ -92,13 +92,10 @@ class OffreStagesController extends AbstractController
     #[Route('/DemandeParOffres/{id}', name: 'DemandeParOffres')]
     public function DemandeParOffres($id, DemandeStageRepository $demandestageRepository): Response
     {
-        $offre = $demandestageRepository->find($id);
-        return $this->render('', [
-            'offre'=>$offre
+        $offre = $demandestageRepository->findDemandesByOffre($id);
+        return $this->render('backOffice/offre_stage/afficheOffreStages.html.twig', [
+            'offres'=>$offre
         ]);
     }
-    
-    
-    
     
 }
