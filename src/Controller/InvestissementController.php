@@ -14,28 +14,28 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/investissement')]
 class InvestissementController extends AbstractController
 {
-    #[Route('/listA', name: 'app_investissement_listA', methods: ['GET'])]
+    #[Route('/admin/list', name: 'app_investissement_listA', methods: ['GET'])]
     public function listA(InvestissementRepository $investissementRepository): Response
     {
         return $this->render('investissement/investissements.html.twig', [
             'investissements' => $investissementRepository->findAll(),
         ]);
     }
-    #[Route('/listE', name: 'app_investissement_listE', methods: ['GET'])]
+    #[Route('/employe/list', name: 'app_investissement_listE', methods: ['GET'])]
     public function listE(InvestissementRepository $investissementRepository): Response
     {
         return $this->render('employe/investissement/investissements.html.twig', [
             'investissements' => $investissementRepository->findAll(),
         ]);
     }
-    #[Route('/listC', name: 'app_investissement_listC', methods: ['GET'])]
+    #[Route('/client/list', name: 'app_investissement_listC', methods: ['GET'])]
     public function listC(InvestissementRepository $investissementRepository): Response
     {
         return $this->render('client/investissement/investissements.html.twig', [
             'investissements' => $investissementRepository->findAll(),
         ]);
     }
-    #[Route('/new', name: 'app_investissement_new', methods: ['GET', 'POST'])]
+    #[Route('/admin/new', name: 'app_investissement_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $investissement = new Investissement();

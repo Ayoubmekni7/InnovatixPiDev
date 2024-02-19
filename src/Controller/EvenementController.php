@@ -17,7 +17,23 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/evenement')]
 class EvenementController extends AbstractController
 {
-    #[Route('/', name: 'app_evenement_index', methods: ['GET'])]
+    #[Route('/admin/events', name: 'app_evenement_eventsA', methods: ['GET'])]
+    public function eventsA(EvenementRepository $evenementRepository,ProjectRepository $projectRepository): Response
+    {
+        return $this->render('admin/evenement/events.html.twig', [
+            'evenements' => $evenementRepository->findAll(),
+            'projects' => $projectRepository->findAll(),
+        ]);
+    }
+    #[Route('/client/events', name: 'app_evenement_eventsC', methods: ['GET'])]
+    public function eventsC(EvenementRepository $evenementRepository,ProjectRepository $projectRepository): Response
+    {
+        return $this->render('client/evenement/events.html.twig', [
+            'evenements' => $evenementRepository->findAll(),
+            'projects' => $projectRepository->findAll(),
+        ]);
+    }
+    #[Route('/admin/events', name: 'app_evenement_index', methods: ['GET'])]
     public function index(EvenementRepository $evenementRepository,ProjectRepository $projectRepository): Response
     {
         return $this->render('evenement/events.html.twig', [
@@ -25,6 +41,7 @@ class EvenementController extends AbstractController
             'projects' => $projectRepository->findAll(),
         ]);
     }
+
 
     #[Route('/new', name: 'app_evenement_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
