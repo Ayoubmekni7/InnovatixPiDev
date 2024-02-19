@@ -15,4 +15,11 @@ class ActualiteController extends AbstractController
             'controller_name' => 'ActualiteController',
         ]);
     }
+    #[Route('/dashbord', name: 'app_dashbord')]
+    public function indexdashbord(): Response
+    {
+        return $this->render('dashbord/index-2.html.twig', [
+            'controller_name' => 'ActualiteController',
+        ]);
+    }
 }
