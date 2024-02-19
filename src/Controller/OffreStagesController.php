@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\OffreStage;
 use App\Form\OffreStageType;
+use App\Form\SearchType;
 use App\Repository\DemandeStageRepository;
 use App\Repository\OffreStageRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,9 +19,12 @@ class OffreStagesController extends AbstractController
     #[Route('/Recrutement', name: 'Recrutement')]
     public function Recrutement(OffreStageRepository $offreStageRepository): Response
     {
+        $search = [];
+        $form = $this->createForm(SearchType::class,$search);
         $liste = $offreStageRepository->findAll();
         return $this->render('frontOffice/offre_stage/recrutement.html.twig',[
             'offres' => $liste,
+            'form' => $form->createView()
         ]);
     }
     #[Route('/afficheOffreStages', name: 'afficheOffreStages')]
@@ -29,6 +33,7 @@ class OffreStagesController extends AbstractController
         $liste = $offreStageRepository->findAll();
         return $this->render('backOffice/offre_stage/afficheOffreStages.html.twig',[
             'offres' => $liste,
+            
         ]);
     }
     
