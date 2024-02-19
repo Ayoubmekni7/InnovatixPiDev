@@ -42,12 +42,15 @@
 {% block body %}
     <body style="background:#7c7b7b;">
 
-    <div class="container" style="
+    <div class="container"
+         style="
             position: relative; text-align: center;
             padding-bottom: 15px;
             color:#fff;
             text-shadow: 0 5px 10px rgba(0,0,0,.2);
-            font-size: 50px; height:auto">
+            font-size: 50px; height:auto;" onmouseover="this.style.transform='scale(1.02)'"
+            onmouseout="this.style.transform='scale(1)'"
+    >
 
         <div class="box-container" style="display: grid;
             /*grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));*/
@@ -74,14 +77,19 @@
                                     -webkit-box-orient: vertical;
                                     overflow: hidden;
                                     line-height: 1.5;">{{ i.description }}</p>
-                        <a href="#" class="btn" style=" margin-top: 10px;
-                                display: inline-block;
-                                background:#333;
-                                color:#fff;
-                                font-size: 17px;
-                                border-radius: 5px;
-                                padding: 8px 25px;box-shadow: 0 10px 15px rgba(0,0,0,.3);
-                                transform: scale(1.03); ">read more</a>
+                        <a href="#" class="btn" style="margin-top: 10px;
+                               display: inline-block;
+                               background:#333;
+                               color:#fff;
+                               font-size: 17px;
+                               border-radius: 5px;
+                               padding: 8px 25px;
+                               box-shadow: 0 10px 15px rgba(0,0,0,.3);
+                               transform: scale(1.03);"
+                           >
+                            read more
+                        </a>
+
 
 
                     </div>
