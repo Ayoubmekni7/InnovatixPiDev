@@ -19,7 +19,7 @@ class OffreStagesController extends AbstractController
     public function index(OffreStageRepository $offreStageRepository): Response
     {
         $liste = $offreStageRepository->findAll();
-        return $this->render('frontOffice/offre_stages/recrutement.html.twig', [
+        return $this->render('frontOffice/offre_stage/recrutement.html.twig', [
             'offres' => $liste,
         ]);
     }
