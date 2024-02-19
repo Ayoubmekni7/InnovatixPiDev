@@ -28,8 +28,7 @@ class SearchType extends AbstractType
                 // Autres options du champ ChoiceType
             ])
             ->add('numero')
-            ->add('submit', SubmitType::class)
-        ;
+            ->add('submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

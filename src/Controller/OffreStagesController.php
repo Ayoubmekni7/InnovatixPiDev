@@ -22,11 +22,11 @@ class OffreStagesController extends AbstractController
         $search = [];
         $form = $this->createForm(SearchType::class,$search);
         $form->handleRequest($request);
-        $recherche= $form->getData('numero');
-        $domaine = $form->getData('domaine');
+        $recherche= $request->get('numero');
+        $domaine = $request->get('domaine');
         
         if($domaine != null){
-            $liste = $offreStageRepository->findAll($recherche);
+            $liste = $offreStageRepository->find($recherche);
         }else {
             $liste = $offreStageRepository->findAll();
         
@@ -40,14 +40,16 @@ class OffreStagesController extends AbstractController
         
         return $this->render('frontOffice/offre_stage/recrutement.html.twig',[
             'offres' => $liste,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            
         ]);
     }
-    #[Route('/Recherche/{numero}', name: 'Recherche')]
-    public function Recherche($recherche,DemandeStageRepository $demandeStageRepository): Response
+    #[Route('/Recherche', name: 'Recherche')]
+    public function Recherche(DemandeStageRepository $demandeStageRepository,Request $request): Response
     {
+        $recherche = $request->get('numero');
         $demande = $demandeStageRepository->Recherche($recherche);
-        return $this->render('frontOffice/offre_stage/rechercheNumero.html.twig',[
+        return $this->render('frontOffice/demande_stage/rechercheNumero.html.twig',[
             'demande' => $demande,
         ]);
     }
