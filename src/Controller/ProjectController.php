@@ -12,17 +12,32 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 #[Route('/project')]
+
 class ProjectController extends AbstractController
 {
-    #[Route('/list', name: 'app_project_index', methods: ['GET'])]
+    #[Route('/listA', name: 'app_project_admin', methods: ['GET'])]
     public function index(ProjectRepository $projectRepository): Response
     {
-        return $this->render('project/projects.html.twig', [
+        return $this->render('admin/project/projects.html.twig', [
             'projects' => $projectRepository->findAll(),
         ]);
     }
-    
+    #[Route('/listE', name: 'app_project_listE', methods: ['GET'])]
+    public function listE(ProjectRepository $projectRepository): Response
+    {
+        return $this->render('employe/project/projects.html.twig', [
+            'projects' => $projectRepository->findAll(),
+        ]);
+    }
+    #[Route('/listC', name: 'app_project_indexclient', methods: ['GET'])]
+    public function indexclient(ProjectRepository $projectRepository): Response
+    {
+        return $this->render('client/project/projects.html.twig', [
+            'projects' => $projectRepository->findAll(),
+        ]);
+    }
 
+ 
     #[Route('/create', name: 'app_project_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -34,22 +49,24 @@ class ProjectController extends AbstractController
             $entityManager->persist($project);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_project_admin', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('project/new.html.twig', [
+        return $this->renderForm('admin/project/new.html.twig', [
             'project' => $project,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_project_show', methods: ['GET'])]
-    public function show(Project $project): Response
+    #[Route('/{id}', name: 'app_project_indexshowsA', methods: ['GET'])]
+    public function showA(Project $project): Response
     {
-        return $this->render('project/show.html.twig', [
+        return $this->render('admin/project/show.html.twig', [
             'project' => $project,
         ]);
     }
+    
+    
 
     #[Route('/{id}/edit', name: 'app_project_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Project $project, EntityManagerInterface $entityManager): Response
@@ -60,10 +77,10 @@ class ProjectController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_project_admin', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('project/edit.html.twig', [
+        return $this->renderForm('admin/project/edit.html.twig', [
             'project' => $project,
             'form' => $form,
         ]);
@@ -76,7 +93,7 @@ class ProjectController extends AbstractController
         $project= $projectRepository->find($id) ;
         $entityManager->remove($project);
             $entityManager->flush();
-        return $this->redirectToRoute('app_project_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_project_admin', [], Response::HTTP_SEE_OTHER);
     }
 
 }

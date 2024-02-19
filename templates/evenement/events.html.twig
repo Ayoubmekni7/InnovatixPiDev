@@ -2,6 +2,9 @@
 
 {% block body %}
 
+
+
+
 <link href="{{ asset('vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
 
 <!-- Style css -->
@@ -12,6 +15,27 @@
             Content body start
         ***********************************-->
         <div class="content-body">
+		<div class="container-fluid">
+
+ <div class="project-page d-flex justify-content-between align-items-center flex-wrap">
+					<div class="project mb-4">
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" data-bs-toggle="tab" href="#AllStatus" role="tab">Tous les evenements</a>
+							</li>
+							<li class="nav-item">
+ 							</li>
+							<li class="nav-item">
+ 							</li>
+							<li class="nav-item">
+ 							</li>
+						</ul>
+					</div>
+					<div class="mb-4">
+						<a href="{{ path('app_evenement_new') }}" class="btn btn-primary btn-rounded fs-18">+ Nouveau evenement</a>
+ 
+					</div>
+				</div> 
             <!-- row -->
 			<div class="container-fluid">
 				<div class="row">
@@ -539,6 +563,8 @@
 					
 				</div>	
             </div>
+        </div>
+        </div>
         </div>
 <script src="{{ asset('vendor/global/global.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>

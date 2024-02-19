@@ -47,66 +47,125 @@ class Investissement
     {
         return $this->id;
     }
-
+    
     public function getNom(): ?string
     {
         return $this->nom;
     }
-
+    
     public function setNom(?string $nom): self
     {
         $this->nom = $nom;
-
+    
         return $this;
     }
-
+    
     public function getMontant(): ?float
     {
         return $this->montant;
     }
-
+    
     public function setMontant(?float $montant): self
     {
         $this->montant = $montant;
-
+    
         return $this;
     }
-
+    
     public function getDateInvestissement(): ?\DateTimeInterface
     {
         return $this->dateInvestissement;
     }
-
+    
     public function setDateInvestissement(?\DateTimeInterface $dateInvestissement): self
     {
         $this->dateInvestissement = $dateInvestissement;
-
+    
         return $this;
     }
-
-    // Add getters and setters for the remaining attributes
-
+    
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+    
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+    
+    public function getTypeInvestissement(): ?string
+    {
+        return $this->typeInvestissement;
+    }
+    
+    public function setTypeInvestissement(?string $typeInvestissement): self
+    {
+        $this->typeInvestissement = $typeInvestissement;
+    
+        return $this;
+    }
+    
+    public function getDuree(): ?int
+    {
+        return $this->duree;
+    }
+    
+    public function setDuree(?int $duree): self
+    {
+        $this->duree = $duree;
+    
+        return $this;
+    }
+    
+    public function getTauxRendement(): ?float
+    {
+        return $this->tauxRendement;
+    }
+    
+    public function setTauxRendement(?float $tauxRendement): self
+    {
+        $this->tauxRendement = $tauxRendement;
+    
+        return $this;
+    }
+    
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+    
+    public function setStatut(?string $statut): self
+    {
+        $this->statut = $statut;
+    
+        return $this;
+    }
+    
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
-
+    
     public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
+    
         return $this;
     }
-
+    
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
-
+    
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
-
+    
         return $this;
     }
+    
 }

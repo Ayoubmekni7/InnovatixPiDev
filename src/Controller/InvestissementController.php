@@ -14,14 +14,27 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/investissement')]
 class InvestissementController extends AbstractController
 {
-    #[Route('/', name: 'app_investissement_index', methods: ['GET'])]
-    public function index(InvestissementRepository $investissementRepository): Response
+    #[Route('/listA', name: 'app_investissement_listA', methods: ['GET'])]
+    public function listA(InvestissementRepository $investissementRepository): Response
     {
         return $this->render('investissement/investissements.html.twig', [
             'investissements' => $investissementRepository->findAll(),
         ]);
     }
-
+    #[Route('/listE', name: 'app_investissement_listE', methods: ['GET'])]
+    public function listE(InvestissementRepository $investissementRepository): Response
+    {
+        return $this->render('employe/investissement/investissements.html.twig', [
+            'investissements' => $investissementRepository->findAll(),
+        ]);
+    }
+    #[Route('/listC', name: 'app_investissement_listC', methods: ['GET'])]
+    public function listC(InvestissementRepository $investissementRepository): Response
+    {
+        return $this->render('client/investissement/investissements.html.twig', [
+            'investissements' => $investissementRepository->findAll(),
+        ]);
+    }
     #[Route('/new', name: 'app_investissement_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -45,7 +58,7 @@ class InvestissementController extends AbstractController
     #[Route('/{id}', name: 'app_investissement_show', methods: ['GET'])]
     public function show(Investissement $investissement): Response
     {
-        return $this->render('investissement/show.html.twig', [
+        return $this->render('client/investissement/show.html.twig', [
             'investissement' => $investissement,
         ]);
     }
