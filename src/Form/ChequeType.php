@@ -18,6 +18,7 @@ class ChequeType extends AbstractType
             ->add('Cin')
             ->add('NomPrenom')
             ->add('Email')
+            ->add('date')
             ->add('Beneficiaire',  ChoiceType::class, [
                 'choices' => [
                     'Paiement' => 'Paiement',
@@ -30,6 +31,7 @@ class ChequeType extends AbstractType
             ])
             ->add('telephone')
             ->add('Montant')
+            ->add('Decision')
 
         ;
     }

@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="keywords" content="">
-        <meta name="author" content="">
-        <meta name="robots" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Fillow : Fillow Saas Admin  Bootstrap 5 Template">
-        <meta property="og:title" content="Fillow : Fillow Saas Admin  Bootstrap 5 Template">
-        <meta property="og:description" content="Fillow : Fillow Saas Admin  Bootstrap 5 Template">
-        <meta property="og:image" content="https://fillow.dexignlab.com/xhtml/social-image.png">
-        <meta name="format-detection" content="telephone=no">
+{% extends 'baseclient.html.twig' %}
 
-        <!-- FAVICONS ICON -->
-        <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}">
-        <link href="{{ asset('vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+{% block body %}
 
         <style>
             .form-control {
@@ -30,104 +14,87 @@
     {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
     {{ form_row(form._token) }}
     <body>
-
     <div id="main-wrapper">
-
-
-
-        <div class="container-fluid">
+        <div class="container">
             <div class="row justify-content-center">
-                <div class="col-xl-6 col-lg-12">
-                    <div class="card">
-                        <div class="card-header text-center" >
-                            <h4 class="card-title" style="font-weight: bold;">Demande de Chéque Bancaire</h4>
-                        </div>
+                <div class="card">
+                    <div class="card-header text-center ">
+                        <h4 class="card-title" style="font-weight: bold;">Demande de Chèque Bancaire</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-form">
+                            <form>
 
-                        <div class="card-body">
-                            <div class="basic-form">
-                                <form>
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">&nbsp;</label> <!-- Ajout d'un label vide pour la mise en forme -->
-                                        <div class="col-sm-9"></div> <!-- Colonne vide pour l'espace -->
+                                <div class="mb-3 row justify-content-center "> <!-- Ajout des classes justify-content-center et align-items-center -->
+                                    <label class="col-sm-3 col-form-label " style="margin-right: 550px ">{{ form_label(form.compte, 'RIB') }}</label>
+                                    <div class="col-sm-9  ">
+                                        {{ form_widget(form.compte, { 'attr': {'class': 'form-control', 'placeholder': 'Votre RIB'} }) }}
                                     </div>
+                                </div>
 
 
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">{{ form_label(form.compte, 'RIB') }}</label>
-                                        <div class="col-sm-9">
-                                            {{ form_widget(form.compte, { 'attr': {'class': 'form-control', 'placeholder': 'Votre RIB'} }) }}
-                                        </div>
+                                <div class="mb-3 row justify-content-center align-items-center"> <!-- Ajout des classes justify-content-center et align-items-center -->
+                                    <label class="col-sm-3 col-form-label " style="margin-right: 550px ">{{ form_label(form.Cin, 'CIN') }}</label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.Cin, { 'attr': {'class': 'form-control', 'placeholder': 'Votre CIN'} }) }}
                                     </div>
-
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">{{ form_label(form.Cin, 'CIN') }}</label>
-                                        <div class="col-sm-9">
-                                            {{ form_widget(form.Cin, { 'attr': {'class': 'form-control', 'placeholder': 'Votre CIN'} }) }}
-                                        </div>
+                                </div>
+                                <div class="mb-3 row justify-content-center align-items-center"> <!-- Ajout des classes justify-content-center et align-items-center -->
+                                    <label class="col-sm-3 col-form-label" style="margin-right: 550px ">{{ form_label(form.NomPrenom, 'Nom et Prénom') }}</label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.NomPrenom, { 'attr': {'class': 'form-control', 'placeholder': 'Entrez votre nom et prénom'} }) }}
                                     </div>
-
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">{{ form_label(form.NomPrenom, 'Nom et Prénom') }}</label>
-                                        <div class="col-sm-9">
-                                            {{ form_widget(form.NomPrenom, { 'attr': {'class': 'form-control', 'placeholder': 'Entrez votre nom et prénom'} }) }}
-                                        </div>
+                                </div>
+                                <div class="mb-3 row justify-content-center align-items-center"> <!-- Ajout des classes justify-content-center et align-items-center -->
+                                    <label class="col-sm-3 col-form-label " style="margin-right: 550px ">{{ form_label(form.Email, 'Email') }}</label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.Email, { 'attr': {'class': 'form-control', 'placeholder': 'Entrez votre adresse email'} }) }}
                                     </div>
-
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">{{ form_label(form.Email, 'Email') }}</label>
-                                        <div class="col-sm-9">
-                                            {{ form_widget(form.Email, { 'attr': {'class': 'form-control', 'placeholder': 'Entrez votre adresse email'} }) }}
-                                        </div>
+                                </div>
+                                <div class="mb-3 row justify-content-center align-items-center">
+                                    <label class="col-sm-3 col-form-label " style="margin-right: 550px ">
+                                        {{ form_label(form.date, 'date') }}</label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.date, { 'attr': {'class': '', '': ''} }) }}
                                     </div>
+                                </div>
 
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            {{ form_label(form.Beneficiaire, 'Beneficiaire') }}
-                                            {{ form_widget(form.Beneficiaire, { 'attr': {'class': '', 'id': 'usr'} }) }}
-                                        </div>
+                                <div class="col-md-4 justify-content-center">
+                                    <div class="form-group">
+                                        {{ form_label(form.Beneficiaire, 'Beneficiaire') }}
+                                        {{ form_widget(form.Beneficiaire, { 'attr': {'class': '', 'id': 'usr'} }) }}
                                     </div>
+                                </div>
 
-
-
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Numéro de téléphone</label>
-                                        <div class="col-sm-9">
-                                            {{ form_widget(form.telephone, {'attr': {'class': 'form-control', 'placeholder': '########'}}) }}
-                                        </div>
+                                <div class="mb-3 row justify-content-center align-items-center">
+                                    <label class="col-sm-3 col-form-label " style="margin-right: 550px ">{{ form_label(form.telephone,'telephone') }}</label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.telephone, {'attr': {'class': 'form-control', 'placeholder': '########'}}) }}
                                     </div>
-
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">Montant</label>
-                                        <div class="col-sm-9">
-                                            {{ form_widget(form.Montant, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le montant'}}) }}
-                                        </div>
+                                </div>
+                                <div class="mb-3 row justify-content-center align-items-center">
+                                    <label class="col-sm-3 col-form-label " style="margin-right: 550px ">{{ form_label(form.Montant,'Montant') }}</label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.Montant, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le montant'}}) }}
                                     </div>
-
-
-                                    <div class="mb-3 row">
-                                        <div class="col-sm-10 text-center mt-5">
-                                            <button type="submit" class="btn btn-success mt-5">Confirmer</button>
-                                        </div>
+                                </div>
+                                <div class="mb-3 row justify-content-center">
+                                    <div class="col-sm-10 text-center mt-5">
+                                        <button type="submit" class="btn btn-success mt-5">Confirmer</button>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-
     </div>
-
-    <!-- Required vendors -->
-    <script src="{{ asset('vendor/global/global.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
-    <script src="{{ asset('js/custom.min.js') }}"></script>
-    <script src="{{ asset('js/dlabnav-init.js') }}"></script>
-    <script src="{{ asset('js/demo.js') }}"></script>
-    <script src="{{ asset('js/styleSwitcher.js') }}"></script>
-
     </body>
-</html>
+
+
+    </html>
 {{ form_end(form) }}
+
+
+{% endblock %}

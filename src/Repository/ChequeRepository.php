@@ -45,4 +45,13 @@ class ChequeRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function chequeParClient($compte)
+    {
+        return $this->createQueryBuilder('b')
+            ->join('b.compte', 'a')
+            ->where('a.compte = :compte')
+            ->setParameter('compte', $compte)
+            ->getQuery()
+            ->getResult();
+    }
 }

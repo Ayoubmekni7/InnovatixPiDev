@@ -24,7 +24,7 @@ class ChequeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($cheque);
             $em->flush();
-            return new Response('ajout avec succes');
+            return $this->redirectToRoute('historique');
         }
 
         return $this->render('frontoffice/cheque/add.html.twig', [
@@ -37,10 +37,21 @@ class ChequeController extends AbstractController
 
     {
         $liste= $chequeRepository->findAll();
-        return $this->render('backoffice/cheque/list.html.twig',[
+        return $this->render('backoffice/admin/cheque/list.html.twig',[
             'cheques'=>$liste,
         ]);
     }
+    #[Route('/historique', name: 'historique')]
+    public function historique(ChequeRepository $chequeRepository):Response
+
+    {
+        $liste= $chequeRepository->findAll();
+        return $this->render('frontoffice/cheque/historique.html.twig',[
+            'cheques'=>$liste,
+        ]);
+    }
+
+
     #[Route('/deleteDemandeCheque/{id}', name: 'deleteDemandeCheque')]
      public function deleteDemandeCheque($id,ManagerRegistry $managerRegistry,ChequeRepository $repository):Response
     {
@@ -69,7 +80,15 @@ public function modifierCheque($id,ManagerRegistry $managerRegistry,ChequeReposi
     ]);
 }
 
+    #[Route('/listeChequeParCompte/{compte}', name: 'listeChequeParCompte')]
+    public function listeChequeParCompte($id,ChequeRepository $chequeRepository , Request $request):Response
+    {
 
+        $idData =$chequeRepository->chequeParClient($id);
+        return $this->renderForm('frontoffice/cheque/add.html.twig',[
+            'liste' => $idData
+        ]);
+    }
 
 
 
