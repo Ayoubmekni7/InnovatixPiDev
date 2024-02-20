@@ -23,14 +23,8 @@ class OffreStagesController extends AbstractController
         $form = $this->createForm(SearchType::class,$search);
         $form->handleRequest($request);
         $recherche= $request->get('numero');
-        $domaine = $request->get('domaine');
-        
-        if($domaine != null){
-            $liste = $offreStageRepository->find($recherche);
-        }else {
-            $liste = $offreStageRepository->findAll();
-        
-        }
+        //$domaine = $request->get('domaine');
+        $liste = $offreStageRepository->findAll();
         if ($form ->isSubmitted() && $form->isValid()){
             $demande = $demandeStageRepository->Recherche($recherche);
             return $this->render('frontOffice/offre_stage/rechercheNumero.html.twig',[
