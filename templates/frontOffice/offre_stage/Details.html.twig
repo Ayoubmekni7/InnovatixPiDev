@@ -6,29 +6,29 @@
 {% block body %}
     <link rel="stylesheet" href="{{ asset('css/demande.css') }}">
     <body class="body" style=" background: linear-gradient(90deg, rgba(61, 66, 66, 0.9) 0%, rgb(66, 70, 68) 15%, rgb(75,100,88) 50%,rgb(86,162,124) 75%);">
-    <div  style="background: #d4e3da; margin-top: 200px;margin-right: 200px;margin-left: 200px;border-radius: 30px">
-        <h4 class="text-center" style="padding-top: 20px">{{ offre.title }}</h4>
-        <table border="2" style="margin-top: 20px;margin-left: 200px;table-layout: fixed;
+    <div  style="background: #d4e3da; margin-top: 100px;margin-right: 300px;margin-left: 300px;border-radius: 30px">
+        <h4 class="text-center" style="padding-top: 20px;text-align: center;">{{ offre.title }}</h4>
+        <table border="2" style="margin-top: 50px;margin-left: 200px;table-layout: fixed;
                       width: 70%;
-                      /*border-collapse: collapse;*/
+                      font-style: italic;
                       border: 1px solid #000000;">
             <tr>
-                <td>
-                   <div style="margin-top: 5px;margin-bottom: 5px"> Postes vacantes:</div> <div style="margin-top: 5px"> {{ offre.postePropose }} </div>
+                <td >
+                  <div style="margin-left: 10px;margin-bottom: 10px;"> <div style="margin-top: 5px;margin-bottom: 5px"> Postes vacantes:</div> <div style="margin-top: 5px"> {{ offre.postePropose }} </div></div>
                 </td>
                 <td>
-                    <div style="margin-top: 5px;margin-bottom: 5px">Type d'offre: </div> <div style="margin-top: 5px"> {{ offre.typeOffre }}</div>
+                    <div style="margin-left: 10px;margin-bottom: 10px;"> <div style="margin-top: 5px;margin-bottom: 5px">Type d'offre: </div> <div style="margin-top: 5px"> {{ offre.typeOffre }}</div></div>
                 </td>
                 <td>
-                    <div style="margin-top: 5px;margin-bottom: 5px"> Experience:</div> <div style="margin-top: 5px"> {{ offre.experience }}</div>
+                    <div style="margin-left: 10px;margin-bottom: 10px;">  <div style="margin-top: 5px;margin-bottom: 5px"> Experience:</div> <div style="margin-top: 5px"> {{ offre.experience }}</div></div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <div  style="margin-top: 5px;margin-bottom: 5px"> Niveau:</div> <div style="margin-top: 5px"> {{ offre.niveau }} </div>
+                    <div style="margin-left: 10px;margin-bottom: 10px;">  <div  style="margin-top: 5px;margin-bottom: 5px"> Niveau:</div> <div style="margin-top: 5px"> {{ offre.niveau }} </div></div>
                 </td>
-                <td rowspan="2">
-                    <div style="margin-top: 5px;margin-bottom: 5px">Language: </div> <div style="margin-top: 5px"> {{ offre.language }}</div>
+                <td>
+                    <div style="margin-left: 10px;margin-bottom: 10px;">  <div style="margin-top: 5px;margin-bottom: 5px">Language: </div> <div style="margin-top: 5px"> {{ offre.language }}</div></div>
                 </td>
 {#                <td>#}
 {#                    <div> Experience:</div> <div style="margin-top: 5px"> {{ offre.experience }}</div>#}
