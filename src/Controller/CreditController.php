@@ -9,7 +9,11 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\CreditType ;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mime\Email;
+
 
 class CreditController extends AbstractController
 {
@@ -84,6 +88,36 @@ public function deleteCredit(CreditRepository $creditRepository, ManagerRegistry
 
     return $this->redirectToRoute('app_listecredit');
 }
+
+#[Route('/approuvercredit', name: 'app_approuvercredit')]
+public function approuvercredit(MailerInterface $mailer): Response
+{
+    $to = "ahmed.marzougui@esprit.tn";
+    $subject = "Email";
+    $content = 'hello';
+    $email = (new Email())
+    ->from('yesser.khaloui@etudiant-fst.utm.tn')
+    ->to($to)
+    //->cc('cc@example.com')
+    //->bcc('bcc@example.com')
+    // ->replyTo($this->replyTo)
+    //->priority(Email::PRIORITY_HIGH)
+    ->subject($subject)
+//            ->text('Sending emails is fun again!')
+    ->html($content);
+    $mailer->send($email);
+
+    return $this->redirectToRoute('app_listecredit');
+}
+#[Route('/listecreditparid/{id}', name: 'app_recherchecreditid')]
+public function listeacreditparid(CreditRepository $creditRepository,$id): Response
+{
+    $credit=$creditRepository->find($id);
+
+    return $this->render('credit/listecreditv.html.twig',["credit"=>$credit]);
+}
+
+
 
 
 
