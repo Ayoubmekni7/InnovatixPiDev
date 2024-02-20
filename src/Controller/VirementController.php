@@ -32,10 +32,10 @@ class VirementController extends AbstractController
 
             $em->persist($virement);
             $em->flush();
-            return new Response('demande avec sucees ');
+            return $this->redirectToRoute('historiqueV');
         }
 
-        return $this->render('virement/DemandeVirement.html.twig', [
+        return $this->render('frontoffice/virement/DemandeVirement.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -43,11 +43,30 @@ class VirementController extends AbstractController
     #[Route('/showDemande', name: 'showDemande')]
     public function showDemande(VirementRepository $virementRepository):Response {
         $liste=$virementRepository->findAll();
-        return $this->render('virement/Virements.html.twig',[
+        return $this->render('backoffice/admin/virement/Virements.html.twig',[
             'virements'=>$liste,
         ]);
 
     }
+    #[Route('/showDemandeE', name: 'showDemandeE')]
+    public function showDemandeE(VirementRepository $virementRepository):Response {
+        $liste=$virementRepository->findAll();
+        return $this->render('backoffice/Employe/virement/listVirementEmpl.html.twig',[
+            'virements'=>$liste,
+        ]);
+
+    }
+
+    #[Route('/historiqueV', name: 'historiqueV')]
+    public function historiqueV(VirementRepository $virementRepository):Response
+
+    {
+        $liste= $virementRepository->findAll();
+        return $this->render('frontoffice/virement/historiqueV.html.twig',[
+            'virement'=>$liste,
+        ]);
+    }
+
     #[Route('/deleteVirement/{id}', name: 'deleteVirement')]
     public function deleteVirement($id,ManagerRegistry $managerRegistry,VirementRepository $virementRepository):Response
     {
@@ -70,7 +89,7 @@ class VirementController extends AbstractController
             return new Response('Modifier avec sucees ');
 
         }
-        return $this->renderForm('virement/DemandeVirement.html.twig',[
+        return $this->renderForm('frontoffice/virement/DemandeVirement.html.twig',[
             'form'=>$form
         ]);
     }

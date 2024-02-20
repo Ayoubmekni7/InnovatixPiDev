@@ -53,10 +53,20 @@ class CompteController extends AbstractController
     public function afficheCompte(CompteRepository $compteRepository ): Response
     {
         $compte=$compteRepository->findAll();
-        return $this->render('backoffice/compte/listCompte.html.twig', [
+        return $this->render('backoffice/admin/compte/listCompte.html.twig', [
             'comptes' => $compte,
         ]);
     }
+
+    #[Route('/afficheCompteE', name: 'afficheCompteE')]
+    public function afficheCompteE(CompteRepository $compteRepository ): Response
+    {
+        $compte=$compteRepository->findAll();
+        return $this->render('backoffice/Employe/compte/listCompteEmp.html.twig', [
+            'comptes' => $compte,
+        ]);
+    }
+
     #[Route('/deleteCompte/{id}', name: 'deleteCompte')]
 public function  deleteCompte($id,ManagerRegistry $managerRegistry,CompteRepository $compteRepository):Response
     {

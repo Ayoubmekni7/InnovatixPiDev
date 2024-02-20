@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\VirementRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VirementRepository::class)]
@@ -13,9 +14,7 @@ class Virement
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    #[Assert\Length(min: 13, max: 24, exactMessage: 'Le numéro de compte doit contenir 24 chiffres ou les 13 dernier chiffres ')]
-    private ?int $numCompte = null;
+
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez saisir le nom et prenom  ')]
@@ -44,21 +43,24 @@ class Virement
     #[ORM\Column]
     private ?int $Cin = null;
 
+    #[ORM\Column(nullable: true)]
+    #[Assert\Length(min: 13, max: 24, exactMessage: 'Le numéro de rib doit contenir 24 chiffres ou les 13 dernier chiffres ')]
+    private ?int $RIB = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: 'Email obligatoire')]
+    #[Assert\Regex(
+        pattern: "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/",
+        message: "L'adresse email '{{ value }}' n'est pas valide."
+    )]
+    private ?string $Email = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $DecisionV = null;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getNumCompte(): ?int
-    {
-        return $this->numCompte;
-    }
-
-    public function setNumCompte(int $numCompte): static
-    {
-        $this->numCompte = $numCompte;
-
-        return $this;
     }
 
     public function getNometPrenom(): ?string
@@ -144,6 +146,42 @@ class Virement
     public function setCin(int $Cin): static
     {
         $this->Cin = $Cin;
+
+        return $this;
+    }
+
+    public function getRIB(): ?int
+    {
+        return $this->RIB;
+    }
+
+    public function setRIB(int $RIB): static
+    {
+        $this->RIB = $RIB;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->Email;
+    }
+
+    public function setEmail(?string $Email): static
+    {
+        $this->Email = $Email;
+
+        return $this;
+    }
+
+    public function getDecisionV(): ?string
+    {
+        return $this->DecisionV;
+    }
+
+    public function setDecisionV(?string $DecisionV): static
+    {
+        $this->DecisionV = $DecisionV;
 
         return $this;
     }

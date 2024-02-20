@@ -41,6 +41,15 @@ class ChequeController extends AbstractController
             'cheques'=>$liste,
         ]);
     }
+    #[Route('/AfficherDemandeE', name: 'AfficherDemandeE')]
+    public function AfficherDemandeE(ChequeRepository $chequeRepository):Response
+
+    {
+        $liste= $chequeRepository->findAll();
+        return $this->render('backoffice/Employe/cheque/listE.html.twig',[
+            'cheques'=>$liste,
+        ]);
+    }
     #[Route('/historique', name: 'historique')]
     public function historique(ChequeRepository $chequeRepository):Response
 
@@ -60,6 +69,7 @@ class ChequeController extends AbstractController
         $emm->remove($idremove);
         $emm->flush();
         return $this->redirectToRoute('AfficherDemande');
+
 
     }
 #[Route('/modifierCheque/{id}', name: 'modifierCheque')]

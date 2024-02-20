@@ -1,4 +1,4 @@
-{% extends '../../../base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Hello VirementController!{% endblock %}
 
@@ -22,9 +22,10 @@
                                     <thead>
                                     <tr>
 
-                                        <th><strong>N° de Compte</strong></th>
+                                        <th><strong>RIB</strong></th>
                                         <th><strong>Nom et Prenom</strong></th>
                                         <th><strong>Cin</strong></th>
+                                        <th><strong>Email</strong></th>
                                         <th><strong>Type de Virement</strong></th>
                                         <th><strong>Transférez A </strong></th>
                                         <th><strong>Numéro de Bénéficiaire</strong></th>
@@ -36,17 +37,14 @@
                                     {% for i in virements  %}
                                     <tr>
 
-                                        <td><strong>{{ i.numCompte }}</strong></td>
-                                        <td>
-                                            <div class="d-flex align-items-center"> <span class="w-space-no">{{ i.NometPrenom }}</span></div>
-                                        </td>
+                                        <td><strong>{{ i.compte }}</strong></td>
+                                        <td>{{ i.NometPrenom }}</td>
                                         <td>{{ i.Cin }}</td>
+                                        <td>{{ i.Email }}</td>
                                         <td>{{ i.TypeVirement }}</td>
                                         <td>{{i.transferezA}}</td>
                                         <td>{{ i.NumBeneficiare }}</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">{{ i.Montant }}</div>
-                                        </td>
+                                        <td>{{ i.Montant }}</td>
 
                                         <td>
                                             <div class="d-flex">
