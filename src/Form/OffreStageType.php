@@ -6,6 +6,7 @@ use App\Entity\OffreStage;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -30,9 +31,35 @@ class OffreStageType extends AbstractType
     ])
             ->add('typeOffre')
             ->add('postePropose')
-            ->add('experience')
-            ->add('niveau')
-            ->add('language')
+            ->add('experience',ChoiceType::class, [
+                'choices' => [
+                    '0-1' => 'nouveau',
+                    '0-2' => 'nouveau+',
+                    '1-2' => 'nouveau++',
+                    '2-4' => 'junior',
+                    '4 ou plus' => 'junior+',
+                    '5 ou plus' => 'senior',
+                    
+                ]])
+            ->add('niveau',ChoiceType::class, [
+                'choices' => [
+                    'lycée'=>'lycee',
+                    'bac' =>'bac',
+                    'bac +2' => 'BTS',
+                    'bac +3' => 'Licence',
+                    'bac +5' => 'Master',
+                    'Inegénierie' => 'Ingenierie',],
+                    'multiple' => true,
+                ])
+            ->add('language',ChoiceType::class, [
+                'choices' => [
+                    'Arabe'=>'arabe',
+                    'Français' =>'français',
+                    'Anglais' => 'anglais',
+                    'almend' => 'almend',
+                    ],
+                'multiple' => true,
+            ])
             ->add('description')
             ->add('exigenceOffre')
             ->add('datePostu')
@@ -47,15 +74,14 @@ class OffreStageType extends AbstractType
                     // Ajoutez d'autres options selon vos besoins
                 ],
                 'multiple' => true, // Activez la sélection multiple
-                'expanded' => false, // Désactivez l'affichage de la liste sous forme de boutons radio
-                'placeholder' => 'Sélectionnez une ou plusieurs options', // Texte affiché par défaut
                 'required' => false, // Désactivez la validation de champ obligatoire
             ])
             ->add('pfeBook',FileType::class, [
                 'label' => 'Upload PDF file',
                 'required' => true,
             
-            ]);
+            ])
+            ->add('submit',SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

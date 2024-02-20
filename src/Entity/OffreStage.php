@@ -31,11 +31,11 @@ class OffreStage
     #[ORM\Column(nullable: true)]
     private ?int $experience = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $niveau = null;
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $niveau = null;
 
-    #[ORM\Column(length: 30, nullable: true)]
-    private ?string $language = null;
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $language = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
@@ -46,8 +46,9 @@ class OffreStage
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $datePostu = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $motsCles = null;
+    #[ORM\Column(type: "json", nullable: true)]
+    private ?array  $motsCles = null;
+    
 
     #[ORM\OneToMany(mappedBy: 'offreStage', targetEntity: Demandestage::class)]
     private Collection $demande;
@@ -58,6 +59,7 @@ class OffreStage
     public function __construct()
     {
         $this->demande = new ArrayCollection();
+        $this->motsCles = [];
     }
 
     public function getId(): ?int
@@ -125,24 +127,24 @@ class OffreStage
         return $this;
     }
 
-    public function getNiveau(): ?string
+    public function getNiveau(): ?array
     {
         return $this->niveau;
     }
 
-    public function setNiveau(?string $niveau): static
+    public function setNiveau(?array $niveau): static
     {
         $this->niveau = $niveau;
 
         return $this;
     }
 
-    public function getLanguage(): ?string
+    public function getLanguage(): ?array
     {
         return $this->language;
     }
 
-    public function setLanguage(?string $language): static
+    public function setLanguage(?array $language): static
     {
         $this->language = $language;
 
@@ -185,12 +187,12 @@ class OffreStage
         return $this;
     }
 
-    public function getMotsCles(): ?string
+    public function getMotsCles(): array
     {
-        return $this->motsCles;
+        return $this->motsCles ?? [];
     }
 
-    public function setMotsCles(?string $motsCles): static
+    public function setMotsCles(?array $motsCles): static
     {
         $this->motsCles = $motsCles;
 
@@ -238,4 +240,5 @@ class OffreStage
 
         return $this;
     }
+   
 }
