@@ -63,10 +63,17 @@ class EvenementController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_evenement_show', methods: ['GET'])]
-    public function show(Evenement $evenement): Response
+    #[Route('admin/{id}', name: 'app_evenement_showA', methods: ['GET'])]
+    public function showA(Evenement $evenement): Response
     {
-        return $this->render('evenement/show.html.twig', [
+        return $this->render('admin/evenement/show.html.twig', [
+            'evenement' => $evenement,
+        ]);
+    }
+    #[Route('client/{id}', name: 'app_evenement_showC', methods: ['GET'])]
+    public function showC(Evenement $evenement): Response
+    {
+        return $this->render('client/evenement/show.html.twig', [
             'evenement' => $evenement,
         ]);
     }
@@ -83,7 +90,7 @@ class EvenementController extends AbstractController
             return $this->redirectToRoute('app_evenement_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('evenement/edit.html.twig', [
+        return $this->renderForm('admin/evenement/edit.html.twig', [
             'evenement' => $evenement,
             'form' => $form,
         ]);
@@ -100,6 +107,7 @@ class EvenementController extends AbstractController
         return $this->redirectToRoute('app_evenement_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    
 
 
 }

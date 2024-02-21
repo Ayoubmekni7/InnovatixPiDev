@@ -15,21 +15,21 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class ProjectController extends AbstractController
 {
-    #[Route('/listA', name: 'app_project_admin', methods: ['GET'])]
+    #[Route('/admin/list', name: 'app_project_admin', methods: ['GET'])]
     public function index(ProjectRepository $projectRepository): Response
     {
         return $this->render('admin/project/projects.html.twig', [
             'projects' => $projectRepository->findAll(),
         ]);
     }
-    #[Route('/listE', name: 'app_project_listE', methods: ['GET'])]
+    #[Route('/employe/list', name: 'app_project_listE', methods: ['GET'])]
     public function listE(ProjectRepository $projectRepository): Response
     {
         return $this->render('employe/project/projects.html.twig', [
             'projects' => $projectRepository->findAll(),
         ]);
     }
-    #[Route('/listC', name: 'app_project_indexclient', methods: ['GET'])]
+    #[Route('/client/list', name: 'app_project_indexclient', methods: ['GET'])]
     public function indexclient(ProjectRepository $projectRepository): Response
     {
         return $this->render('client/project/projects.html.twig', [
@@ -38,7 +38,7 @@ class ProjectController extends AbstractController
     }
 
  
-    #[Route('/create', name: 'app_project_new', methods: ['GET', 'POST'])]
+    #[Route('/client/create', name: 'app_project_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $project = new Project();
@@ -57,6 +57,27 @@ class ProjectController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/client/create', name: 'app_project_new', methods: ['GET', 'POST'])]
+    public function newC(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $project = new Project();
+        $form = $this->createForm(ProjectType::class, $project);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($project);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_project_admin', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('admin/project/new.html.twig', [
+            'project' => $project,
+            'form' => $form,
+        ]);
+    }
+
 
     #[Route('/{id}', name: 'app_project_indexshowsA', methods: ['GET'])]
     public function showA(Project $project): Response
