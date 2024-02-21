@@ -31,7 +31,7 @@ class ChequeType extends AbstractType
             ])
             ->add('telephone')
             ->add('Montant')
-            ->add('Decision')
+
 
         ;
     }
