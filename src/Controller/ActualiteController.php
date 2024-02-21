@@ -16,9 +16,16 @@ class ActualiteController extends AbstractController
         ]);
     }
     #[Route('/dashbordEmploye', name: 'app_dashbordEmploye')]
-    public function indexdashbord(): Response
+    public function indexdashbordE(): Response
     {
         return $this->render('Employe/baseEmploye.html.twig', [
+            'controller_name' => 'ActualiteController',
+        ]);
+    }
+    #[Route('/dashbordClient', name: 'app_dashbordClient')]
+    public function indexdashbordC(): Response
+    {
+        return $this->render('Employe/baseclient.html.twig', [
             'controller_name' => 'ActualiteController',
         ]);
     }
