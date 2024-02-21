@@ -25,6 +25,8 @@ class ContratController extends AbstractController
     #[Route('/addContrat', name: 'addContrat')]
     public function addContrat(Request $request,ManagerRegistry $managerRegistry,SluggerInterface $slugger): Response
     {
+        $titre = "Ajouter un contrat";
+        
         $stage = new Contrat();
         $form = $this->createForm(ContratType::class, $stage);
         $form->handleRequest($request);
@@ -35,6 +37,7 @@ class ContratController extends AbstractController
         }
         return $this->render('backOffice/contrat/add.html.twig', [
             'form' => $form->createView(),
+            'titre'=> $titre
         ]);
     }
     
@@ -43,9 +46,11 @@ class ContratController extends AbstractController
     #[Route('/AffichageDesContrats', name: 'AffichageDesContrats')]
     public function AffichageDesContrats(ContratRepository $contratRepository): Response
     {
+        
         $liste = $contratRepository->findAll();
         return $this->render('backOffice/contrat/affichageContrat.html.twig', [
             'contrat' => $liste,
+            
         ]);
     }
     #[Route('/deleteContrat/{id}', name: 'deleteContrat')]

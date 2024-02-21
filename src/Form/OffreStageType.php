@@ -48,17 +48,18 @@ class OffreStageType extends AbstractType
                     'bac +2' => 'BTS',
                     'bac +3' => 'Licence',
                     'bac +5' => 'Master',
-                    'Inegénierie' => 'Ingenierie',],
-                    'multiple' => true,
+                    'Inegénierie' => 'Ingenierie',
+                    ],
+//                    'multiple' => true,
                 ])
             ->add('language',ChoiceType::class, [
                 'choices' => [
-                    'Arabe'=>'arabe',
-                    'Français' =>'français',
-                    'Anglais' => 'anglais',
-                    'almend' => 'almend',
+                    'Arabe-Français'=>'arabeFr',
+                    'Français-Anglais' =>'françaisAn',
+                    'Anglais-Arabe' => 'anglaisAr',
+                    'Arabe-Français_Anglais' => 'troisLangue',
                     ],
-                'multiple' => true,
+//                'multiple' => true,
             ])
             ->add('description')
             ->add('exigenceOffre')
@@ -75,6 +76,7 @@ class OffreStageType extends AbstractType
                 ],
                 'multiple' => true, // Activez la sélection multiple
                 'required' => false, // Désactivez la validation de champ obligatoire
+                'expanded' => false,
             ])
             ->add('pfeBook',FileType::class, [
                 'label' => 'Upload PDF file',

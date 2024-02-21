@@ -240,5 +240,9 @@ class OffreStage
 
         return $this;
     }
-   
+    public  function  __toString(): string
+    {
+        return (String)$this->getId();
+    }
+    
 }

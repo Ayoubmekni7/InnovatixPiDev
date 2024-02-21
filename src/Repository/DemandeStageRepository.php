@@ -49,12 +49,13 @@ class DemandeStageRepository extends ServiceEntityRepository
     public function findDemandesByOffre($offreId)
     {
         return $this->createQueryBuilder('b')
-            ->join('b.offre', 'a')
+            ->join('b.offreStage', 'a')
             ->where('a.id = :offreId')
             ->setParameter('offreId', $offreId)
             ->getQuery()
             ->getResult();
     }
+  
     public function Recherche($id){
         return $this->createQueryBuilder('B')
             ->where('B.numerotelephone LIKE :numerotelephone')

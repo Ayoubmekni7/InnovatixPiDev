@@ -11,10 +11,12 @@ body {
     /*background: #a19f9f;*/
     background: linear-gradient(90deg, rgba(61, 66, 66, 0.9) 0%, rgb(66, 70, 68) 50%);
     font-family: 'Poppins', sans-serif;
+    margin-top: 100px;
 }
 
 /* Style pour le formulaire */
 .centered-form {
+    margin-top: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,10 +25,11 @@ body {
 
 .centered-form form {
     width: 50%; /* Ajustez la largeur selon vos besoins */
+    margin-top: 100px;
 }
 form {
     border-radius: 20px;
-    margin-top: 20px !important;
+    margin-top: 100px !important;
     margin-bottom: 20px !important;
     width: 40% !important;
     background-color: white !important;
@@ -44,8 +47,8 @@ form {
 
 /* Style pour les champs de saisie */
 .form-control {
-    color: rgb(50, 134, 60);
-    border-bottom-color: rgb(16, 220, 38);
+    color: rgb(63, 138, 238);
+    border-bottom-color: rgb(4, 49, 227);
     box-shadow: none !important;
     border: none;
     border-bottom: 1px solid;
@@ -63,7 +66,7 @@ form {
     border: none;
     border-radius: 50px;
 //background: #0e3d8e;
-    background: linear-gradient(90deg, rgb(31, 122, 20) 0%, rgb(34, 164, 53) 35%, rgb(101, 231, 30) 100%);
+    background: linear-gradient(90deg, rgb(20, 49, 122) 0%, rgb(33, 94, 187) 35%, rgb(14, 106, 246) 100%);
 }
 
 /* Style pour le bouton de soumission au survol */
@@ -131,5 +134,5 @@ textarea.input1 + .shadow-input1 {
     width: 100%;
     height: 100%;
     box-shadow: 0px 0px 0px 0px;
-    color: rgba(87,184,70, 0.5);
+    color: rgba(9, 64, 239, 0.5);
 }

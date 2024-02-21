@@ -25,6 +25,7 @@ class StageController extends AbstractController
     #[Route('/createStage', name: 'createStage')]
     public function createStage(Request $request, ManagerRegistry $managerRegistry): Response
     {
+        $add ="ajouter";
         $stage = new Stage();
         $form = $this->createForm(StageType::class,$stage);
         $form->handleRequest($request);
@@ -35,6 +36,7 @@ class StageController extends AbstractController
         }
         return $this->render('backOffice/stage/addStage.html.twig', [
             'form' => $form->createView(),
+            'button' => $add
         ]);
     }
     #[Route('/deleteStage/{id}', name: 'deleteStage')]
@@ -49,6 +51,7 @@ class StageController extends AbstractController
     #[Route('/modifierStage/{id}', name: 'modifierStage')]
     public function modifierContrat($id, ManagerRegistry $manager, StageRepository $stageRepository, Request $request,): Response
     {
+        $add = "modifier";
         $emr = $manager->getManager();
         $idData = $stageRepository->find($id);
         $form = $this->createForm(StageType::class, $idData);
@@ -56,10 +59,11 @@ class StageController extends AbstractController
         if ($form->isSubmitted() and $form->isValid()) {
             $emr->persist($idData);
             $emr->flush();
-            return new Response("update with succcess");
+            return $this->redirectToRoute("AfficheStage");
         }
         return $this->renderForm('backOffice/stage/addStage.html.twig', [
-            'form' => $form
+            'form' => $form,
+            'button' => $add
         ]);
     }
     

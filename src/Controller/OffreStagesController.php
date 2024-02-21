@@ -26,10 +26,12 @@ class OffreStagesController extends AbstractController
         //$domaine = $request->get('domaine');
         $liste = $offreStageRepository->findAll();
         if ($form ->isSubmitted() && $form->isValid()){
-            $demande = $demandeStageRepository->Recherche($recherche);
-            return $this->render('frontOffice/offre_stage/rechercheNumero.html.twig',[
-                'demande' => $demande,
-            ]);
+            $id = $recherche;
+//            $demande = $demandeStageRepository->Recherche($recherche);
+//            return $this->render('frontOffice/offre_stage/rechercheNumero.html.twig',[
+//                'demande' => $demande,
+//            ]);
+            return $this->redirectToRoute('rechercheDemande',['numero' =>$id]);
         }
         
         return $this->render('frontOffice/offre_stage/recrutement.html.twig',[
@@ -43,8 +45,8 @@ class OffreStagesController extends AbstractController
     {
         $recherche = $request->get('numero');
         $demande = $demandeStageRepository->Recherche($recherche);
-        return $this->render('frontOffice/demande_stage/rechercheNumero.html.twig',[
-            'demande' => $demande,
+        return $this->render('frontOffice/demande_stage/SearchDemande.html.twig',[
+            'Demandes' => $demande,
         ]);
     }
     #[Route('/afficheOffreStages', name: 'afficheOffreStages')]
@@ -56,11 +58,26 @@ class OffreStagesController extends AbstractController
             
         ]);
     }
+    #[Route('/rechercheOffreStages', name: 'rechercheOffreStages')]
+    public function rechercheOffreStages(OffreStageRepository $offreStageRepository,Request $request): Response
+    {
+        $search = [];
+        $form = $this->createForm(SearchType::class,$search);
+        $form->handleRequest($request);
+        $domaine = $request->get('domaine');
+        $liste = $offreStageRepository->findOneBySomeField($domaine);
+        return $this->render('frontOffice/offre_stage/recrutement.html.twig',[
+            'offres' => $liste,
+            'form' => $form->createView(),
+        
+        ]);
+    }
     
     
     #[Route('/addOffre', name: 'addOffre')]
     public function addOffre(ManagerRegistry $managerRegistry,Request $request): Response
     {
+        $ajouter = "ajouter";
         $offre = new OffreStage();
         $form = $this->createForm(OffreStageType::class,$offre);
         $form->handleRequest($request);
@@ -71,11 +88,13 @@ class OffreStagesController extends AbstractController
         }
         return $this->render('backOffice/offre_stage/add.html.twig', [
             'form' => $form->createView(),
+            'ajouter' => $ajouter
         ]);
     }
     #[Route('/editOffre/{id}', name: 'editOffre')]
     public function editOffre($id,ManagerRegistry $managerRegistry,Request $request, OffreStageRepository $offreStageRepository): Response
     {
+        $modifier = 'modifier';
         $offre = $offreStageRepository->find($id);
         $form = $this->createForm(OffreStageType::class,$offre);
         $form->handleRequest($request);
@@ -86,6 +105,7 @@ class OffreStagesController extends AbstractController
         }
         return $this->render('backOffice/offre_stage/add.html.twig', [
             'form' => $form->createView(),
+            'ajouter' => $modifier
         ]);
     }
     #[Route('/deleteOffre/{id}', name: 'deleteOffre')]
@@ -115,11 +135,14 @@ class OffreStagesController extends AbstractController
     }
     
     #[Route('/DemandeParOffres/{id}', name: 'DemandeParOffres')]
-    public function DemandeParOffres($id, DemandeStageRepository $demandestageRepository): Response
+    public function DemandeParOffres($id, DemandeStageRepository $demandestageRepository,OffreStageRepository $offreStageRepository): Response
     {
-        $offre = $demandestageRepository->findDemandesByOffre($id);
-        return $this->render('backOffice/offre_stage/afficheOffreStages.html.twig', [
-            'offres'=>$offre
+        $demande = $demandestageRepository->findDemandesByOffre($id);
+        $offre = $offreStageRepository->find($id);
+        $name = $offre->getTitle();
+        return $this->render('backOffice/demande_stage/affichage.html.twig', [
+            'Demandes'=>$demande,
+            'titre' => $name
         ]);
     }
     

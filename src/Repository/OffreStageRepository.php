@@ -21,29 +21,28 @@ class OffreStageRepository extends ServiceEntityRepository
         parent::__construct($registry, OffreStage::class);
     }
 
-//    /**
-//     * @return OffreStage[] Returns an array of OffreStage objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('o.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return OffreStage[] Returns an array of OffreStage objects
+     */
+    public function findDemandeByOffre($value): array
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.demande = :val')
+            ->setParameter('val', $value)
+            ->setMaxResults(1000)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
-//    public function findOneBySomeField($value): ?OffreStage
-//    {
-//        return $this->createQueryBuilder('o')
-//            ->andWhere('o.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findOneBySomeField($value): ?OffreStage
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.domaine = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 
 }

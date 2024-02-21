@@ -21,7 +21,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Liste des demande</h4>
+                            <h4 class="card-title">{{ titre }}</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -30,7 +30,6 @@
                                     <thead>
                                     <tr >
 
-                                        <th><strong>ID_demande</strong></th>
                                         <th><strong>Nom</strong></th>
                                         <th><strong>Prénom</strong></th>
                                         <th><strong>Email</strong></th>
@@ -46,7 +45,7 @@
 
                                     {% for a in Demandes %}
                                     <tr>
-                                        <td>{{a.id }}</td>
+
                                         <td>{{ a.nom }}</td>
                                         <td>{{ a.prenom }}</td>
                                         <td>{{ a.email }}</td>

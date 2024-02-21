@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Demandestage;
 use App\Form\DemandeStageType;
 use App\Repository\DemandeStageRepository;
+use App\Repository\OffreStageRepository;
 use App\Service\Mailing;
 use App\Service\uploadFile;
 use Doctrine\Persistence\ManagerRegistry;
@@ -59,17 +60,54 @@ class DemandeStageController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    #[Route('/demandeStageOffre/{id}', name: 'demandeStageOffre')]
+    public function demandeStageOffre($id,Request $request,ManagerRegistry $managerRegistry,SluggerInterface $slugger,OffreStageRepository $offreStageRepository): Response
+    {
+        $offre = $offreStageRepository->find($id);
+        $demandeO = new Demandestage();
+        $form = $this->createForm(DemandeStageType::class, $demandeO);
+        $form->handleRequest($request);
+        $to = $demandeO->getEmail();
+        $nom = $demandeO->getNom().$demandeO->getPrenom();
+        $subject = "Demande effectuer avec succés";
+        $html ="<div>Bonjour {$nom}.<br>Votre Demande a été effectuer avec succès  .<br>";
+        if($form->isSubmitted() && $form->isValid()){
+            $file =  $form->get('cv')->getData();
+            
+            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename);
+            $fileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+            
+            
+            $file->move(
+                $this->getParameter($this->directory),
+                $fileName
+            );
+            $demandeO->setCv($fileName);
+            $x = $managerRegistry->getManager();
+            $demandeO->setOffreStage($offre);
+            $x->persist($demandeO);
+            $x->flush();
+            $this->emailService->sendEmail($to,$subject,$html);
+        }
+        
+        return $this->render('frontOffice/demande_stage/demande.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
     #[Route('/AffichageDesDemandes', name: 'AffichageDesDemandes')]
     public function AffichageDesDemandes(DemandeStageRepository $demandestageRepository): Response
     {
+        $titre = "La liste des demandes";
         $liste = $demandestageRepository->findAll();
         return $this->render('backOffice/demande_stage/affichage.html.twig', [
             'Demandes' => $liste,
+            'titre'=> $titre
         ]);
     }
     
-    #[Route('/deleteDemande/{id}', name: 'deleteDemande')]
-    public function deleteDemande($id, ManagerRegistry $manager, DemandeStageRepository $repo): Response
+    #[Route('/deleteDemande/{id}/{numero}', name: 'deleteDemande')]
+    public function deleteDemande($id,$numero, ManagerRegistry $manager, DemandeStageRepository $repo): Response
     {
         $emm = $manager->getManager();
         $idremove = $repo->find($id);
@@ -80,11 +118,12 @@ class DemandeStageController extends AbstractController
         $subject = "Demande effectuer avec succés";
         $html ="<div>Bonjour {$nom}.<br>Votre suppression de candidature est effectué avec succès  .<br>";
         $this->emailService->sendEmail($to,$subject,$html);
-        return $this->redirectToRoute('demandeStage');
+        return $this->redirectToRoute('rechercheDemande',['numero' =>$numero]);
     }
-    #[Route('/modifierDemande/{id}', name: 'modifierDemande')]
-    public function modifierDemande($id, ManagerRegistry $manager, DemandeStageRepository $demandestageRepository, Request $request, UploadFile $uploaderService): Response
+    #[Route('/modifierDemande/{id}/{numero}', name: 'modifierDemande')]
+    public function modifierDemande($id,$numero, ManagerRegistry $manager, DemandeStageRepository $demandestageRepository, Request $request, UploadFile $uploaderService): Response
     {
+        
         $em = $manager->getManager();
         $idData = $demandestageRepository->find($id);
         $ancienCv = $idData->getCv();
@@ -111,7 +150,7 @@ class DemandeStageController extends AbstractController
                     <br>Votre modification de candidature est effectué avec succès  .<br>
                     </div>";
             $this->emailService->sendEmail($to,$subject,$html);
-            return new Response("update with succcess");
+            return $this->redirectToRoute('rechercheDemande',['numero' =>$numero]);
         }
         return $this->renderForm('frontOffice/demande_stage/edit.html.twig', [
             'form' => $form,
@@ -123,10 +162,11 @@ class DemandeStageController extends AbstractController
     public function rechercheDemande($numero, DemandeStageRepository $demandestageRepository): Response
     {
         
-        $idData = $demandestageRepository->find($numero);
+        $idData = $demandestageRepository->Recherche($numero);
         
-        return $this->renderForm('frontOffice//demande_stage/demande.html.twig', [
-            'form' => $idData
+        return $this->renderForm('frontOffice/demande_stage/SearchDemande.html.twig', [
+            'Demandes' => $idData
         ]);
     }
+    
 }
