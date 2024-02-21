@@ -45,9 +45,9 @@ class Demandestage
     #[Assert\NotBlank(message: 'Veuillez choisir un domaine')]
     private ?string $domaine = null;
 
-    #[ORM\Column( nullable: true)]
+    #[ORM\Column( type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
-    private ?\DateInterval $date = null;
+    private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $etat = null;
