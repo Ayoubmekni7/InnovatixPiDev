@@ -16,15 +16,25 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+          <form action="{{ path('app_loginClient') }}" method="post" class="sign-in-form">
+           {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
             <h2 class="title">Se Connecter</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Identifiant" />
+            
+           		   		<input type="text" class="input" name="email" id="inputEmail" value="{{ last_username }}" autocomplete="email" required autofocus placeholder="Identifiant">
+              
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Mot de passe" />
+              <input type="password" class="input" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Mot de passe" />
             </div>
             <div>
               <input type="checkbox" class="form-check-input" id="basic_checkbox_1">
@@ -34,10 +44,9 @@
               <input type="checkbox" class="form-check-input" id="basic_checkbox_1">
                    <label class="form-check-label" for="basic_checkbox_1">Enregister mes informations</label>
             </div>
-           
-
-           <a  class="btn solid">Se connecter</a>
-
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <input type="submit" class="btn" value="Se connecter">
+          
             <div class="new-account mt-3">
               <p>Vous n'avez pas de compte? <a class="text-primary" href="page-register.html">Créer un compte</a></p>
           </div>

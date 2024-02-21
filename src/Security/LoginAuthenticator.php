@@ -21,6 +21,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_login';
+    public const LOGIN_CLIENT_ROUTE = 'app_loginClient';
 
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
@@ -28,6 +29,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
     public function authenticate(Request $request): Passport
     {
+    
         $email = $request->request->get('email', '');
 
         $request->getSession()->set(Security::LAST_USERNAME, $email);
@@ -53,6 +55,8 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
         } elseif (in_array('ROLE_EMPLOYEE', $user->getRoles())) {
             return new RedirectResponse($this->urlGenerator->generate('app_dashbordEmploye'));
+         } elseif (in_array('ROLE_CLIENT', $user->getRoles())) { 
+            return new RedirectResponse($this->urlGenerator->generate('app_dashbordClient'));
         }
 
         // For example:
@@ -62,6 +66,12 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
     protected function getLoginUrl(Request $request): string
     {
-        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+           // Utilisez la constante appropriée pour générer l'URL de connexion
+           if ($request->attributes->get('_route') === self::LOGIN_CLIENT_ROUTE) {
+            return $this->urlGenerator->generate(self::LOGIN_CLIENT_ROUTE);
+        } else {
+            return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+        }
     }
-}
+    }
+
