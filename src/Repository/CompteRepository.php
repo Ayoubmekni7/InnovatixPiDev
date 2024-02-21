@@ -21,28 +21,24 @@ class CompteRepository extends ServiceEntityRepository
         parent::__construct($registry, Compte::class);
     }
 
-//    /**
-//     * @return Compte[] Returns an array of Compte objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Compte[] Returns an array of Compte objects
+    */
+   public function listeDesCompte($value): array
+   {
+       return $this->createQueryBuilder('c')
+           ->andWhere('c.statut = :val')
+           ->setParameter('val', $value)
+           ->getQuery()
+           ->getResult()
+       ;    }
 
-//    public function findOneBySomeField($value): ?Compte
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+   public function findOneBySomeField($value): ?Compte
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+          ->getOneOrNullResult() ;
+   }
 }

@@ -71,6 +71,7 @@ class CompteType extends AbstractType
                 'multiple' => false, // Seul un choix peut être sélectionné
                 // Autres options du champ ChoiceType
             ])
+            ->add('statut')
             ->add('submit', SubmitType::class)
 
         ;

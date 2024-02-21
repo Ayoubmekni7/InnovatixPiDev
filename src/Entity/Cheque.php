@@ -45,9 +45,8 @@ class Cheque
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez saisir numéro de votre cin')]
     #[Assert\Length(min: 8, max: 8, exactMessage: 'Le numéro de cin doit contenir 8 chiffres')]
-    #[Assert\Regex(pattern: '/^(1|0)[0-9]{7}$/', message: 'Le numéro de cin doit commencer par 1 ou 0 et contenir 8 chiffres')]
+    #[Assert\Regex(pattern: '/^(1|0)[0-9]{7}$/', message: 'Le numéro de cin doit commencer par 1 ou 0 ')]
     private ?int $Cin = null;
-
 
 
     #[ORM\Column(length: 255)]
@@ -60,8 +59,8 @@ class Cheque
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Decision = null;
 
-
-
+    #[ORM\ManyToOne(inversedBy: 'cheque')]
+    private ?User $user = null;
 
 
     public function getId(): ?int
@@ -186,6 +185,18 @@ class Cheque
     public function setDecision(?string $Decision): static
     {
         $this->Decision = $Decision;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

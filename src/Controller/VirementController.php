@@ -86,7 +86,7 @@ class VirementController extends AbstractController
         if($form->isSubmitted() and $form->isValid()){
             $em->persist($idData);
             $em->flush();
-            return new Response('Modifier avec sucees ');
+            return $this->redirectToRoute('addvirement');
 
         }
         return $this->renderForm('frontoffice/virement/DemandeVirement.html.twig',[

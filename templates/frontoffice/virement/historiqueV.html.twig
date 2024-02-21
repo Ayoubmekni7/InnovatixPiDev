@@ -1,6 +1,21 @@
 {% extends 'baseclient.html.twig'  %}
 
         {% block body %}
+            <style>
+                .modifier-text {
+                    font-weight:normal;
+                    color: blue;
+                    text-decoration: underline;
+
+                }
+                .supprimer-text {
+                    font-weight:normal;
+                    color: #8c0615;
+                    text-decoration: underline;
+
+                }
+
+            </style>
             <div class="container-fluid py-4">
                 <div class="row">
                     <div class="col-12">
@@ -45,9 +60,18 @@
                                                     {% if (i.DecisionV=='Approuvé') %}
                                                         <span class="badge badge-sm bg-gradient-success">Approuvé</span>
                                                     {% endif %}
-                                                    {% if (i.DecisionV=='En cours') %}
+
+                                                    {% if (i.DecisionV == 'En cours') %}
                                                         <span class="badge badge-sm bg-gradient-secondary">En cours</span>
+                                                        <a href="{{ path('modifierVirement', { 'id': i.id }) }}">
+                                                            <span class="modifier-text">Modifier</span>
+                                                        </a>
+                                                        <a href="{{ path('deleteVirement', { 'id': i.id }) }}">
+                                                            <span class="supprimer-text">supprimer</span>
+                                                        </a>
                                                     {% endif %}
+
+
                                                     {% if (i.DecisionV=='Réfuser') %}
                                                         <span class="badge badge-sm bg-gradient-danger"> &nbsp; Réfuser &nbsp;  </span>
                                                     {% endif %}

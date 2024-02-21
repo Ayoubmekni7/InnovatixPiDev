@@ -11,7 +11,7 @@ class ActualiteController extends AbstractController
     #[Route('/actualite', name: 'app_actualite')]
     public function index(): Response
     {
-        return $this->render('baseclient.html.twig', [
+        return $this->render('frontoffice/index.html.twig', [
             'controller_name' => 'ActualiteController',
         ]);
     }

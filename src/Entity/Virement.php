@@ -58,6 +58,9 @@ class Virement
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $DecisionV = null;
 
+    #[ORM\ManyToOne(inversedBy: 'virements')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -182,6 +185,18 @@ class Virement
     public function setDecisionV(?string $DecisionV): static
     {
         $this->DecisionV = $DecisionV;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

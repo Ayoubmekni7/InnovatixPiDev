@@ -66,6 +66,25 @@ class CompteController extends AbstractController
             'comptes' => $compte,
         ]);
     }
+    #[Route('/showHistorique', name: 'showHistorique')]
+    public function showHistorique(CompteRepository $compteRepository ): Response
+    {
+        $compte=$compteRepository->listeDesCompte(true);
+        return $this->render('backoffice/admin/compte/historiqueCompte.html.twig', [
+            'comptes' => $compte,
+        ]);
+    }
+    #[Route('/ApprouveCompte/{id}', name: 'ApprouveCompte')]
+    public function ApprouveCompte($id,ManagerRegistry $managerRegistry ,CompteRepository $compteRepository ): Response
+    {
+        $compte=$compteRepository->find($id);
+        $compte->setStatut(1);
+        $emm=$managerRegistry->getManager();
+        $emm->persist($compte);
+        $emm->flush();;
+        return $this->redirectToRoute('showHistorique');
+    }
+
 
     #[Route('/deleteCompte/{id}', name: 'deleteCompte')]
 public function  deleteCompte($id,ManagerRegistry $managerRegistry,CompteRepository $compteRepository):Response

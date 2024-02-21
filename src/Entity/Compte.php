@@ -98,10 +98,19 @@ class Compte
     #[ORM\Column(type: Types::BIGINT, nullable: true)]
     private ?string $RIB = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'compte')]
+    private Collection $users;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $statut = 0;
+
+
+
     public function __construct()
     {
         $this->idCheque = new ArrayCollection();
         $this->idVirement = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
 
@@ -381,6 +390,46 @@ class Compte
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addCompte($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeCompte($this);
+        }
+
+        return $this;
+    }
+
+    public function getStatut(): ?int
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?int $statut): static
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
 
 
 
