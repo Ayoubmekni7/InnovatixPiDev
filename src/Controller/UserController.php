@@ -25,6 +25,7 @@ class UserController extends AbstractController
     {
         $this->security = $security;
     }
+    
 
     #[Route('/clients', name: 'app_user_clients', methods: ['GET'])]
     public function listclient(UserRepository $userRepository): Response
@@ -56,6 +57,9 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+                 // Hachage du mot de passe
+        $hashedPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
+        $user->setPassword($hashedPassword);
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -69,7 +73,7 @@ class UserController extends AbstractController
     }
     
     #[Route('/newemploye', name: 'app_user_newemploye', methods: ['GET', 'POST'])]
-    public function newemploye(Request $request, EntityManagerInterface $entityManager): Response
+    public function newemploye(Request $request, EntityManagerInterface $entityManager ): Response
     {
         $user = new User();
         $user->setRoles(['ROLE_EMPLOYEE']);
@@ -77,6 +81,9 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+             // Hachage du mot de passe
+        $hashedPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
+        $user->setPassword($hashedPassword);
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -111,6 +118,9 @@ class UserController extends AbstractController
         $form->handleRequest($request);
     
         if ($form->isSubmitted() && $form->isValid()) {
+                 // Hachage du mot de passe
+        $hashedPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
+        $user->setPassword($hashedPassword);
             $entityManager->flush();
     
             return $this->redirectToRoute('app_user_clients', [], Response::HTTP_SEE_OTHER);
@@ -128,6 +138,9 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+                // Hachage du mot de passe
+        $hashedPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
+        $user->setPassword($hashedPassword);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_user_employes', [], Response::HTTP_SEE_OTHER);
@@ -169,54 +182,5 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('app_user_employes');
     }
-}
+}?>
 
-<?php
-
-namespace App\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-
-class UserController extends AbstractController
-{
-    #[Route('/user', name: 'app_user')]
-    public function index(): Response
-    {
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
-    }
-    #[Route('/listclient', name: 'app_listclient')]
-    public function listclient(): Response
-    {
-        return $this->render('user/listclient.html.twig', [
-            'controller_name' => 'ActualiteController',
-        ]);
-    }
-    #[Route('/listemploye', name: 'app_listemploye')]
-    public function listemploye(): Response
-    {
-        return $this->render('user/listemploye.html.twig', [
-            'controller_name' => 'ActualiteController',
-        ]);}
-        #[Route('/ajoute', name: 'app_ajoute')]
-    
-    
-    #[Route('/ajoutemploye', name: 'app_ajoutemploye')]
-    public function ajoutemploye(): Response
-    {
-        return $this->render('user/addemploye.html.twig', [
-            'controller_name' => 'ActualiteController',
-        ]); 
-    } 
-    #[Route('/ajoutclient', name: 'app_ajoutclient')]
-    public function ajoutclient(): Response
-    {
-        return $this->render('user/addclient.html.twig', [
-            'controller_name' => 'ActualiteController',
-        ]); 
-    } 
-   
-}
