@@ -101,6 +101,12 @@ class OffreStagesController extends AbstractController
     {
         $modifier = 'modifier';
         $offre = $offreStageRepository->find($id);
+        $motCles = $offre->getMotsCles();
+        $niveau = $offre->getNiveau();
+        $language = $offre->getLanguage();
+        $offre->setNiveau(null);
+        $offre->setMotsCles(null);
+        $offre->setLanguage(null);
         $form = $this->createForm(OffreStageType::class,$offre);
         $form->handleRequest($request);
         $em = $managerRegistry->getManager();
@@ -116,10 +122,13 @@ class OffreStagesController extends AbstractController
     #[Route('/deleteOffre/{id}', name: 'deleteOffre')]
     public function deleteOffre($id,ManagerRegistry $managerRegistry,Request $request, OffreStageRepository $offreStageRepository): Response
     {
+        
         $offre = $offreStageRepository->find($id);
+        
         $em = $managerRegistry->getManager();
             $em->remove($offre);
-        return new Response("suppression avec succès ");
+            $em->flush();
+        return $this->redirectToRoute("afficheOffreStages");
     }
     #[Route('/DetailsOffre/{id}', name: 'DetailsOffre')]
     public function DetailsOffre($id,ManagerRegistry $managerRegistry,Request $request, OffreStageRepository $offreStageRepository): Response

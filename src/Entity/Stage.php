@@ -24,8 +24,8 @@ class Stage
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
     #[Assert\LessThan(value: "today", message: "Date Invalide !!")]
-    private ?\DateInterval $date = null;
-
+    private ?\DateTimeInterface $date = null;
+    
     #[ORM\OneToMany(mappedBy: 'idStage', targetEntity: Stagiaire::class, orphanRemoval: true)]
     #[Assert\NotBlank(message: 'Veuillez entrer le stagiaire')]
     private Collection $idStagiare;
