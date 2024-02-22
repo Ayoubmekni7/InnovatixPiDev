@@ -182,5 +182,17 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('app_user_employes');
     }
+    #[Route('/searchclient', name: 'searchclient')]
+    public function searchUserById(Request $request, UserRepository $userRepository): Response
+    {   
+        $id = $request->query->get('id');
+
+        // Recherche de l'utilisateur par son identifiant
+        $user = $userRepository->searchByIdAndRole($id, ['ROLE_CLIENT']);
+
+        return $this->render('user/listclient.html.twig', [
+            'users' => $user,
+        ]);
+    } 
 }?>
 
