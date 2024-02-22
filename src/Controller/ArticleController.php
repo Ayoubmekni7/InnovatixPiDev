@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,14 +22,18 @@ class ArticleController extends AbstractController
             'articles' => $articleRepository->findAll(),
         ]);
     }
+   
+
+   
+    
 
     #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager ): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
-
+     
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($article);
             $entityManager->flush();
@@ -41,16 +46,23 @@ class ArticleController extends AbstractController
             'form' => $form,
         ]);
     }
+   
 
-    #[Route('/{idArt}', name: 'app_article_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_article_show', methods: ['GET'])]
     public function show(Article $article): Response
     {
         return $this->render('article/show.html.twig', [
             'article' => $article,
         ]);
     }
-
-    #[Route('/{idArt}/edit', name: 'app_article_edit', methods: ['GET', 'POST'])]
+    #[Route('/articlefront/{id}', name: 'app_articlefront_show', methods: ['GET'])]
+    public function articlefront(Article $article): Response
+    {
+        return $this->render('article/detailArticle.html.twig', [
+            'article' => $article,
+        ]);
+    }
+    #[Route('/{id}/edit', name: 'app_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ArticleType::class, $article);
@@ -68,14 +80,21 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{idArt}', name: 'app_article_delete', methods: ['POST'])]
-    public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
+    #[Route('delete/{id}', name: 'app_article_delete', methods: ['GET','POST'])]
+    public function delete($id , ManagerRegistry $managerRegistry , ArticleRepository $articleRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$article->getIdArt(), $request->request->get('_token'))) {
+       
+            $entityManager =$managerRegistry->getManager();
+            $article= $articleRepository->find($id) ;
             $entityManager->remove($article);
             $entityManager->flush();
-        }
+     
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    
+
+  
 }
