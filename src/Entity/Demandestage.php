@@ -65,7 +65,7 @@ class Demandestage
     private ?string $domaine = null;
 
     #[ORM\Column( type: Types::DATE_MUTABLE)]
-    #[Assert\LessThan(value: "today", message: "Date Invalide !!")]
+    #[Assert\GreaterThan(value: "today", message: "Date Invalide !!")]
     #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
     private ?\DateTimeInterface $date = null;
 
@@ -199,4 +199,21 @@ class Demandestage
 
         return $this;
     }
+
+
+//          Cette fonction donne une condition sur la date !!
+//    public static function validateDate($value, ExecutionContextInterface $context, $payload)
+//    {
+//        if ($value instanceof \DateTimeInterface) {
+//            // La date doit être d'au moins une semaine après la date actuelle
+//            $today = new \DateTime();
+//            $oneWeekLater = (clone $today)->modify('+1 week');
+//
+//            if ($value < $oneWeekLater) {
+//                $context->buildViolation('La date doit être au moins une semaine après la date actuelle')
+//                    ->addViolation();
+//            }
+//        }
+//    }
+    
 }

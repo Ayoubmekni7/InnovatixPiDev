@@ -34,14 +34,16 @@ class OffreStageRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-
-    public function findOneBySomeField($value): ?OffreStage
+    /**
+     * @return OffreStage[] Returns an array of OffreStage objects
+     */
+    public function findOneBySomeField($value): array
     {
         return $this->createQueryBuilder('o')
             ->andWhere('o.domaine = :val')
             ->setParameter('val', $value)
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getResult()
         ;
     }
 

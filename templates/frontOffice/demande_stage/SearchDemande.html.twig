@@ -53,8 +53,8 @@
                                                                          {#                                        <td>{{ a.cv }}</td>#}
                                                                          {#                                        <td><a href="{{ asset('upload/CV' ~ a.cv) }}"></a></td>#}
                                                                          <td>
-                                                                             <a href="{{ asset('upload/CV/' ~ a.cv) }}" target="_blank"><button class="badge  badge-success">Ouvrir PDF</button></a><br><br>
-                                                                             <a href="{{ asset('upload/CV/' ~ a.cv) }}" download="{{ a.nom ~ '_' ~ a.prenom ~ '.pdf' }}">
+                                                                             <a href="{{ asset('uploads_directory/' ~ a.cv) }}" target="_blank"><button class="badge  badge-success">Ouvrir PDF</button></a><br><br>
+                                                                             <a href="{{ asset('uploads_directory/' ~ a.cv) }}" download="{{ a.nom ~ '_' ~ a.prenom ~ '.pdf' }}">
                                                                                  <button class="btn-rounded btn-warning">Télécharger  &nbsp;<span class="btn-icon-start text-warning"><i class="fa fa-download color-warning"></i>
                                                                               </span></button></a>
 

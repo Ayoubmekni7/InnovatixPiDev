@@ -11,10 +11,11 @@ class uploadFile
     public function __construct(private SluggerInterface $slugger) {}
     public function uploadFile(
         UploadedFile $file,
-        string $directoryFolder
+        string $directoryFolder='uploads_directory'
        
     ): string
     {
+        
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         // this is needed to safely include the file name as part of the URL
         $safeFilename = $this->slugger->slug($originalFilename);
@@ -27,7 +28,7 @@ class uploadFile
                 $newFilename
             );
         } catch (FileException $e) {
-            // ... handle exception if something happens during file upload
+            echo "l'upload ne fonctionne pas! essaiez une autre fois!";
         }
         return $newFilename;
     }

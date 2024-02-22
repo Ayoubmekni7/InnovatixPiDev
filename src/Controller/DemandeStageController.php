@@ -11,6 +11,7 @@ use App\Service\uploadFile;
 use Doctrine\Persistence\ManagerRegistry;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,42 +19,53 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class DemandeStageController extends AbstractController
 {
-    
+    // la date et temps actuel
+    //$now = new DateTime('now');
+    //        // Formater le temps réel actuel
+    //        $nowFormatted = $now->format('Y-m-d H:i:s');
+    //
+    //
+    //
+    //// Changer le fuseau horaire à "Europe/Berlin" pendant l'été (Central European Summer Time)
+    //        $now->setTimezone(new DateTimeZone('Europe/Berlin'));
+    //
+    //// Réafficher le temps réel actuel
+    //        $nowFormatted = $now->format('Y-m-d H:i:s');
     public Mailing $emailService;
     public string $directory = 'uploads_directory';
     public function __construct(Mailing $emailService)
     {
         $this->emailService = $emailService;
     }
+    #[Route('/AffichageDesDemandes', name: 'AffichageDesDemandes')]
+    public function AffichageDesDemandes(DemandeStageRepository $demandestageRepository): Response
+    {
+        $titre = "La liste des demandes";
+        $liste = $demandestageRepository->findAll();
+        return $this->render('backOffice/demande_stage/affichage.html.twig', [
+            'Demandes' => $liste,
+            'titre'=> $titre
+        ]);
+    }
     #[Route('/demandeStage', name: 'demandeStage')]
-    public function demandeStage(Request $request,ManagerRegistry $managerRegistry,SluggerInterface $slugger): Response
+    public function demandeStage(Request $request,ManagerRegistry $managerRegistry,SluggerInterface $slugger,uploadFile $uploadFile): Response
     {
         $demande = new Demandestage();
         $form = $this->createForm(DemandeStageType::class, $demande);
         $form->handleRequest($request);
         $to = $demande->getEmail();
-        $nom = $demande->getNom().$demande->getPrenom();
+        $nom = $demande->getNom().' '.$demande->getPrenom();
         $subject = "Demande effectuer avec succés";
         $html ="<div>Bonjour {$nom}.<br>Votre Demande a été effectuer avec succès  .<br>";
         if($form->isSubmitted() && $form->isValid()){
             $file =  $form->get('cv')->getData();
-     
-            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeFilename = $slugger->slug($originalFilename);
-            $fileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
-            
-            
-            $file->move(
-                $this->getParameter($this->directory),
-                $fileName
-            );
-            
-            
-            $demande->setCv($fileName);
+            $cv = $uploadFile->uploadFile($file);
+            $demande->setCv($cv);
             $x = $managerRegistry->getManager();
             $x->persist($demande);
             $x->flush();
             $this->emailService->sendEmail($to,$subject,$html);
+            return $this->redirectToRoute('Recrutement');
         }
         
         return $this->render('frontOffice/demande_stage/demande.html.twig', [
@@ -71,7 +83,7 @@ class DemandeStageController extends AbstractController
         return $this->redirectToRoute('AffichageDesDemandes');
     }
     #[Route('/demandeStageOffre/{id}', name: 'demandeStageOffre')]
-    public function demandeStageOffre($id,Request $request,ManagerRegistry $managerRegistry,SluggerInterface $slugger,OffreStageRepository $offreStageRepository): Response
+    public function demandeStageOffre($id,uploadFile $uploadFile,Request $request,ManagerRegistry $managerRegistry,SluggerInterface $slugger,OffreStageRepository $offreStageRepository): Response
     {
         $offre = $offreStageRepository->find($id);
         $demandeO = new Demandestage();
@@ -83,38 +95,21 @@ class DemandeStageController extends AbstractController
         $html ="<div>Bonjour {$nom}.<br>Votre Demande a été effectuer avec succès  .<br>";
         if($form->isSubmitted() && $form->isValid()){
             $file =  $form->get('cv')->getData();
-            
-            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeFilename = $slugger->slug($originalFilename);
-            $fileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
-            
-            
-            $file->move(
-                $this->getParameter($this->directory),
-                $fileName
-            );
-            $demandeO->setCv($fileName);
+            $cv = $uploadFile->uploadFile($file);
+            $demandeO->setCv($cv);
             $x = $managerRegistry->getManager();
             $demandeO->setOffreStage($offre);
             $x->persist($demandeO);
             $x->flush();
             $this->emailService->sendEmail($to,$subject,$html);
+            return $this->redirectToRoute('Recrutement');
         }
         
         return $this->render('frontOffice/demande_stage/demande.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-    #[Route('/AffichageDesDemandes', name: 'AffichageDesDemandes')]
-    public function AffichageDesDemandes(DemandeStageRepository $demandestageRepository): Response
-    {
-        $titre = "La liste des demandes";
-        $liste = $demandestageRepository->findAll();
-        return $this->render('backOffice/demande_stage/affichage.html.twig', [
-            'Demandes' => $liste,
-            'titre'=> $titre
-        ]);
-    }
+    
     #[Route('/deleteDemandeA/{id}/', name: 'deleteDemande')]
     public function deleteDemandeA($id, ManagerRegistry $manager, DemandeStageRepository $repo): Response
     {
@@ -128,6 +123,16 @@ class DemandeStageController extends AbstractController
         $html ="<div>Bonjour {$nom}.<br>Votre suppression de candidature est effectué avec succès  .<br>";
         $this->emailService->sendEmail($to,$subject,$html);
         return $this->redirectToRoute('AffichageDesDemandes');
+    }
+    #[Route('/rechercheDemande/{numero}', name: 'rechercheDemande')]
+    public function rechercheDemande($numero, DemandeStageRepository $demandestageRepository): Response
+    {
+        
+        $idData = $demandestageRepository->Recherche($numero);
+        
+        return $this->renderForm('frontOffice/demande_stage/SearchDemande.html.twig', [
+            'Demandes' => $idData
+        ]);
     }
     #[Route('/deleteDemande/{id}/{numero}', name: 'deleteDemandeOffre')]
     public function deleteDemande($id,$numero, ManagerRegistry $manager, DemandeStageRepository $repo): Response
@@ -175,21 +180,12 @@ class DemandeStageController extends AbstractController
             $this->emailService->sendEmail($to,$subject,$html);
             return $this->redirectToRoute('rechercheDemande',['numero' =>$numero]);
         }
-        return $this->renderForm('frontOffice/demande_stage/edit.html.twig', [
+        return $this->renderForm('frontOffice/demande_stage/demande.html.twig', [
             'form' => $form,
             'ancienCv'=> $ancienCv,
         ]);
     }
     
-    #[Route('/rechercheDemande/{numero}', name: 'rechercheDemande')]
-    public function rechercheDemande($numero, DemandeStageRepository $demandestageRepository): Response
-    {
-        
-        $idData = $demandestageRepository->Recherche($numero);
-        
-        return $this->renderForm('frontOffice/demande_stage/SearchDemande.html.twig', [
-            'Demandes' => $idData
-        ]);
-    }
+   
     
 }
