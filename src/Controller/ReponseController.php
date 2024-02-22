@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 #[Route('/reponse')]
 class ReponseController extends AbstractController
@@ -20,35 +21,87 @@ class ReponseController extends AbstractController
     #[Route('/', name: 'app_reponse_index', methods: ['GET'])]
     public function index(ReponseRepository $reponseRepository , ReclamationRepository $reclamationRepository): Response
     {
+        
         return $this->render('reponse/index.html.twig', [
             'reponses' => $reponseRepository->findAll(),
             'reclamations' => $reclamationRepository->findAll(),
 
         ]);
     }
+ 
 
+    #[Route('/reponseClient/{id}', name: 'app_reponseClient_showId', methods: ['GET', 'POST'])]
+public function reponseClient($id, ReclamationRepository $reclamationRepository, ReponseRepository $reponseRepository): Response
+{
+    
+   $reponses = $reponseRepository->findReponseByReclamation($id);
+   $reclamation =$reclamationRepository->find($id);
+   return $this->render('client/afficherRecRep.html.twig', [
+        'reclamations' => $reclamation,
+        'reponses' => $reponses,
+    ]);
+}
+#[Route('/yesser/{id}', name: 'app_reponse_showy', methods: ['GET'])]
+   
+public function showreponsey($id , ReponseRepository $reponseRepository): Response
+{
+    $a = $reponseRepository->findOneBySomeField($id);
+  
+    return $this->render('reponse/show.html.twig', [
+        'reponse' => $a,
+    ]);
+}
 
-    #[Route('/new', name: 'app_reponse_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $reponse = new Reponse();
-        
+    // #[Route('/new/{id}/{var}', name: 'app_reponse_new', methods: ['GET', 'POST'])]
+    // public function new($id , $var ,Request $request, EntityManagerInterface $entityManager ,Reclamation $reclamation): Response
+    // {
+    //     $reponse = new Reponse();
 
-        $form = $this->createForm(ReponseType::class, $reponse);
-        $form->handleRequest($request);
+    //     $form = $this->createForm(ReponseType::class, $reponse);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($reponse);
-            $entityManager->flush();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $entityManager->persist($reponse);
+    //         $entityManager->flush();
+    //         $reponse->setReclamation($reclamation);
 
-            return $this->redirectToRoute('app_reponse_index', [], Response::HTTP_SEE_OTHER);
-        }
+    //         return $this->redirectToRoute('app_reponse_index', [], Response::HTTP_SEE_OTHER);
+    //     }
 
-        return $this->renderForm('reponse/new.html.twig', [
-            'reponse' => $reponse,
-            'form' => $form,
-        ]);
+    //     return $this->renderForm('reponse/new.html.twig', [
+    //         'reponse' => $reponse,
+    //         'form' => $form,
+    //     ]);
+    // }
+    #[Route('/new/{id}/{var}', name: 'app_reponse_new', methods: ['GET', 'POST'])]
+public function new($id, $var, Request $request, EntityManagerInterface $entityManager, ReclamationRepository $reclamationRepository): Response
+{
+    // Retrieve the Reclamation entity based on the provided id
+    $reclamation = $reclamationRepository->find($id);
+
+    if (!$reclamation) {
+        throw $this->createNotFoundException('Reclamation not found');
     }
+
+    $reponse = new Reponse();
+
+    $form = $this->createForm(ReponseType::class, $reponse);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $reponse->setReclamation($reclamation); // Associate the Reponse with the Reclamation
+        $entityManager->persist($reponse);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_reponse_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    return $this->renderForm('reponse/new.html.twig', [
+        'reponse' => $reponse,
+        'form' => $form,
+    ]);
+}
+
 
     #[Route('/{id}', name: 'app_reponse_show', methods: ['GET'])]
     public function show(Reponse $reponse): Response
@@ -57,6 +110,8 @@ class ReponseController extends AbstractController
             'reponse' => $reponse,
         ]);
     }
+   
+
 
     #[Route('/{id}/edit', name: 'app_reponse_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Reponse $reponse, EntityManagerInterface $entityManager): Response

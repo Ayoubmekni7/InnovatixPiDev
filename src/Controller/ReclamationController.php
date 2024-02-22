@@ -24,14 +24,26 @@ class ReclamationController extends AbstractController
             'reclamations' => $reclamationRepository->findAll(),
         ]);
     }
-   
-    #[Route('/succes', name: 'app_reclamation_succes', methods: ['GET'])]
-    public function succes(ReclamationRepository $reclamationRepository): Response
+
+    #[Route('/showRecEmploye', name: 'app_showRecEmploye_index', methods: ['GET'])]
+    public function showRecEmploye(ReclamationRepository $reclamationRepository): Response
     {
-        return $this->render('reclamation/succesAjoutRec.html.twig', [
+        return $this->render('employe/reclamationEmploye.html.twig', [
             'reclamations' => $reclamationRepository->findAll(),
         ]);
     }
+   
+    #[Route('/reclamationClient/{id}', name: 'app_reclamation_showId', methods: ['GET'])]
+    public function showId($id,ReclamationRepository $reclamationRepository): Response
+    {
+        $b = $reclamationRepository->findAll();
+        $a = $reclamationRepository->findByExampleField($id);
+    
+        return $this->render('client/reclamation.html.twig', [
+            'reclamation' => $a,
+        ]);
+    }
+
    
 
     #[Route('/new', name: 'app_reclamation_new', methods: ['GET', 'POST'])]
@@ -45,7 +57,7 @@ class ReclamationController extends AbstractController
             $entityManager->persist($reclamation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_reclamation_succes', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_reclamation_showId', ['id' => $reclamation->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('reclamation/new.html.twig', [
@@ -53,6 +65,30 @@ class ReclamationController extends AbstractController
             'form' => $form,
         ]);
     }
+    #[Route('/newFront', name: 'app_reclamationFront_new', methods: ['GET', 'POST'])]
+    public function newFront(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $reclamation = new Reclamation();
+        $form = $this->createForm(ReclamationType::class, $reclamation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($reclamation);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('clientall
+            
+            
+            
+            ', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('front/index.html.twig', [
+            'reclamation' => $reclamation,
+            'form' => $form,
+        ]);
+    }
+   
 
     #[Route('/{id}', name: 'app_reclamation_show', methods: ['GET'])]
     public function show(Reclamation $reclamation): Response
@@ -89,4 +125,5 @@ class ReclamationController extends AbstractController
             $entityManager->flush();
         return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
     }
+    
 }
