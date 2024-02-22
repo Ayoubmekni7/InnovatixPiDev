@@ -8,7 +8,7 @@
   --bs-blue: #63B3ED;
   --bs-indigo: #596CFF;
   --bs-purple: #6f42c1;
-  --bs-pink: #d63384;
+  --bs-pink: #a4c639;
   --bs-red: #F56565;
   --bs-orange: #fd7e14;
   --bs-yellow: #FBD38D;
@@ -27,7 +27,7 @@
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
-  --bs-primary: #cb0c9f;
+  --bs-primary: #a4c639;
   --bs-secondary: #8392ab;
   --bs-success: #82d616;
   --bs-info: #17c1e8;
@@ -85,9 +85,9 @@
   --bs-border-radius-2xl: 1.5rem;
   --bs-border-radius-pill: 50rem;
   --bs-heading-color: #344767;
-  --bs-link-color: #cb0c9f;
-  --bs-link-hover-color: #830866;
-  --bs-code-color: #d63384;
+  --bs-link-color: #a4c639;
+  --bs-link-hover-color: #A4C639;
+  --bs-code-color: #a4c639;
   --bs-highlight-bg: #fcf8e3;
 }
 
@@ -3977,7 +3977,7 @@ fieldset:disabled .btn {
   --bs-btn-color: var(--bs-primary);
   --bs-btn-bg: transparent;
   --bs-btn-border-color: transparent;
-  --bs-btn-hover-color: #830866;
+  --bs-btn-hover-color: #A4C639;
   --bs-btn-hover-border-color: transparent;
   --bs-btn-active-border-color: transparent;
   --bs-btn-disabled-color: #6c757d;
@@ -5541,10 +5541,10 @@ fieldset:disabled .btn {
   --bs-pagination-border-width: 1px;
   --bs-pagination-border-color: #dee2e6;
   --bs-pagination-border-radius: 0.5rem;
-  --bs-pagination-hover-color: #830866;
+  --bs-pagination-hover-color: #A4C639;
   --bs-pagination-hover-bg: var(--bs-light);
   --bs-pagination-hover-border-color: #dee2e6;
-  --bs-pagination-focus-color: #830866;
+  --bs-pagination-focus-color: #A4C639;
   --bs-pagination-focus-bg: var(--bs-light);
   --bs-pagination-focus-box-shadow: 0 0 0 0.2rem rgba(203, 12, 159, 0.25);
   --bs-pagination-active-color: #fff;
@@ -5707,7 +5707,7 @@ fieldset:disabled .btn {
 }
 
 .alert-primary .alert-link {
-  color: #62064c;
+  color: #a4c639;
 }
 
 .alert-secondary {
@@ -20429,7 +20429,7 @@ fieldset:disabled .btn {
 .btn.bg-gradient-primary:not(:disabled):not(.disabled).active,
 .btn.bg-gradient-primary:not(:disabled):not(.disabled):active,
 .show>.btn.bg-gradient-primary.dropdown-toggle {
-  color: color-yiq(#cb0c9f);
+  color: color-yiq(#a4c639);
   background-color: var(--bs-primary);
 }
 
@@ -22606,7 +22606,7 @@ html {
 .navbar-vertical.navbar-expand-xs .lavalamp-object {
   width: calc(100% - 1rem) !important;
   background: theme-color("primary");
-  color: color-yiq(#cb0c9f);
+  color: color-yiq(#a4c639);
   margin-right: 0.5rem;
   margin-left: 0.5rem;
   padding-left: 1rem;
@@ -22705,7 +22705,7 @@ html {
   .navbar-vertical.navbar-expand-sm .lavalamp-object {
     width: calc(100% - 1rem) !important;
     background: theme-color("primary");
-    color: color-yiq(#cb0c9f);
+    color: color-yiq(#a4c639);
     margin-right: 0.5rem;
     margin-left: 0.5rem;
     padding-left: 1rem;
@@ -22805,7 +22805,7 @@ html {
   .navbar-vertical.navbar-expand-md .lavalamp-object {
     width: calc(100% - 1rem) !important;
     background: theme-color("primary");
-    color: color-yiq(#cb0c9f);
+    color: color-yiq(#a4c639);
     margin-right: 0.5rem;
     margin-left: 0.5rem;
     padding-left: 1rem;
@@ -22905,7 +22905,7 @@ html {
   .navbar-vertical.navbar-expand-lg .lavalamp-object {
     width: calc(100% - 1rem) !important;
     background: theme-color("primary");
-    color: color-yiq(#cb0c9f);
+    color: color-yiq(#a4c639);
     margin-right: 0.5rem;
     margin-left: 0.5rem;
     padding-left: 1rem;
@@ -23005,7 +23005,7 @@ html {
   .navbar-vertical.navbar-expand-xl .lavalamp-object {
     width: calc(100% - 1rem) !important;
     background: theme-color("primary");
-    color: color-yiq(#cb0c9f);
+    color: color-yiq(#a4c639);
     margin-right: 0.5rem;
     margin-left: 0.5rem;
     padding-left: 1rem;
@@ -23105,7 +23105,7 @@ html {
   .navbar-vertical.navbar-expand-xxl .lavalamp-object {
     width: calc(100% - 1rem) !important;
     background: theme-color("primary");
-    color: color-yiq(#cb0c9f);
+    color: color-yiq(#a4c639);
     margin-right: 0.5rem;
     margin-left: 0.5rem;
     padding-left: 1rem;

@@ -7,7 +7,6 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 class Project
 {
@@ -48,8 +47,6 @@ class Project
     {
         return $this->id;
     }
-
-   
 
     public function getNomProjet(): ?string
     {
