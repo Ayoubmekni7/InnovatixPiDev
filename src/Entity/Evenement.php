@@ -18,6 +18,9 @@ class Evenement
     #[ORM\Column(type: 'text')]
     private $description;
 
+    #[ORM\ManyToOne(targetEntity: Investissement::class, inversedBy: 'evenements')]
+    private ?Investissement $investissement = null;
+
     #[ORM\Column(type: 'datetime')]
     private $dateDebut;
 
@@ -122,5 +125,19 @@ class Evenement
 
         return $this;
     }
+    public function getInvestissement(): ?Investissement
+    {
+        return $this->investissement;
+    }
 
+    public function setInvestissement(?Investissement $investissement): self
+    {
+        $this->investissement = $investissement;
+
+        return $this;
+    }
+
+
+
+    
  }

@@ -21,13 +21,15 @@
                   <thead>
 
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom projet</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom de client</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom de projet</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Categorie</th>
+                                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Dureé</th>
-                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
+                                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget</th>
+
+                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">statut</th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
@@ -50,39 +52,54 @@
                         <p class="text-xs font-weight-bold mb-0">{{ project.nomProjet }}</p>
                         <p class="text-xs text-secondary mb-0">Organization</p>
                       </td>
+                       
                        <td>
                         <p class="text-xs font-weight-bold mb-0">{{ project.categorie }}</p>
-                        <p class="text-xs text-secondary mb-0">Organization</p>
-                      </td>
-                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{ project.descriptionProjet }}</p>
                         <p class="text-xs text-secondary mb-0">Organization</p>
                       </td>
                       <td class="align-middle text-center text-sm">
                         <span class="badge badge-sm bg-gradient-success">{{ project.dateCreation ? project.dateCreation|date('Y-m-d') : '' }}</span>
                       </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">{{ project.statutProjet }}</span>
+                       <td>
+                        <p class="text-xs font-weight-bold mb-0">{{ project.descriptionProjet }}</p>
+                        <p class="text-xs text-secondary mb-0">Organization</p>
+                      </td>
+                     
+                      
+                       <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">{{ project.budgetprojet }}</span>
                       </td>
                         <td class="align-middle text-center">
+                        {% if 50 < project.statutProjet  %}
+
                         <div class="d-flex align-items-center justify-content-center">
-                          <span class="me-2 text-xs font-weight-bold">60%</span>
+                          <span class="me-2 text-xs font-weight-bold">{{ project.statutProjet }}%</span>
                           <div>
                             <div class="progress">
-                              <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                              <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="{{ project.statutProjet }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ project.statutProjet }}%;"></div>
                             </div>
                           </div>
                         </div>
+
+                        {% else %}
+
+                        <div class="d-flex align-items-center justify-content-center">
+                          <span class="me-2 text-xs font-weight-bold">{{ project.statutProjet }}%</span>
+                          <div>
+                            <div class="progress">
+                              <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="{{ project.statutProjet }}" aria-valuemin="0" aria-valuemax="30" style="width: {{ project.statutProjet }}%;"></div>
+                            </div>
+                          </div>
+                        </div>
+                        {% endif %}
+
                       </td>
                       <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                          Edit
-                        </a>
+                       
+                        <a class="btn btn-link pe-3 ps-0 mb-0 ms-auto" href="javascript:;">show</a>
                       </td>
                     </tr>
         {% endfor %}
-            
-                   
                   </tbody>
                 </table>
               </div>

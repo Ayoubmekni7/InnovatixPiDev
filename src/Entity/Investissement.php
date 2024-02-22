@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entity;
+use Doctrine\Common\Collections\Collection;
 
 use App\Repository\InvestissementRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -8,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: InvestissementRepository::class)]
 class Investissement
 {
+
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -42,6 +45,13 @@ class Investissement
 
     #[ORM\Column(type: 'datetime', options: ['default' => 'CURRENT_TIMESTAMP', 'onUpdate' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeInterface $updatedAt = null;
+
+    
+    #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'investissement')]
+    private Collection $commentaires;
+
+    #[ORM\OneToMany(targetEntity: Evenement::class, mappedBy: 'investissement')]
+    private Collection $evenements;
 
     public function getId(): ?int
     {
@@ -167,5 +177,62 @@ class Investissement
     
         return $this;
     }
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setInvestissement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getInvestissement() === $this) {
+                $commentaire->setInvestissement(null);
+            }
+        }
+
+        return $this;
+    }
+
     
+
+
+
+    public function getEvenements(): Collection
+{
+    return $this->evenements;
+}
+
+public function addEvenement(Evenement $evenement): self
+{
+    if (!$this->evenements->contains($evenement)) {
+        $this->evenements[] = $evenement;
+        $evenement->setInvestissement($this);
+    }
+
+    return $this;
+}
+
+public function removeEvenement(Evenement $evenement): self
+{
+    if ($this->evenements->removeElement($evenement)) {
+        // set the owning side to null (unless already changed)
+        if ($evenement->getInvestissement() === $this) {
+            $evenement->setInvestissement(null);
+        }
+    }
+
+    return $this;
+}
+
 }

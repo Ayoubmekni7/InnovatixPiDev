@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Commentaire;
+use App\Form\CommentaireType;
+use App\Repository\CommentaireRepository;
 use App\Entity\Investissement;
 use App\Form\InvestissementType;
 use App\Repository\InvestissementRepository;
@@ -58,10 +60,15 @@ class InvestissementController extends AbstractController
     #[Route('/{id}', name: 'app_investissement_show', methods: ['GET'])]
     public function show(Investissement $investissement): Response
     {
+        $commentaires = $investissement->getCommentaires();
+    
         return $this->render('client/investissement/show.html.twig', [
             'investissement' => $investissement,
+            'commentaires' => $commentaires,
         ]);
     }
+    
+    
 
     #[Route('/{id}/edit', name: 'app_investissement_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Investissement $investissement, EntityManagerInterface $entityManager): Response

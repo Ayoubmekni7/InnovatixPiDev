@@ -25,7 +25,7 @@ class EvenementController extends AbstractController
             'projects' => $projectRepository->findAll(),
         ]);
     }
-    #[Route('/client/events', name: 'app_evenement_eventsC', methods: ['GET'])]
+    #[Route('/client/list', name: 'app_evenement_eventsC', methods: ['GET'])]
     public function eventsC(EvenementRepository $evenementRepository,ProjectRepository $projectRepository): Response
     {
         return $this->render('client/evenement/events.html.twig', [

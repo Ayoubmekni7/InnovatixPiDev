@@ -41,8 +41,8 @@ class Project
     private ?int $dureeprojet = null;
 
     #[Assert\NotBlank(message: "saisir le statut du projet")]
-    #[ORM\Column(length: 100)]
-    private ?string $statutprojet = null;
+    #[ORM\Column]
+    private ?int $statutprojet = null;
 
     public function getId(): ?int
     {
