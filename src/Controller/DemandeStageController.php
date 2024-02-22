@@ -159,7 +159,7 @@ class DemandeStageController extends AbstractController
         $form = $this->createForm(DemandeStageType::class, $idData);
         
         $form->handleRequest($request);
-        
+       
         if ($form->isSubmitted() and $form->isValid()) {
             $cv = $form->get('cv')->getData();
             if($cv) {
@@ -185,7 +185,4 @@ class DemandeStageController extends AbstractController
             'ancienCv'=> $ancienCv,
         ]);
     }
-    
-   
-    
 }

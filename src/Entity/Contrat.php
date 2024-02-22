@@ -40,6 +40,9 @@ class Contrat
     #[Assert\Length(max: 200,minMessage: 'La lettre de motivation doit etre moins 200 characters ')]
     private ?string $sujet = null;
 
+    #[ORM\ManyToOne(inversedBy: 'contrat')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,5 +109,17 @@ class Contrat
     }
     public function __toString(){
         return (String)$this->getId();
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }

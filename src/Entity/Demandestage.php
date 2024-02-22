@@ -14,7 +14,7 @@ class Demandestage
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 30,nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez saisir votre nom')]
     #[Assert\Length(
         min :3,
@@ -24,7 +24,7 @@ class Demandestage
     )]
     #[Assert\Regex(pattern: '/[a-zA-Z]/',
         message:' le nom du pack doit contenir que des lettres !!')]
-    private ?string $nom = null;
+    private ?string $nom =null;
 
     #[ORM\Column(length: 30)]
     #[Assert\NotBlank(message: 'Veuillez saisir votre prenom')]

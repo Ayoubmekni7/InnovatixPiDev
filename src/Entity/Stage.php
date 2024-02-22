@@ -30,9 +30,13 @@ class Stage
     #[Assert\NotBlank(message: 'Veuillez entrer le stagiaire')]
     private Collection $idStagiare;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'stage')]
+    private Collection $users;
+
     public function __construct()
     {
         $this->idStagiare = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -98,6 +102,33 @@ class Stage
     {
        
         return (String)$this->getIdStagiare();
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addStage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeStage($this);
+        }
+
+        return $this;
     }
     
 }
