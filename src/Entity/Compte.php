@@ -101,7 +101,7 @@ class Compte
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'compte')]
     private Collection $users;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $statut = 0;
 
 

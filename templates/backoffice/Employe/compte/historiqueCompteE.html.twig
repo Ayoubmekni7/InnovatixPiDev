@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block nompage %}Les Demandes de Création  des Comptes{% endblock %}
+{% block nompage %}Liste des Comptes{% endblock %}
 
 {% block body %}
     <div class="content-body">
@@ -30,7 +30,6 @@
             <th ><strong>type de Compte</strong></th>
             <th ><strong>Montant de depot initial </strong></th>
             <th ><strong>Numéro de telephone</strong></th>
-            <th ><strong>Actions</strong></th>
 
         </tr>
         </thead>
@@ -62,14 +61,7 @@
                 <td class="py-2">{{comptes.Montant}}</td>
                 <td class="py-2">{{comptes.NumeroTelephone}}</td>
 
-                <td class="py-2 ps-5">
-                    <div class="d-flex"  style="padding-right: 90px">
-                        <a href="{{ path('ApprouveCompte', {'id': comptes.id}) }}" class="btn btn-primary shadow btn-xs sharp me-1" > <i class="bi-check-lg"  > </i></a>
-                        <a href="{{ path('deleteCompte', {'id': comptes.id}) }}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
 
-
-
-                    </div>
                 </td>
 
             </tr>

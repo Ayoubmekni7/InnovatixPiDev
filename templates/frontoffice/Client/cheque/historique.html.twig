@@ -21,10 +21,16 @@
                     <div class="col-12">
                         <div class="card mb-4">
                             <div class="card-header pb-0">
+                                <div class="col-6 text-end" style="margin-left: auto;">
+                                    <a class="btn bg-gradient-success mb-0" href="{{ path('addcheques')}}">&nbsp;&nbsp;Ajouter un Demande de Chéque</a>
+                                </div>
+
+
                                 <h6>Historique Demande Chéque</h6>
                             </div>
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
+
                                     <table class="table align-items-center mb-0">
                                         <thead>
                                         <tr>
@@ -65,7 +71,7 @@
                                                     <a href="{{ path('modifierCheque', { 'id': i.id }) }}">
                                                         <span class="modifier-text">Modifier</span>
                                                     </a>
-                                                    <a href="{{ path('deleteDemandeCheque', { 'id': i.id }) }}">
+                                                    <a href="{{ path('deleteDemandeChequeClient', { 'id': i.id }) }}">
                                                         <span class="supprimer-text">supprimer</span>
                                                     </a>
                                                 {% endif %}

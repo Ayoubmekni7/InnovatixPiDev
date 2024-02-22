@@ -35,14 +35,14 @@ class VirementController extends AbstractController
             return $this->redirectToRoute('historiqueV');
         }
 
-        return $this->render('frontoffice/virement/DemandeVirement.html.twig', [
+        return $this->render('frontoffice/Client/virement/DemandeVirement.html.twig', [
             'form' => $form->createView()
         ]);
     }
 
     #[Route('/showDemande', name: 'showDemande')]
     public function showDemande(VirementRepository $virementRepository):Response {
-        $liste=$virementRepository->findAll();
+        $liste=$virementRepository->listeDesVirements(false);
         return $this->render('backoffice/admin/virement/Virements.html.twig',[
             'virements'=>$liste,
         ]);
@@ -66,7 +66,7 @@ class VirementController extends AbstractController
 
     {
         $liste= $virementRepository->findAll(true);
-        return $this->render('frontoffice/virement/historiqueV.html.twig',[
+        return $this->render('frontoffice/Client/virement/historiqueV.html.twig',[
             'virement'=>$liste,
         ]);
     }
@@ -116,7 +116,7 @@ class VirementController extends AbstractController
             return $this->redirectToRoute('addvirement');
 
         }
-        return $this->renderForm('frontoffice/virement/DemandeVirement.html.twig',[
+        return $this->renderForm('frontoffice/Client/virement/DemandeVirement.html.twig',[
             'form'=>$form
         ]);
     }

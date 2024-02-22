@@ -65,6 +65,11 @@ class Cheque
     #[ORM\Column(nullable: true)]
     private ?int $ActionsC = 0;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $ActionsE = null;
+
+
+
 
     public function getId(): ?int
     {
@@ -216,5 +221,16 @@ class Cheque
         return $this;
     }
 
+    public function getActionsE(): ?int
+    {
+        return $this->ActionsE;
+    }
+
+    public function setActionsE(?int $ActionsE): static
+    {
+        $this->ActionsE = $ActionsE;
+
+        return $this;
+    }
 
 }

@@ -30,19 +30,19 @@ class ChequeRepository extends ServiceEntityRepository
             ->andWhere('c.ActionsC = :val')
             ->setParameter('val', $value)
             ->getQuery()
-           ->getResult()
+            ->getResult()
        ;
     }
 
-//    public function findOneBySomeField($value): ?Cheque
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function HistoriqueChequeEmploye($value): ?Cheque
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.ActionsE = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     public function chequeParClient($compte)
     {
         return $this->createQueryBuilder('b')

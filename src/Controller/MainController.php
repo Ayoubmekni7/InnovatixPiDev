@@ -15,4 +15,12 @@ class MainController extends AbstractController
             'controller_name' => 'MainController',
         ]);
     }
+
+    #[Route('/client/dashboard', name: 'app_dashboard')]
+    public function index1(): Response
+    {
+        return $this->render('frontoffice/client/dashboard.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
 }

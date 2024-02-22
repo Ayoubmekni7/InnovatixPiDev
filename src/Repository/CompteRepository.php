@@ -31,7 +31,12 @@ class CompteRepository extends ServiceEntityRepository
            ->setParameter('val', $value)
            ->getQuery()
            ->getResult()
-       ;    }
+       ;
+   }
+    /**
+     * @return Compte[] Returns an array of Compte objects
+     */
+
 
    public function findOneBySomeField($value): ?Compte
     {

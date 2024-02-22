@@ -29,7 +29,7 @@ class ChequeController extends AbstractController
             return $this->redirectToRoute('historique');
         }
 
-        return $this->render('frontoffice/cheque/add.html.twig', [
+        return $this->render('frontoffice/Client/cheque/add.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -39,18 +39,29 @@ class ChequeController extends AbstractController
 
     {
         $liste= $chequeRepository->findAll();
-        return $this->render('frontoffice/cheque/historique.html.twig',[
+        return $this->render('frontoffice/Client/cheque/historique.html.twig',[
             'cheques'=>$liste,
         ]);
+    }
+    #[Route('/deleteDemandeChequeClient/{id}', name: 'deleteDemandeChequeClient')]
+    public function deleteDemandeChequeClient($id,ManagerRegistry $managerRegistry,ChequeRepository $repository):Response
+    {
+        $emm=$managerRegistry->getManager();
+        $idremove=$repository->find($id);
+        $emm->remove($idremove);
+        $emm->flush();
+        return $this->redirectToRoute('historique');
+
+
     }
 
                         /*admin*/
 
-    #[Route('/AfficherDemande', name: 'AfficherDemande')]
+        #[Route('/AfficherDemande', name: 'AfficherDemande')]
      public function AfficherDemande(ChequeRepository $chequeRepository):Response
 
     {
-        $liste= $chequeRepository->findAll();
+        $liste= $chequeRepository->HistoriqueDesCheques(false);
         return $this->render('backoffice/admin/cheque/list.html.twig',[
             'cheques'=>$liste,
         ]);
@@ -63,6 +74,27 @@ class ChequeController extends AbstractController
         return $this->render('backoffice/admin/cheque/historiqueAdmin.html.twig',[
             'cheques'=>$cheque,
         ]);
+    }
+    #[Route('/ApprouverCheque/{id}', name: 'ApprouverCheque')]
+    public function ApprouverCheque($id, ManagerRegistry $managerRegistry, ChequeRepository $chequeRepository):Response
+    {
+        $cheque=$chequeRepository->find($id);
+        $cheque->setActionsC(1);
+        $emm=$managerRegistry->getManager();
+        $emm->persist($cheque);
+        $emm->flush();
+        return  $this->redirectToRoute('showListeCheque');
+    }
+    #[Route('/deleteDemandeCheque/{id}', name: 'deleteDemandeCheque')]
+    public function deleteDemandeCheque($id,ManagerRegistry $managerRegistry,ChequeRepository $repository):Response
+    {
+        $emm=$managerRegistry->getManager();
+        $idremove=$repository->find($id);
+        $emm->remove($idremove);
+        $emm->flush();
+        return $this->redirectToRoute('AfficherDemande');
+
+
     }
 
 
@@ -79,29 +111,29 @@ class ChequeController extends AbstractController
         ]);
     }
 
-    #[Route('/ApprouverCheque/{id}', name: 'ApprouverCheque')]
-    public function ApprouverCheque($id, ManagerRegistry $managerRegistry, ChequeRepository $chequeRepository):Response
+    #[Route('/showListeChequeE', name: 'showListeChequeE')]
+    public function showListeChequeE(ChequeRepository $chequeRepository):Response
+
+    {
+        $liste= $chequeRepository->HistoriqueDesCheques(true);
+        return $this->render('backoffice/Employe/cheque/listCheque.html.twig',[
+            'cheques'=>$liste,
+        ]);
+    }
+
+    #[Route('/ApprouverChequeE/{id}', name: 'ApprouverChequeE')]
+    public function ApprouverChequeE($id, ManagerRegistry $managerRegistry, ChequeRepository $chequeRepository):Response
     {
         $cheque=$chequeRepository->find($id);
-        $cheque->setActionsC(1);
+        $cheque->setActionsE(1);
         $emm=$managerRegistry->getManager();
         $emm->persist($cheque);
         $emm->flush();
-        return  $this->redirectToRoute('showListeCheque');
+        return  $this->redirectToRoute('showListeChequeE');
     }
 
 
-    #[Route('/deleteDemandeCheque/{id}', name: 'deleteDemandeCheque')]
-     public function deleteDemandeCheque($id,ManagerRegistry $managerRegistry,ChequeRepository $repository):Response
-    {
-        $emm=$managerRegistry->getManager();
-        $idremove=$repository->find($id);
-        $emm->remove($idremove);
-        $emm->flush();
-        return $this->redirectToRoute('AfficherDemande');
 
-
-    }
 #[Route('/modifierCheque/{id}', name: 'modifierCheque')]
 public function modifierCheque($id,ManagerRegistry $managerRegistry,ChequeRepository $chequeRepository , Request $request):Response
 {
@@ -115,7 +147,7 @@ public function modifierCheque($id,ManagerRegistry $managerRegistry,ChequeReposi
         return new Response("modification avec succes");
 
     }
-    return $this->renderForm('frontoffice/cheque/add.html.twig',[
+    return $this->renderForm('frontoffice/Client/cheque/add.html.twig',[
         'form' => $form
     ]);
 }
@@ -125,7 +157,7 @@ public function modifierCheque($id,ManagerRegistry $managerRegistry,ChequeReposi
     {
 
         $idData =$chequeRepository->chequeParClient($id);
-        return $this->renderForm('frontoffice/cheque/add.html.twig',[
+        return $this->renderForm('frontoffice/Client/cheque/add.html.twig',[
             'liste' => $idData
         ]);
     }
