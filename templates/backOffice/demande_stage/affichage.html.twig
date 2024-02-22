@@ -65,7 +65,7 @@
                                         <td>{{ a.domaine }}</td>
                                         <td>
                                             <div class="d-flex">
-                                               <a href="{{ path('modifierDemande', {'id':a.id}) }}"> <button class="btn btn-success shadow btn-xs sharp me-1">Approuver</button></a>
+                                               <a href="{{ path('ApprouverDemande', {'id':a.id}) }}"> <button class="btn btn-success shadow btn-xs sharp me-1">Approuver</button></a>
                                                 <a href="{{ path('deleteDemande', {'id':a.id}) }}"><button class="btn btn-danger shadow btn-xs sharp">Rejeter</button></a>
                                             </div>
                                         </td>

@@ -18,10 +18,12 @@ class Stage
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'Veuillez entrer le sujet')]
+    #[Assert\Length(max: 200,minMessage: 'La lettre de motivation doit etre moins 200 characters ')]
     private ?string $sujet = null;
     
-    #[ORM\Column( nullable: true)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
+    #[Assert\LessThan(value: "today", message: "Date Invalide !!")]
     private ?\DateInterval $date = null;
 
     #[ORM\OneToMany(mappedBy: 'idStage', targetEntity: Stagiaire::class, orphanRemoval: true)]

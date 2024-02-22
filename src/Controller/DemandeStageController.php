@@ -60,6 +60,16 @@ class DemandeStageController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    #[Route('/ApprouverDemande/{id}', name: 'ApprouverDemande')]
+    public function ApprouverDemande($id,DemandeStageRepository $demandestageRepository,ManagerRegistry $managerRegistry): Response
+    {
+        $em =$managerRegistry->getManager();
+        $demande = $demandestageRepository->find($id);
+        $demande->setEtat(true);
+        $em->persist($demande);
+        $em->flush();
+        return $this->redirectToRoute('AffichageDesDemandes');
+    }
     #[Route('/demandeStageOffre/{id}', name: 'demandeStageOffre')]
     public function demandeStageOffre($id,Request $request,ManagerRegistry $managerRegistry,SluggerInterface $slugger,OffreStageRepository $offreStageRepository): Response
     {
@@ -105,8 +115,21 @@ class DemandeStageController extends AbstractController
             'titre'=> $titre
         ]);
     }
-    
-    #[Route('/deleteDemande/{id}/{numero}', name: 'deleteDemande')]
+    #[Route('/deleteDemandeA/{id}/', name: 'deleteDemande')]
+    public function deleteDemandeA($id, ManagerRegistry $manager, DemandeStageRepository $repo): Response
+    {
+        $emm = $manager->getManager();
+        $idremove = $repo->find($id);
+        $emm->remove($idremove);
+        $emm->flush();
+        $to = $idremove->getEmail();
+        $nom = $idremove->getNom().$idremove->getPrenom();
+        $subject = "Demande effectuer avec succés";
+        $html ="<div>Bonjour {$nom}.<br>Votre suppression de candidature est effectué avec succès  .<br>";
+        $this->emailService->sendEmail($to,$subject,$html);
+        return $this->redirectToRoute('AffichageDesDemandes');
+    }
+    #[Route('/deleteDemande/{id}/{numero}', name: 'deleteDemandeOffre')]
     public function deleteDemande($id,$numero, ManagerRegistry $manager, DemandeStageRepository $repo): Response
     {
         $emm = $manager->getManager();

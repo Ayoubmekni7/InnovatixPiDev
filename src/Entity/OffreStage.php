@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: OffreStageRepository::class)]
 class OffreStage
 {
@@ -17,33 +17,62 @@ class OffreStage
     private ?int $id = null;
 
     #[ORM\Column(length: 80)]
+    #[Assert\NotBlank(message: 'Veuillez saisir le titre de l\'offre')]
+    #[Assert\Length(
+        min :20,
+        max: 100 ,
+        minMessage: "Le titre doit contenir au moins {{ limit }} caractères",
+        maxMessage: "Le titre doit contenir au plus {{ limit }} caractères",
+    )]
     private ?string $title = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: 'Veuillez saisir le domaine de l\'offre')]
     private ?string $domaine = null;
 
     #[ORM\Column(length: 30)]
+    #[Assert\NotBlank(message: 'Veuillez saisir le type de l\'offre')]
     private ?string $typeOffre = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuillez saisir le nombre de poste ouvert pour l\'offre')]
+    #[Assert\Positive(message:"Veuillez saisir une valeur positive.")]
     private ?int $postePropose = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $experience = null;
+    #[Assert\NotBlank(message: 'Veuillez saisir le nombre de poste ouvert pour l\'offre')]
+    private ?String $experience = null;
 
     #[ORM\Column(type: 'json', nullable: true)]
+    #[Assert\NotBlank(message: 'Veuillez saisir le niveau demandé pour l\'offre')]
     private ?array $niveau = null;
-
+    
     #[ORM\Column(type: 'json', nullable: true)]
+    #[Assert\NotBlank(message: 'Veuillez saisir les languages demandés pour l\'offre')]
     private ?array $language = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'Veuillez saisir la description de l\'offre')]
+    #[Assert\Length(
+        min :200,
+        max: 700 ,
+        minMessage: "La description doit contenir au moins {{ limit }} caractères",
+        maxMessage: "La description doit contenir au plus {{ limit }} caractères",
+    )]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'Veuillez saisir les exigences de l\'offre')]
+    #[Assert\Length(
+        min :100,
+        max: 400 ,
+        minMessage: "Les exigences doit contenir au moins {{ limit }} caractères",
+        maxMessage: "Les exigences doit contenir au plus {{ limit }} caractères",
+    )]
     private ?string $exigenceOffre = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\LessThan(value: "today", message: "Date Invalide !!")]
     private ?\DateTimeInterface $datePostu = null;
 
     #[ORM\Column(type: "json", nullable: true)]

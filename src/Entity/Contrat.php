@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ContratRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContratRepository::class)]
 class Contrat
@@ -20,18 +21,23 @@ class Contrat
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank(message: 'Veuillez saisir la date de début du stage')]
+    #[Assert\LessThan(value: "today", message: "Date Invalide !!")]
     private ?\DateTimeInterface $dateDebut = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez saisir la durée du stage')]
-    private ?int $dure = null;
+    #[Assert\Length(max: 6,minMessage: 'La dure ne contient plus que 6 lettres (comme 2 mois)  ')]
+    #[Assert\Regex(pattern: '/^(1|2|3|4|6|9)\s[a-zA-Z]$/', message: 'La duré doit etre commence par un chiffre (par exemple 1 mois) ')]
+    private ?String $dure = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank(message: 'Veuillez saisir la date de fin du stage')]
+    #[Assert\LessThan(value: "today", message: "Date Invalide !!")]
     private ?\DateTimeInterface $datefin = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'Veuillez saisir le sujet de stage')]
+    #[Assert\Length(max: 200,minMessage: 'La lettre de motivation doit etre moins 200 characters ')]
     private ?string $sujet = null;
 
     public function getId(): ?int

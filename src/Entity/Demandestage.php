@@ -16,15 +16,33 @@ class Demandestage
 
     #[ORM\Column(length: 30)]
     #[Assert\NotBlank(message: 'Veuillez saisir votre nom')]
-
+    #[Assert\Length(
+        min :3,
+        max: 30 ,
+        minMessage: "Le nom doit contenir au moins {{ limit }} caractères",
+        maxMessage: "Le nom doit contenir au plus {{ limit }} caractères",
+    )]
+    #[Assert\Regex(pattern: '/[a-zA-Z]/',
+        message:' le nom du pack doit contenir que des lettres !!')]
     private ?string $nom = null;
 
     #[ORM\Column(length: 30)]
     #[Assert\NotBlank(message: 'Veuillez saisir votre prenom')]
+    #[Assert\Length(
+        min :3,
+        max: 30 ,
+        minMessage: "Le prénom doit contenir au moins {{ limit }} caractères",
+        maxMessage: "Le prénom doit contenir au plus {{ limit }} caractères",
+    )]
+    #[Assert\Regex(pattern: '/[a-zA-Z]/',
+        message:' le prénom du pack doit contenir que des lettres !!')]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 40)]
     #[Assert\NotBlank(message: 'Email obligatoire')]
+    #[Assert\Email(
+        message: 'The email {{ value }} is not a valid email.',
+    )]
     private ?string $email = null;
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez saisir votre numéro de téléphone')]
@@ -35,6 +53,7 @@ class Demandestage
     
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez saisir une lettre de motivation')]
+    #[Assert\Length(max: 500,minMessage: 'La lettre de motivation doit etre moins 500 characters ')]
     private ?string $lettremotivation = null;
 
     #[ORM\Column(length: 50, nullable: true)]
@@ -46,6 +65,7 @@ class Demandestage
     private ?string $domaine = null;
 
     #[ORM\Column( type: Types::DATE_MUTABLE)]
+    #[Assert\LessThan(value: "today", message: "Date Invalide !!")]
     #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
     private ?\DateTimeInterface $date = null;
 
@@ -144,12 +164,12 @@ class Demandestage
         return $this;
     }
 
-    public function getDate(): ?\DateInterval
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate(\DateInterval $date): static
+    public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
 
