@@ -13,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ChequeController extends AbstractController
 {
+    /*Client*/
+
     #[Route('/addcheques', name: 'addcheques')]
     public function addcheques(ChequeRepository $chequeRepository, Request $request, ManagerRegistry $managerRegistry): Response
     {
@@ -32,6 +34,18 @@ class ChequeController extends AbstractController
         ]);
     }
 
+    #[Route('/historique', name: 'historique')]
+    public function historique(ChequeRepository $chequeRepository):Response
+
+    {
+        $liste= $chequeRepository->findAll();
+        return $this->render('frontoffice/cheque/historique.html.twig',[
+            'cheques'=>$liste,
+        ]);
+    }
+
+                        /*admin*/
+
     #[Route('/AfficherDemande', name: 'AfficherDemande')]
      public function AfficherDemande(ChequeRepository $chequeRepository):Response
 
@@ -41,6 +55,20 @@ class ChequeController extends AbstractController
             'cheques'=>$liste,
         ]);
     }
+
+    #[Route('/showListeCheque', name: 'showListeCheque')]
+    public function showListeCheque(ChequeRepository $chequeRepository):Response
+    {
+        $cheque= $chequeRepository->HistoriqueDesCheques(true);
+        return $this->render('backoffice/admin/cheque/historiqueAdmin.html.twig',[
+            'cheques'=>$cheque,
+        ]);
+    }
+
+
+
+                             /*Employe*/
+
     #[Route('/AfficherDemandeE', name: 'AfficherDemandeE')]
     public function AfficherDemandeE(ChequeRepository $chequeRepository):Response
 
@@ -50,14 +78,16 @@ class ChequeController extends AbstractController
             'cheques'=>$liste,
         ]);
     }
-    #[Route('/historique', name: 'historique')]
-    public function historique(ChequeRepository $chequeRepository):Response
 
+    #[Route('/ApprouverCheque/{id}', name: 'ApprouverCheque')]
+    public function ApprouverCheque($id, ManagerRegistry $managerRegistry, ChequeRepository $chequeRepository):Response
     {
-        $liste= $chequeRepository->findAll();
-        return $this->render('frontoffice/cheque/historique.html.twig',[
-            'cheques'=>$liste,
-        ]);
+        $cheque=$chequeRepository->find($id);
+        $cheque->setActionsC(1);
+        $emm=$managerRegistry->getManager();
+        $emm->persist($cheque);
+        $emm->flush();
+        return  $this->redirectToRoute('showListeCheque');
     }
 
 

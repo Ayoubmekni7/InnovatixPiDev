@@ -48,6 +48,30 @@ class VirementController extends AbstractController
         ]);
 
     }
+
+    #[Route('/showHistoriqueV', name: 'showHistoriqueV')]
+    public function showHistoriqueV(VirementRepository $virementRepository):Response
+
+    {
+        $liste= $virementRepository->listeDesVirements(true);
+        return $this->render('backoffice/admin/virement/historiqueVirement.html.twig',[
+            'virement'=>$liste,
+        ]);
+    }
+
+
+
+    #[Route('/historiqueV', name: 'historiqueV')]
+    public function historiqueV(VirementRepository $virementRepository):Response
+
+    {
+        $liste= $virementRepository->findAll(true);
+        return $this->render('frontoffice/virement/historiqueV.html.twig',[
+            'virement'=>$liste,
+        ]);
+    }
+
+
     #[Route('/showDemandeE', name: 'showDemandeE')]
     public function showDemandeE(VirementRepository $virementRepository):Response {
         $liste=$virementRepository->findAll();
@@ -57,14 +81,17 @@ class VirementController extends AbstractController
 
     }
 
-    #[Route('/historiqueV', name: 'historiqueV')]
-    public function historiqueV(VirementRepository $virementRepository):Response
+
+    #[Route('/ApprouverVirement/{id}', name: 'ApprouverVirement')]
+    public function ApprouverVirement($id, ManagerRegistry $managerRegistry , VirementRepository $virementRepository):Response
 
     {
-        $liste= $virementRepository->findAll();
-        return $this->render('frontoffice/virement/historiqueV.html.twig',[
-            'virement'=>$liste,
-        ]);
+        $virement=$virementRepository->find($id);
+        $virement->setActionsV(1);
+        $emm=$managerRegistry->getManager();
+        $emm->persist($virement);
+        $emm->flush();
+        return $this->redirectToRoute('showHistoriqueV');
     }
 
     #[Route('/deleteVirement/{id}', name: 'deleteVirement')]
@@ -74,7 +101,7 @@ class VirementController extends AbstractController
         $idremove=$virementRepository->find($id);
         $emm->remove($idremove);
         $emm->flush();
-        return $this->redirectToRoute('showDemande');
+        return $this->redirectToRoute('historiqueV');
     }
     #[Route('/modifierVirement/{id}', name: 'modifierVirement')]
     public function modifierVirement($id,ManagerRegistry $managerRegistry,VirementRepository $virementRepository,Request $request):Response

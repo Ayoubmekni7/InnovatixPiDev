@@ -21,20 +21,18 @@ class ChequeRepository extends ServiceEntityRepository
         parent::__construct($registry, Cheque::class);
     }
 
-//    /**
-//     * @return Cheque[] Returns an array of Cheque objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Cheque[] Returns an array of Cheque objects
+    */
+    public function HistoriqueDesCheques($value): array
+    {
+      return $this->createQueryBuilder('c')
+            ->andWhere('c.ActionsC = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+           ->getResult()
+       ;
+    }
 
 //    public function findOneBySomeField($value): ?Cheque
 //    {

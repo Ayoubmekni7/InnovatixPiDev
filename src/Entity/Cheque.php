@@ -62,6 +62,9 @@ class Cheque
     #[ORM\ManyToOne(inversedBy: 'cheque')]
     private ?User $user = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $ActionsC = 0;
+
 
     public function getId(): ?int
     {
@@ -197,6 +200,18 @@ class Cheque
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getActionsC(): ?int
+    {
+        return $this->ActionsC;
+    }
+
+    public function setActionsC(?int $ActionsC): static
+    {
+        $this->ActionsC = $ActionsC;
 
         return $this;
     }
