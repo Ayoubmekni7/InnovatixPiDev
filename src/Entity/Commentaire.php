@@ -3,7 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommentaireRepository;
-use Doctrine\DBAL\Types\Types;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommentaireRepository::class)]
@@ -11,23 +12,53 @@ class Commentaire
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
+
+    #[ORM\Column(type: 'text')]
+    private ?string $contenu = null;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?\DateTimeInterface $dateCreation = null;
 
     #[ORM\Column(length: 255)]
     private ?string $nomAutCom = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $adrAutCom = null;
+    #[ORM\ManyToOne(inversedBy: 'commentaire')]
+    private ?Article $article = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $datePubCom = null;
+    public function __construct()
+    {
+        $this->reponseCommentaires = new ArrayCollection();
+    }
 
-    #[ORM\Column(length: 255)]
-    private ?string $contenuCom = null;
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getContenu(): ?string
+    {
+        return $this->contenu;
+    }
+
+    public function setContenu(string $contenu): self
+    {
+        $this->contenu = $contenu;
+
+        return $this;
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
     }
 
     public function getNomAutCom(): ?string
@@ -42,39 +73,19 @@ class Commentaire
         return $this;
     }
 
-    public function getAdrAutCom(): ?string
+    public function getArticle(): ?Article
     {
-        return $this->adrAutCom;
+        return $this->article;
     }
 
-    public function setAdrAutCom(string $adrAutCom): static
+    public function setArticle(?Article $article): static
     {
-        $this->adrAutCom = $adrAutCom;
+        $this->article = $article;
 
         return $this;
     }
 
-    public function getDatePubCom(): ?\DateTimeInterface
-    {
-        return $this->datePubCom;
-    }
+   
 
-    public function setDatePubCom(\DateTimeInterface $datePubCom): static
-    {
-        $this->datePubCom = $datePubCom;
-
-        return $this;
-    }
-
-    public function getContenuCom(): ?string
-    {
-        return $this->contenuCom;
-    }
-
-    public function setContenuCom(string $contenuCom): static
-    {
-        $this->contenuCom = $contenuCom;
-
-        return $this;
-    }
+  
 }

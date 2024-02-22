@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 
 use App\Repository\ArticleRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
@@ -15,13 +17,10 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $titreArt = null;
+    private ?string $nomAutArt = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $contenuArt = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $auteurArt = null;
+    private ?string $adrAutArt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $datePubArt = null;
@@ -30,49 +29,51 @@ class Article
     private ?int $dureeArt = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $statutArt = null;
+    private ?string $categorieArt = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $categArt = null;
+    private ?string $titreArt = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $contenuArt = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $piecejointeArt = null;
+
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Commentaire::class)]
+    private Collection $commentaire;
+
+
+    public function __construct()
+    {
+        $this->commentaire = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitreArt(): ?string
+    public function getNomAutArt(): ?string
     {
-        return $this->titreArt;
+        return $this->nomAutArt;
     }
 
-    public function setTitreArt(string $titreArt): static
+    public function setNomAutArt(?string $nomAutArt): self
     {
-        $this->titreArt = $titreArt;
+        $this->nomAutArt = $nomAutArt;
 
         return $this;
     }
 
-    public function getContenuArt(): ?string
+    public function getAdrAutArt(): ?string
     {
-        return $this->contenuArt;
+        return $this->adrAutArt;
     }
 
-    public function setContenuArt(string $contenuArt): static
+    public function setAdrAutArt(?string $adrAutArt): self
     {
-        $this->contenuArt = $contenuArt;
-
-        return $this;
-    }
-
-    public function getAuteurArt(): ?string
-    {
-        return $this->auteurArt;
-    }
-
-    public function setAuteurArt(string $auteurArt): static
-    {
-        $this->auteurArt = $auteurArt;
+        $this->adrAutArt = $adrAutArt;
 
         return $this;
     }
@@ -82,7 +83,7 @@ class Article
         return $this->datePubArt;
     }
 
-    public function setDatePubArt(\DateTimeInterface $datePubArt): static
+    public function setDatePubArt(?\DateTimeInterface $datePubArt): self
     {
         $this->datePubArt = $datePubArt;
 
@@ -94,36 +95,90 @@ class Article
         return $this->dureeArt;
     }
 
-    public function setDureeArt(int $dureeArt): static
+    public function setDureeArt(?int $dureeArt): self
     {
         $this->dureeArt = $dureeArt;
 
         return $this;
     }
 
-    public function getStatutArt(): ?string
+    public function getCategorieArt(): ?string
     {
-        return $this->statutArt;
+        return $this->categorieArt;
     }
 
-    public function setStatutArt(string $statutArt): static
+    public function setCategorieArt(?string $categorieArt): self
     {
-        $this->statutArt = $statutArt;
+        $this->categorieArt = $categorieArt;
 
         return $this;
     }
 
-    public function getCategArt(): ?string
+    public function getTitreArt(): ?string
     {
-        return $this->categArt;
+        return $this->titreArt;
     }
 
-    public function setCategArt(string $categArt): static
+    public function setTitreArt(?string $titreArt): self
     {
-        $this->categArt = $categArt;
+        $this->titreArt = $titreArt;
 
         return $this;
     }
 
+    public function getContenuArt(): ?string
+    {
+        return $this->contenuArt;
+    }
 
+    public function setContenuArt(?string $contenuArt): self
+    {
+        $this->contenuArt = $contenuArt;
+
+        return $this;
+    }
+
+    public function getPiecejointeArt(): ?string
+    {
+        return $this->piecejointeArt;
+    }
+
+    public function setPiecejointeArt(?string $piecejointeArt): self
+    {
+        $this->piecejointeArt = $piecejointeArt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaire(): Collection
+    {
+        return $this->commentaire;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): static
+    {
+        if (!$this->commentaire->contains($commentaire)) {
+            $this->commentaire->add($commentaire);
+            $commentaire->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): static
+    {
+        if ($this->commentaire->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getArticle() === $this) {
+                $commentaire->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+   
 }
