@@ -65,7 +65,7 @@
                 <td class="py-2 ps-5">
                     <div class="d-flex"  style="padding-right: 90px">
                         <a href="{{ path('ApprouveCompte', {'id': comptes.id}) }}" class="btn btn-primary shadow btn-xs sharp me-1" > <i class="bi-check-lg"  > </i></a>
-                        <a href="{{ path('deleteCompte', {'id': comptes.id}) }}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                        <a href="{{ path('deleteCompte', {'id': comptes.id}) }}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash" onclick="return confirm('Etes-vous sur de vouloir supprimer cet élément ?');"><i></i></i></a>
 
 
 

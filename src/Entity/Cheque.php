@@ -22,6 +22,7 @@ class Cheque
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez saisir le montant')]
+    #[Assert\Regex(pattern: '/^\d+(\.\d+)?$/', message: 'Le montant doit être un nombre décimal')]
     private ?float $Montant = null;
 
     #[ORM\Column]

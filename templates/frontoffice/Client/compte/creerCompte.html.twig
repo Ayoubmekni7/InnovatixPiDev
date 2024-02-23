@@ -87,7 +87,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Date délivrance de cin </label>
-                                <div>  {{ form_widget(form.DateDelivranceCin, { 'attr': {'class': '', 'placeholder': ''} }) }}
+                                <div>  {{ form_widget(form.DateDelivranceCin, { 'attr': {'class': ''} }) }}
                              </div>
                             </div>
                         </div>
@@ -120,6 +120,7 @@
                                 {{ form_label(form.DateNaissance, 'Date de naissance') }}
                                 <div>
                                     {{ form_widget(form.DateNaissance, { 'attr': {'class': ''} }) }}
+
                                 </div>
                             </div>
                         </div>
@@ -159,12 +160,14 @@
                             <div class="form-group">
                                 {{ form_label(form.StatutMarital, 'Staut Marital') }}
                                 {{ form_widget(form.StatutMarital, { 'attr': {'class': 'form-control', 'id': 'usr'} }) }}
+                                {{ form_errors(form.StatutMarital,{'attr':{'class': 'text-danger'}}) }}
                             </div>
                         </div>
                         <div class="form-check">
                             <div class="form-label">
                                 {{ form_label(form.sexe, 'Sexe') }}
                                 {{ form_widget(form.sexe, { 'attr': {'class': '', 'id': 'usr'} }) }}
+                                {{ form_errors(form.sexe,{'attr':{'class': 'text-danger'}}) }}
 
                             </div>
                         </div>
@@ -174,6 +177,7 @@
                             <div class="form-label">
                                 {{ form_label(form.PreferenceCommunic, 'Preference de Communication') }}
                                 {{ form_widget(form.PreferenceCommunic, { 'attr': {'class': '', 'id': 'usr'} }) }}
+                                {{ form_errors(form.PreferenceCommunic,{'attr':{'class': 'text-danger'}}) }}
                             </div>
                         </div>
                         <div class="col-md-4 offset-md-4 mt-5"> <!-- Utilisation de la classe offset-md-4 pour déplacer le bouton au centre -->

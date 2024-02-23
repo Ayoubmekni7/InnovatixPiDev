@@ -47,6 +47,16 @@ class CompteController extends AbstractController
         ]);
     }
 
+    #[Route('/showInfoCompte/{id}', name: 'showInfoCompte')]
+    public function showInfoCompte($id, CompteRepository $compteRepository): Response
+    {
+        $compte = $compteRepository->find($id);
+
+        return $this->render('frontoffice/Client/compte/informationsCompte.html.twig', [
+            'compte' => $compte,
+        ]);
+    }
+
 
 
     #[Route('/afficheCompte', name: 'afficheCompte')]

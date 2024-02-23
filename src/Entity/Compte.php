@@ -36,18 +36,36 @@ class Compte
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez saisir numéro de votre cin')]
     #[Assert\Length(min: 8, max: 8, exactMessage: 'Le numéro de cin doit contenir 8 chiffres')]
-    #[Assert\Regex(pattern: '/^(1|0)[0-9]{7}$/', message: 'Le numéro de cin doit commencer par 1 ou 0 et contenir 8 chiffres')]
+    #[Assert\Regex(pattern: '/^(1|0)[0-9]{7}$/', message: 'Le numéro de cin doit commencer par 1 ou 0 ')]
     private ?int $cin = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\LessThan(value: "today", message: "La date de délivrance du CIN ne peut pas être dans le futur")]
+    #[Assert\LessThanOrEqual(value: "now", message: "L'année de délivrance du CIN ne peut pas être supérieure à 2024")]
     private ?\DateTimeInterface $DateDelivranceCin = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez saisir votre nom  ')]
+    #[Assert\Length(
+        min :3,
+        max: 30 ,
+        minMessage: "Le nom doit contenir au moins {{ limit }} caractères",
+        maxMessage: "Le nom doit contenir au plus {{ limit }} caractères",
+    )]
+    #[Assert\Regex(pattern: '/[a-zA-Z]/',
+        message:' le nom du pack doit contenir que des lettres !!')]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez saisir votre prenom')]
+    #[Assert\Length(
+        min :3,
+        max: 30 ,
+        minMessage: "Le prénom doit contenir au moins {{ limit }} caractères",
+        maxMessage: "Le prénom doit contenir au plus {{ limit }} caractères",
+    )]
+    #[Assert\Regex(pattern: '/[a-zA-Z]/',
+        message:' le prénom du pack doit contenir que des lettres !!')]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]

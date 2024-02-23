@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\VirementRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: VirementRepository::class)]
 class Virement
@@ -16,8 +17,14 @@ class Virement
 
 
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255,nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez saisir le nom et prenom  ')]
+    #[Assert\Length(
+        min :3,
+        max: 30 ,
+        minMessage: "Le nom doit contenir au moins {{ limit }} caractères",
+        maxMessage: "Le nom doit contenir au plus {{ limit }} caractères",
+    )]
     private ?string $NometPrenom = null;
 
     #[ORM\Column(length: 255)]
@@ -41,6 +48,7 @@ class Virement
     private ?Compte $compte = null;
 
     #[ORM\Column]
+    #[Assert\Length(min: 8, max: 8, exactMessage: 'Le numéro de CIN doit contenir 8 chiffres ')]
     private ?int $Cin = null;
 
     #[ORM\Column(nullable: true)]
@@ -61,8 +69,11 @@ class Virement
     #[ORM\ManyToOne(inversedBy: 'virements')]
     private ?User $user = null;
 
+    #[ORM\Column]
+    private ?int $ActionsV = 0;
+
     #[ORM\Column(nullable: true)]
-    private ?int $ActionsV = null;
+    private ?int $ActionsEm = null;
 
     public function getId(): ?int
     {
@@ -74,9 +85,9 @@ class Virement
         return $this->NometPrenom;
     }
 
-    public function setNometPrenom(string $NometPrenom): static
+    public function setNometPrenom(string $nom): static
     {
-        $this->NometPrenom = $NometPrenom;
+        $this->NometPrenom = $nom;
 
         return $this;
     }
@@ -212,6 +223,18 @@ class Virement
     public function setActionsV(?int $ActionsV): static
     {
         $this->ActionsV = $ActionsV;
+
+        return $this;
+    }
+
+    public function getActionsEm(): ?int
+    {
+        return $this->ActionsEm;
+    }
+
+    public function setActionsEm(?int $ActionsEm): static
+    {
+        $this->ActionsEm = $ActionsEm;
 
         return $this;
     }

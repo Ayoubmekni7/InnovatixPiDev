@@ -34,15 +34,6 @@ class ChequeRepository extends ServiceEntityRepository
        ;
     }
 
-    public function HistoriqueChequeEmploye($value): ?Cheque
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.ActionsE = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
     public function chequeParClient($compte)
     {
         return $this->createQueryBuilder('b')

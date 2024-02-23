@@ -105,7 +105,7 @@ class ChequeController extends AbstractController
     public function AfficherDemandeE(ChequeRepository $chequeRepository):Response
 
     {
-        $liste= $chequeRepository->findAll();
+        $liste= $chequeRepository->HistoriqueDesCheques(false);
         return $this->render('backoffice/Employe/cheque/listE.html.twig',[
             'cheques'=>$liste,
         ]);
@@ -115,9 +115,9 @@ class ChequeController extends AbstractController
     public function showListeChequeE(ChequeRepository $chequeRepository):Response
 
     {
-        $liste= $chequeRepository->HistoriqueDesCheques(true);
+        $cheque= $chequeRepository->HistoriqueDesCheques(true);
         return $this->render('backoffice/Employe/cheque/listCheque.html.twig',[
-            'cheques'=>$liste,
+            'cheques'=>$cheque,
         ]);
     }
 
@@ -125,12 +125,14 @@ class ChequeController extends AbstractController
     public function ApprouverChequeE($id, ManagerRegistry $managerRegistry, ChequeRepository $chequeRepository):Response
     {
         $cheque=$chequeRepository->find($id);
-        $cheque->setActionsE(1);
+        $cheque->setActionsC(true);
         $emm=$managerRegistry->getManager();
         $emm->persist($cheque);
         $emm->flush();
         return  $this->redirectToRoute('showListeChequeE');
     }
+
+
 
 
 
@@ -144,7 +146,7 @@ public function modifierCheque($id,ManagerRegistry $managerRegistry,ChequeReposi
     if($form->isSubmitted() and $form->isValid()){
         $em->persist($idData);
         $em->flush();
-        return new Response("modification avec succes");
+        return $this->redirectToRoute('historique');
 
     }
     return $this->renderForm('frontoffice/Client/cheque/add.html.twig',[

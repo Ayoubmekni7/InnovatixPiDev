@@ -21,31 +21,30 @@
                     <div class="col-12">
                         <div class="card mb-4">
                             <div class="card-header pb-0">
-                                <div class="col-6 text-end" style="margin-left: auto;">
-                                    <a class="btn bg-gradient-success mb-0" href="{{ path('addvirement')}}">&nbsp;&nbsp;Ajouter un Demande de Virement</a>
-                                </div>
-                                <h6>Historique Demande Virement </h6>
+
+                                <h6>Les informations de Compte </h6>
                             </div>
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
+
                                     <table class="table align-items-center mb-0">
                                         <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom et Prenom</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Cin</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">transferezA</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type de Compte</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Montant</th>
                                             <th class="text-secondary opacity-7">Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for i in virement  %}
+                                        {% for i in compte  %}
                                             <tr>
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
 
                                                         <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">{{ i.NometPrenom}}</h6>
+                                                            <h6 class="mb-0 text-sm">{{ i.Email}}</h6>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -54,31 +53,12 @@
 
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs font-weight-bold mb-0">{{ i.transferezA}}</p>
+                                                    <p class="text-xs font-weight-bold mb-0">{{ i.typeCompte}}</p>
                                                 </td>
                                                 <td class="align-middle text-center">
-                                                    <span class="text-secondary text-xs font-weight-bold">{{ i.Montant }}</span>
+                                                    <span class="text-secondary text-xs font-weight-bold">{{ i.Montant}}</span>
                                                 </td>
-                                                <td class="align-middle">
-                                                    {% if (i.DecisionV=='Approuvé') %}
-                                                        <span class="badge badge-sm bg-gradient-success">Approuvé</span>
-                                                    {% endif %}
 
-                                                    {% if (i.DecisionV == 'En cours') %}
-                                                        <span class="badge badge-sm bg-gradient-secondary">En cours</span>
-                                                        <a href="{{ path('modifierVirement', { 'id': i.id }) }}">
-                                                            <span class="modifier-text">Modifier</span>
-                                                        </a>
-                                                        <a href="{{ path('deleteVirement', { 'id': i.id }) }}">
-                                                            <span class="supprimer-text" onclick="return confirm('Etes-vous sur de vouloir supprimer cet élément ?');">supprimer</span>
-                                                        </a>
-                                                    {% endif %}
-
-
-                                                    {% if (i.DecisionV=='Réfuser') %}
-                                                        <span class="badge badge-sm bg-gradient-danger"> &nbsp; Réfuser &nbsp;  </span>
-                                                    {% endif %}
-                                                </td>
                                             </tr>
 
 

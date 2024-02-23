@@ -27,7 +27,6 @@ class VirementController extends AbstractController
         $form = $this->createForm(VirementType::class,$virement);
         $em = $managerRegistry->getManager();
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em->persist($virement);
@@ -80,6 +79,40 @@ class VirementController extends AbstractController
         ]);
 
     }
+    #[Route('/showHistoriqueE', name: 'showHistoriqueE')]
+    public function showHistoriqueE(VirementRepository $virementRepository):Response {
+        $liste= $virementRepository->listeDesVirements(true);
+        return $this->render('backoffice/Employe/virement/virementE.html.twig',[
+            'virements'=>$liste,
+        ]);
+
+    }
+    #[Route('/ApprouverVirementEmp/{id}', name: 'ApprouverVirementEmp')]
+    public function ApprouverVirementEmp($id, ManagerRegistry $managerRegistry , VirementRepository $virementRepository):Response
+
+    {
+        $virement=$virementRepository->find($id);
+        $virement->setActionsV(true);
+        $emm=$managerRegistry->getManager();
+        $emm->persist($virement);
+        $emm->flush();
+        return $this->redirectToRoute('showHistoriqueE');
+    }
+
+    #[Route('/deleteVirementEmp/{id}', name: 'deleteVirementEmp')]
+    public function deleteVirementEmp($id,ManagerRegistry $managerRegistry,VirementRepository $virementRepository):Response
+    {
+        $emm=$managerRegistry->getManager();
+        $idremove=$virementRepository->find($id);
+        $emm->remove($idremove);
+        $emm->flush();
+        return $this->redirectToRoute('showDemandeE');
+    }
+
+
+
+
+
 
 
     #[Route('/ApprouverVirement/{id}', name: 'ApprouverVirement')]
@@ -93,7 +126,6 @@ class VirementController extends AbstractController
         $emm->flush();
         return $this->redirectToRoute('showHistoriqueV');
     }
-
     #[Route('/deleteVirement/{id}', name: 'deleteVirement')]
     public function deleteVirement($id,ManagerRegistry $managerRegistry,VirementRepository $virementRepository):Response
     {
@@ -103,6 +135,8 @@ class VirementController extends AbstractController
         $emm->flush();
         return $this->redirectToRoute('historiqueV');
     }
+
+
     #[Route('/modifierVirement/{id}', name: 'modifierVirement')]
     public function modifierVirement($id,ManagerRegistry $managerRegistry,VirementRepository $virementRepository,Request $request):Response
     {
@@ -113,7 +147,7 @@ class VirementController extends AbstractController
         if($form->isSubmitted() and $form->isValid()){
             $em->persist($idData);
             $em->flush();
-            return $this->redirectToRoute('addvirement');
+            return $this->redirectToRoute('historiqueV');
 
         }
         return $this->renderForm('frontoffice/Client/virement/DemandeVirement.html.twig',[
