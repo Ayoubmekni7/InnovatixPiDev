@@ -58,7 +58,7 @@ class Cheque
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $Decision = null;
+    private ?string $Decision = "encours";
 
     #[ORM\ManyToOne(inversedBy: 'cheque')]
     private ?User $user = null;

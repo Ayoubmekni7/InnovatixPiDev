@@ -27,6 +27,7 @@ class VirementController extends AbstractController
         $form = $this->createForm(VirementType::class,$virement);
         $em = $managerRegistry->getManager();
         $form->handleRequest($request);
+        $virement->setDecisionV("encours");
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em->persist($virement);
@@ -73,7 +74,7 @@ class VirementController extends AbstractController
 
     #[Route('/showDemandeE', name: 'showDemandeE')]
     public function showDemandeE(VirementRepository $virementRepository):Response {
-        $liste=$virementRepository->findAll();
+        $liste=$virementRepository->listeDesVirements(false);
         return $this->render('backoffice/Employe/virement/listVirementEmpl.html.twig',[
             'virements'=>$liste,
         ]);
@@ -92,26 +93,23 @@ class VirementController extends AbstractController
 
     {
         $virement=$virementRepository->find($id);
-        $virement->setActionsV(true);
+        $virement->setActionsV(1);
         $emm=$managerRegistry->getManager();
         $emm->persist($virement);
         $emm->flush();
         return $this->redirectToRoute('showHistoriqueE');
     }
 
-    #[Route('/deleteVirementEmp/{id}', name: 'deleteVirementEmp')]
+    #[Route('/deleteVirementEmp/{id}', name: 'deleteVirementEmp', methods: ['GET','POST'])]
     public function deleteVirementEmp($id,ManagerRegistry $managerRegistry,VirementRepository $virementRepository):Response
     {
+
         $emm=$managerRegistry->getManager();
         $idremove=$virementRepository->find($id);
         $emm->remove($idremove);
         $emm->flush();
         return $this->redirectToRoute('showDemandeE');
     }
-
-
-
-
 
 
 

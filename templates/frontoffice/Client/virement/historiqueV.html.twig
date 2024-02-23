@@ -64,7 +64,7 @@
                                                         <span class="badge badge-sm bg-gradient-success">Approuvé</span>
                                                     {% endif %}
 
-                                                    {% if (i.DecisionV == 'En cours') %}
+                                                    {% if (i.DecisionV == 'encours') %}
                                                         <span class="badge badge-sm bg-gradient-secondary">En cours</span>
                                                         <a href="{{ path('modifierVirement', { 'id': i.id }) }}">
                                                             <span class="modifier-text">Modifier</span>

@@ -41,6 +41,7 @@ class Virement
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez saisir le montant')]
+    #[Assert\Positive(message: 'Veuillez saisir un montant positif')]
     private ?string $Montant = null;
 
     #[ORM\ManyToOne(inversedBy: 'idVirement')]
@@ -63,8 +64,8 @@ class Virement
     )]
     private ?string $Email = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $DecisionV = null;
+    #[ORM\Column(length: 255)]
+    private ?string $DecisionV = "encours";
 
     #[ORM\ManyToOne(inversedBy: 'virements')]
     private ?User $user = null;

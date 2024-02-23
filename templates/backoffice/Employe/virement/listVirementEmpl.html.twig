@@ -58,7 +58,10 @@
                                         </td>
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action"> <a  class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-right"> <a class="dropdown-item" href="{{ path('ApprouverVirementEmp',{'id':i.id}) }}"><i class="fas fa-pencil-alt m-r-5"></i> Approuvé</a> <a class="dropdown-item" href="{{ path('deleteVirementEmp',{'id':i.id}) }}" data-toggle="modal" data-target="#delete_asset" onclick="return confirm('Etes-vous sur de vouloir supprimer cet élément ?');"><i class="fas fa-trash-alt m-r-5"></i>Réfuser</a> </div>
+                                                <div class="dropdown-menu dropdown-menu-right"> <a class="dropdown-item" href="{{ path('ApprouverVirementEmp',{'id':i.id}) }}"><i class="fas fa-pencil-alt m-r-5"></i> Approuvé</a>
+                                                    <a  class="dropdown-item" href="{{ path('deleteVirementEmp',{'id':i.id}) }}" class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('Etes-vous sur de vouloir supprimer cet élément ?');"><i
+                                                                class="fa fa-trash"></i>Réfuser </a>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>

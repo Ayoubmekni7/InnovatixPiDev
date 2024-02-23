@@ -14,7 +14,7 @@ class VirementType extends AbstractType
     {
         $builder
             ->add('compte')
-            ->add('nom')
+            ->add('NometPrenom')
             ->add('Cin')
             ->add('Email')
             ->add('TypeVirement',  ChoiceType::class, [

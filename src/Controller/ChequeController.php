@@ -131,14 +131,21 @@ class ChequeController extends AbstractController
         $emm->flush();
         return  $this->redirectToRoute('showListeChequeE');
     }
+    #[Route('/deleteDemandeChequeEmp/{id}', name: 'deleteDemandeChequeEmp', methods: ['GET','POST'])]
+    public function deleteDemandeChequeEmp($id,ManagerRegistry $managerRegistry,ChequeRepository $repository):Response
+    {
+        $emm=$managerRegistry->getManager();
+        $idremove=$repository->find($id);
+         $emm->remove($idremove);
+        $emm->flush();
+        return $this->redirectToRoute('AfficherDemandeE');
+
+    }
 
 
-
-
-
-#[Route('/modifierCheque/{id}', name: 'modifierCheque')]
-public function modifierCheque($id,ManagerRegistry $managerRegistry,ChequeRepository $chequeRepository , Request $request):Response
-{
+    #[Route('/modifierCheque/{id}', name: 'modifierCheque')]
+    public function modifierCheque($id,ManagerRegistry $managerRegistry,ChequeRepository $chequeRepository , Request $request):Response
+    {
     $em=$managerRegistry->getManager();
     $idData =$chequeRepository->find($id);
     $form=$this->createForm(ChequeType::class,$idData);
