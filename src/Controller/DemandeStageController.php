@@ -41,7 +41,7 @@ class DemandeStageController extends AbstractController
     public function AffichageDesDemandes(DemandeStageRepository $demandestageRepository): Response
     {
         $titre = "La liste des demandes";
-        $liste = $demandestageRepository->findAll();
+        $liste = $demandestageRepository->findByEtat("Null");
         return $this->render('backOffice/demande_stage/affichage.html.twig', [
             'Demandes' => $liste,
             'titre'=> $titre
@@ -55,12 +55,14 @@ class DemandeStageController extends AbstractController
         $form->handleRequest($request);
         $to = $demande->getEmail();
         $nom = $demande->getNom().' '.$demande->getPrenom();
+        
         $subject = "Demande effectuer avec succés";
         $html ="<div>Bonjour {$nom}.<br>Votre Demande a été effectuer avec succès  .<br>";
         if($form->isSubmitted() && $form->isValid()){
             $file =  $form->get('cv')->getData();
             $cv = $uploadFile->uploadFile($file);
             $demande->setCv($cv);
+            $demande->setEtat("encours");
             $x = $managerRegistry->getManager();
             $x->persist($demande);
             $x->flush();
@@ -73,13 +75,33 @@ class DemandeStageController extends AbstractController
         ]);
     }
     #[Route('/ApprouverDemande/{id}', name: 'ApprouverDemande')]
-    public function ApprouverDemande($id,DemandeStageRepository $demandestageRepository,ManagerRegistry $managerRegistry): Response
+    public function ApprouverDemande($id,DemandeStageRepository $demandestageRepository,ManagerRegistry $managerRegistry ,Mailing $mailing): Response
     {
         $em =$managerRegistry->getManager();
         $demande = $demandestageRepository->find($id);
-        $demande->setEtat(true);
+        $demande->setEtat("accept");
         $em->persist($demande);
         $em->flush();
+        $to = $demande->getEmail();
+        $nom = $demande->getNom().$demande->getPrenom();
+        $subject = "Félicitations";
+        $html ="<div>Bonjour {$nom}.<br>Votre Demande a été accepté .<br>";
+        $this->emailService->sendEmail($to,$subject,$html);
+        return $this->redirectToRoute('AffichageDesDemandes');
+    }
+    #[Route('/RefuserDemande/{id}', name: 'RefuserDemande')]
+    public function RefuserDemande($id,DemandeStageRepository $demandestageRepository,ManagerRegistry $managerRegistry): Response
+    {
+        $em =$managerRegistry->getManager();
+        $demande = $demandestageRepository->find($id);
+        $demande->setEtat("refuse");
+        $em->persist($demande);
+        $em->flush();
+        $to = $demande->getEmail();
+        $nom = $demande->getNom().$demande->getPrenom();
+        $subject = "Malheuresement";
+        $html ="<div>Bonjour {$nom}.<br>Votre Demande a été réfusé .<br>";
+        $this->emailService->sendEmail($to,$subject,$html);
         return $this->redirectToRoute('AffichageDesDemandes');
     }
     #[Route('/demandeStageOffre/{id}', name: 'demandeStageOffre')]
@@ -99,6 +121,7 @@ class DemandeStageController extends AbstractController
             $demandeO->setCv($cv);
             $x = $managerRegistry->getManager();
             $demandeO->setOffreStage($offre);
+            $demandeO->setEtat("encours");
             $x->persist($demandeO);
             $x->flush();
             $this->emailService->sendEmail($to,$subject,$html);

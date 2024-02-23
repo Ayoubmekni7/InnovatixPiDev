@@ -21,20 +21,18 @@ class DemandeStageRepository extends ServiceEntityRepository
         parent::__construct($registry, Demandestage::class);
     }
 
-//    /**
-//     * @return Demandestage[] Returns an array of Demandestage objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('d.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Demandestage[] Returns an array of Demandestage objects
+     */
+    public function findByEtat($value): array
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.etat = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?Demandestage
 //    {

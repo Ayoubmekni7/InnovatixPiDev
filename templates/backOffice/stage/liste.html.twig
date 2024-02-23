@@ -52,7 +52,7 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <a href="{{ path('modifierStage', {'id':a.id}) }}"> <button class="btn btn-success shadow btn-xs sharp me-1">Approuver</button></a>
-                                                   <a href="{{ path('deleteStage', {'id':a.id}) }}" > <button class="btn btn-danger shadow btn-xs sharp">Rejeter</button></a>
+                                                   <a href="{{ path('deleteStage', {'id':a.id}) }}" onclick="return confirm('Etes-vous sur de vouloir supprimer cet élément ?');" > <button class="btn btn-danger shadow btn-xs sharp">Rejeter</button></a>
                                                 </div>
                                             </td>
 

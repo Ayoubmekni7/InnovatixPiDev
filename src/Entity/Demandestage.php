@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\DemandeStageRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Scalar\String_;
 use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: DemandeStageRepository::class)]
 class Demandestage
@@ -69,8 +70,8 @@ class Demandestage
     #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $etat = null;
+    #[ORM\Column(length: 10)]
+    private ?String $etat = "encours";
 
     #[ORM\ManyToOne(inversedBy: 'demande')]
     private ?OffreStage $offreStage = null;
@@ -176,12 +177,13 @@ class Demandestage
         return $this;
     }
 
-    public function isEtat(): ?bool
+    public function getEtat() : ?String
     {
         return $this->etat;
+        
     }
 
-    public function setEtat(?bool $etat): static
+    public function setEtat(?String $etat): static
     {
         $this->etat = $etat;
 
