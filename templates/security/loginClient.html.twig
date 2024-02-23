@@ -1,58 +1,41 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      src="https://kit.fontawesome.com/64d58efce2.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="{{asset('login/style.css')}}" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>Sign in & Sign up Form</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="forms-container">
-        <div class="signin-signup">
-          <form action="{{ path('app_loginClient') }}" method="post" class="sign-in-form">
-           {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
-                {% if app.user %}
-                    <div class="mb-3">
-                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-                    </div>
-                {% endif %}
-            <h2 class="title">Se Connecter</h2>
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-            
-           		   		<input type="text" class="input" name="email" id="inputEmail" value="{{ last_username }}" autocomplete="email" required autofocus placeholder="Identifiant">
-              
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ asset('login/style.css') }}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <title>Sign in & Sign up Form</title>
+</head>
+<body>
+<div class="container">
+  <div class="forms-container">
+    <div class="signin-signup">
+        <form action="{{ path('app_loginClient') }}" method="post" class="sign-in-form"> 
+          {% if app.user %}
+            <div class="mb-3">
+              You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
             </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" class="input" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Mot de passe" />
-            </div>
-            <div>
-              <input type="checkbox" class="form-check-input" id="basic_checkbox_1">
-                   <label class="form-check-label" for="basic_checkbox_1">Mot de pasee oublié ?</label>
-            </div>
-            <div>
-              <input type="checkbox" class="form-check-input" id="basic_checkbox_1">
-                   <label class="form-check-label" for="basic_checkbox_1">Enregister mes informations</label>
-            </div>
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                <input type="submit" class="btn" value="Se connecter">
-          
-            <div class="new-account mt-3">
-              <p>Vous n'avez pas de compte? <a class="text-primary" href="page-register.html">Créer un compte</a></p>
+          {% endif %}
+          <h2 class="title">Se Connecter</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" class="input" name="email" id="inputEmail" value="{{ last_username }}" autocomplete="email" required autofocus placeholder="Identifiant">
           </div>
-
-          </form>
-          <form action="#" class="sign-up-form">
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" class="input" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Mot de passe" />
+          </div>
+          <div>
+            <input type="checkbox" class="form-check-input" id="basic_checkbox_1">
+            <label class="form-check-label" for="basic_checkbox_1">Mot de passe oublié ?</label>
+          </div>
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+          <input type="submit" class="btn" value="Se connecter">
+        </form>
+           <form action="#" class="sign-up-form">
             <h2 class="title">Créer un compte</h2>
             <div class="input-field">
               <i class="bi bi-cash-coin"></i>
@@ -94,7 +77,6 @@
             <div>
               <label for="conditions">J'accepte les termes et conditions du service bancaire en ligne ainsi que la politique de confidentialité </label>
               <input type="checkbox" id="conditions" name="conditions" required> 
-
             </div>
             <input type="submit" class="btn" value="S'inscrire" />
             </form>
@@ -108,9 +90,9 @@
             <p>
               Innover , Economiser , Prospérer : Tout en ligne !
             </p>
-            <button class="btn transparent" id="sign-up-btn">
-              S'inscrire
-            </button>
+            <button class="btn transparent" id="sign-up-btn" onclick="window.location.href='{{ path('app_register') }}'">
+                    S'inscrire
+                   </button>
           </div>
           <img src="login/img/log.svg" class="image" alt="" />
         </div>
@@ -133,3 +115,4 @@
     <script src="login/app.js"></script>
   </body>
 </html>
+
