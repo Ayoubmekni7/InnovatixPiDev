@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\OffreStage;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,11 +34,11 @@ class OffreStageType extends AbstractType
             ->add('postePropose')
             ->add('experience',ChoiceType::class, [
                 'choices' => [
-                    '0-1' => 'nouveau',
-                    '0-2' => 'nouveau+',
-                    '1-2' => 'nouveau++',
-                    '2-4' => 'junior',
-                    '4 ou plus' => 'junior+',
+                    '0-1' => '0-1',
+                    '0-2' => '0-2',
+                    '1-2' => '0-3',
+                    '2-4' => '2-4',
+                    '4 ou plus' => 'junior',
                     '5 ou plus' => 'senior',
                     
                 ]])
@@ -50,7 +51,7 @@ class OffreStageType extends AbstractType
                     'bac +5' => 'Master',
                     'Inegénierie' => 'Ingenierie',
                     ],
-//                    'multiple' => true,
+                   'multiple' => true,
                 ])
             ->add('language',ChoiceType::class, [
                 'choices' => [
@@ -59,11 +60,18 @@ class OffreStageType extends AbstractType
                     'Anglais-Arabe' => 'anglaisAr',
                     'Arabe-Français_Anglais' => 'troisLangue',
                     ],
-//                'multiple' => true,
+                'multiple' => true,
             ])
             ->add('description')
             ->add('exigenceOffre')
-            ->add('datePostu')
+            ->add('datePostu',DateType::class,[
+                'widget'=>'single_text',
+                'html5'=>true,
+                'format'=>'yyyy-MM-dd'
+        
+            
+            
+            ])
             ->add('motsCles', ChoiceType::class, [
                 'choices' => [
                     'Java' => 'Java',

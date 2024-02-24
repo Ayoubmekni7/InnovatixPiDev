@@ -8,6 +8,8 @@ use App\Repository\DemandeStageRepository;
 use App\Repository\OffreStageRepository;
 use App\Service\Mailing;
 use App\Service\uploadFile;
+use DateTime;
+use DateTimeZone;
 use Doctrine\Persistence\ManagerRegistry;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,17 +22,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class DemandeStageController extends AbstractController
 {
     // la date et temps actuel
-    //$now = new DateTime('now');
-    //        // Formater le temps réel actuel
-    //        $nowFormatted = $now->format('Y-m-d H:i:s');
-    //
-    //
-    //
-    //// Changer le fuseau horaire à "Europe/Berlin" pendant l'été (Central European Summer Time)
-    //        $now->setTimezone(new DateTimeZone('Europe/Berlin'));
-    //
-    //// Réafficher le temps réel actuel
-    //        $nowFormatted = $now->format('Y-m-d H:i:s');
+   
     public Mailing $emailService;
     public string $directory = 'uploads_directory';
     public function __construct(Mailing $emailService)
@@ -39,9 +31,20 @@ class DemandeStageController extends AbstractController
     }
     #[Route('/AffichageDesDemandes', name: 'AffichageDesDemandes')]
     public function AffichageDesDemandes(DemandeStageRepository $demandestageRepository): Response
-    {
-        $titre = "La liste des demandes";
-        $liste = $demandestageRepository->findByEtat("Null");
+  {
+            $titre = "La liste des demandes";
+            $liste = $demandestageRepository->findByEtat("encours");
+////        $now = new DateTime('now');
+////        // Formater le temps réel actuel
+////        $nowFormatted = $now->format('Y-m-d H:i:s');
+////
+////
+////
+////        // Changer le fuseau horaire à "Europe/Berlin" pendant l'été (Central European Summer Time)
+////        $now->setTimezone(new DateTimeZone('Europe/Berlin'));
+//
+//        // Réafficher le temps réel actuel
+//        $nowFormatted = $now->format('Y-m-d H:i:s');
         return $this->render('backOffice/demande_stage/affichage.html.twig', [
             'Demandes' => $liste,
             'titre'=> $titre
@@ -58,6 +61,8 @@ class DemandeStageController extends AbstractController
         
         $subject = "Demande effectuer avec succés";
         $html ="<div>Bonjour {$nom}.<br>Votre Demande a été effectuer avec succès  .<br>";
+        $de = $demande->getCv();
+        
         if($form->isSubmitted() && $form->isValid()){
             $file =  $form->get('cv')->getData();
             $cv = $uploadFile->uploadFile($file);

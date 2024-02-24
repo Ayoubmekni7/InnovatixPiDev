@@ -22,8 +22,8 @@ class Stage
     private ?string $sujet = null;
     
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
-    #[Assert\LessThan(value: "today", message: "Date Invalide !!")]
+//    #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
+//    #[Assert\GreaterThan(value: "today", message: "Date Invalide !!")]
     private ?\DateTimeInterface $date = null;
     
     #[ORM\OneToMany(mappedBy: 'idStage', targetEntity: Stagiaire::class, orphanRemoval: true)]
@@ -56,12 +56,12 @@ class Stage
         return $this;
     }
 
-    public function getDate(): ?\DateInterval
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate(\DateInterval $date): static
+    public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
 

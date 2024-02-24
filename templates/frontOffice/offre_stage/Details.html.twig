@@ -24,7 +24,11 @@
                             </tr>
                              <tr>
                                 <td>
-                                    <div style="margin-left: 10px;margin-bottom: 10px;">  <div  style="margin-top: 5px;margin-bottom: 5px"> Niveau:</div> <div style="margin-top: 5px"> {{ offre.niveau }} </div></div>
+                                    <div style="margin-left: 10px;margin-bottom: 10px;">  <div  style="margin-top: 5px;margin-bottom: 5px"> Niveau:</div> <div style="margin-top: 5px">
+                                            {% for i in offre.niveau %}
+                                            {{ i }}
+                                            {% endfor %}
+                                        </div></div>
                                 </td>
                                 <td>
                                     <div style="margin-left: 10px;margin-bottom: 10px;">  <div style="margin-top: 5px;margin-bottom: 5px">Language: </div> <div style="margin-top: 5px"> {% for i in  offre.language %} {{ i }} {% endfor %}</div></div>

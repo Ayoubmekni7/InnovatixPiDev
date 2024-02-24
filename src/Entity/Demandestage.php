@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\DemandeStageRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Null_;
 use PhpParser\Node\Scalar\String_;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+
 #[ORM\Entity(repositoryClass: DemandeStageRepository::class)]
 class Demandestage
 {
@@ -65,16 +68,25 @@ class Demandestage
     #[Assert\NotBlank(message: 'Veuillez choisir un domaine')]
     private ?string $domaine = null;
 
-    #[ORM\Column( type: Types::DATE_MUTABLE)]
-    #[Assert\GreaterThan(value: "today", message: "Date Invalide !!")]
-    #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
-    private ?\DateTimeInterface $date = null;
+//    #[ORM\Column( type: Types::DATE_MUTABLE,nullable: true)]
+//    #[Assert\GreaterThan(value: "-1 week", message: "Date Invalide !!")]
+//    #[Assert\Callback(callback: [self::class, 'validateDate'])]
+//   // #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
+//   // private \DateTimeInterface $date = 2021-02-01;
 
     #[ORM\Column(length: 10)]
     private ?String $etat = "encours";
 
     #[ORM\ManyToOne(inversedBy: 'demande')]
     private ?OffreStage $offreStage = null;
+    
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\Callback(callback: [self::class, 'validateDate'])]
+    private \DateTimeInterface $date;
+    
+    public function __construct() {
+        $this->date = new \DateTime('2021-02-01');
+    }
 
     public function getId(): ?int
     {
@@ -165,17 +177,17 @@ class Demandestage
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): static
-    {
-        $this->date = $date;
-
-        return $this;
-    }
+//    public function getDate(): ?\DateTimeInterface
+//    {
+//        return $this->date;
+//    }
+//
+//    public function setDate(\DateTimeInterface $date): static
+//    {
+//        $this->date = $date;
+//
+//        return $this;
+//    }
 
     public function getEtat() : ?String
     {
@@ -203,19 +215,35 @@ class Demandestage
     }
 
 
-//          Cette fonction donne une condition sur la date !!
-//    public static function validateDate($value, ExecutionContextInterface $context, $payload)
-//    {
-//        if ($value instanceof \DateTimeInterface) {
-//            // La date doit être d'au moins une semaine après la date actuelle
-//            $today = new \DateTime();
-//            $oneWeekLater = (clone $today)->modify('+1 week');
-//
-//            if ($value < $oneWeekLater) {
-//                $context->buildViolation('La date doit être au moins une semaine après la date actuelle')
-//                    ->addViolation();
-//            }
-//        }
-//    }
+          //Cette fonction donne une condition sur la date !!
+    public static function validateDate($value, ExecutionContextInterface $context, $payload): void
+    {
+        if ($value == Null){
+            $context->buildViolation('La date est vide !')
+                ->addViolation();
+        }
+        elseif ($value instanceof \DateTimeInterface ) {
+            // La date doit être d'au moins une semaine après la date actuelle
+            $today = new \DateTime();
+            $oneWeekLater = (clone $today)->modify('+1 week');
+
+            if ($value < $oneWeekLater ) {
+                $context->buildViolation('La date doit être au moins une semaine après la date actuelle')
+                    ->addViolation();
+            }
+        }
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): static
+    {
+        $this->date = $date;
+
+        return $this;
+    }
     
 }

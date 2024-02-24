@@ -8,7 +8,17 @@
 {#        margin: 150px 20px 20px 400px;#}
 {#        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">#}
 {#        <link rel="stylesheet" href="{{ asset('css/demande.css') }}">#}
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+    .yesser{
+        height: 180px;
+        width: 100%;
+        border-radius: 8px;
+        resize: none;
+        outline:none;
+        border:1px solid #aaa;
+    }
+</style>
 <div class="content-body">
     <div class="container-fluid">
         <div class="row">
@@ -75,27 +85,27 @@
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="wrap-input1 validate-input" style="margin-top: 10px"> {{ form_label(form.description, 'Description ', {'label_attr': {'class': 'form-label'}}) }}</label>
-                                                            <div style="width: 90%">{{ form_widget(form.description, {'attr': {'class': 'input1', 'placeholder': 'Veuillez ecrire une description pour l\'offre '}}) }}</div>
+                                                            <div >{{ form_widget(form.description, {'attr': {'class': 'form-control yesser input1', 'placeholder': 'Veuillez ecrire une description pour l\'offre '}}) }}</div>
                                                             {{ form_errors(form.description, {'attr': {'class': 'valid-feedback'}}) }}
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="wrap-input1 validate-input" style="margin-top: 10px"> {{ form_label(form.exigenceOffre, 'Exigence de l\'offre ', {'label_attr': {'class': 'form-label'}}) }}</label>
-                                                            <div >{{ form_widget(form.exigenceOffre, {'attr': {'class': 'input1', 'placeholder': 'Veuillez ecrire les exigences de l\'offre '}}) }}</div>
+                                                            <div >{{ form_widget(form.exigenceOffre, {'attr': {'class': 'form-control yesser input1', 'placeholder': 'Veuillez ecrire les exigences de l\'offre '}}) }}</div>
                                                             {{ form_errors(form.exigenceOffre, {'attr': {'class': 'valid-feedback'}}) }}
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="wrap-input1 validate-input" style="margin-top: 10px"> {{ form_label(form.datePostu, 'Date de l\'offre ', {'label_attr': {'class': 'form-label'}}) }}</label>
-                                                            <div >{{ form_widget(form.datePostu, {'attr': {'class': 'input1', 'placeholder': 'Date de l\'offre'}}) }}</div>
+                                                            <div >{{ form_widget(form.datePostu, {'attr': {'class': 'form-control input1', 'placeholder': 'Date de l\'offre'}}) }}</div>
                                                             {{ form_errors(form.datePostu, {'attr': {'class': 'valid-feedback'}}) }}
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="wrap-input1 validate-input" style="margin-top: 10px;width: 100%"> {{ form_label(form.motsCles, 'Les mots clés', {'label_attr': {'class': 'form-label'}}) }}</label>
-                                                             <div >{{ form_widget(form.motsCles, {'multiple':'multiple','attr': {'class': 'input1', 'placeholder': 'Veuillez choisir les mots clé de cet offre '}}) }}</div>
+                                                             <div >{{ form_widget(form.motsCles, {'multiple':'multiple','attr': {'class': 'form-control', 'placeholder': 'Veuillez choisir les mots clé de cet offre '}}) }}</div>
                                                             {{ form_errors(form.motsCles, {'attr': {'class': 'valid-feedback'}}) }}
                                                         </div>
                                                         <div class="mb-3" style="">
                                                             <label class="wrap-input1 validate-input" style="margin-top: 10px"> {{ form_label(form.pfeBook, 'pfeBook', {'label_attr': {'class': 'form-label'}}) }}</label>
-                                                            <div >{{ form_widget(form.pfeBook, {'attr': {'class': 'input1', 'placeholder': 'Upload votre pfeBook'}}) }}</div>
+                                                            <div >{{ form_widget(form.pfeBook, {'attr': {'class': 'form-control', 'type':'file', 'placeholder': 'Upload votre pfeBook'}}) }}</div>
                                                             {{ form_errors(form.pfeBook, {'attr': {'class': 'valid-feedback'}}) }}
                                                         </div>
                                                         <button class="btn btn-primary btn-lg btn-block" type="submit" style=" margin-bottom: 20px">{{ ajouter }}</button>

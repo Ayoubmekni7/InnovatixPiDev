@@ -72,14 +72,14 @@ class OffreStage
     private ?string $exigenceOffre = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    #[Assert\LessThan(value: "today", message: "Date Invalide !!")]
+    #[Assert\GreaterThan(value: "today", message: "Date Invalide !!")]
     private ?\DateTimeInterface $datePostu = null;
 
     #[ORM\Column(type: "json", nullable: true)]
     private ?array  $motsCles = null;
     
 
-    #[ORM\OneToMany(mappedBy: 'offreStage', targetEntity: Demandestage::class)]
+    #[ORM\OneToMany(mappedBy: 'offreStage', targetEntity: Demandestage::class, orphanRemoval: true)]
     private Collection $demande;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -144,12 +144,12 @@ class OffreStage
         return $this;
     }
 
-    public function getExperience(): ?int
+    public function getExperience(): ?String
     {
         return $this->experience;
     }
 
-    public function setExperience(?int $experience): static
+    public function setExperience(?String $experience): static
     {
         $this->experience = $experience;
 

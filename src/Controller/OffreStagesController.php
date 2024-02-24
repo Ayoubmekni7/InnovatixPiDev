@@ -90,6 +90,7 @@ class OffreStagesController extends AbstractController
         if($form->isSubmitted() and $form->isValid() ){
           $em->persist($offre);
           $em->flush();
+          return $this->redirectToRoute('afficheOffreStages');
         }
         return $this->render('backOffice/offre_stage/add.html.twig', [
             'form' => $form->createView(),
@@ -113,6 +114,7 @@ class OffreStagesController extends AbstractController
         if($form->isSubmitted() and $form->isValid() ){
             $em->persist($offre);
             $em->flush();
+            return $this->redirectToRoute('afficheOffreStages');
         }
         return $this->render('backOffice/offre_stage/add.html.twig', [
             'form' => $form->createView(),

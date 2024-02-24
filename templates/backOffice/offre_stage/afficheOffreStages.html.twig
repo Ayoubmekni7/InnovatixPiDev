@@ -79,7 +79,11 @@
                                             <td>{{ a.typeOffre }}</td>
                                             <td>{{ a.postePropose }}</td>
                                             <td>{{ a.experience }}</td>
-                                            <td>{{ a.niveau }}</td>
+                                            <td>
+                                                {% for i in a.niveau %}
+
+                                                {{ i  }}
+                                            {% endfor %}</td>
                                             <td>{% for i in  a.language %}
                                                 {{ i ~ "-"  }}
                                                    {% endfor %}
