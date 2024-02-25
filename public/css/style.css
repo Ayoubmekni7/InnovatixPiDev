@@ -3559,7 +3559,9 @@ textarea.form-control-lg {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1rem 1rem; }
+  padding: 1rem 1rem;
+  background-color: #045a1d;
+ }
 
 .card-title {
   margin-bottom: 0.5rem; }
@@ -3579,7 +3581,7 @@ textarea.form-control-lg {
 .card-header {
   padding: 0.5rem 1rem;
   margin-bottom: 0;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: #045a1d;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
   .card-header:first-child {
     border-radius: calc(1.25rem - 1px) calc(1.25rem - 1px) 0 0; }
@@ -22760,7 +22762,9 @@ button {
       margin-bottom: 0.938rem;
       height: calc(100% - 0.938rem); } }
   .card-body {
-    padding: 1.875rem; }
+    padding: 1.875rem;
+    background-color: #f3f0f9; 
+  }
     @media only screen and (max-width: 35.9375rem) {
       .card-body {
         padding: 1rem; } }

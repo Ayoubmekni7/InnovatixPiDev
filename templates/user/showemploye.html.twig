@@ -1,0 +1,99 @@
+
+{% extends 'base.html.twig' %}
+{% block body %}
+ <div class="container">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-center mb-4">Fiche employe</h5>
+                             <div class="user-profile">
+                               <link rel="stylesheet" type="text/css" href="{{asset('users/style.css')}}">
+                              <div class="profile-picture">
+                             <img src="{{asset('images/avatar/1.jpg')}}" alt="Photo de profil">
+   
+                       <h1>Employe</h1>
+
+                   <table class="table">
+                   <tbody>
+                      <tr>
+                      <th>Id</th>
+                      <td>{{ user.id }}</td>
+                      </tr>
+                     <tr>
+                    <th>Email</th>
+                    <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                    <th>Roles</th>
+                     <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                     </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>name</th>
+                <td>{{ user.name }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ user.cin }}</td>
+            </tr>
+            <tr>
+                <th>DateNaissance</th>
+                <td>{{ user.dateNaissance }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ user.tel }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ user.photo }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ user.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Salaire</th>
+                <td>{{ user.salaire }}</td>
+            </tr>
+            <tr>
+                <th>Profession</th>
+                <td>{{ user.profession }}</td>
+            </tr>
+            <tr>
+                <th>Poste</th>
+                <td>{{ user.poste }}</td>
+            </tr>
+            <tr>
+                <th>Departement</th>
+                <td>{{ user.departement }}</td>
+            </tr>
+            <tr>
+                <th>DateEambauche</th>
+                <td>{{ user.dateEambauche }}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    
+    <div class="text-center">
+    <a href="{{ path('app_deleteEmploye', {'id': user.id}) }}" class="btn btn-danger" >
+    
+        {% include 'user/_deleteEmploye_form.html.twig' %}
+    </a>
+    <a href="{{ path('app_user_editEmploye', {'id': user.id}) }}" class="btn btn-primary">Éditer</a>
+    <a href="{{ path('app_user_employes') }}" class="btn btn-secondary">Retour à la liste</a>
+</div>
+     <script type="text/javascript" src="{{asset('users/main.js')}}"></script>
+    </div>
+    </div>
+           </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

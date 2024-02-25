@@ -3,85 +3,340 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use phpDocumentor\Reflection\Types\Integer;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+#[ORM\Table(name: '`user`')]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Contrat::class)]
-    private Collection $contrat;
+    #[ORM\Column(length: 180, unique: true)]
+    private ?string $email = null;
 
-    #[ORM\ManyToMany(targetEntity: Stage::class, inversedBy: 'users')]
-    private Collection $stage;
+    #[ORM\Column]
+    private array $roles = [];
 
-    public function __construct()
-    {
-        $this->contrat = new ArrayCollection();
-        $this->stage = new ArrayCollection();
-    }
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
+
+ 
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $cin = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $dateNaissance = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $tel = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $photo = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $adresse = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $salaire = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $profession = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $poste = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $departement = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $dateEambauche = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $typeStage = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $dureeStage = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $name = null;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
-    /**
-     * @return Collection<int, Contrat>
-     */
-    public function getContrat(): Collection
+    public function setId(Int $id): static
     {
-        return $this->contrat;
-    }
-
-    public function addContrat(Contrat $contrat): static
-    {
-        if (!$this->contrat->contains($contrat)) {
-            $this->contrat->add($contrat);
-            $contrat->setUser($this);
-        }
+        $this->id = $id;
 
         return $this;
     }
 
-    public function removeContrat(Contrat $contrat): static
+    public function getEmail(): ?string
     {
-        if ($this->contrat->removeElement($contrat)) {
-            // set the owning side to null (unless already changed)
-            if ($contrat->getUser() === $this) {
-                $contrat->setUser(null);
-            }
-        }
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Stage>
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
      */
-    public function getStage(): Collection
+    public function getUserIdentifier(): string
     {
-        return $this->stage;
+        return (string) $this->email;
     }
 
-    public function addStage(Stage $stage): static
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
     {
-        if (!$this->stage->contains($stage)) {
-            $this->stage->add($stage);
-        }
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function removeStage(Stage $stage): static
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
-        $this->stage->removeElement($stage);
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+    
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+  
+
+    public function getCin(): ?string
+    {
+        return $this->cin;
+    }
+
+    public function setCin(?string $cin): static
+    {
+        $this->cin = $cin;
+
+        return $this;
+    }
+
+    public function getDateNaissance(): ?string
+    {
+        return $this->dateNaissance;
+    }
+
+    public function setDateNaissance(?string $dateNaissance): static
+    {
+        $this->dateNaissance = $dateNaissance;
+
+        return $this;
+    }
+
+    public function getTel(): ?string
+    {
+        return $this->tel;
+    }
+
+    public function setTel(?string $tel): static
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): static
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(?string $adresse): static
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getSalaire(): ?string
+    {
+        return $this->salaire;
+    }
+
+    public function setSalaire(?string $salaire): static
+    {
+        $this->salaire = $salaire;
+
+        return $this;
+    }
+
+    public function getProfession(): ?string
+    {
+        return $this->profession;
+    }
+
+    public function setProfession(?string $profession): static
+    {
+        $this->profession = $profession;
+
+        return $this;
+    }
+
+    public function getPoste(): ?string
+    {
+        return $this->poste;
+    }
+
+    public function setPoste(?string $poste): static
+    {
+        $this->poste = $poste;
+
+        return $this;
+    }
+
+    public function getDepartement(): ?string
+    {
+        return $this->departement;
+    }
+
+    public function setDepartement(?string $departement): static
+    {
+        $this->departement = $departement;
+
+        return $this;
+    }
+
+    public function getDateEambauche(): ?string
+    {
+        return $this->dateEambauche;
+    }
+
+    public function setDateEambauche(?string $dateEambauche): static
+    {
+        $this->dateEambauche = $dateEambauche;
+
+        return $this;
+    }
+
+    public function getTypeStage(): ?string
+    {
+        return $this->typeStage;
+    }
+
+    public function setTypeStage(?string $typeStage): static
+    {
+        $this->typeStage = $typeStage;
+
+        return $this;
+    }
+
+    public function getDureeStage(): ?string
+    {
+        return $this->dureeStage;
+    }
+
+    public function setDureeStage(?string $dureeStage): static
+    {
+        $this->dureeStage = $dureeStage;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }
