@@ -35,17 +35,18 @@ class DemandeStageController extends AbstractController
   {
             $titre = "La liste des demandes";
             $liste = $demandestageRepository->findByEtat("encours");
-////        $now = new DateTime('now');
-////        // Formater le temps réel actuel
-////        $nowFormatted = $now->format('Y-m-d H:i:s');
-////
-////
-////
-////        // Changer le fuseau horaire à "Europe/Berlin" pendant l'été (Central European Summer Time)
-////        $now->setTimezone(new DateTimeZone('Europe/Berlin'));
-//
-//        // Réafficher le temps réel actuel
-//        $nowFormatted = $now->format('Y-m-d H:i:s');
+        $now = new DateTime('now');
+        // Formater le temps réel actuel
+        $nowFormatted = $now->format('Y-m-d');
+
+
+
+        // Changer le fuseau horaire à "Europe/Berlin" pendant l'été (Central European Summer Time)
+        $now->setTimezone(new DateTimeZone('Europe/Berlin'));
+
+        // Réafficher le temps réel actuel
+        $nowFormatted = $now->format('d-m-y');
+        dd($nowFormatted);
         return $this->render('backOffice/demande_stage/affichage.html.twig', [
             'Demandes' => $liste,
             'titre'=> $titre
