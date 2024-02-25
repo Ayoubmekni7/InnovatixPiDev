@@ -66,6 +66,7 @@ class ContratController extends AbstractController
     #[Route('/modifierContrat/{id}', name: 'modifierContrat')]
     public function modifierContrat($id, ManagerRegistry $manager, ContratRepository $stageRepository, Request $request,): Response
     {
+        $titre = "Modifier contrat";
         $emr = $manager->getManager();
         $idData = $stageRepository->find($id);
         $form = $this->createForm(ContratType::class, $idData);
@@ -76,7 +77,8 @@ class ContratController extends AbstractController
             return new Response("update with succcess");
         }
         return $this->renderForm('backOffice/contrat/add.html.twig', [
-            'form' => $form
+            'form' => $form,
+            'titre' => $titre
         ]);
     }
 }
