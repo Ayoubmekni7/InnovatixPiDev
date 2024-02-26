@@ -23,10 +23,10 @@
                         <div class="card-header">
                             <h4 class="card-title">{{ titre }}</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="background-color: white">
                             <div class="table-responsive">
 
-                                <table class="table table-responsive-md">
+                                <table class="table table-responsive-md" >
                                     <thead>
                                     <tr >
 
@@ -65,8 +65,8 @@
                                         <td>{{ a.domaine }}</td>
                                         <td>
                                             <div class="d-flex">
-                                               <a href="{{ path('ApprouverDemande', {'id':a.id}) }}"> <button class="btn btn-success shadow btn-xs sharp me-1">Approuver</button></a>
-                                                <a href="{{ path('RefuserDemande', {'id':a.id}) }}" onclick="return confirm('Etes-vous sur de vouloir supprimer cet élément ?');"><button class="btn btn-danger shadow btn-xs sharp">Rejeter</button></a>
+                                               <a href="{{ path('ApprouverDemande', {'id':a.id}) }}"> <button class="btn btn-success shadow btn-xs sharp me-1">Ap</button></a>
+                                                <a href="{{ path('RefuserDemande', {'id':a.id}) }}" onclick="return confirm('Etes-vous sur de vouloir supprimer cet élément ?');"><button class="btn btn-danger shadow btn-xs sharp">Re</button></a>
                                             </div>
                                         </td>
 

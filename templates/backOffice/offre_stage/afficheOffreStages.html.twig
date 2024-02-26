@@ -14,9 +14,9 @@
         }
 
         .direction::after {
-            content: 'click ici pour voire la liste des demandes pour cet offre !';
+            content: 'click ici pour voire les détails cet offre !';
             display: none;
-            position: absolute;
+            position: revert;
             top: 100%;
             left: 0;
             padding: 5px;
@@ -26,6 +26,66 @@
         }
 
         .direction:hover::after {
+            display: block;
+        }
+        .show {
+            position: relative;
+        }
+
+        .show::after {
+            content: 'click ici pour voir la liste des demandes pour cette offre !';
+            display: none;
+            position: absolute;
+            top: -90px; /* Ajustez cette valeur selon votre préférence */
+            left: 0;
+            padding: 5px;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+            white-space: pre-wrap; /* Afficher le texte sur plusieurs lignes */
+            word-wrap: break-word;
+        }
+
+        .show:hover::after {
+            display: block;
+        }
+
+        .supprimer {
+            position: relative;
+        }
+
+        .modifier::after {
+            content: 'click ici pour voire !';
+            display: none;
+            position: revert;
+            top: 100%;
+            left: 0;
+            padding: 5px;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .modifier:hover::after {
+            display: block;
+        }
+        .modifier {
+            position: relative;
+        }
+
+        .supprimer::after {
+            content: 'click ici pour voire la liste des demandes pour cet offre !';
+            display: none;
+            position: revert;
+            top: 100%;
+            left: 0;
+            padding: 5px;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .supprimer:hover::after {
             display: block;
         }
     </style>
@@ -46,9 +106,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Liste des offres</h4> <a href="{{ path('addOffre') }}"> <button type="button" class="btn btn-success">Ajouter une offre </button></a>
+                            <h4 class="card-title">Liste des offres</h4> <button class="btn btn-outline-success " onclick="toggleColumns()">Afficher/Masquer les colonnes</button><a href="{{ path('addOffre') }}"> <button type="button" class="btn btn-success">Ajouter une offre </button></a>
+
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" >
                             <div class="table-responsive " >
 
                                 <table class="table table-responsive-md"  >
@@ -59,15 +120,15 @@
                                         <th class="sortable"><strong>Domaine</strong></th>
                                         <th class="sortable"><strong>Type</strong></th>
                                         <th class="sortable"><strong>Poste</strong></th>
-                                        <th class="sortable"><strong>Expérience</strong></th>
-                                        <th class="sortable"><strong>Niveau</strong></th>
-                                        <th class="sortable"><strong>Language</strong></th>
-                                        <th  class="sortable" style="width: 200px" ><strong>Description</strong></th>
-                                        <th class="sortable"><strong>Exigence</strong></th>
-                                        <th class="sortable"><strong>Date</strong></th>
-                                        <th class="sortable"><strong>Mots Clés</strong></th>
-                                        <th class="sortable"><strong>Pfe</strong></th>
-                                        <th class="sortable"><strong>Action</strong></th>
+                                        <th class="sortable additional-column "><strong>Expérience</strong></th>
+                                        <th class="sortable additional-column hidden"><strong>Niveau</strong></th>
+                                        <th class="sortable additional-column hidden"><strong>Language</strong></th>
+                                        <th  class="sortable additional-column hidden" style="width: 200px" ><strong>Description</strong></th>
+                                        <th class="sortable additional-column hidden"><strong>Exigence</strong></th>
+                                        <th class="sortable additional-column hidden"><strong>Date</strong></th>
+                                        <th class="sortable additional-column hidden"><strong>Mots Clés</strong></th>
+                                        <th class="sortable additional-column hidden"><strong>Pfe</strong></th>
+                                        <th class="sortable " style="text-align: center"><strong>Action</strong></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -78,19 +139,19 @@
                                             <td>{{ a.domaine }}</td>
                                             <td>{{ a.typeOffre }}</td>
                                             <td>{{ a.postePropose }}</td>
-                                            <td>{{ a.experience }}</td>
-                                            <td>
+                                            <td class="additional-column hidden">{{ a.experience }}</td>
+                                            <td class="additional-column hidden">
                                                 {% for i in a.niveau %}
 
                                                 {{ i  }}
                                             {% endfor %}</td>
-                                            <td>{% for i in  a.language %}
+                                            <td class="additional-column hidden">{% for i in  a.language %}
                                                 {{ i ~ "-"  }}
                                                    {% endfor %}
                                             </td>
 
                                             <td style="font-size: 15px;
-                                                        " > <p  style="color:#777;
+                                                        " class="additional-column hidden" > <p  style="color:#777;
                                                         font-size: 15px;
                                                         display: -webkit-box;
                                                         -webkit-line-clamp: 2;
@@ -99,7 +160,7 @@
                                                         line-height: 1.5;" > {{ a.description }}</p>
                                             </td>
                                             <td  style="font-size: 15px;
-                                                        "><p  style="color:#777;
+                                                        " class="additional-column hidden"><p  style="color:#777;
                                                         font-size: 15px;
                                                         display: -webkit-box;
                                                         -webkit-line-clamp: 2;
@@ -107,9 +168,9 @@
                                                         overflow: hidden;
                                                         line-height: 1.5;" > {{ a.exigenceOffre }}</p>
                                             </td>
-                                            <td>{{ a.datePostu | date('d F Y') }}</td>
+                                            <td class="additional-column hidden">{{ a.datePostu | date('d F Y') }}</td>
 
-                                            <td>
+                                            <td class="additional-column hidden">
                                                 {% if a.motsCles is empty %}
 
                                                 <p> n'a pas de mots clés </p>
@@ -119,7 +180,7 @@
                                                 {% endfor %}
                                                     {% endif %}
                                             </td>
-                                            <td style="background-size: 5cm">
+                                            <td style="background-size: 5cm" class="additional-column hidden">
                                                 {% if a.pfeBook is empty %}
 
                                                     <p style="color:#777;
@@ -138,8 +199,11 @@
                                                     </a>
                                                 {% endif %}
                                             </td>
-                                            <td>
-                                                <div class="d-flex">
+                                            <td style="margin-left: 10px">
+                                                <div class="d-flex" style="margin: auto">
+                                                    <a href="{{ path('editOffre', {'id':a.id}) }}">
+                                                        <button class="show btn btn-info shadow btn-xs sharp me-1  ">show</button>
+                                                    </a>
                                                     <a href="{{ path('editOffre', {'id':a.id}) }}">
                                                         <button class="btn btn-success shadow btn-xs sharp me-1">Modifier</button>
                                                     </a>
@@ -192,6 +256,26 @@
                 });
             });
         });
+        var hidden = false;
+
+        function toggleColumns() {
+            var additionalColumns = document.querySelectorAll('.additional-column');
+            var rows = document.querySelectorAll('tbody tr');
+
+            if (hidden) {
+                // Affiche les colonnes supplémentaires
+                additionalColumns.forEach(function(column) {
+                    column.style.display = 'table-cell';
+                });
+                hidden = false;
+            } else {
+                // Masque les colonnes supplémentaires
+                additionalColumns.forEach(function(column) {
+                    column.style.display = 'none';
+                });
+                hidden = true;
+            }
+        }
     </script>
 
 

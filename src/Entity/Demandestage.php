@@ -28,7 +28,8 @@ class Demandestage
     )]
     #[Assert\Regex(pattern: '/[a-zA-Z]/',
         message:' le nom du pack doit contenir que des lettres !!')]
-    private ?string $nom =null;
+    private ?string $nom = null;
+    
 
     #[ORM\Column(length: 30)]
     #[Assert\NotBlank(message: 'Veuillez saisir votre prenom')]

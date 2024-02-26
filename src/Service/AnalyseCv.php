@@ -9,7 +9,7 @@ class AnalyseCv
 {
     public function analyseCV(string $cv, array $motsCles): int
     {
-        $pythonScriptPath = 'C:\Users\Yesser\PI\InnovatixPiDev\Analyseur.py';
+        $pythonScriptPath = 'C:\Users\Yesser\PI\InnovatixPiDev\API\Analyseur.py';
         $process = new Process(['python', $pythonScriptPath, $cv, implode(',', $motsCles)]);
         $process->run();
         
