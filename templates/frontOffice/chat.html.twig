@@ -1,0 +1,9 @@
+{# templates/chat.html.twig #}
+<form method="post" action="{{ path('chat') }}">
+    <input type="text" name="question" placeholder="Posez votre question...">
+    <button type="submit">Envoyer</button>
+</form>
+
+{% if response is defined %}
+    <p>{{ response }}</p>
+{% endif %}

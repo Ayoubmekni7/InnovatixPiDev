@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Service\OpenAIChatService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -29,4 +31,22 @@ class ActualiteController extends AbstractController
             'controller_name' => 'ActualiteController',
         ]);
     }
+    #[Route('/chat', name: 'chat')]
+    public function chat(Request $request, OpenAIChatService $AIChatService): Response
+    {
+        $question = $request->request->get('question');
+        $response = '';
+        
+        if ($question) {
+            $response = $AIChatService->askQuestion($question);
+            dd($response);
+        }
+        
+        
+        return $this->render('frontOffice/chat.html.twig', [
+            'response' => $response,
+        ]);
+    }
+    
+    
 }
