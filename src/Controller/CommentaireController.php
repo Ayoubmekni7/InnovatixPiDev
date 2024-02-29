@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Investissement;
+use App\Form\InvestissementType;
+use App\Repository\InvestissementRepository;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
 use App\Repository\CommentaireRepository;
@@ -23,6 +25,33 @@ class CommentaireController extends AbstractController
     }
     
 
+    #[Route('/CommentaireAdd/{id}', name: 'app_CommentaireAdd', methods: ['GET', 'POST'])]
+    public function CommentaireAdd($id, Request $request, EntityManagerInterface $entityManager, InvestissementRepository $investissementRepository): Response
+    {
+      
+        $investissement = $investissementRepository->find($id);
+            if (!$investissement) {
+                throw $this->createNotFoundException('investissement not found');
+            }
+    
+    
+            $nomuser = $request->request->get('nomuser');
+            $contenu = $request->request->get('contenu');
+            $dateCreation = new \DateTime($request->request->get('dateCreation'));
+    
+            $commentaire = new Commentaire();
+            $commentaire->setInvestissement($investissement);
+            $commentaire->setNomuser($nomuser);
+            $commentaire->setContenu($contenu);
+            $commentaire->setDateCreation($dateCreation);
+    
+            $entityManager->persist($commentaire);
+            $entityManager->flush();
+    
+                return $this->redirectToRoute('app_event', ['id' => $id] , Response::HTTP_SEE_OTHER);
+            
+        }
+
     
 
     #[Route('/new', name: 'app_commentaire_new', methods: ['GET', 'POST'])]
@@ -39,7 +68,7 @@ class CommentaireController extends AbstractController
             return $this->redirectToRoute('app_commentaire_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('commentaire/new.html.twig', [
+        return $this->renderForm('main/eventsweb.html.twig', [
             'commentaire' => $commentaire,
             'form' => $form,
         ]);

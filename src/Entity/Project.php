@@ -15,26 +15,64 @@ class Project
     #[ORM\Column]
     private ?int $id = null;
 
-     #[Assert\NotBlank(message: "saisir le nom de projet")]
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id")]
+    private ?User $user = null;
+
+
+
+    #[Assert\NotBlank(message: "saisir le nom de projet")]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Votre nom doit contenir au moins {{ limit }} caractères.'
+    )]
+    #[Assert\Regex(
+        pattern: '/^[A-Z][a-zA-Z]*$/',
+        message: "Votre nom doit commencer par une lettre majuscule."
+    )]
     #[ORM\Column(length: 100)]
     private ?string $nomprojet = null;
 
+
+
+
     #[Assert\NotBlank(message: "saisir la catégorie")]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Votre categorie doit contenir au moins {{ limit }} caractères.'
+    )]
     #[ORM\Column(length: 100)]
     private ?string $categorie = null;
 
+
+
+  #[Assert\Length(
+        min: 3,
+        minMessage: 'Votre description doit contenir au moins {{ limit }} caractères.'
+    )]
     #[Assert\NotBlank(message: "saisir la description du projet")]
     #[ORM\Column(length: 100)]
     private ?string $descriptionprojet = null;
+
+
 
     #[Assert\NotBlank(message: "saisir le budget du projet")]
     #[ORM\Column]
     private ?float $budgetprojet = null;
 
+
+
+
     #[Assert\NotBlank(message: "saisir la date de création du projet")]
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\EqualTo("today", message:"La date doit être la date d'aujourd'hui.")]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $datecreation = null;
 
+
+    #[Assert\GreaterThanOrEqual(
+        value: 1,
+        message: "La durée doit être supérieure ou égale à 1."
+    )]
     #[Assert\NotBlank(message: "saisir la durée du projet")]
     #[ORM\Column]
     private ?int $dureeprojet = null;
@@ -128,6 +166,17 @@ class Project
     public function setStatutProjet(string $statutprojet): static
     {
         $this->statutprojet = $statutprojet;
+
+        return $this;
+    }
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

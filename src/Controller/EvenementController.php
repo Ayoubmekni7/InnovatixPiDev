@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Project;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
@@ -95,19 +95,16 @@ class EvenementController extends AbstractController
             'form' => $form,
         ]);
     }
-
-    #[Route('/{id}', name: 'app_evenement_delete',  methods: ['GET','POST'])]
-    public function delete(Request $request, Evenement $evenement, EntityManagerInterface $entityManager,EvenementRepository $evenementRepository): Response
+  
+    #[Route('delete/{id}', name: 'app_evenement_delete', methods: ['GET','POST'])]
+    public function delete(Evenement $evenement, ManagerRegistry $managerRegistry): Response
     {
-    $entityManager =$managerRegistry->getManager();
-    $evenement= $evenementRepository->find($id) ;
-    $entityManager->remove($evenement);
+        $entityManager = $managerRegistry->getManager();
+        $entityManager->remove($evenement);
         $entityManager->flush();
-
-        return $this->redirectToRoute('app_evenement_index', [], Response::HTTP_SEE_OTHER);
-    }
-
     
-
+        return $this->redirectToRoute('app_project_admin', [], Response::HTTP_SEE_OTHER);
+    }
+    
 
 }

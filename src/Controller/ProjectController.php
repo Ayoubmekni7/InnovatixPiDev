@@ -38,8 +38,28 @@ class ProjectController extends AbstractController
     }
 
  
-    #[Route('/client/create', name: 'app_project_new', methods: ['GET', 'POST'])]
+    #[Route('/client/create', name: 'app_project_newC', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $project = new Project();
+        $form = $this->createForm(ProjectType::class, $project);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($project);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_project_indexclient', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('client/project/new.html.twig', [
+            'project' => $project,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/admin/create', name: 'app_project_new', methods: ['GET', 'POST'])]
+    public function newC(Request $request, EntityManagerInterface $entityManager): Response
     {
         $project = new Project();
         $form = $this->createForm(ProjectType::class, $project);
@@ -57,9 +77,8 @@ class ProjectController extends AbstractController
             'form' => $form,
         ]);
     }
-
-    #[Route('/client/create', name: 'app_project_new', methods: ['GET', 'POST'])]
-    public function newC(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/employe/create', name: 'app_project_newE', methods: ['GET', 'POST'])]
+    public function newE(Request $request, EntityManagerInterface $entityManager): Response
     {
         $project = new Project();
         $form = $this->createForm(ProjectType::class, $project);
@@ -69,10 +88,10 @@ class ProjectController extends AbstractController
             $entityManager->persist($project);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_project_admin', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_project_listE', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/project/new.html.twig', [
+        return $this->renderForm('employe/project/new.html.twig', [
             'project' => $project,
             'form' => $form,
         ]);
@@ -107,6 +126,24 @@ class ProjectController extends AbstractController
         ]);
     }
 
+    #[Route('/edit/{id}', name: 'app_project_editE', methods: ['GET', 'POST'])]
+    public function editE(Request $request, Project $project, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(ProjectType::class, $project);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_project_listE', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('employe/project/edit.html.twig', [
+            'project' => $project,
+            'form' => $form,
+        ]);
+    }
+
 #[Route('delete/{id}', name: 'app_project_delete', methods: ['GET','POST'])]
     public function delete($id , ManagerRegistry $managerRegistry , ProjectRepository $projectRepository): Response
     {
@@ -116,5 +153,4 @@ class ProjectController extends AbstractController
             $entityManager->flush();
         return $this->redirectToRoute('app_project_admin', [], Response::HTTP_SEE_OTHER);
     }
-
 }

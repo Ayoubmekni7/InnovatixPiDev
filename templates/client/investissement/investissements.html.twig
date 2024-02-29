@@ -19,11 +19,23 @@
                     <div class="card card-blog card-plain">
                       <div class="position-relative">
                         <a class="d-block shadow-xl border-radius-xl">
+                                                  {% if investissement.id == 2 %}
+
+                          <img
+                            src="{{ asset('client/assets/img/home-decor-3.jpg') }}"
+                             alt="img-blur-shadow"
+                                     class="img-fluid shadow border-radius-xl"
+                                       />
+                                       {% else %}
+
                           <img
                             src="{{ asset('client/assets/img/home-decor-1.jpg') }}"
                              alt="img-blur-shadow"
                                      class="img-fluid shadow border-radius-xl"
                                        />
+                                       {% endif %}
+
+
 
                         </a>
                         </div>

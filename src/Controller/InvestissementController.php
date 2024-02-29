@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\Evenement;
+use App\Form\EvenementType;
+use App\Repository\EvenementRepository;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
 use App\Repository\CommentaireRepository;
@@ -19,7 +22,7 @@ class InvestissementController extends AbstractController
     #[Route('/admin/list', name: 'app_investissement_listA', methods: ['GET'])]
     public function listA(InvestissementRepository $investissementRepository): Response
     {
-        return $this->render('investissement/investissements.html.twig', [
+        return $this->render('admin/investissement/investissements.html.twig', [
             'investissements' => $investissementRepository->findAll(),
         ]);
     }
@@ -48,10 +51,10 @@ class InvestissementController extends AbstractController
             $entityManager->persist($investissement);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_investissement_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_investissement_listA', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('investissement/new.html.twig', [
+        return $this->renderForm('admin/investissement/new.html.twig', [
             'investissement' => $investissement,
             'form' => $form,
         ]);
@@ -61,12 +64,27 @@ class InvestissementController extends AbstractController
     public function show(Investissement $investissement): Response
     {
         $commentaires = $investissement->getCommentaires();
+        $evenements = $investissement->getEvenements(); // Assuming you want to get all Evenements
     
         return $this->render('client/investissement/show.html.twig', [
             'investissement' => $investissement,
             'commentaires' => $commentaires,
+            'evenements' => $evenements,
         ]);
     }
+    #[Route('admin/{id}', name: 'app_investissement_showA', methods: ['GET'])]
+    public function showA(Investissement $investissement): Response
+    {
+        $commentaires = $investissement->getCommentaires();
+        $evenements = $investissement->getEvenements(); // Assuming you want to get all Evenements
+    
+        return $this->render('client/investissement/show.html.twig', [
+            'investissement' => $investissement,
+            'commentaires' => $commentaires,
+            'evenements' => $evenements,
+        ]);
+    }
+    
     
     
 
@@ -79,23 +97,23 @@ class InvestissementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_investissement_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_investissement_listA', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('investissement/edit.html.twig', [
+        return $this->renderForm('admin/investissement/edit.html.twig', [
             'investissement' => $investissement,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_investissement_delete', methods: ['POST'])]
-    public function delete(Request $request, Investissement $investissement, EntityManagerInterface $entityManager): Response
+    #[Route('/investissement/delete/{id}', name: 'app_investissement_delete', methods: ['GET', 'POST'])]
+    public function delete($id, EntityManagerInterface $entityManager, InvestissementRepository $investissementRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$investissement->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($investissement);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('app_investissement_index', [], Response::HTTP_SEE_OTHER);
+        $investissement = $investissementRepository->find($id);
+        $entityManager->remove($investissement);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_investissement_listA', [], Response::HTTP_SEE_OTHER);
     }
+    
+    
 }

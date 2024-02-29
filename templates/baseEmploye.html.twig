@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="{{ asset('Employe/assets/css/style.css') }}">
 
 
-<body>
+<body>	
 	<div class="main-wrapper">
 		<div class="header">
 			<div class="header-left">
@@ -135,29 +135,17 @@
 						</li>
 						<li class="submenu"> <a href="#"><i class="fas fa-cube"></i> <span>Investissements </span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="display: none;">
-								<li><a href="all-staff.html">All Staff </a></li>
-								<li><a href="edit-staff.html"> Edit Staff </a></li>
-								<li><a href="add-staff.html"> Add Staff </a></li>
+								   <li><a  href="{{ path('app_investissement_listE') }}">Liste des investissements</a></li>
+                    <li><a  href="{{ path('app_evenement_index') }}">Liste des événements</a></li>
+
 							</ul>
 						</li>
 						
 						<li class="submenu"> <a href="#"><i class="far fa-bell"></i> <span> Projets </span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="display: none;">
-								<li><a href="chat.html"><i class="fas fa-comments"></i><span> Chat </span></a></li>
-								<li class="submenu"> <a href="#"><i class="fas fa-video camera"></i> <span> Calls </span> <span class="menu-arrow"></span></a>
-									<ul class="submenu_class" style="display: none;">
-										<li><a href="voice-call.html"> Voice Call </a></li>
-										<li><a href="video-call.html"> Video Call </a></li>
-										<li><a href="incoming-call.html"> Incoming Call </a></li>
-									</ul>
-								</li>
-								<li class="submenu"> <a href="#"><i class="fas fa-envelope"></i> <span>Stages </span> <span class="menu-arrow"></span></a>
-									<ul class="submenu_class" style="display: none;">
-										<li><a href="compose.html">Compose Mail </a></li>
-										<li><a href="inbox.html"> Inbox </a></li>
-										<li><a href="mail-veiw.html"> Mail Veiw </a></li>
-									</ul>
-								</li>
+			 
+			 										            <li><a href="{{ path('app_project_listE') }}">Liste des projets</a></li>
+
 							</ul>
 						</li>
 						<li class="submenu"> <a href="#"><i class="fas fa-calendar-alt"></i><span> Actualités </span> <span class="menu-arrow"></span></a>

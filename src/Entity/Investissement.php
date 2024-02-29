@@ -9,48 +9,62 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: InvestissementRepository::class)]
 class Investissement
 {
-
-    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id")]
+    private ?User $user = null;
+
+    #[Assert\NotBlank(message: "Veuillez saisir un nom.")]
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
-    private ?float $montant = null;
+    #[Assert\NotBlank(message: "Veuillez saisir un montant.")]
+    #[ORM\Column(type: 'integer')]
+    private ?int $montant = null;
 
+    #[Assert\NotBlank(message: "Veuillez saisir une date d'investissement.")]
     #[ORM\Column(type: 'date')]
     private ?\DateTimeInterface $dateInvestissement = null;
 
+    #[Assert\NotBlank(message: "Veuillez saisir une description.")]
     #[ORM\Column(type: 'text')]
     private ?string $description = null;
 
+    #[Assert\NotBlank(message: "Veuillez saisir un type d'investissement.")]
     #[ORM\Column(length: 255)]
     private ?string $typeInvestissement = null;
 
+    #[Assert\NotBlank(message: "Veuillez saisir une durée.")]
     #[ORM\Column(type: 'integer')]
     private ?int $duree = null;
 
-    #[ORM\Column(type: 'decimal', precision: 5, scale: 2)]
-    private ?float $tauxRendement = null;
+    #[Assert\NotBlank(message: "Veuillez saisir un taux de rendement.")]
+    #[ORM\Column(type: 'integer')]
+    private ?int $tauxRendement = null;
 
+    #[Assert\NotBlank(message: "Veuillez saisir un statut.")]
     #[ORM\Column(length: 50)]
     private ?string $statut = null;
 
     #[ORM\Column(type: 'datetime', options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeInterface $createdAt = null;
 
+    #[ORM\OneToOne(targetEntity: Project::class)]
+    #[ORM\JoinColumn(name: 'project_id', referencedColumnName: 'id')]
+    private ?Project $project = null;
+
     #[ORM\Column(type: 'datetime', options: ['default' => 'CURRENT_TIMESTAMP', 'onUpdate' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeInterface $updatedAt = null;
-
     
-    #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'investissement')]
+    #[ORM\OneToMany(mappedBy: 'investissement', targetEntity: Commentaire::class, cascade: ['remove'])]
     private Collection $commentaires;
 
-    #[ORM\OneToMany(targetEntity: Evenement::class, mappedBy: 'investissement')]
+    #[ORM\OneToMany(mappedBy: 'investissement', targetEntity: Evenement::class, cascade: ['remove'])]
     private Collection $evenements;
 
     public function getId(): ?int
@@ -203,11 +217,7 @@ class Investissement
 
         return $this;
     }
-
     
-
-
-
     public function getEvenements(): Collection
 {
     return $this->evenements;
@@ -231,6 +241,29 @@ public function removeEvenement(Evenement $evenement): self
             $evenement->setInvestissement(null);
         }
     }
+
+    return $this;
+}
+
+public function getProject(): ?Project
+{
+    return $this->project;
+}
+
+public function setProject(?Project $project): self
+{
+    $this->project = $project;
+    return $this;
+}
+
+public function getUser(): ?User
+{
+    return $this->user;
+}
+
+public function setUser(?User $user): static
+{
+    $this->user = $user;
 
     return $this;
 }

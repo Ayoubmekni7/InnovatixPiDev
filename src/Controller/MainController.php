@@ -1,6 +1,12 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\Evenement;
+use App\Form\EvenementType;
+use App\Repository\EvenementRepository;
+use App\Entity\Investissement;
+use App\Form\InvestissementType;
+use App\Repository\InvestissementRepository;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
 use App\Repository\CommentaireRepository;
@@ -19,12 +25,17 @@ class MainController extends AbstractController
     }
  
     #[Route('/event', name: 'app_event', methods: ['GET'])]
-    public function event(CommentaireRepository $commentaireRepository): Response
+    public function event(CommentaireRepository $commentaireRepository, InvestissementRepository $investissementRepository, EvenementRepository $evenementRepository): Response
     {
         return $this->render('main/eventsweb.html.twig', [
             'commentaires' => $commentaireRepository->findAll(),
+            'investissements' => $investissementRepository->findAll(),
+            'evenements' => $evenementRepository->findAll(),
         ]);
     }
+
+
+
   
 
     #[Route('/client/dashboard', name: 'app_dashboard')]

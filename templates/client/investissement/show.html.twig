@@ -411,6 +411,58 @@ background-image: url('{{ asset('client/assets/img/curved-images/curved0.jpg') }
             </div>
           </div>
         
+        <section class="py-5 bg-gray-100">
+        <div class="container">
+            <div class="row">
+               {% for evenement in evenements %}
+       
+                <div class="col-lg-8 mx-auto text-center">
+                    <div class="card card-blog card-plain">
+                      <div class="card-body px-0 pt-4">
+                            <p class="text-gradient text-primary text-gradient font-weight-bold text-sm text-uppercase">Enterprise</p>
+                            <a href="javascript:;">
+                                <h4>
+                       {{ evenement.nom }}
+                                </h4>
+                            </a>
+                            <p> 
+                                                   {{ evenement.description }}
+                            </p>
+                         </div>
+                        <div class="position-relative">
+                            <a class="d-block blur-shadow-image">
+                                <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/devices-table.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
+                            </a>
+                        </div>
+                             {% endfor %}
+    
+              </div>
+            </div>
+                      
+                    </div>
+                </div>
+          
+                              
+     
+              </div>
+            </div>  
+      
+
+ 
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </section>
+
+
+         
+
+
+
         </div>
         <footer class="footer pt-3">
           <div class="container-fluid">

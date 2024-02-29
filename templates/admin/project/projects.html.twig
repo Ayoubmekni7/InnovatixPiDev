@@ -43,8 +43,7 @@
 <th><center><strong>Budget</strong></center></th>
 <th><center><strong>Date</strong></center></th>
 <th><center><strong>Dureé</strong></center></th>
-<th><center><strong>Statut projet</strong></center></th>
-<th><center><strong>actions</strong></center></th>
+ <th><center><strong>actions</strong></center></th>
 
                                             </tr>
                                         </thead>
@@ -70,10 +69,9 @@
                                                 <td class="py-2"> <a href="tel:2012001851">{{ project.categorie }}</a></td>
                                                 <td class="py-2 ps-5">{{ project.descriptionProjet }}</td>
                                                 <td class="py-2">{{ project.budgetProjet }}</td>
-                                                <td class="py-2">{{ project.dateCreation ? project.dateCreation|date('Y-m-d') : '' }}</td>
+                                                <td class="py-2">{{ project.dateCreation ? project.dateCreation|date('d-m-Y') : '' }}</td>
                                                 <td class="py-2">{{ project.dureeProjet }}</td>
-                                                <td class="py-2">{{ project.statutProjet }}</td>
-                                                 <td >
+                                                  <td >
                                               
 														<a href="{{ path('app_project_indexshowsA', {'id': project.id}) }}" class="btn btn-danger shadow btn-xs sharp"><i class="bi bi-eye"> </i></a>
   										                <a href="{{ path('app_project_edit', {'id': project.id}) }}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
