@@ -48,6 +48,88 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()
             ->getResult();
     }
+    public function remove(User $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+    public function save(User $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    /**
+     * Used to upgrade (rehash) the user's password automatically over time.
+     */
+  
+      //count unBlocked users
+      public function countUnBlocked()
+      {
+          return $this->createQueryBuilder('u')
+              ->select('count(u.id)')
+              ->andWhere('u.isBlocked = :val')
+              ->setParameter('val', false)
+              ->getQuery()
+              ->getSingleScalarResult();
+      }
+//count number of users
+  public function countAll()
+  {
+      return $this->createQueryBuilder('u')
+          ->select('count(u.id)')
+          ->getQuery()
+          ->getSingleScalarResult();
+  }
+   //count users with role ADMIN
+   public function countAdmin()
+   {
+       return $this->createQueryBuilder('u')
+           ->select('count(u.id)')
+           ->andWhere('u.roles LIKE :roles')
+           ->setParameter('roles', '%ROLE_ADMIN%')
+           ->getQuery()
+           ->getSingleScalarResult();
+   }
+
+
+//count Blocked users
+public function countBlocked()
+{
+   return $this->createQueryBuilder('u')
+       ->select('count(u.id)')
+       ->andWhere('u.isBlocked = :val')
+       ->setParameter('val', true )
+       ->getQuery()
+       ->getSingleScalarResult();
+}
+//count users with role EMPLOYE
+public function countEmploye()
+{
+    return $this->createQueryBuilder('u')
+        ->select('count(u.id)')
+        ->andWhere('u.roles LIKE :roles')
+        ->setParameter('roles', '%ROLE_EMPLOYE%')
+        ->getQuery()
+        ->getSingleScalarResult();
+}
+
+//count users with role CLIENT
+public function countClient()
+{
+    return $this->createQueryBuilder('u')
+        ->select('count(u.id)')
+        ->andWhere('u.roles LIKE :roles')
+        ->setParameter('roles', '%ROLE_CLIENT%')
+        ->getQuery()
+        ->getSingleScalarResult();
+}
 }
 
 //    /**

@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
-
+use Knp\Component\Pager\PaginatorInterface;
 
 
 #[Route('/user')]
@@ -194,5 +194,68 @@ class UserController extends AbstractController
             'users' => $user,
         ]);
     } 
+    //block user by id
+    #[Route('/block/{id}', name: 'app_user_block', methods: ['GET', 'POST'])]
+    public function block(Request $request, User $user, UserRepository $userRepository): Response
+    {
+        $user->setIsBlocked(true);
+        $userRepository->save($user, true);
+       // $user->setEtat("l utlisateur est bloque");
+        return $this->redirectToRoute('app_user_clients', [], Response::HTTP_SEE_OTHER);
+    }
+
+    //unblock user by id
+    #[Route('/unblock/{id}', name: 'app_user_unblock', methods: ['GET', 'POST'])]
+    public function unblock(Request $request, User $user, UserRepository $userRepository): Response
+    {
+        $user->setIsBlocked(false);
+        $userRepository->save($user, true);
+       // $user->setEtat("l utilisateur est debloque");
+        return $this->redirectToRoute('app_user_clients', [], Response::HTTP_SEE_OTHER);
+    }
+    #[Route('/{id}/editAdmin', name: 'app_admin_edit', methods: ['GET', 'POST'])]
+    public function editA(Request $request, User $user, UserRepository $userRepository): Response
+    {
+        $form = $this->createForm(userType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $userRepository->save($user, true);
+            return $this->redirectToRoute('app_admin_back', [], Response::HTTP_SEE_OTHER);
+
+        }
+
+        return $this->renderForm('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
+    #[Route('/userStates', name: 'userStates')]
+    public function userStates(UserRepository $userRepository): Response
+    {
+        $countAllUsers = $userRepository->countAll();
+        $countAdminUsers = $userRepository->countAdmin();
+        $countEmployeUsers = $userRepository->countEmploye();
+        $countClientUsers = $userRepository->countClient();
+        $countUnBlockedUsers = $userRepository->countUnBlocked();
+        $countBlockedUsers = $userRepository->countBlocked();
+    
+        $userStats = [
+            'labels' => ['Admin', 'Employé', 'Client', 'Non bloqués', 'Bloqués'],
+            'data' => [
+                $countAdminUsers,
+                $countEmployeUsers,
+                $countClientUsers,
+                $countUnBlockedUsers,
+                $countBlockedUsers
+            ]
+        ];
+    
+        return $this->render('dashbord/dashbordAdmin.html.twig', [
+            'userStats' => $userStats,
+        ]);
+    }
+    
+    
 }?>
 

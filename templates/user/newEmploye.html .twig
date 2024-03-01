@@ -6,6 +6,7 @@
         <div class="container">
             <div class="row justify-content-center mt-5">
                 <div class="col-md-6">
+                <br><br><br><br><br><br>
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title text-center mb-4">Formulaire pour ajouter un employe</h5>
@@ -16,10 +17,13 @@
                             <div class="mb-3">
                                 {{ form_row(form.name, {'attr': {'class': 'form-control'}, 'id': 'name'}) }}
                             </div>
+                        
+                            <div class="mb-3">
+                                {{ form_row(form.cin, {'attr': {'class': 'form-control'}, 'id': 'cin'}) }}
+                            </div>
                             <div class="mb-3">
                                 {{ form_row(form.email, {'attr': {'class': 'form-control'}, 'id': 'email'}) }}
                             </div>
-                            <div class="mb-3">
                             <div class="mb-3">
                                 {{ form_row(form.password, {'attr': {'class': 'form-control'}, 'id': 'password'}) }}
                             </div>

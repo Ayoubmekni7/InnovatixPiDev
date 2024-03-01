@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -17,9 +18,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Assert\Length(
+        min: 8,
+        max: 8,
+        exactMessage: "Le numéro d'inscription doit contenir exactement 8 chiffres."
+    )]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Regex(
+        pattern:"^[a-zA-Z0-9._%+-]+@gmail\.com$^",
+        message: "adresse email doit se terminer par @gmail.com"
+    )]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -28,52 +38,86 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
+   
     #[ORM\Column]
+    #[Assert\Regex(
+        pattern:"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$^",
+        message: "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial"
+    )]
+    #[Assert\length(
+        min:8,
+        exactMessage: "Le mot de passe doit contenir au moins {{ limit }} caractères"
+    )]
     private ?string $password = null;
 
- 
-
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 8 caractères.")]
     private ?string $cin = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $dateNaissance = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 8, maxMessage: " numéro de téléphone doit contenir 8 chiffres")]
+
     private ?string $tel = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $photo = null;
+   /* #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: "Le champ  est obligatoire.")]
+    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
+    private ?string $photo = null;*/
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        maxMessage: "La longueur maximale est de 255 caractères."
+    )]
+    #[Assert\GreaterThan(
+        value: 200,
+        message: "Le salaire minimum est de 200."
+    )]
     private ?string $salaire = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $profession = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $poste = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $departement = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $dateEambauche = null;
 
+    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
+    private ?string $dateEambauche = null;
+/*
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank(message: "Le champ est obligatoire.")]
+    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $typeStage = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $dureeStage = null;
+    #[Assert\NotBlank(message: "Le champ est obligatoire.")]
+    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
+    private ?string $dureeStage = null;*/
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $name = null;
-
+    
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+    #[ORM\Column(type: "boolean")]
+    private $isBlocked = false;
 
     public function getId(): ?int
     {
@@ -209,7 +253,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPhoto(): ?string
+   /* public function getPhoto(): ?string
     {
         return $this->photo;
     }
@@ -219,7 +263,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->photo = $photo;
 
         return $this;
-    }
+    }*/
 
     public function getAdresse(): ?string
     {
@@ -292,7 +336,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
+/*
     public function getTypeStage(): ?string
     {
         return $this->typeStage;
@@ -315,7 +359,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->dureeStage = $dureeStage;
 
         return $this;
-    }
+    }*/
 
     public function getName(): ?string
     {
@@ -334,10 +378,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->isVerified;
     }
 
-    public function setIsVerified(bool $isVerified): static
+    public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
 
         return $this;
+    }
+    public function isBlocked(): ?bool
+{
+    return $this->isBlocked;
+}
+
+    /**
+     * @param bool $isBlocked
+     */
+    public function setIsBlocked(bool $isBlocked): void
+    {
+        $this->isBlocked = $isBlocked;
     }
 }

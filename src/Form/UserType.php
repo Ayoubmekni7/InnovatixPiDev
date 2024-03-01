@@ -16,46 +16,47 @@ class UserType extends AbstractType
     {
         $builder
         ->add('id')
-        ->add('name')
-            ->add('email', null, [
-                'constraints' => [
-                    new Assert\Regex([
-                        'pattern' => '/^[a-zA-Z0-9._%+-]+@gmail\.com$/',
-                        'message' => 'L\'adresse email doit se terminer par "@gmail.com"',
-                    ]),
-                ],
-            ])
-           // ->add('roles')
-            ->add('password',null, [
-                'constraints' => [
-                    new Assert\Length([
-                        'min' => 8,
-                        'minMessage' => 'Le mot de passe doit contenir au moins {{ limit }} caractères',
-                    ]),
-                    new Assert\Regex([
-                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
-                        'message' => 'Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial',
-                    ]),
-                ],
-            ])
-          
-            /*->add('cin',null, [
+       ->add('name', null, [
+      'constraints' => [
+        new Assert\NotBlank(['message' => 'Le nom est obligatoire.']),
+        new Assert\Length([
+            'min' => 2,
+            'max' => 255,
+            'minMessage' => 'Le nom doit contenir au moins {{ limit }} caractères.',
+            'maxMessage' => 'Le nom ne peut pas dépasser {{ limit }} caractères.'
+        ])
+    ]
+])
+->add('email', null, [
+    'constraints' => [
+        new Assert\NotBlank(['message' => 'L\'adresse email est obligatoire.']),
+     
+    ]
+])
+->add('password', null, [
+    'constraints' => [
+        new Assert\NotBlank(['message' => 'Le mot de passe est obligatoire.']),
+        // Ajoutez ici d'autres contraintes si nécessaire
+    ]
+])
+->add('cin', null, [
+    'constraints' => [
+        new Assert\Length([
+            'min' => 8,
+            'max' => 8,
+            'exactMessage' => 'Le numéro de CIN doit contenir exactement {{ limit }} chiffres.'
+        ])
+    ]
+])
+->add('dateNaissance')
+->add('tel', null, [
     'constraints' => [
         new Assert\Regex([
-            'pattern' => '/^[0-9]{8}$/',
-            'message' => 'Le numéro CIN doit être composé de 8 chiffres.',
-        ]),
-    ],
-])*/
-            ->add('dateNaissance' )
-            ->add('tel',null, [
-                'constraints' => [
-                    new Assert\Regex([
-                        'pattern' => '/^[0-9]{8}$/',
-                        'message' => 'Le numéro de téléphone doit contenir 8 chiffres',
-                    ]),
-                ],
-            ])
+            'pattern' => '/^\d{8}$/',
+            'message' => 'Le numéro de téléphone doit être composé de 8 chiffres.'
+        ])
+    ]
+])
            /* ->add('photo' FileType::class, [
     'constraints' => [
         new Assert\File([
@@ -70,20 +71,18 @@ class UserType extends AbstractType
     ],
 ])*/
             ->add('adresse')
-            ->add('salaire', null, [
-                'constraints' => [
-                    new Assert\Type([
-                        'type' => 'numeric',
-                        'message' => 'Veuillez saisir une valeur numérique',
-                    ]),
-                ],
-            ])
-            ->add('profession')
+            ->add('salaire')
+    
             ->add('poste')
             ->add('departement',ChoiceType::class, [
                 'choices' => [
-                    'Département 1' => 'Departement1',
-                    'Département 2' => 'Departement2',
+                    'Département 1' => 'RH',
+                    'Département 2' => 'Finance',
+                    'Département 2' => 'IT',
+                    'Département 2' => 'scoring',
+                    'Département 2' => 'credit',
+                    'Département 2' => 'projet',
+
                     // Ajoutez les autres départements ici
                 ],
                 'placeholder' => 'Sélectionnez un département',

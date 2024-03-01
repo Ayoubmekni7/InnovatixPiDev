@@ -121,7 +121,7 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('reset_password/reset.html.twig', [
@@ -142,23 +142,24 @@ class ResetPasswordController extends AbstractController
 
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
+            
         } catch (ResetPasswordExceptionInterface $e) {
             // If you want to tell the user why a reset email was not sent, uncomment
             // the lines below and change the redirect to 'app_forgot_password_request'.
             // Caution: This may reveal if a user is registered or not.
             //
             // $this->addFlash('reset_password_error', sprintf(
-            //     '%s - %s',
-            //     $translator->trans(ResetPasswordExceptionInterface::MESSAGE_PROBLEM_HANDLE, [], 'ResetPasswordBundle'),
-            //     $translator->trans($e->getReason(), [], 'ResetPasswordBundle')
-            // ));
-
+               //  '%s - %s',
+                // $translator->trans(ResetPasswordExceptionInterface::MESSAGE_PROBLEM_HANDLE, [], 'ResetPasswordBundle'),
+             // $translator->trans($e->getReason(), [], 'ResetPasswordBundle')
+            
+            
             return $this->redirectToRoute('app_check_email');
         }
 
         $email = (new TemplatedEmail())
-            ->from(new Address('Mariem.Mhamdi@esprit.tn', 'mail de verification'))
-            ->to($user->getEmail())
+            ->from(new Address('yesser.khaloui@etudiant-fst.utm.tn'))
+            ->to('khaluiyesser@gmail.com')
             ->subject('Your password reset request')
             ->htmlTemplate('reset_password/email.html.twig')
             ->context([
@@ -167,6 +168,7 @@ class ResetPasswordController extends AbstractController
         ;
 
         $mailer->send($email);
+       
 
         // Store the token object in session for retrieval in check-email route.
         $this->setTokenObjectInSession($resetToken);
