@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Virement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,6 +17,11 @@ class VirementType extends AbstractType
             ->add('compte')
             ->add('NometPrenom')
             ->add('Cin')
+            ->add('photoCinV', FileType::class, [
+                'label' => 'Choisir une photo',
+                'required' => true,
+                'mapped' => false,
+            ])
             ->add('Email')
             ->add('TypeVirement',  ChoiceType::class, [
                 'choices' => [

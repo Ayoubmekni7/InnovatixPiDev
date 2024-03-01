@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ChequeType extends AbstractType
@@ -16,6 +17,11 @@ class ChequeType extends AbstractType
         $builder
             ->add('compte')
             ->add('Cin')
+            ->add('photoCin', FileType::class, [
+                'label' => 'Choisir une photo',
+                'required' => true,
+                'mapped' => false,
+            ])
             ->add('NomPrenom')
             ->add('Email')
             ->add('date')

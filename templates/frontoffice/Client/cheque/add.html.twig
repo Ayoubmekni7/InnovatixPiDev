@@ -42,6 +42,13 @@
                                     </div>
                                 </div>
                                 <div class="mb-3 row justify-content-center align-items-center"> <!-- Ajout des classes justify-content-center et align-items-center -->
+                                    <label class="col-sm-3 col-form-label " style="margin-right: 550px ">{{ form_label(form.photoCin, 'Photo de Cin ') }}</label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.photoCin, { 'attr': {'class': 'form-control', '': 'Votre CIN'} }) }}
+                                        {{ form_errors(form.photoCin, {'attr': {'class': ''}}) }}
+                                    </div>
+                                </div>
+                                <div class="mb-3 row justify-content-center align-items-center"> <!-- Ajout des classes justify-content-center et align-items-center -->
                                     <label class="col-sm-3 col-form-label" style="margin-right: 550px ">{{ form_label(form.NomPrenom, 'Nom et Prénom') }}</label>
                                     <div class="col-sm-9">
                                         {{ form_widget(form.NomPrenom, { 'attr': {'class': 'form-control', 'placeholder': 'Entrez votre nom et prénom'} }) }}

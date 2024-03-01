@@ -41,6 +41,7 @@ class Virement
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez saisir le montant')]
+    #[Assert\Regex(pattern: '/^\d+(\.\d+)?$/', message: 'Le montant doit être un nombre décimal')]
     #[Assert\Positive(message: 'Veuillez saisir un montant positif')]
     private ?string $Montant = null;
 
@@ -50,6 +51,7 @@ class Virement
 
     #[ORM\Column]
     #[Assert\Length(min: 8, max: 8, exactMessage: 'Le numéro de CIN doit contenir 8 chiffres ')]
+    #[Assert\Regex(pattern: '/^(1|0)[0-9]{7}$/', message: 'Le numéro de cin doit commencer par 1 ou 0 ')]
     private ?int $Cin = null;
 
     #[ORM\Column(nullable: true)]
@@ -75,6 +77,9 @@ class Virement
 
     #[ORM\Column(nullable: true)]
     private ?int $ActionsEm = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $photoCinV = null;
 
     public function getId(): ?int
     {
@@ -236,6 +241,18 @@ class Virement
     public function setActionsEm(?int $ActionsEm): static
     {
         $this->ActionsEm = $ActionsEm;
+
+        return $this;
+    }
+
+    public function getPhotoCinV(): ?string
+    {
+        return $this->photoCinV;
+    }
+
+    public function setPhotoCinV(?string $photoCinV): static
+    {
+        $this->photoCinV = $photoCinV;
 
         return $this;
     }

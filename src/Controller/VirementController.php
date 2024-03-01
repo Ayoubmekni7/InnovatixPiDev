@@ -5,14 +5,18 @@ namespace App\Controller;
 use App\Entity\Virement;
 use App\Form\VirementType;
 use App\Repository\VirementRepository;
+use App\Service\uploadPhoto;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class VirementController extends AbstractController
 {
+
+    public string $directory = 'uploads_directory';
     #[Route('/virements', name: 'app_virement')]
     public function index(): Response
     {
@@ -21,15 +25,17 @@ class VirementController extends AbstractController
         ]);
     }
     #[Route('/addvirement', name: 'addvirement')]
-    public function addvirement(VirementRepository $virementRepository, Request $request, ManagerRegistry $managerRegistry): Response
+    public function addvirement(VirementRepository $virementRepository, Request $request, ManagerRegistry $managerRegistry , SluggerInterface $slugger, uploadPhoto $uploadPhoto): Response
     {
         $virement= new Virement ();
         $form = $this->createForm(VirementType::class,$virement);
         $em = $managerRegistry->getManager();
         $form->handleRequest($request);
-        $virement->setDecisionV("encours");
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $photo = $form->get('photoCinV')->getData();
+            $photoCinV=$uploadPhoto->uploadPhoto($photo);
+            $virement->setPhotoCinV($photoCinV);
+            $virement->setDecisionV("encours");
             $em->persist($virement);
             $em->flush();
             return $this->redirectToRoute('historiqueV');

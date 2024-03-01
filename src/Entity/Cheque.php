@@ -23,6 +23,7 @@ class Cheque
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez saisir le montant')]
     #[Assert\Regex(pattern: '/^\d+(\.\d+)?$/', message: 'Le montant doit être un nombre décimal')]
+    #[Assert\Positive(message: 'Veuillez saisir un montant positif')]
     private ?float $Montant = null;
 
     #[ORM\Column]
@@ -55,6 +56,7 @@ class Cheque
     private ?string $NomPrenom = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\EqualTo('today',message: 'Veuillez saisir la date d\'aujourd\'hui')]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -68,6 +70,9 @@ class Cheque
 
     #[ORM\Column(nullable: true)]
     private ?int $ActionsE = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $photoCin = null;
 
 
 
@@ -230,6 +235,18 @@ class Cheque
     public function setActionsE(?int $ActionsE): static
     {
         $this->ActionsE = $ActionsE;
+
+        return $this;
+    }
+
+    public function getPhotoCin(): ?string
+    {
+        return $this->photoCin;
+    }
+
+    public function setPhotoCin(?string $photoCin): static
+    {
+        $this->photoCin = $photoCin;
 
         return $this;
     }

@@ -5,18 +5,24 @@ namespace App\Controller;
 use App\Entity\Cheque;
 use App\Form\ChequeType;
 use App\Repository\ChequeRepository;
+use App\Service\uploadPhoto;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
 
 class ChequeController extends AbstractController
 {
     /*Client*/
 
-    #[Route('/addcheques', name: 'addcheques')]
-    public function addcheques(ChequeRepository $chequeRepository, Request $request, ManagerRegistry $managerRegistry): Response
+
+/* #[Route('/addcheques', name: 'addcheques')]
+    public function addcheques(ChequeRepository $chequeRepository, Request $request, ManagerRegistry $managerRegistry , SluggerInterface $slugger , UploadedFile $uploadedFile): Response
     {
         $cheque = new Cheque();
         $form = $this->createForm(ChequeType::class, $cheque);
@@ -32,7 +38,34 @@ class ChequeController extends AbstractController
         return $this->render('frontoffice/Client/cheque/add.html.twig', [
             'form' => $form->createView()
         ]);
+    } */
+
+    #[Route('/addcheques', name: 'addcheques')]
+    public function addcheques(Request $request, ManagerRegistry $managerRegistry, SluggerInterface $slugger , uploadPhoto $uploadPhoto): Response
+    {
+        $cheque = new Cheque();
+        $form = $this->createForm(ChequeType::class, $cheque);
+        $form->handleRequest($request);
+
+
+        $subject ="Demande effectuer avec succés";
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $photo = $form->get('photoCin')->getData();
+            $photoCin=$uploadPhoto->uploadPhoto($photo);
+            $cheque->setPhotoCin($photoCin);
+            $cheque->setDecision("encours");
+            $x=$managerRegistry->getManager();
+            $x->persist($cheque);
+            $x->flush();
+            return $this->redirectToRoute('historique');
+        }
+
+        return $this->render('frontoffice/Client/cheque/add.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
+
 
     #[Route('/historique', name: 'historique')]
     public function historique(ChequeRepository $chequeRepository):Response
@@ -76,15 +109,22 @@ class ChequeController extends AbstractController
         ]);
     }
     #[Route('/ApprouverCheque/{id}', name: 'ApprouverCheque')]
-    public function ApprouverCheque($id, ManagerRegistry $managerRegistry, ChequeRepository $chequeRepository):Response
+    public function ApprouverCheque($id, ManagerRegistry $managerRegistry, ChequeRepository $chequeRepository ,Mailing $mailing):Response
     {
         $cheque=$chequeRepository->find($id);
         $cheque->setActionsC(1);
         $emm=$managerRegistry->getManager();
         $emm->persist($cheque);
         $emm->flush();
+        $to=$cheque->getEmail();
+        $nometprenom=$cheque->getNometprenom();
+        $subject="Félicitations";
+        $html="<div> Salut {$nometprenom}.<br>votre demande a été accepté .<br>";
+        $this->emailService->sendEmail($to,$subject,$html);
         return  $this->redirectToRoute('showListeCheque');
     }
+
+
     #[Route('/deleteDemandeCheque/{id}', name: 'deleteDemandeCheque')]
     public function deleteDemandeCheque($id,ManagerRegistry $managerRegistry,ChequeRepository $repository):Response
     {

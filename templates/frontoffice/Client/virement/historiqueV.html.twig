@@ -14,6 +14,14 @@
                     text-decoration: underline;
 
                 }
+                .edit-icon {
+                    color: blue;
+                }
+                .trash-icon {
+                    color: red;
+                }
+
+
 
             </style>
             <div class="container-fluid py-4">
@@ -31,11 +39,14 @@
                                     <table class="table align-items-center mb-0">
                                         <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom et Prenom</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Cin</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">transferezA</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Montant</th>
-                                            <th class="text-secondary opacity-7">Actions</th>
+                                            <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nom et Prenom</th>
+                                            <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Cin</th>
+                                            <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Photo de Cin</th>
+
+                                            <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">transferezA</th>
+                                            <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2 ">Montant</th>
+                                            <th  class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2 ">Resultat </th>
+
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -52,6 +63,12 @@
                                                 <td>
                                                     <p class="text-xs font-weight-bold mb-0">{{ i.Cin}}</p>
 
+
+                                                <td>  <a href="{{ asset('uploads_directory/' ~ i.photoCinV) }}" target="_blank"><button class="badge badge-sm bg-gradient-primary">Ouvrir Photo </button></a><br><br>
+                                                    <a href="{{ asset('uploads_directory/' ~ i.photoCinV) }}" download="{{ i.NometPrenom  ~ '.image' }}">
+                                                        <button class="badge badge-sm bg-gradient-dark">Télécharger  &nbsp;<i class="fa fa-download color-warning"></i>
+                                    </button></a>
+
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <p class="text-xs font-weight-bold mb-0">{{ i.transferezA}}</p>
@@ -66,12 +83,16 @@
 
                                                     {% if (i.DecisionV == 'encours') %}
                                                         <span class="badge badge-sm bg-gradient-secondary">En cours</span>
+                                                        &nbsp;
                                                         <a href="{{ path('modifierVirement', { 'id': i.id }) }}">
-                                                            <span class="modifier-text">Modifier</span>
-                                                        </a>
+                                                        <i class="fas fa-pencil-alt text-dark me-2 edit-icon" aria-hidden="true"></i>
+
+                                                    </a>
+                                                        &nbsp;
                                                         <a href="{{ path('deleteVirement', { 'id': i.id }) }}">
-                                                            <span class="supprimer-text" onclick="return confirm('Etes-vous sur de vouloir supprimer cet élément ?');">supprimer</span>
-                                                        </a>
+                                                        <i class="far fa-trash-alt me-2 trash-icon" aria-hidden="true"></i>
+
+                                                    </a>
                                                     {% endif %}
 
 
@@ -79,6 +100,7 @@
                                                         <span class="badge badge-sm bg-gradient-danger"> &nbsp; Réfuser &nbsp;  </span>
                                                     {% endif %}
                                                 </td>
+
                                             </tr>
 
 

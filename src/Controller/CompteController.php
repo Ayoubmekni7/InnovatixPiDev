@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Compte;
 use App\Form\CompteType;
 use App\Repository\CompteRepository;
+use App\Service\mailing;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CompteController extends AbstractController
 {
+    public Mailing $emailService;
+    public string $directory = 'uploads_directory';
+    public function __construct(Mailing $emailService)
+    {
+        $this->emailService = $emailService;
+    }
     #[Route('/comptes', name: 'app_compte')]
     public function index(): Response
     {
@@ -20,15 +27,20 @@ class CompteController extends AbstractController
         ]);
     }
     #[Route('/createcompte', name: 'createcompte')]
-    public function createcompte(CompteRepository $compteRepository ,Request $request,ManagerRegistry $managerRegistry):Response
+    public function createcompte(CompteRepository $compteRepository ,Request $request,ManagerRegistry $managerRegistry,mailing $mailing):Response
     {
         $compte =new Compte();
         $form=$this->createForm(CompteType::class,$compte);
         $em=$managerRegistry->getManager();
         $form->handleRequest($request);
+        $to =$compte->getEmail();
+        $nom =$compte->getNom().''.$compte->getPrenom();
+        $subject = "Demande effectuer avec succés";
+        $html="<div> Bonjour {$nom}.<br>Votre Demande compte .<br>";
         if ($form->isSubmitted() && $form->isValid()){
             $em->persist($compte);
             $em->flush();
+            $this->emailService->sendEmail($to,$subject ,$html);
             return $this->redirectToRoute('succses');
             {#return new Response('creation de compte');#}
 
@@ -85,13 +97,19 @@ class CompteController extends AbstractController
         ]);
     }
     #[Route('/ApprouveCompte/{id}', name: 'ApprouveCompte')]
-    public function ApprouveCompte($id,ManagerRegistry $managerRegistry ,CompteRepository $compteRepository ): Response
+    public function ApprouveCompte($id, ManagerRegistry $managerRegistry , CompteRepository $compteRepository , mailing $mailing): Response
     {
         $compte=$compteRepository->find($id);
         $compte->setStatut(1);
         $emm=$managerRegistry->getManager();
         $emm->persist($compte);
-        $emm->flush();;
+        $emm->flush();
+        $to =$compte->getEmail();
+        $nom =$compte->getNom().$compte->getPrenom();
+        $subject = "Compte Créer avec succés";
+            $html = "<div>Bonjour {$nom}.<br>Votre Compte a été Créer .<br>";
+            $this->emailService->sendEmail($to, $subject, $html);
+
         return $this->redirectToRoute('showHistorique');
     }
 
