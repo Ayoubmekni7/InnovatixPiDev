@@ -22,15 +22,14 @@
           <h2 class="title">Se Connecter</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" class="input" name="email" id="inputEmail" value="{{ last_username }}" autocomplete="email" required autofocus placeholder="Identifiant">
+            <input type="text" class="input" name="email" id="inputEmail"  autocomplete="email" required autofocus placeholder="Identifiant">
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" class="input" name="password" id="inputPassword" autocomplete="current-password" required placeholder="Mot de passe" />
           </div>
           <div>
-            <input type="checkbox" class="form-check-input" id="basic_checkbox_1">
-            <label class="form-check-label" for="basic_checkbox_1">Mot de passe oublié ?</label>
+           <a href="{{ path ('app_forgot_password_request') }}">Forgot Password?</a>
           </div>
           <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
           <input type="submit" class="btn" value="Se connecter">

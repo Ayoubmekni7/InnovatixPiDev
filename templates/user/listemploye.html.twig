@@ -1,136 +1,75 @@
 {% extends 'base.html.twig' %}
 
-    {% block body %}
-    
-        <div class="content-body">
-            <div class="container-fluid">
-				<div class="row">
-					<div class="col-lg-12">
-						<!-- Lien afficher list des employés -->
-						
-						</div>
-						
-				
-                <!-- row -->
+{% block body %}
 
-                <div class="row">
-                   
-					<div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Liste des employés</h4>
-                                <a href="{{ path('app_user_newemploye')}}" class="btn btn-outline-success btn-rounded fs-16">+ Nouveau employé</a>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-responsive-md">
-                                        <thead>
-                                            <tr >
-                                            
-                            
-                                                <th><strong>id</strong></th>
-                                                <th><strong>nom</strong></th>
-                                                <th><strong>Email</strong></th>
-                                                <th><strong>date naissance</strong></th>
-                                                <th><strong>tel</strong></th>
-                                                <th><strong>adresse</strong></th>
-                                                <th><strong>salaire</strong></th>
-                                                <th><strong>poste</strong></th>
-                                                <th><strong>date embauche</strong></th>
-                                                 <th><strong>departement</strong></th>
+    <div class="content-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Lien afficher list des employés -->
+                    {# Ajoutez ici le lien avec le texte à traduire #}
+                </div>
+            </div>
 
-                                                
+            <!-- row -->
 
-												<th><strong>action</strong></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                         {% for user in users %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">{{ 'Liste des employés' | trans }}</h4>
+                            <a href="{{ path('app_user_newemploye')}}" class="btn btn-outline-success btn-rounded fs-16">{{ '+ Nouveau employé' | trans }}</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-responsive-md">
+                                    <thead>
+                                        <tr>
+                                            <th><strong>{{ 'id' | trans }}</strong></th>
+                                            <th><strong>{{ 'nom' | trans }}</strong></th>
+                                            <th><strong>{{ 'Email' | trans }}</strong></th>
+                                            <th><strong>{{ 'date naissance' | trans }}</strong></th>
+                                            <th><strong>{{ 'tel' | trans }}</strong></th>
+                                            <th><strong>{{ 'adresse' | trans }}</strong></th>
+                                            <th><strong>{{ 'salaire' | trans }}</strong></th>
+                                            <th><strong>{{ 'poste' | trans }}</strong></th>
+                                            <th><strong>{{ 'date embauche' | trans }}</strong></th>
+                                            <th><strong>{{ 'departement' | trans }}</strong></th>
+                                            <th><strong>{{ 'action' | trans }}</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for user in users %}
                                             <tr>
-                                                
-                                                
-                                                <td>{{user.id}}</td>
-                                                <td>{{user.name}}</td>
-                                                <td>{{user.email}}</td>
-                                                <td>{{user.dateNaissance }}</td>
+                                                <td>{{ user.id }}</td>
+                                                <td>{{ user.name }}</td>
+                                                <td>{{ user.email }}</td>
+                                                <td>{{ user.dateNaissance }}</td>
                                                 <td>{{ user.tel }}</td>
-												<td>{{user.adresse}}</td>
-                                                 <td>{{user.salaire}}</td>
-                                                  <td>{{user.poste}}</td>
-                                                  <td>{{user.dateEambauche |date('Y-m-d ') }}</td>
-                                                   <td>{{user.departement}}</td>
-                                                     <td>         
-                                                   
-
-                                             
+                                                <td>{{ user.adresse }}</td>
+                                                <td>{{ user.salaire }}</td>
+                                                <td>{{ user.poste }}</td>
+                                                <td>{{ user.dateEambauche | date('Y-m-d') }}</td>
+                                                <td>{{ user.departement }}</td>
+                                                <td>
                                                     <div class="d-flex">
                                                         <button type="button" class="btn btn-primary shadow btn-xs sharp" onclick="window.location.href='{{ path('app_user_editEmploye', { 'id': user.id }) }}'">
                                                             <i class="bi bi-pencil"></i> 
                                                         </button>
                                                         <button type="button" class="btn btn-danger shadow btn-xs sharp" onclick="window.location.href='{{ path('app_deleteEmploye', { 'id': user.id }) }}'">
-                                                        <i class="fa fa-trash"></i>                          
+                                                            <i class="fa fa-trash"></i>                          
                                                         </button>
                                                     </div>
-                                                    
-   
                                                 </td>
-                                            
-										     {% endfor %}
-                                            <tr>
-                                                
-                                                <td><strong>542448</strong></td>
-                                                <td>mariem mhamdi</td>
-                                                <td>mariem@user.com	</td>
-                                                <td>6 aout 2000 </td>
-                                                <td>99400500</td>
-												<td>arianna</td>
-                    
-                                                <td>1000</td>
-                                                <td>charge clientaire</td>
-                                                   <td> 1septembre 2020</td>
-                                                      <td>RH</td>
-                                               
-                                                
-                                                            
-                       
-                                                    
-                                            
-                                               
-                                                <td>
-                                                        <div class="d-flex">
-                                                            <button type="button" class="btn btn-primary shadow btn-xs sharp me-1"onclick=">
-                                                                <i class="bi bi-pencil"></i> <!-- Utilisation de l'icône de modification -->
-                                                            </button>
-                                                        
-
-
-                                                            </button>
-                                                            <button type="button" class="btn btn-danger shadow btn-xs sharp">
-                                                                <i class="fa fa-trash"></i> <!-- Garder l'icône de suppression -->
-                                                            </button>
-                                                            
-                                                            
-                                                        </div>
-                                                            
-                                                    
-                                                    </td>
-                                         
-    
-                                                    
-
-</td>
-
-
                                             </tr>
-                   
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-					
                 </div>
             </div>
         </div>
-    {% endblock %}
+    </div>
+{% endblock %}

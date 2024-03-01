@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
-
+use Symfony\Component\Security\Core\User\UserInterface;
 class LoginAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
@@ -73,5 +74,16 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             return $this->urlGenerator->generate(self::LOGIN_ROUTE);
         }
     }
-    }
+  /*  public function checkCredentials($credentials, UserInterface $user)
+    {
+        // Vérifier si l'utilisateur est bloqué
+        if ($user->isBlocked()) {
+            throw new CustomUserMessageAuthenticationException('Votre compte a été bloqué.');
+        }
+
+        // Votre logique de vérification des identifiants ici
+    }*/
+
+}
+    
 
