@@ -9,12 +9,10 @@ use App\Repository\OffreStageRepository;
 use App\Service\AnalyseCv;
 use App\Service\Mailing;
 use App\Service\uploadFile;
-use DateTime;
-use DateTimeZone;
+
 use Doctrine\Persistence\ManagerRegistry;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -67,6 +65,7 @@ class DemandeStageController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $file =  $form->get('cv')->getData();
             $cv = $uploadFile->uploadFile($file);
+            
             $demande->setCv($cv);
             $demande->setEtat("encours");
             $x = $managerRegistry->getManager();
@@ -111,7 +110,7 @@ class DemandeStageController extends AbstractController
         return $this->redirectToRoute('AffichageDesDemandes');
     }
     #[Route('/demandeStageOffre/{id}', name: 'demandeStageOffre')]
-    public function demandeStageOffre($id,uploadFile $uploadFile,Request $request,ManagerRegistry $managerRegistry,SluggerInterface $slugger,OffreStageRepository $offreStageRepository): Response
+    public function demandeStageOffre($id,uploadFile $uploadFile,Request $request,ManagerRegistry $managerRegistry,SluggerInterface $slugger,OffreStageRepository $offreStageRepository,AnalyseCv $cvAnalyseur): Response
     {
         $offre = $offreStageRepository->find($id);
         $demandeO = new Demandestage();
@@ -124,6 +123,9 @@ class DemandeStageController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $file =  $form->get('cv')->getData();
             $cv = $uploadFile->uploadFile($file);
+            // Analyseur de CV
+            $cheminFichier = $this->getParameter('uploads_directory').'/'.$cv;
+            $demandeO->setScore($cvAnalyseur->analyseCV($cheminFichier, $offre->getMotsCles()));
             $demandeO->setCv($cv);
             $x = $managerRegistry->getManager();
             $demandeO->setOffreStage($offre);
@@ -142,10 +144,10 @@ class DemandeStageController extends AbstractController
     #[Route('/deleteDemandeA/{id}/', name: 'deleteDemande')]
     public function deleteDemandeA($id, ManagerRegistry $manager, DemandeStageRepository $repo): Response
     {
-        $emm = $manager->getManager();
+        $em = $manager->getManager();
         $idremove = $repo->find($id);
-        $emm->remove($idremove);
-        $emm->flush();
+        $em->remove($idremove);
+        $em->flush();
         $to = $idremove->getEmail();
         $nom = $idremove->getNom().$idremove->getPrenom();
         $subject = "Demande effectuer avec succés";

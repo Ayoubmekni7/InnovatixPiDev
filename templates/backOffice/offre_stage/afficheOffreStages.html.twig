@@ -135,7 +135,7 @@
                                     {% for a in offres %}
                                         <tr>
                                             <td>{{ a.id }}</td>
-                                            <td ><a href="{{ path('DemandeParOffres',{'id':a.id}) }}" class="direction">{{ a.title }}</a></td>
+                                            <td ><a  class="direction">{{ a.title }}</a></td>
                                             <td>{{ a.domaine }}</td>
                                             <td>{{ a.typeOffre }}</td>
                                             <td>{{ a.postePropose }}</td>
@@ -201,7 +201,7 @@
                                             </td>
                                             <td style="margin-left: 10px">
                                                 <div class="d-flex" style="margin: auto">
-                                                    <a href="{{ path('editOffre', {'id':a.id}) }}">
+                                                    <a href="{{ path('DemandeParOffres',{'id':a.id}) }}">
                                                         <button class="show btn btn-info shadow btn-xs sharp me-1  ">show</button>
                                                     </a>
                                                     <a href="{{ path('editOffre', {'id':a.id}) }}">

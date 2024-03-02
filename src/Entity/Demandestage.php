@@ -84,6 +84,9 @@ class Demandestage
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\Callback(callback: [self::class, 'validateDate'])]
     private \DateTimeInterface $date;
+
+    #[ORM\Column]
+    private ?float $score = null;
     
     public function __construct() {
         $this->date = new \DateTime('2021-02-01');
@@ -243,6 +246,18 @@ class Demandestage
     public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getScore(): ?float
+    {
+        return $this->score;
+    }
+
+    public function setScore(float $score): static
+    {
+        $this->score = $score;
 
         return $this;
     }
