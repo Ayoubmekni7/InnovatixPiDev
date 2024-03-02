@@ -1,4 +1,4 @@
- {% extends 'base.html.twig' %}
+ {% extends 'baseadmin.html.twig' %}
 {% block nompage %}Réclamations{% endblock %}
 
         {% block body %}
@@ -52,18 +52,29 @@
                                     <div class="compose-content">
                                     {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
                                             <div class="mb-3">
+                                                 {{ form_label(form.adrRep, 'Adresse répondant :') }}
+
                                                 {{ form_row(form.adrRep, {'attr': {'class': 'form-control bg-transparent'},'id':'adrRep', 'label': false, 'placeholder': 'Envoyer à:'}) }}
 
                                             </div>
                                                 <div class="mb-3">
+                                                {{ form_label(form.dateRep, 'Date de la réponse :') }}
+
                                                 {{ form_row(form.dateRep, {'attr': {'class': 'form-control bg-transparent'}, 'id':'dateRep' ,'label': false, 'placeholder': 'Objet'}) }}
 
                                             </div>
                                             
                                             <div class="mb-3">
-                                              {{ form_row(form.contenuRep, {'attr': {'class': 'textarea_editor form-control bg-transparent','id':'contenuRep', 'rows': '15', 'placeholder': 'Entrez votre réponse'}}) }}
-                                            </div>
+                                            {{ form_label(form.contenuRep, 'Contenu de la réponse :') }}
 
+                                              {{ form_row(form.contenuRep, {'attr': {'class': 'textarea_editor form-control bg-transparent'},'id':'contenuRep', 'rows': '15', 'placeholder': 'Entrez votre réponse'}) }}
+                                            </div>
+                                           <div class="mb-3">
+                                                 {{ form_label(form.pieceJRep, 'Pièce jointe :') }}
+
+                                                {{ form_row(form.pieceJRep, {'attr': {'class': 'form-control bg-transparent'}, 'id':'pieceJRep' , 'placeholder': 'piece jointe'}) }}
+
+                                            </div>
                                         
 
                                     </div>

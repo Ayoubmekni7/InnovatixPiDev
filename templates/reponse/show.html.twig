@@ -1,6 +1,6 @@
 
- {% extends 'base.html.twig' %}
-{% block nompage %}Réclamations{% endblock %}
+ {% extends 'baseadmin.html.twig' %}
+{% block nompage %}Réponses{% endblock %}
 
         {% block body %}
  <!--**********************************
@@ -18,7 +18,7 @@
                             <div class="card-body">
                                 <div class="email-left-box px-0 mb-3">
                                     <div class="p-0">
-                                        <a href="#" class="btn btn-primary btn-block">Réclamation</a>
+                                        <a href="#" class="btn btn-primary btn-block">Réponses</a>
                                     </div>
                                     <div class="mail-list rounded mt-4">
 										<a href="javascript:void()" class="list-group-item"><i class="fa fa-trash font-18 align-middle me-2"></i>Supprimer</a>
@@ -29,7 +29,7 @@
 											<i class="fa fa-chevron-down"></i>
 										</div>
                                         <a href="email-inbox.html" class="list-group-item"><span class="icon-warning"><i class="fa fa-circle"></i></span>
-                                           oups</a>
+                                           {{ reponse.reclamation.depRec }}</a>
                                        
                                       </div>
                                 </div>
@@ -55,8 +55,8 @@
                                   
     
            
-                            <div class="mb-3">
-                                <input type="text" class="form-control bg-transparent" value="adresse" readonly>
+                             <div class="mb-3">
+                                <input type="text" class="form-control bg-transparent" value="{{ reponse.reclamation.adrRec }}" readonly>
                             </div>
                             <div class="mb-3">
                                 <input type="text" class="form-control bg-transparent" value="{{ reponse.adrRep }}" readonly>
@@ -67,9 +67,12 @@
                             <div class="mb-3">
                                 <textarea class="form-control bg-transparent" rows="15" readonly>{{ reponse.contenuRep }}</textarea>
                             </div>
-                       
+                       <div class="mb-3">
+                                <textarea class="form-control bg-transparent" rows="15" readonly>{{ reponse.pieceJRep }}</textarea>
+                            </div>
+                           
                                    <div class="text-start mt-4 mb-3">
-                                    <a href="{{path('app_reponse_index')}}" class="btn btn-primary btn-sl-sm me-2""><span class="me-2"><i class="fa fa-paper-plane"></i></span>Liste des réponses</a>
+                                    <a href="{{path('app_reponse_index')}}" class="btn btn-primary btn-sl-sm me-2"><span class="me-2"><i class="fa fa-paper-plane"></i></span>Liste des réponses</a>
                                     
                                    </div>
                                 </div>

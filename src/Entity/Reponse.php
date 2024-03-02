@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ReponseRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 
@@ -16,17 +17,32 @@ class Reponse
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Email(message:"'{{ value }}' n'est pas de la forme exemple@exemple.com")]
+    #[Assert\NotBlank(message: 'Veuillez saisir votre adresse')]
     #[ORM\Column(length: 255)]
     private ?string $adrRep = null;
 
+    #[Assert\NotBlank(message:"Veuillez saisir la date de réponse")]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateRep = null;
 
+    #[Assert\NotBlank(message:"Veuillez saisir le contenu de la réponse")]
     #[ORM\Column(length: 255)]
     private ?string $contenuRep = null;
 
-    #[ORM\ManyToOne(inversedBy: 'reponses' , targetEntity:Reclamation::class)]
+  
+
+    #[ORM\Column(length: 255)]
+    private ?string $pieceJRep = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reponses')]
     private ?Reclamation $reclamation = null;
+
+    #[ORM\ManyToOne(inversedBy: 'reponse')]
+    private ?User $user = null;
+
+  
+
 
     public function getId(): ?int
     {
@@ -69,6 +85,22 @@ class Reponse
         return $this;
     }
 
+   
+
+    
+
+    public function getPieceJRep(): ?string
+    {
+        return $this->pieceJRep;
+    }
+
+    public function setPieceJRep(string $pieceJRep): static
+    {
+        $this->pieceJRep = $pieceJRep;
+
+        return $this;
+    }
+
     public function getReclamation(): ?Reclamation
     {
         return $this->reclamation;
@@ -80,4 +112,20 @@ class Reponse
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    
+
 }
+

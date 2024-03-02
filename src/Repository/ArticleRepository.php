@@ -45,4 +45,16 @@ class ArticleRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+/**
+     * @return Article[] 
+     */
+    public function findThreeArticles()
+    {
+        return $this->createQueryBuilder('a')
+            ->setMaxResults(3) // Limite à 3 articles
+            ->getQuery()
+            ->getResult();
+    }
 }
+

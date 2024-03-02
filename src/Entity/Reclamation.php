@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ReclamationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -40,8 +41,20 @@ class Reclamation
     #[ORM\Column(length: 255 , nullable:true)]
     private ?string $statutRec = null;
 
-    #[ORM\OneToMany(mappedBy: 'reclamation', targetEntity: Reponse::class)]
+
+
+    #[ORM\Column(length: 255)]
+    private ?string $pieceJRec = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateRec = null;
+
+    #[ORM\OneToMany(mappedBy: 'reclamation', targetEntity: Reponse::class, cascade:["remove"])]
     private Collection $reponses;
+
+    #[ORM\ManyToOne(inversedBy: 'reclamation')]
+    private ?User $user = null;
+
 
     
     public function __construct()
@@ -116,6 +129,44 @@ class Reclamation
         return $this;
     }
 
+    
+
+    public function getNomAutRec(): ?string
+    {
+        return $this->nomAutRec;
+    }
+
+    public function setNomAutRec(string $nomAutRec): static
+    {
+        $this->nomAutRec = $nomAutRec;
+
+        return $this;
+    }
+
+    public function getPieceJRec(): ?string
+    {
+        return $this->pieceJRec;
+    }
+
+    public function setPieceJRec(string $pieceJRec): static
+    {
+        $this->pieceJRec = $pieceJRec;
+
+        return $this;
+    }
+
+    public function getDateRec(): ?\DateTimeInterface
+    {
+        return $this->dateRec;
+    }
+
+    public function setDateRec(\DateTimeInterface $dateRec): static
+    {
+        $this->dateRec = $dateRec;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Reponse>
      */
@@ -145,16 +196,21 @@ class Reclamation
 
         return $this;
     }
-
-    public function getNomAutRec(): ?string
+    public function __toString(): string
     {
-        return $this->nomAutRec;
+        return $this->objetRec; // Assuming you want to represent the object by its 'objetRec' property
     }
 
-    public function setNomAutRec(string $nomAutRec): static
+    public function getUser(): ?User
     {
-        $this->nomAutRec = $nomAutRec;
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
+    
 }

@@ -4,6 +4,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,33 +17,67 @@ class Article
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nomAutArt = null;
+
 
     #[ORM\Column(length: 255)]
+    #[CustomAssert\StartsWithUppercase]
+    private ?string $nomAutArt = null;
+
+
+
+    
+    #[Assert\NotBlank(message: 'Veuillez saisir votre adresse')]
+    #[Assert\Regex(
+        pattern: "/\.com$|\.fr$|\.tn$/",
+        message: "L'adresse doit se terminer par .com, .fr ou .tn"
+    )]
+    #[Assert\Email(message:"'{{ value }}' n'est pas de la forme exemple@exemple.com")]
+    #[ORM\Column(length: 255)]
     private ?string $adrAutArt = null;
+
+
+    
+    #[Assert\NotBlank(message:"Veuillez saisir la date de l'article")]
+    #[Assert\GreaterThanOrEqual("today", message: "La date de réclamation ne peut pas être inférieure à aujourd'hui.")]
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $datePubArt = null;
 
+    #[Assert\NotBlank(message:"Veuillez saisir la durée de l'article")]
+
+    #[Assert\GreaterThanOrEqual(
+        value: 1,
+        message: "La durée doit être supérieure ou égale à 1."
+    )]
     #[ORM\Column]
     private ?int $dureeArt = null;
 
+
+    #[Assert\NotBlank(message:"Veuillez saisir la catégorie de l'article")]
     #[ORM\Column(length: 255)]
     private ?string $categorieArt = null;
 
+    #[Assert\NotBlank(message:"Veuillez saisir le titre de l'article")]
+    #[Assert\Regex(
+        pattern: '/^[A-Z][a-zA-Z]*$/',
+        message: "le titre doit commencer par une lettre majuscule."
+    )]
     #[ORM\Column(length: 255)]
     private ?string $titreArt = null;
 
+
+    #[Assert\NotBlank(message:"Veuillez saisir le contenu de l'article")]
     #[ORM\Column(length: 255)]
     private ?string $contenuArt = null;
-
+    #[Assert\NotBlank(message:"Veuillez entrer une pièce jointe")]
     #[ORM\Column(length: 255)]
     private ?string $piecejointeArt = null;
 
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Commentaire::class)]
     private Collection $commentaire;
 
+    #[ORM\ManyToOne(inversedBy: 'article')]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -180,5 +215,15 @@ class Article
         return $this;
     }
 
-   
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 }

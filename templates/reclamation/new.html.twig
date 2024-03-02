@@ -25,30 +25,43 @@
             Réclamation
         </span>
         <div class="wrap-input1 validate-input" data-validate="Adresse is required">
+        {{ form_label(form.nomAutRec, 'Nom :') }}
             {{ form_row(form.nomAutRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Nom'}) }}
         </div>
         <div class="wrap-input1 validate-input" data-validate="Adresse is required">
+        {{ form_label(form.adrRec, 'Adresse :') }}
             {{ form_row(form.adrRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Adresse'}) }}
             
 
         </div>
 
         <div class="wrap-input1 validate-input" data-validate="Département is required" >
+        {{ form_label(form.depRec, 'Département concerné :') }}
             {{ form_row(form.depRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Département'}) }}
         </div>
 
 
         <div class="wrap-input1 validate-input" data-validate="Objet is required">
+        {{ form_label(form.objetRec, 'Objet de la réclamation :') }}
             {{ form_row(form.objetRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Objet'}) }}
         </div>
 
         <div class="wrap-input1 validate-input" data-validate="Contenu is required">
+        {{ form_label(form.contenuRec, 'Contenu de la réclamation :') }}
             {{ form_row(form.contenuRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Contenu'}) }}
+        </div>
+      
+
+        <div class="wrap-input1 validate-input" data-validate="Contenu is required">
+             {{ form_label(form.pieceJRec, 'Pièce jointe :') }}
+
+            {{ form_row(form.pieceJRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Contenu'}) }}
         </div>
 
         
         
 
+      
         <div class="container-contact1-form-btn">
             <button class="contact1-form-btn" type="submit">
                 <span>

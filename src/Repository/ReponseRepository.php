@@ -21,28 +21,57 @@ class ReponseRepository extends ServiceEntityRepository
         parent::__construct($registry, Reponse::class);
     }
 
-//    /**
-//     * @return Reponse[] Returns an array of Reponse objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+   * @return Reponse[] Returns an array of Reponse objects
+   */
 
-//    public function findOneBySomeField($value): ?Reponse
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+
+    public function findOneBySomeField($value): ?Reponse
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.user = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+ 
+    
+   
+    public function findByExampleField($value): array
+    {
+       return $this->createQueryBuilder('r')
+            ->andWhere('r.user = :val')
+            ->setParameter('val', $value)
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    /**
+   * @return Reponse[] Returns an array of Reponse objects
+   */
+    public function findReponseByReclamationAndUser($reclamation, $user): ?Reponse
+{
+    return $this->createQueryBuilder('r')
+        ->andWhere('r.reclamation = :reclamation')
+        ->andWhere('r.user = :user')
+        ->setParameter('reclamation', $reclamation)
+        ->setParameter('user', $user)
+        ->getQuery()
+        ->getOneOrNullResult()
+    ;
+}
+public function findReponseByReclamation($offreId)
+{
+    return $this->createQueryBuilder('b')
+        ->join('b.reclamation', 'a')
+        ->where('a.id = :reclamation')
+        ->setParameter('reclamation', $offreId)
+        ->getQuery()
+        ->getResult();
+}
+
+
+
 }

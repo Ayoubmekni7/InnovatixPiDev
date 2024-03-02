@@ -23,9 +23,27 @@ class ArticleController extends AbstractController
         ]);
     }
    
+    #[Route('/front/{id}', name: 'app_article_showfront', methods: ['GET'])]
+    public function showfront(Article $article): Response
+    {
+        $commentaires = $article->getCommentaire();
 
+        return $this->render('front/detailArticle.html.twig', [
+            'article' => $article,
+           
+            'commentaires' => $commentaires,
+        ]);
+    }
    
-    
+    #[Route('/listesarticlefront', name: 'app_listesarticlefront', methods: ['GET'])]
+ public function listesarticlefront(ArticleRepository $articleRepository): Response
+ {
+     $articles = $articleRepository->findAll();
+     return $this->render('front/listeArticles.html.twig', [
+         'articles' => $articles,
+     ]);
+ }
+
 
     #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager ): Response
