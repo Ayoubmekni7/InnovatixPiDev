@@ -216,22 +216,5 @@ class DemandeStageController extends AbstractController
             'ancienCv'=> $ancienCv,
         ]);
     }
-    #[Route('/Analyse', name: 'Analyse')]
-    public function Analyse(Request $request, AnalyseCv $cvAnalyseur,DemandeStageRepository $demandeStageRepository): Response
-    {
-        
-        // Récupérer le texte du CV depuis la requête
-       // $cvTexte = $request->getContent();
-        $champs = $demandeStageRepository->find(14);
-        $path = $champs->getCv();
-        $cheminFichier = $this->getParameter('uploads_directory').'/'.$path;
-        // Liste des mots clés
-        $motsCles = ['expérience','Java','kotlin', 'python','XML', 'ingénieur', 'développement', 'programmation', 'analyse', 'réseaux'];
-        
-        // Appeler le service pour analyser le CV
-        $score = $cvAnalyseur->analyseCV($cheminFichier, $motsCles);
-        
-      
-        return new Response("ça marche bien");
-    }
+    
 }
