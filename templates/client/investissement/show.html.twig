@@ -156,7 +156,7 @@ background-image: url('{{ asset('client/assets/img/curved-images/curved0.jpg') }
                           </g>
                         </g>
                       </svg>
-                      <span class="ms-1">Messages</span>
+                      <span class="ms-1" id="printbtn">Print</span>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -845,6 +845,17 @@ background-image: url('{{ asset('client/assets/img/curved-images/curved0.jpg') }
       },
     });
   </script>
+  
+    <script>
+    const printbtn = document.getElementById("printbtn");
+    printbtn.addEventListener("click", () => {
+        printbtn.disabled = true;
+        window.print();
+        setTimeout(() => {
+            printbtn.disabled = false;
+        }, 1000);
+    });
+    </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

@@ -40,10 +40,11 @@ class CommentaireController extends AbstractController
             $dateCreation = new \DateTime($request->request->get('dateCreation'));
     
             $commentaire = new Commentaire();
+        $filteredContenu = $this->filterwords($contenu);
+        $commentaire->setContenu($filteredContenu);
             $commentaire->setInvestissement($investissement);
             $commentaire->setNomuser($nomuser);
-            $commentaire->setContenu($contenu);
-            $commentaire->setDateCreation($dateCreation);
+             $commentaire->setDateCreation($dateCreation);
     
             $entityManager->persist($commentaire);
             $entityManager->flush();
@@ -62,6 +63,7 @@ class CommentaireController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $entityManager->persist($commentaire);
             $entityManager->flush();
 
@@ -109,5 +111,28 @@ class CommentaireController extends AbstractController
         }
 
         return $this->redirectToRoute('app_commentaire_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+    public function filterwords($text)
+    {
+        $filterWords = array('hate', 'bhim', 'msatek', 'fuck', 'slut', 'fucku');
+        $str = "";
+        $data = preg_split('/\s+/',  $text);
+        foreach($data as $s){
+            $g = false;
+            foreach ($filterWords as $lib) {
+                if($s == $lib){
+                    $t = "";
+                    for($i =0; $i<strlen($s); $i++) $t .= "&$*$*$&";
+                    $str .= $t . " ";
+                    $g = true;
+                    break;
+                }
+            }
+            if(!$g)
+            $str .= $s . " ";
+        }
+        return $str;
     }
 }

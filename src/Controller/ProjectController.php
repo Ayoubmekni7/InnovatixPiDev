@@ -22,6 +22,15 @@ class ProjectController extends AbstractController
             'projects' => $projectRepository->findAll(),
         ]);
     }
+
+    #[Route('/client/list/print', name: 'print', methods: ['GET'])]
+    public function print(ProjectRepository $projectRepository): Response
+    {
+        return $this->render('client/project/print.html.twig', [
+            'projects' => $projectRepository->findAll(),
+        ]);
+    }
+
     #[Route('/employe/list', name: 'app_project_listE', methods: ['GET'])]
     public function listE(ProjectRepository $projectRepository): Response
     {

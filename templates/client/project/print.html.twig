@@ -1,30 +1,21 @@
- {% extends 'baseclient.html.twig' %}
-{% block recherche %}
-        <div class="input-group">
-          <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-          <input type="text" class="form-control" id="searchInput" placeholder="Tapez ici...">
-        </div>
-        <script>
-     function filterTable() {
-const filter = document.getElementById('searchInput').value.toUpperCase();
-const rows = document.querySelectorAll('table tr');
-for (let i = 1; i < rows.length; i++) {
-const cols = rows[i].querySelectorAll('td');
-let visible = false;
-for (let j = 0; j < cols.length; j++) {
-const cell = cols[j];
-if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
-visible = true;
-break;
-}
-}
-rows[i].style.display = visible ? '' : 'none';
-}
-}
-document.getElementById('searchInput').addEventListener('keyup', filterTable);</script>
-        {% endblock %}
-        {% block body %}
-  <!--**********************************
+
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+{% block stylesheets %}
+    <link href="{{ asset('client/assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('client/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+    <link href="{{ asset('client/assets/css/soft-ui-dashboard.css?v=1.0.7') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+{% endblock %}
+  <!-- Nepcha Analytics (nepcha.com) -->
+  <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
+  <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+</head>
+   <!--**********************************
             Content body start
         ***********************************-->
              <body class="g-sidenav-show  bg-gray-100">
@@ -32,17 +23,13 @@ document.getElementById('searchInput').addEventListener('keyup', filterTable);</
      <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
 
  <div class="container-fluid py-4">
- 
- <div class="mb-4 text-end">
-    <a href="{{ path('app_project_newC') }}" class="btn btn-primary btn-rounded fs-18">+ Nouveau projet</a>
-</div>
+  
       <div class="row">
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
               <h6>Liste des projets</h6>
             </div>
-            
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
  <table class="table align-items-center mb-0">
@@ -59,8 +46,7 @@ document.getElementById('searchInput').addEventListener('keyup', filterTable);</
                                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget</th>
 
                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">statut</th>
-                      <th class="text-secondary opacity-7"></th>
-                    </tr>
+                     </tr>
                   </thead>
                   <tbody>
                                             {% for project in projects %}
@@ -69,7 +55,7 @@ document.getElementById('searchInput').addEventListener('keyup', filterTable);</
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-<img src="{{ asset('client/assets/img/' ~ project.img) }}" class="avatar avatar-sm me-3" alt="user1">
+<img src="{{ asset('client/assets/img/team-2.jpg') }}" class="avatar avatar-sm me-3" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="mb-0 text-sm">{{ project.nomProjet }}</h6>
@@ -123,10 +109,7 @@ document.getElementById('searchInput').addEventListener('keyup', filterTable);</
                         {% endif %}
 
                       </td>
-                      <td class="align-middle">
-                       
-                        <a class="btn btn-link pe-3 ps-0 mb-0 ms-auto" href="{{ path('app_project_indexshowsA', {'id': project.id}) }}">show</a>
-                      </td>
+                     
                     </tr>
         {% endfor %}
                   </tbody>
@@ -141,11 +124,20 @@ document.getElementById('searchInput').addEventListener('keyup', filterTable);</
     </div>
     
     </main>
-
+   <button class="btn btn-primary btn-rounded fs-18" id="printbtn">Print</button>
+    <script>
+    const printbtn = document.getElementById("printbtn");
+    printbtn.addEventListener("click", () => {
+        printbtn.disabled = true;
+        window.print();
+        setTimeout(() => {
+            printbtn.disabled = false;
+        }, 1000);
+    });
+    </script>
     </body>
-    
         <!--**********************************
             Content body end
         ***********************************-->
 
-{% endblock %}
+ 

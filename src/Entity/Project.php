@@ -33,7 +33,8 @@ class Project
     #[ORM\Column(length: 100)]
     private ?string $nomprojet = null;
 
-
+    #[ORM\Column(length: 100)]
+    private ?string $img = null;
 
 
     #[Assert\NotBlank(message: "saisir la catégorie")]
@@ -97,6 +98,19 @@ class Project
 
         return $this;
     }
+    
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(string $img): static
+    {
+        $this->img = $img;
+
+        return $this;
+    }
+
 
     public function getCategorie(): ?string
     {

@@ -1,5 +1,31 @@
  {% extends 'baseadmin.html.twig' %}
+{% block recherche %}
+                            <li class="nav-item d-flex align-items-center">
+								<div class="input-group search-area">
+									<input type="text" class="form-control" id="searchInput" placeholder="Rechercher ...">
+									<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+								</div>
+							</li>
 
+
+                             <script>
+     function filterTable() {
+const filter = document.getElementById('searchInput').value.toUpperCase();
+const rows = document.querySelectorAll('table tr');
+for (let i = 1; i < rows.length; i++) {
+const cols = rows[i].querySelectorAll('td');
+let visible = false;
+for (let j = 0; j < cols.length; j++) {
+const cell = cols[j];
+if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
+visible = true;
+break;
+}
+}
+rows[i].style.display = visible ? '' : 'none';
+}
+}
+document.getElementById('searchInput').addEventListener('keyup', filterTable);</script>{% endblock %}
         {% block body %}
   <!--**********************************
             Content body start
