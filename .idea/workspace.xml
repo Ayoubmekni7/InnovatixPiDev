@@ -4,25 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="integration de mon travail">
-      <change afterPath="$PROJECT_DIR$/templates/BaseFront.html.twig" afterDir="false" />
+    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="fix the project">
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ActualiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ActualiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ContratController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ContratController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/StageType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/StageType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/actualite/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/actualite/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/backOffice/contrat/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/contrat/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/backOffice/demande_stage/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/demande_stage/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/backOffice/stage/addStage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/stage/addStage.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/backOffice/stage/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/stage/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/demande_stage/SearchDemande.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/demande_stage/SearchDemande.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/demande_stage/demande.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/demande_stage/demande.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/demande_stage/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/demande_stage/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/offre_stage/Details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/offre_stage/Details.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/offre_stage/recrutement.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/offre_stage/recrutement.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -328,15 +313,7 @@
       <workItem from="1708773072219" duration="1359000" />
       <workItem from="1709471131466" duration="26000" />
       <workItem from="1709471160007" duration="1078000" />
-      <workItem from="1709472291924" duration="2358000" />
-    </task>
-    <task id="LOCAL-00012" summary="ajout du controle de saisie pour le contrat et stage.">
-      <option name="closed" value="true" />
-      <created>1708004984524</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1708004984524</updated>
+      <workItem from="1709472291924" duration="3274000" />
     </task>
     <task id="LOCAL-00013" summary="crud de Contrat sans design">
       <option name="closed" value="true" />
@@ -722,7 +699,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709473491992</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="fix the project">
+      <option name="closed" value="true" />
+      <created>1709474809561</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1709474809561</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -740,7 +725,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="some update" />
     <MESSAGE value="template frontOffice Les offres de stages" />
     <MESSAGE value="update dans recrutement template" />
     <MESSAGE value="add template affiche offre backOffice." />
@@ -765,6 +749,7 @@
     <MESSAGE value="Corrections des erreurs + complétaion de la validation numéro 1." />
     <MESSAGE value="Intégration de l'analyseur des CVs." />
     <MESSAGE value="integration de mon travail" />
-    <option name="LAST_COMMIT_MESSAGE" value="integration de mon travail" />
+    <MESSAGE value="fix the project" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix the project" />
   </component>
 </project>
