@@ -21,6 +21,25 @@ class CreditRepository extends ServiceEntityRepository
         parent::__construct($registry, Credit::class);
     }
 
+    public function searchcreditminmax($min, $max)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery('SELECT p FROM App\Entity\Credit p WHERE p.montant >= :min AND p.montant <= :max')
+                    ->setParameter('min', $min)
+                    ->setParameter('max', $max);
+        return $query->getResult();
+    }
+
+    public function findAllSortedByMontant(): array
+    {
+        return $this->createQueryBuilder('credit')
+            ->orderBy('credit.montant', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    
+
+
 //    /**
 //     * @return Credit[] Returns an array of Credit objects
 //     */

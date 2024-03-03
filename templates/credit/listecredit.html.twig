@@ -33,7 +33,9 @@
                                                 <th><strong>Taux d'intérêt</strong></th>
                                                 <th><strong>Status</strong></th>
                                                 <th><strong>Frais de retard</strong></th>
-                                                <th><strong>Action</strong></th>
+                                                <th><strong>Fiche salire</strong></th>
+
+                                                <th><strong>Actions</strong></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -48,12 +50,16 @@
                                                     <td>{{ credit.duree }}</td>
                                                     <td>{{ credit.taux }}</td>
                                                     <td>{{ credit.status }}</td>
+
                                                     <td>{{ credit.fraisretard }}</td>
+                                                    <td>{{ credit.fichesalire }}</td>
+
                                                     <td>
                                                         <div class="d-flex">
                                                             <button class="btn btn-success shadow btn-xs sharp me-1"
                                                             onclick="window.location.href='{{ path('app_approuvercredit') }}'">Approuver</button>
-                                                            <button class="btn btn-danger shadow btn-xs sharp">Rejeter</button>
+                                                            <button class="btn btn-danger shadow btn-xs sharp"
+                                                            onclick="window.location.href='{{ path('app_refusercredit') }}'">Rejeter</button>
                                                         </div>
                                                     </td>
                                                     <td>

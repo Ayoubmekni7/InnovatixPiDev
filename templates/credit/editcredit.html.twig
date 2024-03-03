@@ -39,6 +39,10 @@
                             <div class="mb-3">
                                 {{ form_row(formc.fraisretard, {'attr': {'class': 'form-control'}, 'id': 'fraisretard', 'readonly': 'readonly'}) }}
                             </div>
+                            <div class="mb-3">
+                                <label for="oldFichesalire">Ancien Fichesalire:</label>
+                                <input type="text" id="oldFichesalire" name="oldFichesalire" class="form-control" value="{{ oldFichesalire }}" readonly>
+                            </div>
                             
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -49,4 +53,5 @@
                 </div>
             </div>
         </div>
+        
     {% endblock %}

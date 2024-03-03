@@ -17,6 +17,8 @@
     <!-- Custom Stylesheet -->
     <link href="{{ asset('css/nice-select.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+
     
 
         {% block stylesheets %}
@@ -75,7 +77,7 @@
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
 							<div class="dashboard_bar">
-								{% block nompage %}Coucou les babies{% endblock %}
+								{% block nompage %}{% endblock %}
                             </div>
 							
                         </div>
@@ -87,6 +89,14 @@
                 <i class="flaticon-381-search-2"></i>
             </button>
         </div>
+        <div class="input-group search-area">
+            <input type="number" id="minAmount" name="minAmount" class="form-control" placeholder="Montant minimum">
+            <input type="number" id="maxAmount" name="maxAmount" class="form-control" placeholder="Montant maximum">
+            <button id="searchBtn2" class="input-group-text">
+                <i class="flaticon-381-search-2"></i>
+            </button>
+        </div>
+        
     </li>
 </ul>
                         
@@ -181,6 +191,13 @@
                
                 <li><a href="{{path('app_listecredit')}}">Liste des crédits</a></li>
                 <li><a href="{{path('app_listerdv')}}">Liste des rdv</a></li>
+                <li><a href="{{path('sortedlist')}}">Liste des credit ordonne</a></li>
+                <li><a href="{{path('app_graphique')}}">stats</a></li>
+                <li><a href="{{path('app_rdv')}}">CALANDER</a></li>
+                <li><a href="{{path('app_home')}}">reminder RDV</a></li>
+
+
+
                
             </ul>
         </li>
@@ -246,6 +263,12 @@
          </ul>
 
         </li>
+        <li>
+            <a href="{{ path('user_main') }}">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="nav-text">Déconnexion</span>
+            </a>
+        </li
 
 
 
@@ -272,6 +295,7 @@
 <script src="{{ asset('js/custom.min.js') }}"></script>
 <script src="{{ asset('js/dlabnav-init.js') }}"></script>
 <script src="{{ asset('js/demo.js') }}"></script>
+
 <script>
     document.getElementById("searchBtn").addEventListener("click", function() {
         var searchValue = document.getElementById("searcharea").value;
@@ -279,6 +303,17 @@
             window.location.href = "{{ path('app_recherchecreditid', {'id': 'PLACEHOLDER'}) }}".replace("PLACEHOLDER", encodeURIComponent(searchValue));
         }
     });
+    document.getElementById("searchBtn2").addEventListener("click", function() {
+        var min = document.getElementById("minAmount").value;
+        var max = document.getElementById("maxAmount").value;
+    
+        var url = "{{ path('creditminmax', {'min': 'MIN_PLACEHOLDER', 'max': 'MAX_PLACEHOLDER'}) }}";
+        url = url.replace("MIN_PLACEHOLDER", encodeURIComponent(min));
+        url = url.replace("MAX_PLACEHOLDER", encodeURIComponent(max));
+    
+        window.location.href = url;
+    });
+    
 </script>
 
 
@@ -295,6 +330,8 @@
 <script src="{{ asset('js/custom.min.js') }}"></script>
 <script src="{{ asset('js/dlabnav-init.js') }}"></script>
 <script src="{{ asset('js/demo.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+
 
     
 

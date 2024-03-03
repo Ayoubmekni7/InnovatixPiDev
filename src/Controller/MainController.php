@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
-    #[Route('/main', name: 'app_main')]
+    #[Route('/client', name: 'app_main')]
     public function index(): Response
     {
         return $this->render('baseClient.html.twig', [
@@ -19,6 +19,14 @@ class MainController extends AbstractController
     public function indexadmin(): Response
     {
         return $this->render('base.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+    #[Route('/user', name: 'user_main')]
+    public function indexuser(): Response
+    {
+        return $this->render('index.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }

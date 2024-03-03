@@ -20,6 +20,28 @@ class RdvController extends AbstractController
             'controller_name' => 'RdvController',
         ]);
     }
+    #[Route('/rdvcalendrier', name: 'app_rdv')]
+    public function calendrierrdv(RdvRepository $rdvRepository): Response
+    {
+        $events = $rdvRepository->findAll();
+        $rdvs = [];
+        foreach ($events as $event) {
+            $startDateTime = $event->getDateRdv()->format('Y-m-d') . ' ' . $event->getHeure()->format('H:i:s');
+
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'title' => $event->getEmployeName(), // Use whatever field you want as the event title
+                'start' =>$startDateTime
+                
+            ];
+        }
+        $rdvsJson = json_encode($rdvs);
+
+    // Pass the JSON data to the Twig template
+    return $this->render('rdv/calendrier.html.twig', compact('rdvsJson'));
+
+    }
+    
     #[Route('/listerdv', name: 'app_listerdv')]
     public function listeacredit(RdvRepository $rdvRepository): Response
     {
@@ -37,7 +59,6 @@ class RdvController extends AbstractController
             $em=$doctrine->getManager();
             $em->persist($rdv);
             $em->flush();
-            return $this->redirectToRoute('app_listecredit');
         }
         return $this->render('credit/ajouterrdv.html.twig',[
             'form' => $form->createView(),

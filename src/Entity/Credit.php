@@ -19,15 +19,13 @@ class Credit
 
     #[ORM\Column]
     #[Assert\NotBlank(message: "Le numéro d'inscription est obligatoire.")]
-    #[Assert\Length(
-        min: 8,
-        max: 8,
-        exactMessage: "Le numéro d'inscription doit contenir exactement 8 chiffres."
-    )]
+   
     
     private ?int $id_client = null;
 
     #[ORM\Column]
+    #[Assert\GreaterThan(value: 520, message: "Le montant doit être supérieur à 520.")]
+
     #[Assert\NotBlank(message: "Le montant est obligatoire.")]
 
     private ?float $montant = null;
@@ -47,7 +45,7 @@ class Credit
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank(message: "La date de début est obligatoire.")]
-
+    #[Assert\GreaterThan("today", message: "La date de début doit être ultérieure à aujourd'hui.")]
     private ?\DateTimeInterface $datedebut = null;
 
     #[ORM\Column]
@@ -66,6 +64,12 @@ class Credit
 
     #[ORM\OneToMany(mappedBy: 'credit', targetEntity: Rdv::class,cascade: ['remove'])]
     private Collection $rdv;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $fichesalire = null;
+
+    #[ORM\ManyToOne(inversedBy: 'credit')]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -211,6 +215,30 @@ class Credit
                 $rdv->setCredit(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFichesalire(): ?string
+    {
+        return $this->fichesalire;
+    }
+
+    public function setFichesalire(?string $fichesalire): static
+    {
+        $this->fichesalire = $fichesalire;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

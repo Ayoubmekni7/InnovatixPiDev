@@ -1,0 +1,53 @@
+
+{% block title %}Log in!{% endblock %}
+    {% block body %}
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Animated Login Form</title>
+            <link rel="stylesheet" type="text/css" href="{{asset('loginAdmin/css/style.css')}}">
+            <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+            <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+        <img class="wave" src="{{asset('loginAdmin/img/wave.png')}}">
+        <div class="container">
+            <div class="img">
+                <img src="{{asset('loginAdmin/img/bg.svg')}}">
+            </div>
+            <div class="login-content">
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+    <img src="{{asset('loginAdmin/img/avatar.svg')}}">
+               
+                   
+
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <div class="div">
+        <h5>Username</h5>
+
+
+    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="input" autocomplete="username" required autofocus>
+    <div class="div">
+                        <h5>Password</h5>
+    <input type="password" name="password" id="inputPassword" class="input" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    <button class="btn btn-lg btn-primary" type="submit">
+        Sign in
+    </button>
+</form>
+<script type="text/javascript" src="{{asset('loginAdmin/js/main.js')}}"></script>
+
+{% endblock %}

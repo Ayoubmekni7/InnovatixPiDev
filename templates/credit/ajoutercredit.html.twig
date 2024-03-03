@@ -1,7 +1,11 @@
 {% extends 'baseclient.html.twig' %}
+
     {% block stylesheets %}
         {{ parent() }}
         <style>
+            ul li {
+                color: red;
+            }
             /* Change form color to pistachio green */
             .form-control {
                 border-color: #93C572;
@@ -27,11 +31,41 @@
             .form-container {
                 padding-top: 50px; /* Adjust the value as needed */
             }
+    
+            .cover-image {
+                position: relative;
+                width: 100%;
+                height: 200px; /* Adjust height as needed */
+                overflow: hidden;
+            }
+    
+            .cover-image img {
+                width: 100%;
+                height: auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+    
+            .cover-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+                z-index: 0;
+            }
+    
+            .card {
+                position: relative; /* Ensure the card content overlays the cover properly */
+                z-index: 1;
+            }
         </style>
     {% endblock %}
     
     {% block body %}
-    {% block nompage %}ajouter credit{% endblock %}
         <script>
             // Function to calculate the fees and interest rate automatically
             window.onload = function() {
@@ -53,15 +87,22 @@
                 document.getElementById("duree").addEventListener("input", calculateFeesAndInterest);
             }
         </script>
+        {% block nompage %}ajouter credit{% endblock %}
     
         <div class="container">
             <div class="row justify-content-center mt-5">
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
+                            <div class="cover-image">
+                                <img src="{{ asset('images/bank.jpg') }}" alt="Cover Image">
+                                <div class="cover-overlay"></div>
+                            </div>
+    
                             <div style="margin-bottom: 60px;"></div>
+    
                             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-                            
+    
                             <h5 class="card-title text-center mb-4">Formulaire pour ajouter une demande de crédit</h5>
     
                             <div class="mb-3">
@@ -91,7 +132,10 @@
                             <div class="mb-3">
                                 {{ form_row(form.fraisretard, {'attr': {'class': 'form-control'}, 'id': 'fraisretard', 'readonly': 'readonly'}) }}
                             </div>
-                            
+                            <div class="mb-3">
+                                {{ form_row(form.fichesalire, {'attr': {'class': 'form-control'}, 'id': 'datedebut'}) }}
+                            </div>
+    
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
@@ -101,5 +145,31 @@
                 </div>
             </div>
         </div>
+        <footer class="footer" style="background-color: #a4c639; padding: 50px 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 style="color: white;">Contact Us</h5>
+                        <p style="color: white;">If you have any questions or concerns, feel free to reach out to us:</p>
+                        <ul class="list-unstyled" style="color: white;">
+                            <li>Phone: +1234567890</li>
+                            <li>Email: info@yourbank.com</li>
+                            <li>Address: 123 Bank Street, City, Country</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 style="color: white;">Quick Links</h5>
+                        <ul class="list-unstyled" style="color: white;">
+                            <li><a href="#" style="color: white;">Home</a></li>
+                            <li><a href="#" style="color: white;">About Us</a></li>
+                            <li><a href="#" style="color: white;">Services</a></li>
+                            <li><a href="#" style="color: white;">FAQs</a></li>
+                            <li><a href="#" style="color: white;">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
     {% endblock %}
     

@@ -11,20 +11,31 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Repository\CreditRepository;
+use Symfony\Component\Security\Core\Security;
 
 class RdvType extends AbstractType
 {
     private $creditRepository;
+    private $security;
 
-    public function __construct(CreditRepository $creditRepository)
+
+    public function __construct(CreditRepository $creditRepository,Security $security)
     {
         $this->creditRepository = $creditRepository;
+        $this->security = $security;
+
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+        $user = $this->security->getUser();
+
         $builder
-            ->add('idclient')
+        ->add('idclient', null, [
+            'label' => 'identifiant', // Changer le nom du label ici
+            // Autres options de champ
+        ])
             ->add('daterdv')
             ->add('heure')
             ->add('methode', ChoiceType::class, [
@@ -39,11 +50,12 @@ class RdvType extends AbstractType
             ->add('credit', EntityType::class, [
                 'class' => Credit::class,
                 'choice_label' => function (Credit $credit) {
-                    return $credit->getIdClient();
+                    return $credit->getId();
                 },
-                'choices' => $this->getAvailableClients(),
+                'choices' => $user->getCredit(), // Supposons que getCredit() renvoie les crédits disponibles pour l'utilisateur connecté
                 'placeholder' => 'Sélectionnez un crédit',
             ]);
+        
     }
 
     private function getAvailableClients(): array

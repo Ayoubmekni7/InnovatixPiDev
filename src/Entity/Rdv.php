@@ -6,6 +6,7 @@ use App\Repository\RdvRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: RdvRepository::class)]
 class Rdv
@@ -21,30 +22,30 @@ class Rdv
         max: 8,
         exactMessage: "L'ID du client doit être composé de 8 chiffres exactement."
     )]
- 
     private ?int $idclient = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $daterdv = null;
-
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-   
+    #[Assert\NotBlank(message: "L'heure est obligatoire.")]
     private ?\DateTimeInterface $heure = null;
 
-    #[ORM\Column(length: 255)]
-    #[Assert\Choice(
-        choices: ["en ligne", "présentiel"],
-        message: "La méthode doit être 'en ligne' ou 'présentiel'."
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank(message: "La date du rendez-vous est obligatoire.")]
+    #[Assert\GreaterThan(
+        value: "today",
+        message: "La date du rendez-vous doit être supérieure à aujourd'hui."
     )]
+    private ?\DateTimeInterface $daterdv = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $methode = null;
 
     #[ORM\Column(length: 255)]
     private ?string $employename = null;
 
-  
-
     #[ORM\ManyToOne(inversedBy: 'rdv')]
     private ?Credit $credit = null;
+
+
 
     public function getId(): ?int
     {
@@ -122,4 +123,32 @@ class Rdv
 
         return $this;
     }
+
+   // #[Assert\Callback]
+
+   public function getStart(): ?\DateTimeInterface
+   {
+       return $this->start;
+   }
+
+   public function setStart(\DateTimeInterface $start): static
+   {
+       $this->start = $start;
+
+       return $this;
+   }
+
+   public function getEnd(): ?\DateTimeInterface
+   {
+       return $this->end;
+   }
+
+   public function setEnd(\DateTimeInterface $end): static
+   {
+       $this->end = $end;
+
+       return $this;
+   }
+  
 }
+
