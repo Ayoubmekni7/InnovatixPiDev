@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Scalar\String_;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
@@ -15,52 +16,25 @@ class User
     #[ORM\Column]
     private ?int $id = null;
     
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Contrat::class)]
-    private Collection $contrat;
-    
-    #[ORM\ManyToMany(targetEntity: Stage::class, inversedBy: 'users')]
+    #[ORM\ManyToMany(targetEntity: Stage::class, inversedBy: 'users',orphanRemoval: true)]
     private Collection $stage;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: OffreStage::class)]
+    private Collection $offreStages;
     
     public function __construct()
     {
-        $this->contrat = new ArrayCollection();
         $this->stage = new ArrayCollection();
+        $this->offreStages = new ArrayCollection();
     }
     
     public function getId(): ?int
     {
         return $this->id;
     }
+  
+ 
     
-    /**
-     * @return Collection<int, Contrat>
-     */
-    public function getContrat(): Collection
-    {
-        return $this->contrat;
-    }
-    
-    public function addContrat(Contrat $contrat): static
-    {
-        if (!$this->contrat->contains($contrat)) {
-            $this->contrat->add($contrat);
-            $contrat->setUser($this);
-        }
-        
-        return $this;
-    }
-    
-    public function removeContrat(Contrat $contrat): static
-    {
-        if ($this->contrat->removeElement($contrat)) {
-            // set the owning side to null (unless already changed)
-            if ($contrat->getUser() === $this) {
-                $contrat->setUser(null);
-            }
-        }
-        
-        return $this;
-    }
     
     /**
      * @return Collection<int, Stage>
@@ -83,6 +57,39 @@ class User
     {
         $this->stage->removeElement($stage);
         
+        return $this;
+    }
+    public  function __toString() : String {
+        return (String)$this->getId();
+    }
+
+    /**
+     * @return Collection<int, OffreStage>
+     */
+    public function getOffreStages(): Collection
+    {
+        return $this->offreStages;
+    }
+
+    public function addOffreStage(OffreStage $offreStage): static
+    {
+        if (!$this->offreStages->contains($offreStage)) {
+            $this->offreStages->add($offreStage);
+            $offreStage->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffreStage(OffreStage $offreStage): static
+    {
+        if ($this->offreStages->removeElement($offreStage)) {
+            // set the owning side to null (unless already changed)
+            if ($offreStage->getUser() === $this) {
+                $offreStage->setUser(null);
+            }
+        }
+
         return $this;
     }
 }

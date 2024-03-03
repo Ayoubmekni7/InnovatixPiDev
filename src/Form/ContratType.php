@@ -16,8 +16,8 @@ class ContratType extends AbstractType
             ->add('dateDebut')
             ->add('dure')
             ->add('datefin')
-            ->add('sujet')
-            ->add('stagiare')
+//            ->add('sujet')
+            ->add('user')
             ->add('submit',SubmitType::class)
         ;
     }

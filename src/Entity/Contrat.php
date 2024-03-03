@@ -14,11 +14,7 @@ class Contrat
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[Assert\NotBlank(message: 'Veuillez coisir le stagiaire')]
-    private ?Stagiaire $stagiare = null;
-
+    
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank(message: 'Veuillez saisir la date de début du stage')]
     #[Assert\LessThan(value: "today", message: "Date Invalide !!")]
@@ -35,31 +31,23 @@ class Contrat
     #[Assert\LessThan(value: "today", message: "Date Invalide !!")]
     private ?\DateTimeInterface $datefin = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank(message: 'Veuillez saisir le sujet de stage')]
-    #[Assert\Length(max: 200,minMessage: 'La lettre de motivation doit etre moins 200 characters ')]
-    private ?string $sujet = null;
+//    #[ORM\Column(type: Types::TEXT,nullable: true)]
+//    #[Assert\NotBlank(message: 'Veuillez saisir le sujet de stage')]
+//    #[Assert\Length(max: 200,minMessage: 'Le sujet doit etre moins 200 characters ')]
+//    private ?string $sujet = null;
 
-    #[ORM\ManyToOne(inversedBy: 'contrat')]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[Assert\NotBlank(message: 'Veuillez coisir le stagiaire')]
     private ?User $user = null;
-
+    
+    
+    
     public function getId(): ?int
     {
         return $this->id;
     }
-
-    public function getStagiare(): ?Stagiaire
-    {
-        return $this->stagiare;
-    }
-
-    public function setStagiare(?Stagiaire $stagiare): static
-    {
-        $this->stagiare = $stagiare;
-
-        return $this;
-    }
-
+    
+    
     public function getDateDebut(): ?\DateTimeInterface
     {
         return $this->dateDebut;
@@ -96,17 +84,17 @@ class Contrat
         return $this;
     }
 
-    public function getSujet(): ?string
-    {
-        return $this->sujet;
-    }
-
-    public function setSujet(string $sujet): static
-    {
-        $this->sujet = $sujet;
-
-        return $this;
-    }
+//    public function getSujet(): ?string
+//    {
+//        return $this->sujet;
+//    }
+//
+//    public function setSujet(string $sujet): static
+//    {
+//        $this->sujet = $sujet;
+//
+//        return $this;
+//    }
     public function __toString(){
         return (String)$this->getId();
     }

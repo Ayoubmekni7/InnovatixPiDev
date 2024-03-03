@@ -31,39 +31,39 @@
                                 <div class="row">
 
                                     <div class="col-lg-12">
-                                        <div class="card">
+                                        <div class="card" >
                                                 <div class="card-header">
                                                     <h4 class="card-title">{{ titre }}</h4>
                                                 </div>
-                                            <div class="card-body">
+                                            <div class="card-body" style="background-color: white">
                                                 <div class="table-responsive">
                                                     {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
                                                     {{ form_row(form._token) }}
                                                         <form class="form"  >
                                                             <div class="mb-3">
-                                                                <label class="form-label" style="margin-top: 10px">  {{ form_label(form.dateDebut, 'Nom', {'label_attr': {'class': 'form-label'}}) }} </label>
-                                                                <div > {{ form_widget(form.dateDebut, {'attr': {'class': '', 'placeholder': 'Nom'}}) }}</div>
+                                                                <label class="form-label" style="margin-top: 10px">  {{ form_label(form.dateDebut, 'Date début', {'label_attr': {'class': 'form-label'}}) }} </label>
+                                                                <div > {{ form_widget(form.dateDebut, {'attr': {'class': '', 'placeholder': 'Date début'}}) }}</div>
                                                                 {{ form_errors(form.dateDebut, {'attr': {'class': 'valid-feedback'}}) }}
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label class="form-label" style="margin-top: 10px">  {{ form_label(form.dure, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}</label>
-                                                                <div >   {{ form_widget(form.dure, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }} </div>
+                                                                <label class="form-label" style="margin-top: 10px">  {{ form_label(form.dure, 'Durée', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                                                <div >   {{ form_widget(form.dure, {'attr': {'class': 'form-control', 'placeholder': 'La durée'}}) }} </div>
                                                                 {{ form_errors(form.dure, {'attr': {'class': 'valid-feedback'}}) }}
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label class="form-label" style="margin-top: 10px">  {{ form_label(form.datefin, 'Email', {'label_attr': {'class': 'form-label'}}) }}</label>
-                                                                <div>{{ form_widget(form.datefin, {'attr': {'class': '', 'placeholder': 'Email'}}) }}</div>
+                                                                <label class="form-label" style="margin-top: 10px">  {{ form_label(form.datefin, 'Date fin', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                                                <div>{{ form_widget(form.datefin, {'attr': {'class': '', 'placeholder': 'Date fin'}}) }}</div>
                                                                 {{ form_errors(form.datefin, {'attr': {'class': 'valid-feedback'}}) }}
                                                             </div>
+{#                                                            <div class="mb-3 mt-5">#}
+{#                                                                <label  class="form-label" > {{ form_label(form.sujet, 'Sujet', {'label_attr': {'class': 'form-label'}}) }}</label>#}
+{#                                                                <div>{{ form_widget(form.sujet, {'attr': {'class': ' form-control input1', 'placeholder': 'Sujet'}}) }}</div>#}
+{#                                                                {{ form_errors(form.sujet, {'attr': {'class': 'valid-feedback'}}) }}#}
+{#                                                            </div>#}
                                                             <div class="mb-3 mt-5">
-                                                                <label  class="form-label" > {{ form_label(form.sujet, 'Numéro de téléphone', {'label_attr': {'class': 'form-label'}}) }}</label>
-                                                                <div>{{ form_widget(form.sujet, {'attr': {'class': ' form-control input1', 'placeholder': 'Numéro de téléphone'}}) }}</div>
-                                                                {{ form_errors(form.sujet, {'attr': {'class': 'valid-feedback'}}) }}
-                                                            </div>
-                                                            <div class="mb-3 mt-5">
-                                                                <label  class="form-label" > {{ form_label(form.stagiare, 'Numéro de téléphone', {'label_attr': {'class': 'form-label'}}) }}</label>
-                                                                <div>{{ form_widget(form.stagiare, {'attr': {'class': 'form-control', 'placeholder': 'Numéro de téléphone'}}) }}</div>
-                                                                {{ form_errors(form.stagiare, {'attr': {'class': 'valid-feedback'}}) }}
+                                                                <label  class="form-label" > {{ form_label(form.user, 'Nom Stagiare', {'label_attr': {'class': 'form-label'}}) }}</label>
+                                                                <div>{{ form_widget(form.user, {'attr': {'class': 'form-control', 'placeholder': 'Nom Stagiaire'}}) }}</div>
+                                                                {{ form_errors(form.user, {'attr': {'class': 'valid-feedback'}}) }}
                                                             </div>
                                                             <button class="btn btn-primary" type="submit">Ajouter</button>                                                        </form>
 

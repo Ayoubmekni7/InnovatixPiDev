@@ -26,16 +26,13 @@ class Stage
 //    #[Assert\GreaterThan(value: "today", message: "Date Invalide !!")]
     private ?\DateTimeInterface $date = null;
     
-    #[ORM\OneToMany(mappedBy: 'idStage', targetEntity: Stagiaire::class, orphanRemoval: true)]
-    #[Assert\NotBlank(message: 'Veuillez entrer le stagiaire')]
-    private Collection $idStagiare;
+  
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'stage')]
     private Collection $users;
 
     public function __construct()
     {
-        $this->idStagiare = new ArrayCollection();
         $this->users = new ArrayCollection();
     }
 
@@ -67,41 +64,10 @@ class Stage
 
         return $this;
     }
-    
-    /**
-     * @return Collection<int, Stagiaire>
-     */
-    public function getIdStagiare(): Collection
-    {
-        return $this->idStagiare;
-    }
-
-    public function addIdStagiare(Stagiaire $idStagiare): static
-    {
-        if (!$this->idStagiare->contains($idStagiare)) {
-            $this->idStagiare->add($idStagiare);
-            $idStagiare->setIdStage($this);
-        }
-
-        return $this;
-    }
-    
-    public function removeIdStagiare(Stagiaire $idStagiare): static
-    {
-        if ($this->idStagiare->removeElement($idStagiare)) {
-            // set the owning side to null (unless already changed)
-            if ($idStagiare->getIdStage() === $this) {
-                $idStagiare->setIdStage(null);
-            }
-        }
-
-        return $this;
-    }
-    
     public function __toString(): string
     {
        
-        return (String)$this->getIdStagiare();
+        return (String)$this->getUsers();
     }
 
     /**

@@ -35,7 +35,7 @@
                                         <th><strong>Date de début</strong></th>
                                         <th><strong>Date de fin</strong></th>
                                         <th><strong>Durée</strong></th>
-                                        <th><strong>Sujet</strong></th>
+{#                                        <th><strong>Sujet</strong></th>#}
 
                                     </tr>
                                     </thead>
@@ -44,11 +44,11 @@
                                     {% for a in contrat %}
                                         <tr>
                                             <td>{{a.id }}</td>
-                                            <td>{{ a.stagiare }}</td>
+                                            <td>{{ a.user }}</td>
                                             <td>{{ a.dateDebut | date('d F Y') }}</td>
                                             <td>{{ a.datefin | date('d F Y')  }}</td>
                                             <td>{{ a.dure }}</td>
-                                            <td>{{ a.sujet }}</td>
+{#                                            <td>{{ a.sujet }}</td>#}
                                             <td>
                                                 <div class="d-flex">
                                                     <a href="{{ path('modifierContrat', {'id':a.id}) }}"> <button class="btn btn-success shadow btn-xs sharp me-1">Modifier</button></a>

@@ -85,6 +85,9 @@ class OffreStage
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $pfeBook = null;
 
+    #[ORM\ManyToOne(inversedBy: 'offreStages')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->demande = new ArrayCollection();
@@ -272,6 +275,18 @@ class OffreStage
     public  function  __toString(): string
     {
         return (String)$this->getId();
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
     }
     
 }
