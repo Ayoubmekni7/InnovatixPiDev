@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -124,18 +125,46 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: OffreStage::class)]
     private Collection $offreStages;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Virement::class)]
+    private Collection $virements;
+
+    public function getVirements(): Collection
+    {
+        return $this->virements;
+    }
+
+    public function setVirements(Collection $virements): void
+    {
+        $this->virements = $virements;
+    }
+
+    public function getCheque(): Collection
+    {
+        return $this->cheque;
+    }
+
+    public function setCheque(Collection $cheque): void
+    {
+        $this->cheque = $cheque;
+    }
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Cheque::class)]
+    private Collection $cheque;
+
+    #[ORM\ManyToMany(targetEntity: Compte::class, inversedBy: 'users')]
+    private Collection $compte;
     
-    /* public function __construct()
+     public function __construct()
      {
          $this->stage = new ArrayCollection();
          $this->offreStages = new ArrayCollection();
+         $this->virements = new ArrayCollection();
+         $this->cheque = new ArrayCollection();
+         $this->compte = new ArrayCollection();
      }
      
-     public function getId(): ?int
-     {
-         return $this->id;
-     }
-   */
+
+
     
     
     
@@ -471,5 +500,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsBlocked(bool $isBlocked): void
     {
         $this->isBlocked = $isBlocked;
+    }
+
+    public function getCompte(): Collection
+    {
+        return $this->compte;
+    }
+
+    public function setCompte(Collection $compte): void
+    {
+        $this->compte = $compte;
     }
 }

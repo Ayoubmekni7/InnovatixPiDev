@@ -21,10 +21,8 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
         $admin ->setPassword($this->hasher->hashPassword($admin, 'admin'));
         $admin->setRoles(['ROLE_ADMIN']);
         $manager->persist($admin);
-        
-        
-        
         $manager->flush();
+
     }
     public static function getGroups(): array
     {
