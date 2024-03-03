@@ -161,5 +161,18 @@ class OffreStagesController extends AbstractController
             'titre' => $name
         ]);
     }
+    #[Route('/DeatailAdmin/{id}', name: 'DeatailAdmin')]
+    public function DeatailAdmin($id, OffreStageRepository $offreStageRepository): Response
+    {
+      //  $demande = $demandestageRepository->findDemandesByOffre($id);
+        $offre = $offreStageRepository->find($id);
+        $name = $offre->getTitle();
+        return $this->render('backOffice/offre_stage/DetailOffreAdmin.html.twig', [
+            //'Demandes'=>$demande,
+            'titre' => $name,
+            'offre' => $offre
+        ]);
+    }
+    
     
 }

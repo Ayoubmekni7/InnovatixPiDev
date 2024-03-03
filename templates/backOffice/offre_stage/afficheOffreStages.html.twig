@@ -135,7 +135,7 @@
                                     {% for a in offres %}
                                         <tr>
                                             <td>{{ a.id }}</td>
-                                            <td ><a  class="direction">{{ a.title }}</a></td>
+                                            <td ><a  class="direction" href="{{ path('DeatailAdmin', {'id': a.id}) }}">{{ a.title }}</a></td>
                                             <td>{{ a.domaine }}</td>
                                             <td>{{ a.typeOffre }}</td>
                                             <td>{{ a.postePropose }}</td>
