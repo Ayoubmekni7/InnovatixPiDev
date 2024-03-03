@@ -19,13 +19,13 @@ use Knp\Component\Pager\PaginatorInterface;
 #[Route('/user')]
 class UserController extends AbstractController
 {
-    private Security $security;
-
-    public function __construct(Security $security)
-    {
-        $this->security = $security;
-    }
-    
+//    private Security $security;
+//
+//    public function __construct(Security $security)
+//    {
+//        $this->security = $security;
+//    }
+//
 
     #[Route('/clients', name: 'app_user_clients', methods: ['GET'])]
     public function listclient(UserRepository $userRepository): Response
@@ -254,6 +254,16 @@ class UserController extends AbstractController
         return $this->render('dashbord/dashbordAdmin.html.twig', [
             'userStats' => $userStats,
         ]);
+    }
+    
+    public function getSecurity(): Security
+    {
+        return $this->security;
+    }
+    
+    public function setSecurity(Security $security): void
+    {
+        $this->security = $security;
     }
     
     
