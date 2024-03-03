@@ -41,7 +41,13 @@
                                         <td><strong>{{ i.compte }}</strong></td>
                                         <td>{{ i.NometPrenom }}</td>
                                         <td>{{ i.Cin }}</td>
-                                        <td>{{ i.photoCinV }}</td>
+
+                                        <td>  <a href="{{ asset('uploads_directory/' ~ i.photoCinV) }}" target="_blank"><button  class =" btn-rounded btn-success">Ouvrir Photo </button></a><br><br>
+                                            <a href="{{ asset('uploads_directory/' ~ i.photoCinV) }}" download="{{ i.NometPrenom  ~ '.image' }}">
+                                                <button  class=" btn-rounded btn-success" > Télécharger  &nbsp;<i class="fa fa-download color-warning"></i>
+                                                </button> </a>
+
+                                        </td>
                                         <td>{{ i.Email }}</td>
                                         <td>{{ i.TypeVirement }}</td>
                                         <td>{{i.transferezA}}</td>
