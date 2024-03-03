@@ -6,7 +6,9 @@ use App\Entity\Cheque;
 use App\Form\ChequeType;
 use App\Repository\ChequeRepository;
 use App\Service\uploadPhoto;
+use App\Service\YousignService;
 use Doctrine\Persistence\ManagerRegistry;
+use Dompdf\Dompdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -14,48 +16,60 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use function MongoDB\BSON\toRelaxedExtendedJSON;
 
 
 class ChequeController extends AbstractController
+
 {
     /*Client*/
 
 
-/* #[Route('/addcheques', name: 'addcheques')]
-    public function addcheques(ChequeRepository $chequeRepository, Request $request, ManagerRegistry $managerRegistry , SluggerInterface $slugger , UploadedFile $uploadedFile): Response
+    /* #[Route('/addcheques', name: 'addcheques')]
+        public function addcheques(ChequeRepository $chequeRepository, Request $request, ManagerRegistry $managerRegistry , SluggerInterface $slugger , UploadedFile $uploadedFile): Response
+        {
+            $cheque = new Cheque();
+            $form = $this->createForm(ChequeType::class, $cheque);
+            $em = $managerRegistry->getManager();
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em->persist($cheque);
+                $em->flush();
+                return $this->redirectToRoute('historique');
+            }
+
+            return $this->render('frontoffice/Client/cheque/add.html.twig', [
+                'form' => $form->createView()
+            ]);
+        } */
+
+    #[Route('/historique', name: 'historique')]
+    public function historique(ChequeRepository $chequeRepository):Response
+
     {
-        $cheque = new Cheque();
-        $form = $this->createForm(ChequeType::class, $cheque);
-        $em = $managerRegistry->getManager();
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($cheque);
-            $em->flush();
-            return $this->redirectToRoute('historique');
-        }
-
-        return $this->render('frontoffice/Client/cheque/add.html.twig', [
-            'form' => $form->createView()
+        $liste= $chequeRepository->findAll();
+        return $this->render('frontoffice/Client/cheque/historique.html.twig',[
+            'cheques'=>$liste,
         ]);
-    } */
+    }
 
     #[Route('/addcheques', name: 'addcheques')]
-    public function addcheques(Request $request, ManagerRegistry $managerRegistry, SluggerInterface $slugger , uploadPhoto $uploadPhoto): Response
+    public function addcheques(Request $request, ManagerRegistry $managerRegistry, SluggerInterface $slugger, uploadPhoto $uploadPhoto): Response
     {
         $cheque = new Cheque();
         $form = $this->createForm(ChequeType::class, $cheque);
         $form->handleRequest($request);
 
 
-        $subject ="Demande effectuer avec succés";
+        $subject = "Demande effectuer avec succés";
 
         if ($form->isSubmitted() && $form->isValid()) {
             $photo = $form->get('photoCin')->getData();
-            $photoCin=$uploadPhoto->uploadPhoto($photo);
+            $photoCin = $uploadPhoto->uploadPhoto($photo);
             $cheque->setPhotoCin($photoCin);
             $cheque->setDecision("encours");
-            $x=$managerRegistry->getManager();
+            $x = $managerRegistry->getManager();
             $x->persist($cheque);
             $x->flush();
             return $this->redirectToRoute('historique');
@@ -67,17 +81,80 @@ class ChequeController extends AbstractController
     }
 
 
-    #[Route('/historique', name: 'historique')]
-    public function historique(ChequeRepository $chequeRepository):Response
+
+    #[Route('/pdfCheque/{id}', name: 'pdfCheque')]
+    public function pdfCheque($id, Request $request, Cheque $cheque ,ChequeRepository $chequeRepository): Response
 
     {
-        $liste= $chequeRepository->findAll();
-        return $this->render('frontoffice/Client/cheque/historique.html.twig',[
-            'cheques'=>$liste,
+        $cheque = $chequeRepository->find($id);
+        $dompdf = new Dompdf();
+        $html = $this->renderView('frontoffice/Client/cheque/pdf.html.twig', [
+            'i' => $cheque,
+        ]);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        $output = $dompdf->output();
+        $filename = 'cheque_' . $cheque->getId() . '.pdf';
+        $file = $this->getParameter('kernel.project_dir') . '/public/' . $filename;
+
+        $cheque->setpdfSansSignature($filename);
+        /*$chequeRepository->save($cheque , true); */
+
+        file_put_contents($file, $output);
+        return $this->redirectToRoute('showCheque', ['id' => $cheque->getId()]);
+        //return $this->render('frontoffice/Client/cheque/pdf.html.twig', [
+
+         //   'i' => $cheque,
+       // ]);
+
+    }
+
+    #[Route('/showCheque/{id}', name: 'showCheque')]
+    public function showCheque( $id, ChequeRepository $chequeRepository):Response
+
+    {
+        $liste= $chequeRepository->find($id);
+        return $this->render('frontoffice/Client/cheque/show.html.twig',[
+            'i'=>$liste,
         ]);
     }
+
+
+
+    #[Route('/signature/{id}', name: 'signature')]
+    public function signature($id,  Cheque  $cheque, ChequeRepository $chequeRepository,YousignService $yousignService):Response
+    {
+        $yousignSignatureRequest= $yousignService->signatureRequest();
+        $cheque->setSignerId($yousignSignatureRequest['id']);
+        $chequeRepository->save ($cheque , true);
+
+        $uploadDocument=$yousignService->uploadDocument($cheque->getSignatureId() , $cheque->getPdfSansSignature() );
+        $cheque->setDocumentId($uploadDocument['id']);
+        $chequeRepository->save ($cheque , true);
+
+
+        $signerId=$yousignService->addSigner(
+            $cheque->getSignerId(),
+            $cheque->getDocumentId(),
+            $cheque->getEmail(),
+            $cheque->getNomPrenom()
+        );
+        $cheque->setSignerId($signerId['id']);
+        $chequeRepository->save($cheque , true);
+
+        $yousignService->activateSignatureRequest($cheque->getSignatureId());
+        return $this->redirectToRoute('showCheque', ['id' => $cheque-> getId ()] , Response:: HTTP_SEE_OTHER);
+
+
+    }
+
+
+
+
     #[Route('/deleteDemandeChequeClient/{id}', name: 'deleteDemandeChequeClient')]
-    public function deleteDemandeChequeClient($id,ManagerRegistry $managerRegistry,ChequeRepository $repository):Response
+    public function deleteDemandeChequeClient($id, ManagerRegistry $managerRegistry, ChequeRepository $chequeRepository, $repository):Response
     {
         $emm=$managerRegistry->getManager();
         $idremove=$repository->find($id);
@@ -87,6 +164,7 @@ class ChequeController extends AbstractController
 
 
     }
+
 
                         /*admin*/
 
@@ -108,6 +186,7 @@ class ChequeController extends AbstractController
             'cheques'=>$cheque,
         ]);
     }
+
     #[Route('/ApprouverCheque/{id}', name: 'ApprouverCheque')]
     public function ApprouverCheque($id, ManagerRegistry $managerRegistry, ChequeRepository $chequeRepository ,Mailing $mailing):Response
     {
@@ -199,7 +278,8 @@ class ChequeController extends AbstractController
     return $this->renderForm('frontoffice/Client/cheque/add.html.twig',[
         'form' => $form
     ]);
-}
+
+    }
 
     #[Route('/listeChequeParCompte/{compte}', name: 'listeChequeParCompte')]
     public function listeChequeParCompte($id,ChequeRepository $chequeRepository , Request $request):Response
@@ -217,3 +297,4 @@ class ChequeController extends AbstractController
 
 
 }
+

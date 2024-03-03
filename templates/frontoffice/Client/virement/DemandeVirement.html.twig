@@ -96,14 +96,17 @@
                                 </div>
                             </div>
 
-
                             <div class="mb-3 row justify-content-center align-items-center">
-                                <label class="col-sm-3 col-form-label " style="margin-right: 550px ">{{ form_label(form.Montant,'Montant') }}</label>
+                                <label class="col-sm-3 col-form-label" style="margin-right: 550px">{{ form_label(form.Montant,'Montant') }}</label>
                                 <div class="col-sm-9">
-                                    {{ form_widget(form.Montant, {'attr': {'class': 'form-control', 'placeholder': 'Entrer le montant'}}) }}
+                                    <div class="input-group">
+                                        {{ form_widget(form.Montant, {'attr': {'class': 'form-control', 'placeholder': 'Entrer le montant'}}) }}
+                                        <span class="input-group-text">TND</span>
+                                    </div>
                                     {{ form_errors(form.Montant, {'attr': {'class': 'valid-feedback'}}) }}
                                 </div>
                             </div>
+
 
 
 

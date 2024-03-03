@@ -37,6 +37,10 @@ class ChequeType extends AbstractType
             ])
             ->add('telephone')
             ->add('Montant')
+            ->add('signatureId')
+            ->add('documentId')
+            ->add('signerId')
+            ->add('pdfSansSignature')
 
 
         ;

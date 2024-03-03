@@ -95,6 +95,34 @@
                                         {{ form_errors(form.Montant, {'attr': {'class': 'valid-feedback'}}) }}
                                     </div>
                                 </div>
+                                <div class="mb-3 row justify-content-center align-items-center">
+                                    <label class="col-sm-3 col-form-label " style="margin-right: 550px ">{{ form_label(form.signatureId,'Signature') }}</label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.signatureId, {'attr': {'class': 'form-control', 'placeholder': ''}}) }}
+                                        {{ form_errors(form.signatureId, {'attr': {'class': 'valid-feedback'}}) }}
+                                    </div>
+                                </div>
+                                <div class="mb-3 row justify-content-center align-items-center">
+                                    <label class="col-sm-3 col-form-label " style="margin-right: 550px ">{{ form_label(form.documentId,'Document') }}</label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.documentId, {'attr': {'class': 'form-control', 'placeholder': ''}}) }}
+                                        {{ form_errors(form.documentId, {'attr': {'class': 'valid-feedback'}}) }}
+                                    </div>
+                                </div>
+                                <div class="mb-3 row justify-content-center align-items-center">
+                                    <label class="col-sm-3 col-form-label " style="margin-right: 550px ">{{ form_label(form.signerId,'Signer') }}</label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.signerId, {'attr': {'class': 'form-control', 'placeholder': ''}}) }}
+                                        {{ form_errors(form.signerId, {'attr': {'class': 'valid-feedback'}}) }}
+                                    </div>
+                                </div>
+                                <div class="mb-3 row justify-content-center align-items-center">
+                                    <label class="col-sm-3 col-form-label " style="margin-right: 550px ">{{ form_label(form.pdfSansSignature,'pdf Sans Signature') }}</label>
+                                    <div class="col-sm-9">
+                                        {{ form_widget(form.pdfSansSignature, {'attr': {'class': 'form-control', 'placeholder': ''}}) }}
+                                        {{ form_errors(form.pdfSansSignature, {'attr': {'class': 'valid-feedback'}}) }}
+                                    </div>
+                                </div>
                                 <div class="mb-3 row justify-content-center">
                                     <div class="col-sm-10 text-center mt-5">
                                         <button type="submit" class="btn btn-success mt-5">Confirmer</button>

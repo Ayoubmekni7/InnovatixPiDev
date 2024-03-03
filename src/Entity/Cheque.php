@@ -74,6 +74,18 @@ class Cheque
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photoCin = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $signatureId = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $documentId = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $signerId = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pdfSansSignature = null;
+
 
 
 
@@ -247,6 +259,54 @@ class Cheque
     public function setPhotoCin(?string $photoCin): static
     {
         $this->photoCin = $photoCin;
+
+        return $this;
+    }
+
+    public function getSignatureId(): ?string
+    {
+        return $this->signatureId;
+    }
+
+    public function setSignatureId(?string $signatureId): static
+    {
+        $this->signatureId = $signatureId;
+
+        return $this;
+    }
+
+    public function getDocumentId(): ?string
+    {
+        return $this->documentId;
+    }
+
+    public function setDocumentId(?string $documentId): static
+    {
+        $this->documentId = $documentId;
+
+        return $this;
+    }
+
+    public function getSignerId(): ?string
+    {
+        return $this->signerId;
+    }
+
+    public function setSignerId(?string $signerId): static
+    {
+        $this->signerId = $signerId;
+
+        return $this;
+    }
+
+    public function getPdfSansSignature(): ?string
+    {
+        return $this->pdfSansSignature;
+    }
+
+    public function setPdfSansSignature(?string $pdfSansSignature): static
+    {
+        $this->pdfSansSignature = $pdfSansSignature;
 
         return $this;
     }
