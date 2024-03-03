@@ -98,6 +98,27 @@ class ArticleController extends AbstractController
         ]);
     }
 
+    // #[Route('/newEmpArt', name: 'app_newEmpArt', methods: ['GET', 'POST'])]
+    //public function newEmpArt(Request $request, EntityManagerInterface $entityManager ): Response
+    //{
+      //  $article = new Article();
+       //// $form = $this->createForm(ArticleType::class, $article);
+       //// $form->handleRequest($request);
+     
+        ////if ($form->isSubmitted() && $form->isValid()) {
+           //// $entityManager->persist($article);
+           //// $entityManager->flush();
+
+           //// return $this->redirectToRoute('app_listeArtEmp', [], Response::HTTP_SEE_OTHER);
+        ////}
+
+       //// return $this->renderForm('employe/addArticleEmploye.html.twig', [
+            //'article' => $article,
+           // 'form' => $form,
+       //// ]);
+  ////  }
+
+
     #[Route('delete/{id}', name: 'app_article_delete', methods: ['GET','POST'])]
     public function delete($id , ManagerRegistry $managerRegistry , ArticleRepository $articleRepository): Response
     {
