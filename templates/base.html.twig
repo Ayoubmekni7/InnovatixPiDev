@@ -224,14 +224,16 @@
 
              <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                 <i class="bi bi-person-down"></i>
-                <span class="nav-text">Stages</span>
+                <span class="nav-text">Recrutement</span>
             </a>
             
                 <ul aria-expanded="false">
-                    <li><a href="lesDemandes.html">Les demandes </a></li>
-                    <li><a href="ListeDesStagiares.html">Liste des stagiaires</a></li>
+                    <li><a href="{{ path('AffichageDesDemandes')}}">Les demandes </a></li>
+                    <li><a href="{{ path('AffichageDesContrats') }}">Liste des Contrats</a></li>
+                    <li><a href="{{ path('AfficheStage') }}">Liste des stages</a></li>
+                    <li><a href="{{ path('afficheOffreStages') }}">Liste des offres</a></li>
                 </ul>
-        
+
         </li>
 
 

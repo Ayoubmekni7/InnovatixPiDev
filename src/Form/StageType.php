@@ -16,7 +16,7 @@ class StageType extends AbstractType
         $builder
             ->add('sujet')
             ->add('date')
-            ->add('user')
+            ->add('users')
 //            ->add('submit',SubmitType::class)
         ;
     }

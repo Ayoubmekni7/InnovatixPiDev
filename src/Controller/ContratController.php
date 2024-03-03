@@ -18,7 +18,7 @@ class ContratController extends AbstractController
     #[Route('/contrat', name: 'app_contrat')]
     public function index(): Response
     {
-        return $this->render('backOffice/contrat/index.html.twig', [
+        return $this->render('backOffice/contrat/BaseFront.html.twig', [
             'controller_name' => 'ContratController',
         ]);
     }
