@@ -16,6 +16,43 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/commentaire')]
 class CommentaireController extends AbstractController
 {
+
+
+    #[Route('/CommentaireAdd/{id}', name: 'app_CommentaireAddd', methods: ['POST'])]
+    public function uploadImageAndAddComment($id, Request $request, EntityManagerInterface $entityManager, InvestissementRepository $investissementRepository): Response
+    {
+        $investissement = $investissementRepository->find($id);
+        if (!$investissement) {
+            throw $this->createNotFoundException('Investissement not found');
+        }
+    
+        $uploadedFile = $request->files->get('my_image');
+        $nomuser = $request->request->get('nomuser');
+        $contenu = $request->request->get('contenu');
+    
+        if ($uploadedFile) {
+            $newImgName = uniqid("IMG-", true) . '.' . $uploadedFile->guessExtension();
+            $uploadedFile->move($this->getParameter('kernel.project_dir') . '/public/uploads/', $newImgName);
+    
+            $commentaire = new Commentaire();
+            $commentaire->setImg($newImgName);
+            $commentaire->setInvestissement($investissement);
+            $commentaire->setNomuser($nomuser);
+            $commentaire->setContenu($contenu);
+            $commentaire->setDateCreation(new \DateTime());
+    
+            $entityManager->persist($commentaire);
+            $entityManager->flush();
+    
+            return $this->redirectToRoute('app_event', ['id' => $id]);
+        }
+    
+        return $this->render('your_template.html.twig', [
+            'error' => 'Failed to upload image'
+        ]);
+    }
+
+
     #[Route('/', name: 'app_commentaire_index', methods: ['GET'])]
     public function index(CommentaireRepository $commentaireRepository): Response
     {

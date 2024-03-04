@@ -27,9 +27,24 @@ class Commentaire
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $nomuser = null;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $img = null;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getImg(): ?string
+    {
+        return $this->img;
+    }
+
+    public function setImg(string $img): self
+    {
+        $this->img = $img;
+
+        return $this;
     }
 
     public function getContenu(): ?string

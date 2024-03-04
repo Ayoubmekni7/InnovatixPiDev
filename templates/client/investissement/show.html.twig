@@ -27,21 +27,15 @@
         <div
           class="page-header min-height-300 border-radius-xl mt-4"
           style="
-background-image: url('{{ asset('client/assets/img/curved-images/curved0.jpg') }}');
-            background-position-y: 50%;
-          "
-        >
+            background-image: url('{{ asset('client/assets/img/curved-images/curved0.jpg') }}');
+            background-position-y: 50%;">
           <span class="mask bg-gradient-primary opacity-6"></span>
         </div>
         <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
           <div class="row gx-4">
             <div class="col-auto">
               <div class="avatar avatar-xl position-relative">
-                <img
-    src="{{ asset('client/assets/img/bruce-mars.jpg') }}"
-    alt="profile_image"
-    class="w-100 border-radius-lg shadow-sm"
-/>
+                <img src="{{ asset('client/assets/img/bruce-mars.jpg') }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm"/>
 
               </div>
             </div>
@@ -209,7 +203,7 @@ background-image: url('{{ asset('client/assets/img/curved-images/curved0.jpg') }
                           </g>
                         </g>
                       </svg>
-                      <span class="ms-1">Settings</span>
+                      <a class="ms-1" href="{{ path('app_investissement_edit', {'id': investissement.id}) }}">Settings</a>
                     </a>
                   </li>
                 </ul>
@@ -318,56 +312,19 @@ background-image: url('{{ asset('client/assets/img/curved-images/curved0.jpg') }
                 <ul class="list-group">
                           {% for commentaire in commentaires %}
 
-                  <li
-                    class="list-group-item border-0 d-flex align-items-center px-0 mb-2"
-                  >
-                    <div class="avatar me-3">
-                    <img src="{{ asset('client/assets/img/kal-visuals-square.jpg') }}" alt="kal" class="border-radius-lg shadow" />
+                  <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2" style="background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <div class="avatar me-3">
+        <img src="{{ asset('uploads/' ~ commentaire.img) }}" class="border-radius-lg shadow" alt="user1">
+    </div>
+    <div class="d-flex align-items-start flex-column justify-content-center">
+        <h6 class="mb-0 text-sm" style="color: #333; font-weight: bold;">{{ commentaire.nomuser }}</h6>
+        <p class="mb-0 text-xs" style="color: #666;">{{ commentaire.contenu }}</p>
+    </div>
+</li>
 
-                    </div>
-                    <div
-                      class="d-flex align-items-start flex-column justify-content-center"
-                    >
-                      <h6 class="mb-0 text-sm">{{ commentaire.nomuser }}</h6>
-                <p class="mb-0 text-xs">{{ commentaire.contenu }}</p>
-                   </div>
-                  
-                  </li>
                   {% endfor %} 
-                  <li
-                    class="list-group-item border-0 d-flex align-items-center px-0 mb-2"
-                  >
-                    <div class="avatar me-3">
-                     <img src="{{ asset('client/assets/img/marie.jpg') }}" alt="kal" class="border-radius-lg shadow" />
-
-                    </div>
-                    <div
-                      class="d-flex align-items-start flex-column justify-content-center"
-                    >
-                      <h6 class="mb-0 text-sm">Anne Marie</h6>
-                      <p class="mb-0 text-xs">Awesome work, can you..</p>
-                    </div>
+             
                   
-                  </li>
-                  <li
-                    class="list-group-item border-0 d-flex align-items-center px-0 mb-2"
-                  >
-                    <div class="avatar me-3">
-                    <img
-    src="{{ asset('client/assets/img/ivana-square.jpg') }}"
-    alt="kal"
-    class="border-radius-lg shadow"
-/>
-
-                    </div>
-                    <div
-                      class="d-flex align-items-start flex-column justify-content-center"
-                    >
-                      <h6 class="mb-0 text-sm">Ivanna</h6>
-                      <p class="mb-0 text-xs">About files I can..</p>
-                    </div>
-                  
-                  </li>
                   <li
                     class="list-group-item border-0 d-flex align-items-center px-0 mb-2"
                   >

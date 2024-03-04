@@ -23,6 +23,14 @@ class MainController extends AbstractController
             'controller_name' => 'MainController',
         ]);
     }
+    
+    #[Route('/upload.php', name: 'upload')]
+    public function upload(): Response
+    {
+        return $this->render('main/upload.php', [
+            'controller_name' => 'MainController',
+        ]);
+    }
  
     #[Route('/event', name: 'app_event', methods: ['GET'])]
     public function event(CommentaireRepository $commentaireRepository, InvestissementRepository $investissementRepository, EvenementRepository $evenementRepository): Response
