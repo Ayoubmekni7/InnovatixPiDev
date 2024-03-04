@@ -16,8 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/commentaire')]
 class CommentaireController extends AbstractController
 {
-
-
     #[Route('/CommentaireAdd/{id}', name: 'app_CommentaireAddd', methods: ['POST'])]
     public function uploadImageAndAddComment($id, Request $request, EntityManagerInterface $entityManager, InvestissementRepository $investissementRepository): Response
     {

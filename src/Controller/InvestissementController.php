@@ -72,6 +72,36 @@ class InvestissementController extends AbstractController
             'evenements' => $evenements,
         ]);
     }
+
+
+
+    
+    #[Route('create/{id}', name: 'app_investissement_show1', methods: ['GET', 'POST'])]
+    public function show1(Request $request, Investissement $investissement, EntityManagerInterface $entityManager): Response
+    {
+        $commentaires = $investissement->getCommentaires();
+        $evenements = $investissement->getEvenements(); // Assuming you want to get all Evenements
+    
+        $form = $this->createForm(InvestissementType::class, $investissement);
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+    
+            return $this->redirectToRoute('app_investissement_listC', [], Response::HTTP_SEE_OTHER);
+        }
+    
+        return $this->render('client/investissement/create.html.twig', [
+            'investissement' => $investissement,
+            'commentaires' => $commentaires,
+            'evenements' => $evenements,
+            'form' => $form->createView(),
+        ]);
+    }
+    
+
+
+
     #[Route('admin/{id}', name: 'app_investissement_showA', methods: ['GET'])]
     public function showA(Investissement $investissement): Response
     {
@@ -84,8 +114,6 @@ class InvestissementController extends AbstractController
             'evenements' => $evenements,
         ]);
     }
-    
-    
     
 
     #[Route('/{id}/edit', name: 'app_investissement_edit', methods: ['GET', 'POST'])]
@@ -100,7 +128,7 @@ class InvestissementController extends AbstractController
             return $this->redirectToRoute('app_investissement_listA', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/investissement/edit.html.twig', [
+        return $this->renderForm('client/investissement/create.html.twig', [
             'investissement' => $investissement,
             'form' => $form,
         ]);

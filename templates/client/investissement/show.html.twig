@@ -1,6 +1,4 @@
- 
- 
-        {% block body %}
+{% block body %}
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
@@ -16,8 +14,6 @@
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
-
-
         <!--**********************************
             Content body start
         ***********************************-->
@@ -203,7 +199,7 @@
                           </g>
                         </g>
                       </svg>
-                      <a class="ms-1" href="{{ path('app_investissement_edit', {'id': investissement.id}) }}">Settings</a>
+                      <a class="ms-1" href="{{ path('app_investissement_show1', {'id': investissement.id}) }}">Settings</a>
                     </a>
                   </li>
                 </ul>
