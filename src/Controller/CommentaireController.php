@@ -35,10 +35,12 @@ class CommentaireController extends AbstractController
             $uploadedFile->move($this->getParameter('kernel.project_dir') . '/public/uploads/', $newImgName);
     
             $commentaire = new Commentaire();
+            
+        $filteredContenu = $this->filterwords($contenu);
+        $commentaire->setContenu($filteredContenu);
             $commentaire->setImg($newImgName);
             $commentaire->setInvestissement($investissement);
             $commentaire->setNomuser($nomuser);
-            $commentaire->setContenu($contenu);
             $commentaire->setDateCreation(new \DateTime());
     
             $entityManager->persist($commentaire);
