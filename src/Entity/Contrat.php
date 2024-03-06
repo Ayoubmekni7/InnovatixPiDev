@@ -17,18 +17,18 @@ class Contrat
     
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank(message: 'Veuillez saisir la date de début du stage')]
-    #[Assert\LessThan(value: "today", message: "Date Invalide !!")]
+    #[Assert\GreaterThan(value: "today", message: "Date Invalide !!")]
     private ?\DateTimeInterface $dateDebut = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message: 'Veuillez saisir la durée du stage')]
     #[Assert\Length(max: 6,minMessage: 'La dure ne contient plus que 6 lettres (comme 2 mois)  ')]
-    #[Assert\Regex(pattern: '/^(1|2|3|4|6|9)\s[a-zA-Z]$/', message: 'La duré doit etre commence par un chiffre (par exemple 1 mois) ')]
+//    #[Assert\Regex(pattern: '/^(1|2|3|4|6|9)\s[a-zA-Z]$/', message: 'La duré doit etre commence par un chiffre (par exemple 1 mois) ')]
     private ?String $dure = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank(message: 'Veuillez saisir la date de fin du stage')]
-    #[Assert\LessThan(value: "today", message: "Date Invalide !!")]
+    #[Assert\GreaterThan(value: "today", message: "Date Invalide !!")]
     private ?\DateTimeInterface $datefin = null;
 
 //    #[ORM\Column(type: Types::TEXT,nullable: true)]
@@ -60,12 +60,12 @@ class Contrat
         return $this;
     }
 
-    public function getDure(): ?int
+    public function getDure(): ?String
     {
         return $this->dure;
     }
 
-    public function setDure(int $dure): static
+    public function setDure(String $dure): static
     {
         $this->dure = $dure;
 

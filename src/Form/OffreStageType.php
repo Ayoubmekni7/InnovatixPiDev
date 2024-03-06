@@ -68,7 +68,7 @@ class OffreStageType extends AbstractType
                 'widget'=>'single_text',
                 'html5'=>true,
                 'format'=>'yyyy-MM-dd'
-        
+            
             
             
             ])

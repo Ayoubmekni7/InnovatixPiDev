@@ -30,3 +30,4 @@ class ActualiteController extends AbstractController
         ]);
     }
 }
+//        "symfonycasts/reset-password-bundle": "^1.14",
