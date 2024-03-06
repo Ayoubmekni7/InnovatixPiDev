@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use phpDocumentor\Reflection\Types\Integer;
+//use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -18,31 +18,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-
-    private ?int $id = null;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Project::class)]
-    private Collection $projects;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Investissement::class)]
-    private Collection $investissements;
-    
-    public function __construct()
-    {
-        $this->projects = new ArrayCollection();
-    }
-
-
     #[Assert\Length(
         min: 8,
         max: 8,
         exactMessage: "Le numéro d'inscription doit contenir exactement 8 chiffres."
     )]
     private ?int $id = null;
-
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\Regex(
         pattern:"^[a-zA-Z0-9._%+-]+@gmail\.com$^",
@@ -143,7 +128,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $offreStages;
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Virement::class)]
     private Collection $virements;
-
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Project::class)]
+    private Collection $projects;
+    
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Investissement::class)]
+    private Collection $investissements;
+    
+    
     public function getVirements(): Collection
     {
         return $this->virements;
@@ -177,12 +168,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
          $this->virements = new ArrayCollection();
          $this->cheque = new ArrayCollection();
          $this->compte = new ArrayCollection();
+         $this->projects = new ArrayCollection();
      }
-     
-
-
-    
-    
     
     /**
      * @return Collection<int, Stage>
@@ -253,6 +240,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getProjects(): Collection
     {
         return $this->projects;
+    }
 
     public function setId(Int $id): static
     {
