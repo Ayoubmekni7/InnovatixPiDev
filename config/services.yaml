@@ -4,6 +4,10 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+        uploads_directory: '%kernel.project_dir%/public/uploads_directory'
+        chat_gpt_api_url: '%env(CHAT_GPT_API_URL)%'
+        chat_gpt_api_key: '%env(CHAT_GPT_API_KEY)%'
+        YOUSIGN_SANDBOX_API_KEY : 'vhnTh0zpdi0CE05rH07NCcWvfKtiuBgm'
 
 services:
     # default configuration for services in *this* file

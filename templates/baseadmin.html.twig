@@ -3,10 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
+
 
     <link href="{{asset('vendor/jquery-smartwizard/dist/css/smart_wizard.min.css')}}" rel="stylesheet">
 
@@ -17,6 +19,16 @@
     <!-- Custom Stylesheets -->
     <link href="{{ asset('vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <link href="{{asset('/vendor/jquery-smartwizard/dist/css/smart_wizard.min.css')}}" rel="stylesheet">
+
+<link href="{{ asset('/vendor/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('/vendor/nouislider/nouislider.min.css') }}">
+
+<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <!-- Custom Stylesheet -->
+	<link href="{{asset('/vendor/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/style.css')}}" rel="stylesheet">
 
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -39,6 +51,7 @@
 		<div class="nav-header">
             <a href="index.html" class="brand-logo">
 <img src="{{ asset('images/2.png') }}" class="rounded-lg me-2" width="70" alt="">
+
 				<div class="brand-title">
 					<h2 class="">EFB</h2>
 					<span class="brand-sub-title">Admin</span>
@@ -75,6 +88,7 @@
                         <div class="header-left">
 							<div class="dashboard_bar">
 								{% block nompage %}{% endblock %}
+
                             </div>
 							
                         </div>
@@ -86,6 +100,22 @@
 								</div>
 							</li>
 								
+									<span class="input-group-text"><a href="{{path('searchclient')}}"><i class="flaticon-381-search-2"></i></a></span>
+								</div>
+							</li>
+							<li>
+                            <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                             {% trans %}Langue{% endtrans %}
+                             </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'_locale': 'fr'})) }}">Français</a></li>
+                            <li><a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'_locale': 'en'})) }}">English</a></li>
+                            <!-- Ajoutez d'autres langues au besoin -->
+                             </ul>
+                             </div>
+                            </li>	
+
 					
 							<li class="nav-item dropdown notification_dropdown">
                                 <a class="nav-link bell-link " href="javascript:void(0);">
@@ -96,6 +126,7 @@
 									<span class="badge light text-white bg-danger rounded-circle">76</span>
                                 </a>
 							</li>	
+
 							
 						
 							
@@ -119,6 +150,29 @@
 								</div>
 							</li>
                         </ul>
+
+	<ul class="navbar-nav ml-auto">
+  <li class="nav-item dropdown has-arrow">
+    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+      <span class="user-img">
+        <img class="rounded-circle" src="{{ asset('Employe/assets/img/logo.png') }}" width="31" alt="Soeng Souy">
+      </span>
+    </a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Profile</a>
+      <a class="dropdown-item" href="#">Settings</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a>
+      <a class="dropdown-item" href="#">Login</a>
+    </div>
+  </li>
+</ul>
+    </li>
+</ul>
+						
+							
+						
+
                     </div>
 				</nav>
 			</div>
@@ -136,15 +190,31 @@
 				<ul class="metismenu" id="menu">
                     
 					
+
+					   <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{path('userStates')}}">Dashboard Light</a></li>
+                     </ul>
+                     <ul aria-expanded="false">
+                        <li><a href="{{path('app_user_clients')}}">Dashboard Dark</a></li>
+                     </ul>
+        
+                </li>
+
+
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                         <i class="fas fa-user-check"></i>
                         <span class="nav-text">Utilisateurs</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="table-bootstrap-basic.html">Liste des employés</a></li>
+
+                        <li><a href="{{path('app_user_employes')}}">Liste des employés</a></li>
                      </ul>
                      <ul aria-expanded="false">
-                        <li><a href="table-bootstrap-basic.html">Liste des clients</a></li>
+                        <li><a href="{{path('app_user_clients')}}">Liste des clients</a></li>
                      </ul>
         
                 </li>
@@ -158,29 +228,28 @@
                 <ul aria-expanded="false">
 
 
-                    <li><a href="ListeCompte.html">Liste des comptes</a></li>
-                    <li><a href="Virement.html">Les Demandes de virement</a></li>
-                    <li><a href="demandeChèque.html">Les Demandes de chèque</a></li>
+
+                    <li><a href="{{path('afficheCompte')}}">Les Demandes de Créations des comptes</a></li>
+                    <li><a href="{{path('AfficherDemande')}}">Les Demandes de chèque</a></li>
+                    <li><a href="{{path('showDemande')}}">Les Demandes de virement</a></li>
+                    <li><a href="{{path('showHistorique')}}">Liste des Compte</a></li>
+                    <li><a href="{{path('showListeCheque')}}">Liste des Chéques</a></li>
+                    <li><a href="{{path('showHistoriqueV')}}">Liste des Virements</a></li>
                 </ul>
             </li>
-             
-         
 
-                <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                 <i class="fas fa-file-alt"></i>
-                <span class="nav-text">Crédits</span>
-            </a>
-            
-                <ul aria-expanded="false">
                  
-                  <li><a href="1.html">Liste des crédits</a></li>
-                    <li><a href="2.html">Liste des rdv</a></li>
-                    <li><a href="3.html">Demande de credit</a></li>
-                    <li><a href="4.html">suivre mon demande</a></li>
 
-                </ul>
-        
-            </li>
+                                      <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                <i class="fas fa-file-alt"></i>
+                <span class="nav-text">Crédits</span>
+                
+            </a>
+            <ul aria-expanded="false">
+      
+            </ul>
+        </li>
+
                 <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                     <i class="fas fa-chart-line"></i>
                     <span class="nav-text">Investissement</span>
@@ -190,30 +259,38 @@
                     <li><a  href="{{ path('app_investissement_listA') }}">Liste des investissements</a></li>
                     <li><a  href="{{ path('app_evenement_index') }}">Liste des événements</a></li>
 
+
                 </ul>
 
              </li>
-                 <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                  <i class="bi bi-clipboard-data-fill"></i>
-            <span class="nav-text">Projet</span>
-        </a>
-        <ul aria-expanded="false">
-            <li><a href="{{ path('app_project_admin') }}">Liste des projets</a></li>
-         </ul>
 
-        </li>
-           
+              <li><a class="has-arrow " href="javascript:void()"aria-expanded="false">
+                  <i class="bi bi-clipboard-data-fill"></i>
+                    <span class="nav-text">Projet</span>
+                </a>
+                <ul aria-expanded="false">
+                    
+                    <li><a  href=" ">Liste des projets</a></li>
+                        
+                </ul>
+
+             </li>
+
+
              <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                 <i class="bi bi-person-down"></i>
-                <span class="nav-text">Stages</span>
+                <span class="nav-text">Recrutement</span>
             </a>
             
                 <ul aria-expanded="false">
-                    <li><a href="lesDemandes.html">Les demandes </a></li>
-                    <li><a href="ListeDesStagiares.html">Liste des stagiaires</a></li>
+                    <li><a href="{{ path('AffichageDesDemandes')}}">Les demandes </a></li>
+                    <li><a href="{{ path('AffichageDesContrats') }}">Liste des Contrats</a></li>
+                    <li><a href="{{ path('AfficheStage') }}">Liste des stages</a></li>
+                    <li><a href="{{ path('afficheOffreStages') }}">Liste des offres</a></li>
                 </ul>
-        
-            </li>
+
+        </li>
+
 
 
 
@@ -228,6 +305,23 @@
          </ul>
 
         </li>
+
+        <li>
+      <a class="has-arrow" href="{{ path('app_logout') }}">
+      <i class="bi bi-box-arrow-left"></i>
+      <span class="nav-text">Logout</span> </a>
+      </li>
+                
+        </li>
+
+
+
+
+
+
+             
+
+
                 </ul>
 				
 				
@@ -240,7 +334,14 @@
 
         
         
- <script src="{{ asset('vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+
+        <script src="{{ asset('vendor/global/global.min.js') }}"></script>
+<script src="{{ asset('vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+<script src="{{ asset('js/custom.min.js') }}"></script>
+<script src="{{ asset('js/dlabnav-init.js') }}"></script>
+<script src="{{ asset('js/demo.js') }}"></script>
+
+
 {# Assuming jQuery is already included #}
 <script src="{{ asset('vendor/global/global.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-steps/build/jquery.steps.min.js') }}"></script>
@@ -268,9 +369,12 @@
     alert("Article ajouté avec succés");
   });
 	</script>
+
         {% block body %}
         
 
         {% endblock %}
+
+    </div>
     </body>
 </html>
