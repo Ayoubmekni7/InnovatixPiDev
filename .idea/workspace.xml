@@ -4,25 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="fix the project.">
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="fix the project without ayoub.">
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ActualiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ActualiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DemandeStageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DemandeStageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ResetPasswordController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/ResetPasswordRequest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ChequeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ChequeRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/DemandeStageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/DemandeStageRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ResetPasswordRequestRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/AnalyseCv.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/AnalyseCv.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Mailing.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Mailing.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/BaseFront.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/BaseFront.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Employe/baseclient.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Employe/baseclient.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/actualite/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/actualite/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,32 +203,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;f19279d7&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Yesser/PI/InnovatixYesser/config/packages&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "f5816964",
+    "last_opened_file_path": "C:/Users/Yesser/PI/InnovatixYesser/config/packages",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Yesser\PI\InnovatixYesser" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\config\packages" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\public" />
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\templates" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\src\Repository" />
     </key>
@@ -765,7 +750,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add template affiche offre backOffice." />
     <MESSAGE value="ajout du formulaire de recherche et la template de Details vide + correction du controlleur de l'offre de stage." />
     <MESSAGE value="mettre à jour le controlleur offre de stage" />
     <MESSAGE value="correction de template de reccrutement et il y'a une erreur au niveau de recherche par le numero" />
@@ -790,6 +774,7 @@
     <MESSAGE value="fix the project" />
     <MESSAGE value="add mercure bundle." />
     <MESSAGE value="fix the project." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix the project." />
+    <MESSAGE value="fix the project without ayoub." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix the project without ayoub." />
   </component>
 </project>
