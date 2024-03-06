@@ -1,0 +1,94 @@
+ {% extends 'baseadmin.html.twig' %}
+ 
+          {% block body %}
+  <!--**********************************
+            Content body start
+        ***********************************-->
+            <div class="content-body">
+   
+<div class="container-fluid">
+ <div class="project-page d-flex justify-content-between align-items-center flex-wrap">
+					<div class="project mb-4">
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" data-bs-toggle="tab" href="#AllStatus" role="tab">Tous les projets</a>
+							</li>
+							<li class="nav-item">
+ 							</li>
+							<li class="nav-item">
+ 							</li>
+							<li class="nav-item">
+ 							</li>
+						</ul>
+					</div>
+					<div class="mb-4">
+						<a href="{{ path('app_project_new') }}" class="btn btn-primary btn-rounded fs-18">+ Nouveau projet</a>
+ 
+					</div>
+				</div>          
+            <div class="container-fluid">
+            <!-- row -->
+           <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm mb-0 table-striped">
+                                        <thead>
+                                            <tr>
+                                             <th><center><strong>Id</strong></center></th>
+<th><center><strong>Nom </strong></center></th>
+<th><center><strong>Adr </strong></center></th>
+<th><center><strong>Date </strong></center></th>
+<th><center><strong>DureeArt</strong></center></th>
+<th><center><strong>CategorieArt</strong></center></th>
+<th><center><strong>TitreArt</strong></center></th>
+<th><center><strong>ContenuArt</strong></center></th>
+<th><center><strong>PiecejointeArt</strong></center></th>
+<th><center><strong>actions</strong></center></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody id="customers">
+        {% for article in articles %}
+
+                                            <tr class="btn-reveal-trigger">
+                                                <td class="py-3">
+                                                  {{ article.id }}
+                                                </td>
+                                                <td class="py-2"><a href="mailto:ricky@example.com">{{  article.nomAutArt}}</a></td>
+                                                <td class="py-2"> <a href="tel:2012001851">{{ article.adrAutArt  }}</a></td>
+                                                <td class="py-2 ps-5">{{article.datePubArt ? article.datePubArt|date('Y-m-d H:i:s') : ''  }}</td>
+                                                <td class="py-2">{{article.dureeArt  }}</td>
+                                                <td class="py-2">{{ article.categorieArt }}</td>
+                                                <td class="py-2">{{ article.titreArt }}</td>
+                                                <td class="py-2">{{ article.contenuArt }}</td>
+                                                <td class="py-2">{{ article.piecejointeArt  }}</td>
+                                                 <td >
+                                              
+														<a href="{{ path('app_article_show', {'id': article.id}) }}" class="btn btn-danger shadow btn-xs sharp"><i class="bi bi-eye"> </i></a>
+  										                <a href="{{ path('app_article_edit', {'id': article.id}) }}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                                        <a href="{{ path('app_article_delete', {'id': article.id}) }}" class="btn btn-danger shadow btn-xs sharp me-1" onclick="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément?');">
+                                                         <i class="fas fa-trash"></i>
+                                                        </a>
+
+                                                </td>
+                                            </tr>
+                                                    {% endfor %}
+
+                                                                                                                                </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+  
+        </div>
+        </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+{% endblock %}
