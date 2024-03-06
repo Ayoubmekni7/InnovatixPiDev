@@ -55,7 +55,7 @@ class OffreStage
     #[Assert\NotBlank(message: 'Veuillez saisir la description de l\'offre')]
     #[Assert\Length(
         min :200,
-        max: 700 ,
+        //max: 700 ,
         minMessage: "La description doit contenir au moins {{ limit }} caractères",
         maxMessage: "La description doit contenir au plus {{ limit }} caractères",
     )]

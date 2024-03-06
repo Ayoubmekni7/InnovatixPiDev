@@ -85,7 +85,7 @@ class Demandestage
     #[Assert\Callback(callback: [self::class, 'validateDate'])]
     private \DateTimeInterface $date;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $score = null;
     
     public function __construct() {

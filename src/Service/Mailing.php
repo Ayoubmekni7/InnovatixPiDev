@@ -2,8 +2,10 @@
 
 namespace App\Service;
 
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 
 class Mailing
@@ -14,8 +16,8 @@ class Mailing
     }
     public function sendEmail($to,  $subject,$content): void
     {
-        $email = (new Email())
-            ->from('yesser.khaloui@etudiant-fst.utm.tn')
+        $email = (new TemplatedEmail())
+            ->from(new Address('yesser.khaloui@etudiant-fst.utm.tn', 'E-Flex Bank'))
             ->to($to)
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')

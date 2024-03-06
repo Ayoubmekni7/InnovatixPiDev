@@ -23,18 +23,21 @@ class Stage
     
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
 //    #[Assert\NotBlank(message: 'Veuillez choisir la date du stage')]
-//    #[Assert\GreaterThan(value: "today", message: "Date Invalide !!")]
-    private ?\DateTimeInterface $date = null;
-    
-  
+    #[Assert\GreaterThan(value: "today", message: "Date Invalide !!")]
+    private ?\DateTimeInterface $date;
+    public function __construct()
+    {
+        $this->date = new \DateTime('2021-02-01');
+        $this->users = new ArrayCollection();
+    }
+//    public function __construct() {
+//        $this->date = new \DateTime('2021-02-01');
+//    }
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'stage')]
     private Collection $users;
 
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
+   
 
     public function getId(): ?int
     {
