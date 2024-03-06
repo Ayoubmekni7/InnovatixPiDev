@@ -300,6 +300,7 @@
             "./config/routes/web_profiler.yaml"
         ]
     },
+
     "symfonycasts/reset-password-bundle": {
         "version": "1.20",
         "recipe": {
@@ -314,6 +315,7 @@
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.16.2"
+
     },
     "twig/extra-bundle": {
         "version": "v3.8.0"

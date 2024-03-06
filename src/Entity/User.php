@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -20,6 +21,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+
+    private ?int $id = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Project::class)]
+    private Collection $projects;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Investissement::class)]
+    private Collection $investissements;
+    
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+    }
+
+
     #[Assert\Length(
         min: 8,
         max: 8,
@@ -224,10 +240,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         
         return $this;
     }
+
     public function getId(): ?int
     {
         return $this->id;
     }
+
+
+    /**
+     * @return Collection<int, Project>
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+
     public function setId(Int $id): static
     {
         $this->id = $id;
@@ -510,5 +536,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCompte(Collection $compte): void
     {
         $this->compte = $compte;
+
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repository;
 
 use App\Entity\User;
@@ -156,4 +157,7 @@ public function countClient()
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+}
 ?>
+

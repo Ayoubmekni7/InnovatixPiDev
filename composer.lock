@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+
     "content-hash": "e7d3239e6671b4ebbbf5e4caca4cccac",
     "packages": [
         {
@@ -8110,19 +8111,10 @@
             "time": "2024-01-23T13:51:25+00:00"
         },
         {
+
+
             "name": "symfonycasts/reset-password-bundle",
-<<<<<<< HEAD
-            "version": "v1.20.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SymfonyCasts/reset-password-bundle.git",
-                "reference": "df64d82cca2ee371da5e8c03c227457069ae663e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SymfonyCasts/reset-password-bundle/zipball/df64d82cca2ee371da5e8c03c227457069ae663e",
-                "reference": "df64d82cca2ee371da5e8c03c227457069ae663e",
-=======
+
             "version": "v1.21.0",
             "source": {
                 "type": "git",
@@ -8133,7 +8125,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/SymfonyCasts/reset-password-bundle/zipball/598fc74acf0652abf495ac8db1c16234f5d59ded",
                 "reference": "598fc74acf0652abf495ac8db1c16234f5d59ded",
->>>>>>> f5816964c48e42430437b79a8a80bd4776ec2a3c
+
                 "shasum": ""
             },
             "require": {
@@ -8164,15 +8156,11 @@
             "description": "Symfony bundle that adds password reset functionality.",
             "support": {
                 "issues": "https://github.com/SymfonyCasts/reset-password-bundle/issues",
-<<<<<<< HEAD
-                "source": "https://github.com/SymfonyCasts/reset-password-bundle/tree/v1.20.3"
-            },
-            "time": "2024-02-20T10:51:53+00:00"
-=======
+
                 "source": "https://github.com/SymfonyCasts/reset-password-bundle/tree/v1.21.0"
             },
             "time": "2024-03-05T20:31:46+00:00"
->>>>>>> f5816964c48e42430437b79a8a80bd4776ec2a3c
+
         },
         {
             "name": "symfonycasts/verify-email-bundle",
@@ -8186,11 +8174,14 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/SymfonyCasts/verify-email-bundle/zipball/572c94ffcf9ab7ada585f3e9ca1a16b3f0d1e77e",
                 "reference": "572c94ffcf9ab7ada585f3e9ca1a16b3f0d1e77e",
+
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
+
                 "php": ">=8.1",
+
                 "symfony/config": "^5.4 | ^6.0 | ^7.0",
                 "symfony/dependency-injection": "^5.4 | ^6.0 | ^7.0",
                 "symfony/deprecation-contracts": "^2.2 | ^3.0",
@@ -8216,6 +8207,7 @@
             "description": "Simple, stylish Email Verification for Symfony",
             "support": {
                 "issues": "https://github.com/SymfonyCasts/verify-email-bundle/issues",
+
                 "source": "https://github.com/SymfonyCasts/verify-email-bundle/tree/v1.16.2"
             },
             "time": "2024-02-20T10:50:54+00:00"
