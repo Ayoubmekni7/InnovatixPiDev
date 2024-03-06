@@ -163,24 +163,28 @@
                     <li><a href="demandeChèque.html">Les Demandes de chèque</a></li>
                 </ul>
             </li>
-             
-         
 
-                <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                 <i class="fas fa-file-alt"></i>
-                <span class="nav-text">Crédits</span>
-            </a>
-            
-                <ul aria-expanded="false">
-                 
-                  <li><a href="1.html">Liste des crédits</a></li>
-                    <li><a href="2.html">Liste des rdv</a></li>
-                    <li><a href="3.html">Demande de credit</a></li>
-                    <li><a href="4.html">suivre mon demande</a></li>
 
-                </ul>
-        
-            </li>
+
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                            <i class="fas fa-file-alt"></i>
+                            <span class="nav-text">Crédits</span>
+
+                        </a>
+                        <ul aria-expanded="false">
+
+                            <li><a href="{{path('app_listecredit')}}">Liste des crédits</a></li>
+                            <li><a href="{{path('app_listerdv')}}">Liste des rdv</a></li>
+                            <li><a href="{{path('sortedlist')}}">Liste des credit ordonne</a></li>
+                            <li><a href="{{path('app_graphique')}}">stats</a></li>
+                            <li><a href="{{path('app_rdv')}}">CALANDER</a></li>
+                            <li><a href="{{path('app_home')}}">reminder RDV</a></li>
+
+
+
+
+                        </ul>
+                    </li>
                 <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                     <i class="fas fa-chart-line"></i>
                     <span class="nav-text">Investissement</span>
