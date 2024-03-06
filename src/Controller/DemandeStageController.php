@@ -106,7 +106,7 @@ class DemandeStageController extends AbstractController
             $cv = $uploadFile->uploadFile($file);
             // Analyseur de CV
             $cheminFichier = $this->getParameter('uploads_directory').'/'.$cv;
-            $demandeO->setScore($cvAnalyseur->analyseCV($cheminFichier, $offre->getMotsCles()));
+            $demandeO->setScore($cvAnalyseur->analyseCV($cheminFichier , $offre->getMotsCles()));
             $demandeO->setCv($cv);
             $x = $managerRegistry->getManager();
             $demandeO->setOffreStage($offre);
