@@ -27,11 +27,29 @@ class VirementRepository extends ServiceEntityRepository
     public function listeDesVirements($value): array
     {
         return $this->createQueryBuilder('v')
-            ->andWhere('v.ActionsV = :val')
+            ->andWhere('v.DecisionV = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getResult()
         ;
+    }
+    public function listeDesVirementsAccepte($value): array
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.DecisionV = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function listeDesVirementsRefuse($value): array
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.DecisionV = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
 }

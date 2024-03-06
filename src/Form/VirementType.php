@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class VirementType extends AbstractType
 {
@@ -21,6 +22,17 @@ class VirementType extends AbstractType
                 'label' => 'Choisir une photo',
                 'required' => true,
                 'mapped' => false,
+                'constraints' => [
+                    new File([
+
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/jpg',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez télécharger un fichier image valide (JPEG, PNG, JPG)',
+                    ])
+                ],
             ])
             ->add('Email')
             ->add('TypeVirement',  ChoiceType::class, [

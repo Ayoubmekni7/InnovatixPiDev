@@ -13,6 +13,18 @@
         <link rel="stylesheet" href="assets/css/feathericon.min.css">
         <link rel="stylesheet" href="assets/plugins/morris/morris.css">
         <link rel="stylesheet" href="assets/css/style.css"> </head>
+    <style>
+        /* Couleur verte pour les éléments approuvés */
+         . approuvé {
+            color: green;
+        }
+
+        /* Couleur rouge pour les éléments refusés */
+        .refuse {
+            color: red;
+        }
+
+    </style>
 
     <div class="page-wrapper">
         <div class="content container-fluid">
@@ -58,10 +70,11 @@
                                         </td>
                                         <td class="text-right">
                                             <div class="dropdown dropdown-action"> <a  class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v ellipse_color"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-right"> <a class="dropdown-item" href="{{ path('ApprouverVirementEmp',{'id':i.id}) }}"><i class="fas fa-pencil-alt m-r-5"></i> Approuvé</a>
-                                                    <a  class="dropdown-item" href="{{ path('deleteVirementEmp',{'id':i.id}) }}" class="btn btn-danger shadow btn-xs sharp" onclick="return confirm('Etes-vous sur de vouloir supprimer cet élément ?');"><i
-                                                                class="fa fa-trash"></i>Réfuser </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item approuvé" href="{{ path('ApprouverVirementEmp',{'id':i.id}) }}"><i class="fas fa-pencil-alt m-r-5"></i> Approuvé</a>
+                                                    <a class="dropdown-item refuse" href="{{ path('deleteVirementEmp',{'id':i.id}) }}" onclick="return confirm('Etes-vous sûr de vouloir supprimer cet élément ?');"><i class="fa fa-trash"></i> Refuser</a>
                                                 </div>
+
                                             </div>
                                         </td>
                                     </tr>

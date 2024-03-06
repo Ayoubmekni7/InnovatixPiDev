@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Cheque;
 use App\Form\ChequeType;
 use App\Repository\ChequeRepository;
+use App\Service\uploadFile;
 use App\Service\uploadPhoto;
 use App\Service\YousignService;
 use Doctrine\Persistence\ManagerRegistry;
@@ -49,13 +50,13 @@ class ChequeController extends AbstractController
 
     {
         $liste= $chequeRepository->findAll();
-        return $this->render('frontoffice/Client/cheque/historique.html.twig',[
+        return $this->render('frontOffice/Client/cheque/historique.html.twig',[
             'cheques'=>$liste,
         ]);
     }
 
     #[Route('/addcheques', name: 'addcheques')]
-    public function addcheques(Request $request, ManagerRegistry $managerRegistry, SluggerInterface $slugger, uploadPhoto $uploadPhoto): Response
+    public function addcheques(Request $request, ManagerRegistry $managerRegistry, SluggerInterface $slugger, uploadFile $uploadFile): Response
     {
         $cheque = new Cheque();
         $form = $this->createForm(ChequeType::class, $cheque);
@@ -66,7 +67,7 @@ class ChequeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $photo = $form->get('photoCin')->getData();
-            $photoCin = $uploadPhoto->uploadPhoto($photo);
+            $photoCin = $uploadFile->uploadFile($photo);
             $cheque->setPhotoCin($photoCin);
             $cheque->setDecision("encours");
             $x = $managerRegistry->getManager();
@@ -75,7 +76,7 @@ class ChequeController extends AbstractController
             return $this->redirectToRoute('historique');
         }
 
-        return $this->render('frontoffice/Client/cheque/add.html.twig', [
+        return $this->render('frontOffice/Client/cheque/add.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -88,7 +89,7 @@ class ChequeController extends AbstractController
     {
         $cheque = $chequeRepository->find($id);
         $dompdf = new Dompdf();
-        $html = $this->renderView('frontoffice/Client/cheque/pdf.html.twig', [
+        $html = $this->renderView('frontOffice/Client/cheque/pdf.html.twig', [
             'i' => $cheque,
         ]);
         $dompdf->loadHtml($html);
@@ -116,7 +117,7 @@ class ChequeController extends AbstractController
 
     {
         $liste= $chequeRepository->find($id);
-        return $this->render('frontoffice/Client/cheque/show.html.twig',[
+        return $this->render('frontOffice/Client/cheque/show.html.twig',[
             'i'=>$liste,
         ]);
     }
@@ -275,7 +276,7 @@ class ChequeController extends AbstractController
         return $this->redirectToRoute('historique');
 
     }
-    return $this->renderForm('frontoffice/Client/cheque/add.html.twig',[
+    return $this->renderForm('frontOffice/Client/cheque/add.html.twig',[
         'form' => $form
     ]);
 
@@ -286,7 +287,7 @@ class ChequeController extends AbstractController
     {
 
         $idData =$chequeRepository->chequeParClient($id);
-        return $this->renderForm('frontoffice/Client/cheque/add.html.twig',[
+        return $this->renderForm('frontOffice/Client/cheque/add.html.twig',[
             'liste' => $idData
         ]);
     }

@@ -43,4 +43,17 @@ class ChequeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @return Cheque[] Returns an array of Cheque objects
+     */
+    public function HistoriqueDesChequesParClient($value): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.user = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

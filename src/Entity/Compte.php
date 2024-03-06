@@ -45,7 +45,7 @@ class Compte
     private ?\DateTimeInterface $DateDelivranceCin = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez saisir votre nom  ')]
+    #[Assert\NotBlank(message: 'Votre nom et prénom sont importants pour mieux collaborer avec vous  ')]
     #[Assert\Length(
         min :3,
         max: 30 ,
@@ -57,7 +57,7 @@ class Compte
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez saisir votre prenom')]
+    #[Assert\NotBlank(message: 'Votre nom et prénom sont importants pour mieux collaborer avec vous')]
     #[Assert\Length(
         min :3,
         max: 30 ,

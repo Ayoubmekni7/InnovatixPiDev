@@ -4,177 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="signature">
-      <change afterPath="$PROJECT_DIR$/public/cheque_42.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/cheque_46.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/cheque_47.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/form/pexels-anna-shvets-4482900 (2).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/form/pexels-gary-barnes-6248545.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/form/pexels-george-becker-129492.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/form/pexels-julio-lopez-18859349.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/form/pexels-karolina-grabowska-4386433.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/form/pexels-karolina-grabowska-4968639.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/form/pexels-pixabay-210574 (1).jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/css/bootstrap-datetimepicker.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/css/feathericon.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/css/select2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/fonts/MaterialIcons-Regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/fonts/MaterialIcons-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/fonts/MaterialIcons-Regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/fonts/MaterialIcons-Regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/fonts/feathericon-1.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/fonts/feathericon.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/fonts/feathericon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/fonts/feathericon.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/fonts/feathericon.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/hotel_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/placeholder.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/product/product-01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/product/product-02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/product/product-03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/product/product-04.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/product/product-05.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/product/product-06.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/product/product-07.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/product/product-08.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-04.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-05.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-06.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-07.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-08.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-09.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-13.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-15.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-16.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/profiles/avatar-17.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/sent.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/img/video-call.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/js/bootstrap-datetimepicker.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/js/chart.morris.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/js/jquery-3.5.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/js/jquery-ui.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/js/moment.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/js/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/js/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/js/select2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/datatables/datatables.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/datatables/datatables.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/datatables/jquery.dataTables.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/css/all.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/css/all.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/css/fontawesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-brands-400-1.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-brands-400.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-brands-400.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-brands-400.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-brands-400.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-brands-400.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-regular-400-1.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-regular-400.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-regular-400.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-regular-400.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-regular-400.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-regular-400.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-solid-900-1.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-solid-900.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-solid-900.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-solid-900.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-solid-900.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fontawesome/webfonts/fa-solid-900.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fullcalendar/fullcalendar.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fullcalendar/fullcalendar.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/fullcalendar/jquery.fullcalendar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/morris/morris.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/morris/morris.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/raphael/raphael.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/slimscroll/jquery.slimscroll.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/summernote/dist/font/summernote-1.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/summernote/dist/font/summernote.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/summernote/dist/font/summernote.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/summernote/dist/font/summernote.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/summernote/dist/font/summernote.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/summernote/dist/summernote-bs4.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/formulaireClient/assets/plugins/summernote/dist/summernote-bs4.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads_directory/411034985-763144555653789-3630252769617782161-n-65e1de1bd1085.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads_directory/414747882-346092414832707-29764479173987674-n-65e1b1cde3be4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads_directory/414747882-346092414832707-29764479173987674-n-65e1e1a99a1ea.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads_directory/415580004-2681620305327618-2785155855410761662-n-65e1b66e6c228.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads_directory/429615421-7175451449244087-7774800931821734062-n-65e30fed80dc5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads_directory/Capture-d-ecran-2024-03-02-102129-65e3909b40572.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads_directory/Capture-d-ecran-2024-03-02-102818-65e3b38a3bf42.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/ChequeController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/CompteController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/VirementController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Cheque.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Compte.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Virement.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/ChequeType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/CompteType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/VirementType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/ChequeRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/CompteRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/VirementRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/YousignService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/backOffice/Employe/cheque/listCheque.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/backOffice/Employe/cheque/listE.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/backOffice/Employe/compte/historiqueCompteE.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/backOffice/Employe/compte/listCompteEmp.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/backOffice/Employe/virement/listVirementEmpl.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/backOffice/Employe/virement/virementE.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/backOffice/admin/cheque/historiqueAdmin.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/backOffice/admin/cheque/list.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/backOffice/admin/compte/historiqueCompte.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/backOffice/admin/compte/listCompte.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/backOffice/admin/virement/Virements.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/backOffice/admin/virement/historiqueVirement.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/baseEmploye.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/baseclient.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/calebndar/delete..html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/calebndar/edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/calebndar/form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/calebndar/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/calebndar/new.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/calebndar/show.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/cheque/add.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/cheque/edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/cheque/historique.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/cheque/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/cheque/pdf.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/cheque/show.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/compte/creerCompte.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/compte/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/compte/informationsCompte.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/compte/succe.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/compte/succses/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/dashboard.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/virement/DemandeVirement.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/virement/historiqueV.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/Client/virement/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/frontOffice/index.html.twig" afterDir="false" />
+    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="Integration de mon travail">
+      <change afterPath="$PROJECT_DIR$/config/packages/recaptcha.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/client/assets/.vscode/launch.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/client/assets/scss/soft-ui-dashboard/forms/_floating-labels.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/client/assets/scss/soft-ui-dashboard/forms/_form-control.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/client/assets/scss/soft-ui-dashboard/forms/_form-range.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/client/assets/scss/soft-ui-dashboard/forms/_form-text.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/client/assets/scss/soft-ui-dashboard/forms/_validation.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/client/docs/documentation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_02_2024_13_17__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_02_2024_13_17__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_02_2024_11_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_02_2024_11_37__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_02_2024_12_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_02_2024_12_34__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_02_2024_10_54__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_02_2024_10_54__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_02_2024_00_23__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_02_2024_00_23__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_02_2024_00_23__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_02_2024_00_23__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ActualiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ActualiteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ChequeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ChequeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CompteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CompteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/VirementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/VirementController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Compte.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Compte.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ChequeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ChequeType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/CompteType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CompteType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/VirementType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/VirementType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ChequeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ChequeRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/VirementRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/VirementRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Security/LoginAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/LoginAuthenticator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/backOffice/Employe/virement/listVirementEmpl.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/Employe/virement/listVirementEmpl.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/baseEmploye.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseEmploye.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/baseclient.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseclient.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/compte/creerCompte.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/compte/creerCompte.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/compte/informationsCompte.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/dashboard.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/virement/historiqueV.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/virement/historiqueV.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -350,6 +216,9 @@
       <path value="$PROJECT_DIR$/vendor/symfonycasts/verify-email-bundle" />
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/vendor/google/recaptcha" />
+      <path value="$PROJECT_DIR$/vendor/victor-prdh/recaptcha-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/twig-pack" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -369,7 +238,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Admin/PhpstormProjects/InnovatixPiDev/src/Form",
+    "last_opened_file_path": "C:/Users/Admin/PhpstormProjects/InnovatixPiDev",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -386,11 +255,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\src\Form" />
+      <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\public\client" />
       <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\public" />
-      <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\templates" />
-      <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\templates\frontOffice" />
-      <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\templates\backoffice" />
+      <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\public\client\assets\scss\soft-ui-dashboard\forms" />
+      <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\public\client\assets" />
+      <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\src\Form" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\templates" />
@@ -405,6 +274,13 @@
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-php-predefined-ba97393d7c68-6f8e3395a2b4-com.jetbrains.php.sharedIndexes-PS-233.14015.96" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -481,14 +357,7 @@
       <workItem from="1709471131466" duration="26000" />
       <workItem from="1709471160007" duration="1078000" />
       <workItem from="1709472291924" duration="3274000" />
-    </task>
-    <task id="LOCAL-00013" summary="crud de Contrat sans design">
-      <option name="closed" value="true" />
-      <created>1708008007601</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1708008007601</updated>
+      <workItem from="1709576888900" duration="38150000" />
     </task>
     <task id="LOCAL-00014" summary="crud de Stage sans design.">
       <option name="closed" value="true" />
@@ -874,7 +743,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709474809561</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Integration de mon travail">
+      <option name="closed" value="true" />
+      <created>1709480927225</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1709480927225</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -895,7 +772,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update dans recrutement template" />
     <MESSAGE value="add template affiche offre backOffice." />
     <MESSAGE value="ajout du formulaire de recherche et la template de Details vide + correction du controlleur de l'offre de stage." />
     <MESSAGE value="mettre à jour le controlleur offre de stage" />
@@ -920,6 +796,18 @@
     <MESSAGE value="integration de mon travail" />
     <MESSAGE value="fix the project" />
     <MESSAGE value="signature" />
-    <option name="LAST_COMMIT_MESSAGE" value="signature" />
+    <MESSAGE value="Integration de mon travail" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integration de mon travail" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/frontOffice/Client/dashboard.html.twig</url>
+          <line>29</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

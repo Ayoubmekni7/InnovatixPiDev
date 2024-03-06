@@ -57,7 +57,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         } elseif (in_array('ROLE_EMPLOYEE', $user->getRoles())) {
             return new RedirectResponse($this->urlGenerator->generate('app_dashbordEmploye'));
          } elseif (in_array('ROLE_CLIENT', $user->getRoles())) { 
-            return new RedirectResponse($this->urlGenerator->generate('app_dashbordClient'));
+            return new RedirectResponse($this->urlGenerator->generate('app_dashbordClient' ,[ 'user'=> $user->getUserIdentifier()]));
         }
 
         // For example:

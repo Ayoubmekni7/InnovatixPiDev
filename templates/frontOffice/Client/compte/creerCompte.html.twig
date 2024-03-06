@@ -180,6 +180,15 @@
                                 {{ form_errors(form.PreferenceCommunic,{'attr':{'class': 'text-danger'}}) }}
                             </div>
                         </div>
+
+                         <div class="col-md-4 offset-md-4 text-center" >
+                            <div class="form-group">
+                                {{ form_row(form.recaptcha) }}
+                                {{ form_errors(form.recaptcha,{'attr':{'class': 'text-danger'}}) }}
+                            </div>
+                        </div>}
+
+
                         <div class="col-md-4 offset-md-4 mt-5"> <!-- Utilisation de la classe offset-md-4 pour déplacer le bouton au centre -->
                             <div class="form-group text-center"> <!-- Ajout de la classe text-center pour centrer le contenu du groupe de formulaire -->
                                 <button type="submit" class="btn btn-success">Confirmer</button>

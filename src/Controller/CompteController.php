@@ -6,6 +6,7 @@ use App\Form\CompteType;
 use App\Repository\CompteRepository;
 use App\Service\Mailing;
 use Doctrine\Persistence\ManagerRegistry;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3Validator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +16,12 @@ class CompteController extends AbstractController
 {
     public Mailing $emailService;
     public string $directory = 'uploads_directory';
+
     public function __construct(Mailing $emailService)
     {
         $this->emailService = $emailService;
     }
+
     #[Route('/comptes', name: 'app_compte')]
     public function index(): Response
     {
@@ -26,49 +29,44 @@ class CompteController extends AbstractController
             'controller_name' => 'CompteController',
         ]);
     }
+
     #[Route('/createcompte', name: 'createcompte')]
-    public function createcompte(CompteRepository $compteRepository ,Request $request,ManagerRegistry $managerRegistry,mailing $mailing):Response
+    public function createcompte(CompteRepository $compteRepository, Request $request, ManagerRegistry $managerRegistry, Mailing $mailing): Response
     {
-        $compte =new Compte();
-        $form=$this->createForm(CompteType::class,$compte);
-        $em=$managerRegistry->getManager();
+        $compte = new Compte();
+        $form = $this->createForm(CompteType::class, $compte);
+        $em = $managerRegistry->getManager();
         $form->handleRequest($request);
-        $to =$compte->getEmail();
-        $nom =$compte->getNom().''.$compte->getPrenom();
+        $to = $compte->getEmail();
+        $nom = $compte->getNom() . '' . $compte->getPrenom();
         $subject = "Demande effectuer avec succés";
-        $html="<div> Bonjour {$nom}.<br>Votre Demande compte .<br>";
-        if ($form->isSubmitted() && $form->isValid()){
+        $html = "<div> Bonjour {$nom}.<br>Votre Demande compte .<br>";
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($compte);
             $em->flush();
-            $this->emailService->sendEmail($to,$subject ,$html);
+            $this->emailService->sendEmail($to, $subject, $html);;
             return $this->redirectToRoute('succses');
             {#return new Response('creation de compte');#}
-
-            }}
-                return  $this->render('frontOffice/Client/compte/creerCompte.html.twig',[
+            }
+        }
+        return $this->render('frontOffice/Client/compte/creerCompte.html.twig', [
             'form' => $form->createView(),
-            'Compte'=>$compte
+            'Compte' => $compte
         ]);
 
     }
+
+
+
+
     #[Route('/succses', name: 'succses')]
-    public function succses(): Response
+    public function succses( Mailing $mailing): Response
     {
         return $this->render('frontOffice/Client/compte/succe.html.twig', [
             'controller_name' => 'SuccsesController',
         ]);
     }
-
-    #[Route('/showInfoCompte/{id}', name: 'showInfoCompte')]
-    public function showInfoCompte($id, CompteRepository $compteRepository): Response
-    {
-        $compte = $compteRepository->find($id);
-
-        return $this->render('frontOffice/Client/compte/informationsCompte.html.twig', [
-            'compte' => $compte,
-        ]);
-    }
-
 
 
     #[Route('/afficheCompte', name: 'afficheCompte')]
@@ -97,7 +95,7 @@ class CompteController extends AbstractController
         ]);
     }
     #[Route('/ApprouveCompte/{id}', name: 'ApprouveCompte')]
-    public function ApprouveCompte($id, ManagerRegistry $managerRegistry , CompteRepository $compteRepository , mailing $mailing): Response
+    public function ApprouveCompte($id, ManagerRegistry $managerRegistry , CompteRepository $compteRepository , Mailing $mailing): Response
     {
         $compte=$compteRepository->find($id);
         $compte->setStatut(1);
@@ -112,6 +110,24 @@ class CompteController extends AbstractController
 
         return $this->redirectToRoute('showHistorique');
     }
+
+    #[Route('/RefuserCompte/{id}', name: 'RefuserCompte')]
+    public function RefuserCompte($id, ManagerRegistry $managerRegistry , CompteRepository $compteRepository , Mailing $mailing): Response
+    {
+        $compte=$compteRepository->find($id);
+        $compte->setStatut(1);
+        $emm=$managerRegistry->getManager();
+        $emm->persist($compte);
+        $emm->flush();
+        $to =$compte->getEmail();
+        $nom =$compte->getNom().$compte->getPrenom();
+        $subject = "Echec";
+        $html = "<div>Bonjour {$nom}.<br>Votre Demante a été Réfuser .<br>";
+        $this->emailService->sendEmail($to, $subject, $html);
+
+        return $this->redirectToRoute('showHistorique');
+    }
+
 
 
     #[Route('/deleteCompte/{id}', name: 'deleteCompte')]
@@ -141,7 +157,6 @@ public function modifierCompte($id,ManagerRegistry $managerRegistry,CompteReposi
     ]);
 
 }
-
 
 
 }

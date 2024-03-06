@@ -9,6 +9,7 @@ parameters:
         chat_gpt_api_key: '%env(CHAT_GPT_API_KEY)%'
         YOUSIGN_SANDBOX_API_KEY : 'vhnTh0zpdi0CE05rH07NCcWvfKtiuBgm'
 
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -26,3 +27,5 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+

@@ -8,6 +8,12 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
+use VictorPrdh\RecaptchaBundle\Form\ReCaptchaType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
+
+
 
 class CompteType extends AbstractType
 {
@@ -71,9 +77,10 @@ class CompteType extends AbstractType
                 'multiple' => false, // Seul un choix peut être sélectionné
                 // Autres options du champ ChoiceType
             ])
-            ->add('submit', SubmitType::class)
+            ->add("recaptcha", ReCaptchaType::class);
 
-        ;
+            ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
