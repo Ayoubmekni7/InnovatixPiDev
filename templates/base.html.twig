@@ -9,6 +9,7 @@
     
 
     <link href="{{asset('/vendor/jquery-smartwizard/dist/css/smart_wizard.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
 
 <link href="{{ asset('/vendor/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('/vendor/nouislider/nouislider.min.css') }}">
@@ -187,6 +188,25 @@
                     <li><a href="{{path('showHistoriqueV')}}">Liste des Virements</a></li>
                 </ul>
             </li>
+            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                <i class="fas fa-file-alt"></i>
+                <span class="nav-text">Crédits</span>
+                
+            </a>
+            <ul aria-expanded="false">
+               
+                <li><a href="{{path('app_listecredit')}}">Liste des crédits</a></li>
+                <li><a href="{{path('app_listerdv')}}">Liste des rdv</a></li>
+                <li><a href="{{path('sortedlist')}}">Liste des credit ordonne</a></li>
+                <li><a href="{{path('app_graphique')}}">stats</a></li>
+                <li><a href="{{path('app_rdv')}}">CALANDER</a></li>
+                <li><a href="{{path('app_home')}}">reminder RDV</a></li>
+
+
+
+               
+            </ul>
+        </li>
 
                  
 
@@ -285,7 +305,8 @@
 <script src="{{ asset('js/custom.min.js') }}"></script>
 <script src="{{ asset('js/dlabnav-init.js') }}"></script>
 <script src="{{ asset('js/demo.js') }}"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+        
 
 {# Assuming jQuery is already included #}
 <script src="{{ asset('vendor/global/global.min.js') }}"></script>
@@ -293,6 +314,7 @@
 <script src="{{ asset('vendor/jquery-validation/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js') }}"></script>
 <script src="{{ asset('vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+
 
 <script src="{{ asset('js/plugins-init/jquery.validate-init.js') }}"></script>
 <script src="{{ asset('js/custom.min.js') }}"></script>

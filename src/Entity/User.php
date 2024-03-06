@@ -153,6 +153,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToMany(targetEntity: Compte::class, inversedBy: 'users')]
     private Collection $compte;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Credit::class)]
+    private Collection $credit;
     
      public function __construct()
      {
@@ -161,7 +163,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
          $this->virements = new ArrayCollection();
          $this->cheque = new ArrayCollection();
          $this->compte = new ArrayCollection();
+         $this->credit = new ArrayCollection();
+
+         
      }
+     public function getCredit(): Collection
+     {
+         return $this->credit;
+     }
+ 
+     public function addCredit(credit $credit): static
+     {
+         if (!$this->credit->contains($credit)) {
+             $this->credit->add($credit);
+             $credit->setUser($this);
+         }
+ 
+         return $this;
+     }
+     public function removeCredit(credit $credit): static
+    {
+        if ($this->credit->removeElement($credit)) {
+            // set the owning side to null (unless already changed)
+            if ($credit->getUser() === $this) {
+                $credit->setUser(null);
+            }
+        }
+
+        return $this;
+    }
      
 
 

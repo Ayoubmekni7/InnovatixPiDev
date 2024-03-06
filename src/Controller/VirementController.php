@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Virement;
 use App\Form\VirementType;
 use App\Repository\VirementRepository;
+use App\Service\uploadFile;
 use App\Service\uploadPhoto;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,7 +26,7 @@ class VirementController extends AbstractController
         ]);
     }
     #[Route('/addvirement', name: 'addvirement')]
-    public function addvirement(VirementRepository $virementRepository, Request $request, ManagerRegistry $managerRegistry , SluggerInterface $slugger, uploadPhoto $uploadPhoto): Response
+    public function addvirement(VirementRepository $virementRepository, Request $request, ManagerRegistry $managerRegistry , SluggerInterface $slugger, uploadFile $uploadPhoto): Response
     {
         $virement= new Virement ();
         $form = $this->createForm(VirementType::class,$virement);
@@ -33,7 +34,7 @@ class VirementController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $photo = $form->get('photoCinV')->getData();
-            $photoCinV=$uploadPhoto->uploadPhoto($photo);
+            $photoCinV=$uploadPhoto->uploadFile($photo);
             $virement->setPhotoCinV($photoCinV);
             $virement->setDecisionV("encours");
             $em->persist($virement);
