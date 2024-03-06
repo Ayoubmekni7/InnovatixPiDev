@@ -36,7 +36,40 @@ class Evenement
     #[ORM\Column(type: 'float')]
     private $prix;
 
- 
+
+  #[ORM\Column(type: 'integer')]
+  private int $likes = 0;
+
+  #[ORM\Column(type: 'integer')]
+  private int $dislikes = 0;
+
+
+
+  public function getLikes(): int
+  {
+    return $this->likes;
+  }
+
+  public function setLikes(int $likes): self
+  {
+    $this->likes = $likes;
+
+    return $this;
+  }
+
+  public function getDislikes(): int
+  {
+    return $this->dislikes;
+  }
+
+  public function setDislikes(int $dislikes): self
+  {
+    $this->dislikes = $dislikes;
+
+    return $this;
+  }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -139,5 +172,5 @@ class Evenement
 
 
 
-    
+
  }
