@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="fix the project.">
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ActualiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ActualiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DemandeStageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DemandeStageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ResetPasswordController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/ResetPasswordRequest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ChequeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ChequeRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/DemandeStageRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/DemandeStageRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ResetPasswordRequestRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/AnalyseCv.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/AnalyseCv.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/Mailing.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Mailing.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/BaseFront.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/BaseFront.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Employe/baseclient.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Employe/baseclient.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/actualite/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/actualite/index.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="fix the project." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="f19279d76287dd9b065d55330dccc108b5bf08f0" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -223,7 +204,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;f19279d7&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Yesser/PI/InnovatixYesser/config/packages&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -353,23 +334,7 @@
       <workItem from="1709685828076" duration="367000" />
       <workItem from="1709686206119" duration="1521000" />
       <workItem from="1709687808901" duration="1091000" />
-      <workItem from="1709731092276" duration="804000" />
-    </task>
-    <task id="LOCAL-00015" summary="template affichage des contrats">
-      <option name="closed" value="true" />
-      <created>1708026410808</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1708026410808</updated>
-    </task>
-    <task id="LOCAL-00016" summary="ajout d'attribut état dans Demande Stage entity.">
-      <option name="closed" value="true" />
-      <created>1708030281322</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1708030281322</updated>
+      <workItem from="1709731092276" duration="1657000" />
     </task>
     <task id="LOCAL-00017" summary="correction du quelque erreur du code">
       <option name="closed" value="true" />
@@ -747,7 +712,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709683266851</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="fix the project.">
+      <option name="closed" value="true" />
+      <created>1709733728466</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1709733728466</updated>
+    </task>
+    <task id="LOCAL-00065" summary="fix the project.">
+      <option name="closed" value="true" />
+      <created>1709733804866</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1709733804866</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
