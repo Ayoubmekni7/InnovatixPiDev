@@ -102,12 +102,10 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <div class="card">
+                    <div class="card" style="background-color: white">
                         <div class="card-header">
-                            <h4 class="card-title">Liste des offres</h4> <button class="btn btn-outline-success " onclick="toggleColumns()">Afficher/Masquer les colonnes</button><a href="{{ path('addOffre') }}"> <button type="button" class="btn btn-success">Ajouter une offre </button></a>
-
-                        </div>
-                        <div  style="background: #fdfdfd; margin: 100px 300px 50px;border-radius: 30px;border-color: #0D0A0A">
+                            <h4 class="card-title">Les détails de l'offre " {{ offre.title }} "</h4> </div>
+                        <div  style="background: #fdfdfd; margin: 100px  50px;border-radius: 30px;border-color: #0D0A0A">
                             <h4 class="text-center" style="padding-top: 20px;text-align: center;">{{ offre.title }}</h4>
                             <table border="2" style="margin-top: 50px;margin-left: 200px;table-layout: fixed;
                                       width: 70%;
@@ -157,8 +155,9 @@
                                 <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-top: 20px">Date de postulation :</h6>
                                 <p class="card-text" style="margin-top: 5px">{{ offre.datePostu | date('d F Y')}}</p>
                             </div>
-                            <a href="{{ path('demandeStageOffre',{'id': offre.id}) }}">  <button type="submit" class="btn btn-primary btn-lg btn-block" style="">Postuler maintenant </button> </a>
-
+{#                            <a href="{{ path('demandeStageOffre',{'id': offre.id}) }}">  <button type="submit" class="btn btn-primary btn-lg btn-block" style="">Postuler maintenant </button> </a>#}
+                            <a href="{{ path('editOffre',{'id': offre.id}) }}">  <button type="submit" class="btn btn-warning btn-lg " style="width: 45%">Modifier </button> </a>
+                            <a href="{{ path('deleteOffre',{'id': offre.id}) }}">  <button type="submit" class="btn btn-danger btn-lg " style="width: 45%;margin-left: 40px"> Supprimer </button> </a>
 
                         </div>
 

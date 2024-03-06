@@ -91,8 +91,8 @@
                              {% trans %}Langue{% endtrans %}
                              </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'_locale': 'fr'})) }}">Français</a></li>
-                            <li><a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'_locale': 'en'})) }}">English</a></li>
+{#                            <li><a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'_locale': 'fr'})) }}">Français</a></li>#}
+{#                            <li><a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), app.request.query.all|merge({'_locale': 'en'})) }}">English</a></li>#}
                             <!-- Ajoutez d'autres langues au besoin -->
                              </ul>
                              </div>
@@ -257,15 +257,6 @@
       <i class="bi bi-box-arrow-left"></i>
       <span class="nav-text">Logout</span> </a>
       </li>
-                
-        </li>
-
-
-
-
-
-
-             
 
 
                 </ul>
@@ -298,8 +289,9 @@
 <script src="{{ asset('js/custom.min.js') }}"></script>
 <script src="{{ asset('js/dlabnav-init.js') }}"></script>
 <script src="{{ asset('js/demo.js') }}"></script>
-
+{% block script %}
 	<script>
+
 		$(document).ready(function(){
 			// SmartWizard initialize
 			$('#smartwizard').smartWizard(); 
@@ -314,7 +306,7 @@
     alert("Article ajouté avec succés");
   });
 	</script>
-        
+    {% endblock %}
         
         {% block body %}
         
