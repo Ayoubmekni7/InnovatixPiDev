@@ -288,6 +288,75 @@
 .select-image:hover {
 	background: var(--dark-blue);
 }
+
+
+       button.like1 {
+         width: 50px;
+         height: 50px;
+         margin: 0 auto;
+         line-height: 50px; /* corrected misspelling */
+         border-radius: 50%;
+         color: rgba(0, 150, 136, 1);
+         background-color: rgba(38, 166, 154, 0.3);
+         border-color: rgba(0, 150, 136, 1);
+         border-width: 1px;
+         font-size: 15px;
+       }
+
+       button.dislike1 {
+         width: 50px;
+         height: 50px;
+         margin: 0 auto;
+         line-height: 50px; /* corrected misspelling */
+         border-radius: 50%;
+         color: rgba(255, 82, 82, 1);
+         background-color: rgba(255, 138, 128, 0.3);
+         border-color: rgba(255, 82, 82, 1);
+         border-width: 1px;
+         font-size: 15px;
+       }
+
+       button.learnmore {
+         width: 100%;
+         padding: 15px; /* increased padding */
+         border: none;
+         background: rgba(0, 151, 167, 1);
+         border-radius: 5px;
+         text-transform: uppercase;
+         font-size: 16px;
+         color: #fff;
+         letter-spacing: 1px;
+       }
+       .like1, .dislike1 {
+         display: inline-block;
+         width: 40px;
+         height: 40px;
+         margin-right: 10px;
+         border: none;
+         border-radius: 50%;
+         background-color: transparent;
+         font-size: 20px;
+         color: #333;
+         cursor: pointer;
+       }
+
+       .like1:hover, .dislike1:hover {
+         background-color: #f2f2f2;
+       }
+
+       .like1 i, .dislike1 i {
+         line-height: 40px;
+       }
+
+       .like1.active, .dislike1.active {
+         color: #009688; /* Change color to green when active */
+       }
+
+       .like1.disabled, .dislike1.disabled {
+         pointer-events: none; /* Disable clicking when button is disabled */
+         opacity: 0.5; /* Make button slightly transparent */
+       }
+
 </style>
 
 
@@ -557,18 +626,23 @@
                         <div class="d-flex justify-content-center align-items-center">
                           <!-- Bouton de like -->
                           <form action="{{ path('app_evenement_like', {'id': evenement.id}) }}" method="post" class="me-3">
-                            <button type="submit" class="btn btn-primary">
-                              <i class="fas fa-thumbs-up"></i> <!-- Icone de like -->
+
+                            <button type="submit" class="like1">
+                              <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                             </button>
                             <span class="mx-2">{{ evenement.likes }}</span> <!-- Affichage du nombre de likes -->
                           </form>
 
                           <!-- Bouton de dislike -->
                           <form action="{{ path('app_evenement_dislike', {'id': evenement.id}) }}" method="post" class="me-3">
-                            <button type="submit" class="btn btn-danger">
-                              <i class="fas fa-thumbs-down"></i> <!-- Icone de dislike -->
+
+                            <button type="submit" class="dislike1">
+                              <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
                             </button>
-                            <span class="mx-2">{{ evenement.dislikes }}</span> <!-- Affichage du nombre de dislikes -->
+                            <span class="mx-2">{{ evenement.dislikes }}</span>
+
+
+
                           </form>
 
                           <!-- Bouton d'enregistrement -->
