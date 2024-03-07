@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use DateTime;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Validator\Constraints\File;
 
 class ArticleType extends AbstractType
 {
@@ -66,7 +67,27 @@ class ArticleType extends AbstractType
                     'label' => 'Choisir une piece jointe',
                     'data_class' => null,
                 ])
-        ;
+
+                ->add('imageArt', FileType::class, [
+                    'attr' => [
+                        'placeholder' => 'Entrer une image',
+                    ],
+                    'constraints' => [
+                        new File([
+                            'mimeTypes' => [
+                                'image/jpeg',
+                                'image/png',
+                                'image/jpg',
+                            ],
+                            'mimeTypesMessage' => 'Veuillez télécharger un fichier image valide (JPEG, PNG, JPG)',
+                        ])
+                    ],
+                    'label' => 'Image :',
+                    'required' => false, // Rendre le champ facultatif si nécessaire
+                ])
+                
+                
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

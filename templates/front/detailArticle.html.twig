@@ -156,8 +156,9 @@ EFB    </title>
         <div class="row align-items-center justify-content-center"> <!-- Added justify-content-center -->
             <div class="col-lg-4 mx-auto"> <!-- Changed ms-auto to mx-auto -->
                 <div class="card">
-                    <img class="card-img-top" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/funny.jpg">
+                <img alt="image" width="50" src="{{ asset('/uploads_directory_rec/' ~ article.imageArt) }}">
                     <div class="position-relative overflow-hidden" style="height:50px;margin-top:-50px;">
+                    
                         <div class="position-absolute w-100 top-0 z-index-1">
                             <svg class="waves waves-sm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
                                 <defs>
@@ -175,13 +176,50 @@ EFB    </title>
                         </div>
                     </div>
                     <div class="card-body">
+                    <!-- Boutons de like, dislike et enregistrement -->
+<div class="d-flex justify-content-center align-items-center">
+    <!-- Bouton de like -->
+    <form action="{{ path('app_article_like', {'id': article.id}) }}" method="post" class="me-3">
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-thumbs-up"></i> <!-- Icone de like -->
+        </button>
+        <span class="mx-2">{{ article.likes }}</span> <!-- Affichage du nombre de likes -->
+    </form>
+
+    <!-- Bouton de dislike -->
+    <form action="{{ path('app_article_dislike', {'id': article.id}) }}" method="post" class="me-3">
+        <button type="submit" class="btn btn-danger">
+            <i class="fas fa-thumbs-down"></i> <!-- Icone de dislike -->
+        </button>
+        <span class="mx-2">{{ article.dislikes }}</span> <!-- Affichage du nombre de dislikes -->
+    </form>
+
+    <!-- Bouton d'enregistrement -->
+    
+</div>
+
                         <h4>Titre : {{ article.titreArt }}</h4>
                         <p>Publié par : {{ article.nomAutArt }} </p>
                         <p><i class="calendar-icon">&#128197;</i>{{ article.datePubArt ? article.datePubArt|date('d/m/Y') : ''}}</p>
-                        <p><i class="attachment-icon">&#128206;</i>{{ article.piecejointeArt }}</p>
-                        
+<!-- Afficher le PDF et fournir un lien pour le télécharger -->
+
+    {% if article.piecejointeArt is not null %}
+        <a href="{{ asset('uploads_directory_rec/' ~ article.piecejointeArt) }}" target="_blank">
+            <button class="btn btn-success"><i class="attachment-icon">&#128206;</i></button>
+        </a>
+        <br><br>
+        <a href="{{ asset('uploads_directory_rec/' ~ article.piecejointeArt) }}" download="{{ article.titreArt ~ '.pdf' }}">
+            <button class="btn btn-warning">Télécharger PDF &nbsp;<i class="fa fa-download"></i></button>
+        </a>
+    {% else %}
+        <span>Aucun document PDF disponible</span>
+    {% endif %}
+                           <a href="{{path('app_article_read', {'id': article.id}) }}" id="read-aloud-btn">Entendre</a>
+
+                            {#<a href="{{path('app_article_read_aloud', {'id': article.id}) }}">entendre</a>#}
                         <p>Catégorie : {{ article.categorieArt }}</p>
                         <p>{{ article.contenuArt }}</p>
+ 
 
                     </div>
                     <div class="card h-100">
@@ -193,14 +231,15 @@ EFB    </title>
     {% for commentaire in commentaires %}
     <li class="list-group-item border-0 d-flex align-items-center px-0 mb-2">
         <div class="avatar me-3">
-            <img src="{{asset('front/assets/images/profile.png')}}" alt="kal" class="border-radius-lg shadow">
+            <img src="{{ asset('/uploads_directory_rec/' ~ commentaire.imageU) }}" alt="Image du commentaire" class="border-radius-lg shadow">
         </div>
         <div class="d-flex align-items-start flex-column justify-content-center">
+            
             <h6 class="mb-0 text-sm">{{ commentaire.nomAutCom }}</h6>
             <p class="mb-0 text-xs"><i class="calendar-icon">&#128197;</i>{{ commentaire.dateCreation ? commentaire.dateCreation|date('d/m/Y') : '' }}</p>
             <p class="mb-0 text-xs">{{ commentaire.contenu }}</p>
 
-            <!-- Afficher les réponses à ce commentaire -->
+            <!-- Afficher les réponses à ce commentaireHadhemi -->
             <ul class="list-group">
                 
             </ul>
@@ -213,7 +252,10 @@ EFB    </title>
                 {% endblock %}
 
                 {% block ajouter%}
-                <form role="form text-left" action="{{ path('app_CommentaireAddFront' , {'id': article.id}) }}" method="post">
+                <form role="form text-left" action="{{ path('app_CommentaireAddFront' , {'id': article.id}) }}" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <input type="file" id="imageU" name="imageU">
+    </div>
     <div class="mb-3">
         <input name="nomAutCom" type="text" class="form-control" placeholder="Nom" aria-label="Name" aria-describedby="email-addon">
     </div>
@@ -336,8 +378,40 @@ EFB    </title>
       </div>
     </div>
 
-    <!-- Bootstrap core JavaScript -->
-    
+{#    <!-- Bootstrap core JavaScript -->
+   <script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('read-aloud-btn').addEventListener('click', function() {
+        var articleId = {{ article.id }};
+        var audioElement = document.createElement('audio');
+        audioElement.controls = true;
+        
+        // Make an AJAX request to get the audio content
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/read-aloud/' + articleId, true);
+        xhr.responseType = 'blob';
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var blob = xhr.response;
+                var audioUrl = URL.createObjectURL(blob);
+                audioElement.src = audioUrl;
+                document.body.appendChild(audioElement);
+                audioElement.play();
+            } else {
+                console.error('Error retrieving audio');
+            }
+        };
+
+        xhr.onerror = function() {
+            console.error('Network error while retrieving audio');
+        };
+
+        xhr.send();
+    });
+});
+</script>#}
+
 </html>
 
 

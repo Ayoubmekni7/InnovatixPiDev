@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,10 +10,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ActualiteController extends AbstractController
 {
     #[Route('/actualite', name: 'app_actualite')]
-    public function index(): Response
+    public function actualité( ArticleRepository $articleRepository): Response
     {
         return $this->render('front/listArticles.html.twig', [
             'controller_name' => 'ActualiteController',
+            'articles' => $articleRepository->findAll(),
         ]);
     }
     #[Route('/client', name: 'client')]
@@ -36,4 +38,8 @@ class ActualiteController extends AbstractController
             'controller_name' => 'ActualiteController',
         ]);
     }
+    
+   
+
+
 }

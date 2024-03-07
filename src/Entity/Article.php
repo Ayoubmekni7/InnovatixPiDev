@@ -69,15 +69,57 @@ class Article
     #[Assert\NotBlank(message:"Veuillez saisir le contenu de l'article")]
     #[ORM\Column(length: 255)]
     private ?string $contenuArt = null;
-    #[Assert\NotBlank(message:"Veuillez entrer une pièce jointe")]
-    #[ORM\Column(length: 255)]
-    private ?string $piecejointeArt = null;
 
-    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Commentaire::class)]
+    #[Assert\NotBlank(message:"Veuillez entrer une pièce jointe")]
+   #[ORM\Column(length: 255)]
+   private ?string $piecejointeArt = null;
+
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: CommentaireHadhemi::class)]
     private Collection $commentaire;
+
 
     #[ORM\ManyToOne(inversedBy: 'article')]
     private ?User $user = null;
+
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageArt = null;
+
+    #[ORM\Column(type: 'integer')]
+    private int $likes = 0;
+
+    #[ORM\Column(type: 'integer')]
+    private int $dislikes = 0;
+
+    
+
+    public function getLikes(): int
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(int $likes): self
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    public function getDislikes(): int
+    {
+        return $this->dislikes;
+    }
+
+    public function setDislikes(int $dislikes): self
+    {
+        $this->dislikes = $dislikes;
+
+        return $this;
+    }
+
+
+
+
 
     public function __construct()
     {
@@ -186,14 +228,14 @@ class Article
     }
 
     /**
-     * @return Collection<int, Commentaire>
+     * @return Collection<int, CommentaireHadhemi>
      */
     public function getCommentaire(): Collection
     {
         return $this->commentaire;
     }
 
-    public function addCommentaire(Commentaire $commentaire): static
+    public function addCommentaire(CommentaireHadhemi $commentaire): static
     {
         if (!$this->commentaire->contains($commentaire)) {
             $this->commentaire->add($commentaire);
@@ -203,7 +245,7 @@ class Article
         return $this;
     }
 
-    public function removeCommentaire(Commentaire $commentaire): static
+    public function removeCommentaire(CommentaireHadhemi $commentaire): static
     {
         if ($this->commentaire->removeElement($commentaire)) {
             // set the owning side to null (unless already changed)
@@ -223,6 +265,18 @@ class Article
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getImageArt(): ?string
+    {
+        return $this->imageArt;
+    }
+
+    public function setImageArt(string $imageArt): static
+    {
+        $this->imageArt = $imageArt;
 
         return $this;
     }

@@ -56,5 +56,16 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+
+    public function getLikesDislikesStats(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->select('SUM(a.likes) AS totalLikes, SUM(a.dislikes) AS totalDislikes')
+            ->getQuery()
+            ->getSingleResult();
+    }
+
+
 }
 

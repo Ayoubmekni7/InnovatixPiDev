@@ -39,7 +39,7 @@ class ReponseCommentaire
     private ?\DateTimeInterface $dateRepCom = null;
 
     #[ORM\ManyToOne(inversedBy: 'reponseCommentaires')]
-    private ?Commentaire $commentaire = null;
+    private ?CommentaireHadhemi $commentaire = null;
 
     #[ORM\ManyToOne(inversedBy: 'reponseCommentaire')]
     private ?User $user = null;
@@ -65,12 +65,12 @@ class ReponseCommentaire
         return $this;
     }
 
-    public function getCommentaire(): ?Commentaire
+    public function getCommentaire(): ?CommentaireHadhemi
     {
         return $this->commentaire;
     }
 
-    public function setCommentaire(?Commentaire $commentaire): static
+    public function setCommentaire(?CommentaireHadhemi $commentaire): static
     {
         $this->commentaire = $commentaire;
 

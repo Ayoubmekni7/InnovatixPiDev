@@ -15,7 +15,7 @@ class User
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commentaire::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: CommentaireHadhemi::class)]
     private Collection $commentaire;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
@@ -45,14 +45,14 @@ class User
     }
 
     /**
-     * @return Collection<int, Commentaire>
+     * @return Collection<int, CommentaireHadhemi>
      */
     public function getCommentaire(): Collection
     {
         return $this->commentaire;
     }
 
-    public function addCommentaire(Commentaire $commentaire): static
+    public function addCommentaire(CommentaireHadhemi $commentaire): static
     {
         if (!$this->commentaire->contains($commentaire)) {
             $this->commentaire->add($commentaire);
@@ -62,7 +62,7 @@ class User
         return $this;
     }
 
-    public function removeCommentaire(Commentaire $commentaire): static
+    public function removeCommentaire(CommentaireHadhemi $commentaire): static
     {
         if ($this->commentaire->removeElement($commentaire)) {
             // set the owning side to null (unless already changed)

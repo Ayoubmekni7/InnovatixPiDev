@@ -70,6 +70,12 @@
                                                     {{ form_label(form.dureeArt, 'Durée :') }}
                                                     {{ form_row(form.dureeArt, {'attr': {'class': 'form-control bg-transparent'}, 'id':'dureeArt', 'label': false, 'placeholder': 'Durée'}) }}
                                                 </div>
+                 <div class="mb-3">
+    {{ form_label(form.imageArt, 'Image :') }}
+    {{ form_widget(form.imageArt, {'attr': {'class': 'form-control', 'id': 'imageArt', 'accept': 'image/*'}, 'label': false}) }}
+    <!-- Ajout de l'icône d'upload -->
+ 
+
                                                 <div class="mb-3">
                                                     <a href="javascript:void(0);" class="btn btn-primary light me-1 px-3" data-bs-toggle="modal" data-bs-target="#cameraModal"><i class="fa fa-camera m-0"></i> </a>
                                                     {{ form_label(form.piecejointeArt, 'Pièce jointe :') }}

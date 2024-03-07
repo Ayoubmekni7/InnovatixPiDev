@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use App\ServiceReclamation\UploaderServiceRec;
 
 #[Route('/reponse')]
 class ReponseController extends AbstractController
@@ -74,11 +75,11 @@ public function showreponsey($id , ReponseRepository $reponseRepository): Respon
     //     ]);
     // }
     #[Route('/new/{id}/{var}', name: 'app_reponse_new', methods: ['GET', 'POST'])]
-public function new($id, $var, Request $request, EntityManagerInterface $entityManager, ReclamationRepository $reclamationRepository): Response
+public function new($id, $var, Request $request, EntityManagerInterface $entityManager, ReclamationRepository $reclamationRepository , UploaderServiceRec $uploadServiceRec ): Response
 {
     // Retrieve the Reclamation entity based on the provided id
     $reclamation = $reclamationRepository->find($id);
-
+    $reclamation->setStatutRec("Traitée"); 
     if (!$reclamation) {
         throw $this->createNotFoundException('Reclamation not found');
     }
@@ -89,6 +90,11 @@ public function new($id, $var, Request $request, EntityManagerInterface $entityM
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+        $fileRec = $form->get('pieceJRep')->getData();
+        if ($fileRec) {
+        $fileName = $uploadServiceRec->uploadFileRec($fileRec);
+        $reponse->setPieceJRep($fileName);
+            }
         $reponse->setReclamation($reclamation); // Associate the Reponse with the Reclamation
         $entityManager->persist($reponse);
         $entityManager->flush();
@@ -114,12 +120,18 @@ public function new($id, $var, Request $request, EntityManagerInterface $entityM
 
 
     #[Route('/{id}/edit', name: 'app_reponse_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Reponse $reponse, EntityManagerInterface $entityManager): Response
+    public function edit($id ,Request $request, Reponse $reponse, EntityManagerInterface $entityManager , UploaderServiceRec $uploadServiceRec , ReclamationRepository $reclamationRepository ): Response
     {
         $form = $this->createForm(ReponseType::class, $reponse);
         $form->handleRequest($request);
+        $reclamation = $reclamationRepository->find($id);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $fileRec = $form->get('pieceJRep')->getData();
+            if ($fileRec) {
+            $fileName = $uploadServiceRec->uploadFileRec($fileRec);
+            $reponse->setPieceJRep($fileName);
+                }
             $entityManager->flush();
 
             return $this->redirectToRoute('app_reponse_index', [], Response::HTTP_SEE_OTHER);
@@ -127,6 +139,8 @@ public function new($id, $var, Request $request, EntityManagerInterface $entityM
 
         return $this->renderForm('reponse/edit.html.twig', [
             'reponse' => $reponse,
+            'reclamation' => $reclamation,
+
             'form' => $form,
         ]);
     }

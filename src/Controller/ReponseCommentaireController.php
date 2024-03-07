@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\CommentaireRepository;
+use App\Repository\CommentaireHadhemiRepository;
 
 class ReponseCommentaireController extends AbstractController
 {
@@ -25,7 +25,7 @@ class ReponseCommentaireController extends AbstractController
  
 
     #[Route('/reponseCommentaire', name: 'reponseCommentaire', methods: ['GET'])]
-    public function reponseCommentaire(ReponseCommentaireRepository $reponseCommentaireRepository , CommentaireRepository $commentaireRepository): Response
+    public function reponseCommentaire(ReponseCommentaireRepository $reponseCommentaireRepository , CommentaireHadhemiRepository $commentaireRepository): Response
     {
        
          
@@ -41,13 +41,13 @@ class ReponseCommentaireController extends AbstractController
 
 
     #[Route('/new/{id}', name: 'reponseCommentaireAdd', methods: ['GET', 'POST'])]
-public function reponseCommentaireAdd($id, Request $request, EntityManagerInterface $entityManager, CommentaireRepository $commentaireRepository): Response
+public function reponseCommentaireAdd($id, Request $request, EntityManagerInterface $entityManager, CommentaireHadhemiRepository $commentaireRepository): Response
 {
-    // Récupérer l'entité Commentaire en fonction de l'ID fourni
+    // Récupérer l'entité CommentaireHadhemi en fonction de l'ID fourni
     $commentaire = $commentaireRepository->find($id);
     
     if (!$commentaire) {
-        throw $this->createNotFoundException('Commentaire not found');
+        throw $this->createNotFoundException('CommentaireHadhemi not found');
     }
 
     $reponseCommentaire = new ReponseCommentaire();
@@ -58,7 +58,7 @@ public function reponseCommentaireAdd($id, Request $request, EntityManagerInterf
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
-        $reponseCommentaire->setCommentaire($commentaire); // Associer la réponse au commentaire
+        $reponseCommentaire->setCommentaire($commentaire); // Associer la réponse au commentaireHadhemi
         $entityManager->persist($reponseCommentaire);
         $entityManager->flush();
 

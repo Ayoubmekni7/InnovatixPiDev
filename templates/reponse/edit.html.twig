@@ -20,14 +20,15 @@
                                         <a href="#" class="btn btn-primary btn-block">Réponse</a>
                                     </div>
                                     <div class="mail-list rounded mt-4">
-										<a href="javascript:void()" class="list-group-item"><i class="fa fa-trash font-18 align-middle me-2"></i>Supprimer</a>
+<a href="{{ path('app_reponse_delete', {'id': reponse.id}) }}" class="list-group-item" onclick="if (!confirm('Voulez-vous supprimer cet élément ?')) { return false; }"><i class="fa fa-trash font-18 align-middle me-2"></i>Supprimer</a>
                                     </div>
                                     <div class="mail-list rounded overflow-hidden mt-4">
 										<div class="intro-title d-flex justify-content-between my-0">
 											<h5>Département</h5>
 											<i class="fa fa-chevron-down"></i>
 										</div>
-                                             okkkk
+                                        <br>
+                                                  &nbsp;&nbsp;&nbsp;   {{reclamation.depRec}}
                                     </div>
                                 </div>
                                 <div class="email-right-box ms-0 ms-sm-4 ms-sm-0">

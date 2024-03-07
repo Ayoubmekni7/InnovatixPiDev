@@ -57,7 +57,7 @@ public function findById($id){
 public function findReponseByReclamation($offreId)
 {
     return $this->createQueryBuilder('b')
-        ->join('b.commentaire', 'a')
+        ->join('b.commentaireHadhemi', 'a')
         ->where('a.id = :commentaire')
         ->setParameter('commentaire', $offreId)
         ->getQuery()
