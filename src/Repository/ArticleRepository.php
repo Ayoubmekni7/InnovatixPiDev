@@ -45,4 +45,27 @@ class ArticleRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    /**
+     * @return Article[]
+     */
+    public function findThreeArticles()
+    {
+        return $this->createQueryBuilder('a')
+            ->setMaxResults(3) // Limite à 3 articles
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    public function getLikesDislikesStats(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->select('SUM(a.likes) AS totalLikes, SUM(a.dislikes) AS totalDislikes')
+            ->getQuery()
+            ->getSingleResult();
+    }
+
+
 }
+

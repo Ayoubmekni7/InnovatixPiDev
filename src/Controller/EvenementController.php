@@ -13,6 +13,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+use App\Entity\Investissement;
+use App\Form\InvestissementType;
+use App\Repository\InvestissementRepository;
+use App\Entity\Commentaire;
+use App\Form\CommentaireType;
+use App\Repository\CommentaireRepository;
 
 #[Route('/evenement')]
 class EvenementController extends AbstractController
@@ -95,16 +103,43 @@ class EvenementController extends AbstractController
             'form' => $form,
         ]);
     }
-  
+
     #[Route('delete/{id}', name: 'app_evenement_delete', methods: ['GET','POST'])]
     public function delete(Evenement $evenement, ManagerRegistry $managerRegistry): Response
     {
         $entityManager = $managerRegistry->getManager();
         $entityManager->remove($evenement);
         $entityManager->flush();
-    
+
         return $this->redirectToRoute('app_project_admin', [], Response::HTTP_SEE_OTHER);
     }
-    
+  #[Route('/like/{id}', name: 'app_evenement_like', methods: ['POST'])]
+  public function like(Evenement $evenement, EntityManagerInterface $entityManager, CommentaireRepository $commentaireRepository, InvestissementRepository $investissementRepository, EvenementRepository $evenementRepository): Response
+  {
+    $evenement->setLikes($evenement->getLikes() + 1);
+    $entityManager->flush();
+
+    // Render the template with the updated data
+    return $this->render('main/eventsweb.html.twig', [
+      'commentaires' => $commentaireRepository->findAll(),
+      'investissements' => $investissementRepository->findAll(),
+      'evenements' => $evenementRepository->findAll()
+    ]);
+  }
+
+
+  #[Route('/dislike/{id}', name: 'app_evenement_dislike', methods: ['POST'])]
+  public function dislike(Evenement $evenement, EntityManagerInterface $entityManager,CommentaireRepository $commentaireRepository, InvestissementRepository $investissementRepository, EvenementRepository $evenementRepository): Response
+  {
+    $evenement->setDislikes($evenement->getDislikes() + 1);
+    $entityManager->flush();
+
+    // Render the template with the updated data
+    return $this->render('main/eventsweb.html.twig', [
+      'commentaires' => $commentaireRepository->findAll(),
+      'investissements' => $investissementRepository->findAll(),
+      'evenements' => $evenementRepository->findAll(),    ]);
+  }
+
 
 }
