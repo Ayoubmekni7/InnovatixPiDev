@@ -27,7 +27,7 @@ class MainController extends AbstractController
             'controller_name' => 'MainController',
         ]);
     }
-    
+
     #[Route('/front', name: 'app_front')]
     public function front(): Response
     {
@@ -35,8 +35,15 @@ class MainController extends AbstractController
             'controller_name' => 'MainController',
         ]);
     }
+  #[Route('/payement', name: 'app_payement')]
+  public function payement(): Response
+  {
+    return $this->render('main/payement.html.twig', [
+      'controller_name' => 'MainController',
+    ]);
+  }
 
-    
+
     #[Route('/upload.php', name: 'upload')]
     public function upload(): Response
     {
@@ -44,7 +51,7 @@ class MainController extends AbstractController
             'controller_name' => 'MainController',
         ]);
     }
- 
+
     #[Route('/event', name: 'app_event', methods: ['GET'])]
     public function event(CommentaireRepository $commentaireRepository, InvestissementRepository $investissementRepository, EvenementRepository $evenementRepository): Response
     {
@@ -57,7 +64,7 @@ class MainController extends AbstractController
 
 
 
-  
+
 
     #[Route('/client/dashboard', name: 'app_dashboard')]
     public function index1(): Response
