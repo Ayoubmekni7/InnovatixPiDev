@@ -20,7 +20,7 @@ class EditImgType extends AbstractType
             ->add('titreArt')
             ->add('contenuArt')
             ->add('piecejointeArt')
-            ->add('user')
+           
         ;
     }
 

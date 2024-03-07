@@ -13,6 +13,7 @@ use App\Service\OpenAITextToSpeechService;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -112,6 +113,7 @@ class ArticleController extends AbstractController
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $fileRec = $form->get('piecejointeArt')->getData();
@@ -173,28 +175,45 @@ class ArticleController extends AbstractController
         ]);
     }
     #[Route('/edit/{id}', name: 'app_article_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Article $article, EntityManagerInterface $entityManager , UploaderServiceRec $uploadServiceRec ): Response
+    public function edit(Request $request, Article $article, EntityManagerInterface $entityManager, UploaderServiceRec $uploadServiceRec): Response
     {
+       // $article->remove('piecejointeArt');
         $form = $this->createForm(EditImgType::class, $article);
+
         $form->handleRequest($request);
 
+    
         if ($form->isSubmitted() && $form->isValid()) {
-            $fileRec = $form->get('piecejointeArt')->getData();
-            if ($fileRec) {
-                $fileName = $uploadServiceRec->uploadFileRec($fileRec);
-                $article->setPiecejointeArt($fileName);
-            }
-            $entityManager->flush();
+            // Récupérer le fichier pièce jointe
+        $fileRec = $form->get('piecejointeArt')->getData();
+        // Récupérer l'ancienne pièce jointe
+        $anciennePieceJointe = $article->getPiecejointeArt();
 
+        // Vérifier si un nouveau fichier a été téléversé
+        if ($fileRec instanceof UploadedFile) {
+            // Téléverser le nouveau fichier
+            $fileName = $uploadServiceRec->uploadFileRec($fileRec);
+            // Supprimer l'ancien fichier s'il existe
+            if ($anciennePieceJointe) {
+                $uploadServiceRec->removeFileRec($anciennePieceJointe);
+            }
+            // Enregistrer le nouveau nom de fichier dans l'entité Article
+            $article->setPiecejointeArt($fileName);
+        } else {
+            // Si aucun nouveau fichier n'est téléversé, conservez le nom de fichier existant
+            $article->setPiecejointeArt($anciennePieceJointe);
+        }
+    
+            $entityManager->flush();
+    
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
-
+    
         return $this->renderForm('articleH/edit.html.twig', [
             'article' => $article,
             'form' => $form,
         ]);
     }
-
 
     #[Route('/delete/{id}', name: 'app_article_delete', methods: ['GET','POST'])]
     public function delete($id , ManagerRegistry $managerRegistry , ArticleRepository $articleRepository): Response
@@ -226,24 +245,34 @@ class ArticleController extends AbstractController
 
 
     #[Route('/like/{id}', name: 'app_article_like', methods: ['POST'])]
-    public function like(Article $article , UrlGeneratorInterface $urlGenerator): JsonResponse
+    public function like(Article $article ): Response
     {
         $article->setLikes($article->getLikes() + 1);
+        $commentaires = $article->getCommentaire();
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->flush();
-        $redirectUrl = $urlGenerator->generate('app_dashbord_admin');
+        return $this->render('front/detailArticle.html.twig', [
+            'article' => $article,
 
-        return new JsonResponse(['likes' => $article->getLikes(), 'redirect' => $redirectUrl]);
+            'commentaires' => $commentaires,
+        ]);
+       
     }
 
     #[Route('/dislike/{id}', name: 'app_article_dislike', methods: ['POST'])]
-    public function dislike(Article $article): JsonResponse
+    public function dislike(Article $article): Response
     {
         $article->setDislikes($article->getDislikes() + 1);
+        $commentaires = $article->getCommentaire();
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->flush();
 
-        return new JsonResponse(['dislikes' => $article->getDislikes()]);
+        return $this->render('front/detailArticle.html.twig', [
+            'article' => $article,
+
+            'commentaires' => $commentaires,
+        ]);
     }
 
 

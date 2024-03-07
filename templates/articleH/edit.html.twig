@@ -2,6 +2,8 @@
 
 {% block body %}
     {% block nompage %}Modifier l'article{% endblock %}
+    <br><br><br><br><br>
+
     <div class="container">
         <div class="row justify-content-center mt-4">
             <div class="col-md-6">
@@ -30,7 +32,10 @@
                         <div class="mb-3">
                             {{ form_row(form.contenuArt, {'label': 'Contenu de l\'article:', 'attr': {'class': 'form-control'}, 'id': 'contenuArt'}) }}
                         </div>
+                        <div class="mb-3">
                           
+                        <a href="{{ asset('uploads_directory_rec/' ~ article.piecejointeArt) }}" target="_blank">Consulter la pièce jointe</a>
+                        </div>
 
                         <div class="mb-3">
                             {{ form_row(form.piecejointeArt, {'label': 'Pièce jointe :', 'attr': {'class': 'form-control'}, 'id': 'piecejointeArt'}) }}
