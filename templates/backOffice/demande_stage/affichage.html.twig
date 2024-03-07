@@ -90,13 +90,13 @@
     </div>
 
 {% block script %}
-<script>
+{#<script>#}
 
-    const eventSource = new EventSource("{{ mercure('https://example.com/books/1')|escape('js') }}");
-    eventSource.onmessage = event => {
+{#    const eventSource = new EventSource("{{ mercure('https://example.com/books/1')|escape('js') }}");#}
+{#    eventSource.onmessage = event => {#}
 
-        document.getElementById('message').innerHTML += "<div class='bg-success'>"+JSON.parse(event.data).status+"</div>";
-    }
-</script>
+{#        document.getElementById('message').innerHTML += "<div class='bg-success'>"+JSON.parse(event.data).status+"</div>";#}
+{#    }#}
+{#</script>#}
 {% endblock %}
 {% endblock %}

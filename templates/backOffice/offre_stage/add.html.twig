@@ -93,11 +93,11 @@
                                                             <div >{{ form_widget(form.exigenceOffre, {'attr': {'class': 'form-control yesser input1', 'placeholder': 'Veuillez ecrire les exigences de l\'offre '}}) }}</div>
                                                             {{ form_errors(form.exigenceOffre, {'attr': {'class': 'valid-feedback'}}) }}
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label class="wrap-input1 validate-input" style="margin-top: 10px"> {{ form_label(form.datePostu, 'Date de l\'offre ', {'label_attr': {'class': 'form-label'}}) }}</label>
-                                                            <div >{{ form_widget(form.datePostu, {'attr': {'class': 'form-control input1', 'placeholder': 'Date de l\'offre'}}) }}</div>
-                                                            {{ form_errors(form.datePostu, {'attr': {'class': 'valid-feedback'}}) }}
-                                                        </div>
+{#                                                        <div class="mb-3">#}
+{#                                                            <label class="wrap-input1 validate-input" style="margin-top: 10px"> {{ form_label(form.datePostu, 'Date de l\'offre ', {'label_attr': {'class': 'form-label'}}) }}</label>#}
+{#                                                            <div >{{ form_widget(form.datePostu, {'attr': {'class': 'form-control input1', 'placeholder': 'Date de l\'offre'}}) }}</div>#}
+{#                                                            {{ form_errors(form.datePostu, {'attr': {'class': 'valid-feedback'}}) }}#}
+{#                                                        </div>#}
                                                         <div class="mb-3">
                                                             <label class="wrap-input1 validate-input" style="margin-top: 10px;width: 100%"> {{ form_label(form.motsCles, 'Les mots clés', {'label_attr': {'class': 'form-label'}}) }}</label>
                                                              <div >{{ form_widget(form.motsCles, {'multiple':'multiple','attr': {'class': 'form-control', 'placeholder': 'Veuillez choisir les mots clé de cet offre '}}) }}</div>
@@ -108,7 +108,7 @@
                                                             <div >{{ form_widget(form.pfeBook, {'attr': {'class': 'form-control', 'type':'file', 'placeholder': 'Upload votre pfeBook'}}) }}</div>
                                                             {{ form_errors(form.pfeBook, {'attr': {'class': 'valid-feedback'}}) }}
                                                         </div>
-                                                        <button class="btn btn-primary btn-lg btn-block" type="submit" style=" margin-bottom: 20px">{{ ajouter }}</button>
+                                                        <button class="btn btn-warning btn-lg " type="submit" style=" margin-bottom: 20px">{{ ajouter }}</button> <a href="{{ path('addOffreParRecomendatio') }}"><button class="btn btn-warning btn-lg " type="submit" style=" margin-bottom: 20px">{{ ajouterA }}</button></a>
                                                     </form>
                                                 </div>
                                         </div>

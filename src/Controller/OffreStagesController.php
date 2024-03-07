@@ -7,6 +7,8 @@ use App\Form\OffreStageType;
 use App\Form\SearchType;
 use App\Repository\DemandeStageRepository;
 use App\Repository\OffreStageRepository;
+use App\Service\AnalyseCv;
+use App\Service\Mailing;
 use DateTime;
 use DateTimeZone;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,7 +20,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OffreStagesController extends AbstractController
 {
-    
+    public Mailing $emailService;
+    public string $directory = 'uploads_directory';
+    public function __construct(Mailing $emailService)
+    {
+        $this->emailService = $emailService;
+    }
     #[Route('/Recherche', name: 'Recherche')]
     public function Recherche(DemandeStageRepository $demandeStageRepository,Request $request): Response
     {
@@ -78,6 +85,7 @@ class OffreStagesController extends AbstractController
         $nowFormatted = $now->format('Y-m-d');
         
         $ajouter = "ajouter";
+        $ajouterA = "ajouter avec recommandation";
         $offre = new OffreStage();
         $form = $this->createForm(OffreStageType::class,$offre);
         $form->handleRequest($request);
@@ -91,7 +99,60 @@ class OffreStagesController extends AbstractController
         }
         return $this->render('backOffice/offre_stage/add.html.twig', [
             'form' => $form->createView(),
-            'ajouter' => $ajouter
+            'ajouter' => $ajouter,
+            'ajouterA' => $ajouterA
+            
+        ]);
+    }
+    #[Route('/addOffreParRecomendatio', name: 'addOffreParRecomendatio')]
+    public function addOffreParRecomendatio(ManagerRegistry $managerRegistry,Request $request,DemandeStageRepository $demandeStageRepository,AnalyseCv $cvAnalyseur): Response
+    {
+        $now = new DateTime('now');
+        // Formater le temps réel actuel
+        // $nowFormatted = $now->format('Y-m-d H:i:s');
+////
+////
+////
+////        // Changer le fuseau horaire à "Europe/Berlin" pendant l'été (Central European Summer Time)
+        $now->setTimezone(new DateTimeZone('Europe/Berlin'));
+//
+//        // Réafficher le temps réel actuel
+        $nowFormatted = $now->format('Y-m-d');
+        $listeDemande = $demandeStageRepository->findAll();
+        $ajouter = "ajouter";
+        $ajouterA = "ajouter avec recommandation";
+        $offre = new OffreStage();
+        $form = $this->createForm(OffreStageType::class,$offre);
+        $form->handleRequest($request);
+        $em = $managerRegistry->getManager();
+        $datePostuObject = DateTime::createFromFormat('Y-m-d', $nowFormatted);
+        $mots = $form->get('motsCles')->getData();
+        
+        if($form->isSubmitted() and $form->isValid() ){
+            $offre ->setDatePostu($datePostuObject);
+            $em->persist($offre);
+            $title = $offre->getTitle();
+            $em->flush();
+            $id = $offre->getId();
+            
+            foreach ( $listeDemande as $demande){
+                $cheminFichier = $this->getParameter('uploads_directory').'/'.$demande->getCv();
+                $score = $cvAnalyseur->analyseCV($cheminFichier , $mots);
+//                dd($score,$id,$demande);
+                if ($score < 50){
+                    $to = $demande->getEmail();
+                    $nom = $demande->getNom()." ".$demande->getPrenom();
+                    $subject = "Recommondation pour une offre";
+                    $html ="<div>Bonjour {$nom}.<br>Vous etes recommondé pour l'offre {$title} sous ce chemin  127.0.0.1/DetailsOffre/{$id} .<br>";
+                    $this->emailService->sendEmail($to,$subject,$html);
+                }
+            }
+            return $this->redirectToRoute('afficheOffreStages');
+        }
+        return $this->render('backOffice/offre_stage/add.html.twig', [
+            'form' => $form->createView(),
+            'ajouter' => $ajouter,
+            'ajouterA' => $ajouterA
         ]);
     }
     #[Route('/editOffre/{id}', name: 'editOffre')]
