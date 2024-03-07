@@ -46,4 +46,15 @@ class CompteRepository extends ServiceEntityRepository
             ->getQuery()
           ->getOneOrNullResult() ;
    }
+
+    public function countAllComptesApprouves(): int
+    {
+        return $this->createQueryBuilder('c')
+            ->select('COUNT(c.id)')
+            ->where('c.statut = :statut')
+            ->setParameter('statut', 1) // 1 représente le statut d'approbation par l'administrateur
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 }

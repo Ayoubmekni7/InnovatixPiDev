@@ -7,6 +7,9 @@ use App\Repository\EvenementRepository;
 use App\Entity\Commentaire;
 use App\Form\CommentaireType;
 use App\Repository\CommentaireRepository;
+use App\Entity\User;
+use App\Form\UserType;
+use App\Repository\UserRepository;
 use App\Entity\Investissement;
 use App\Form\InvestissementType;
 use App\Repository\InvestissementRepository;
@@ -60,37 +63,40 @@ class InvestissementController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_investissement_show', methods: ['GET'])]
-    public function show(Investissement $investissement): Response
-    {
-        $commentaires = $investissement->getCommentaires();
-        $evenements = $investissement->getEvenements(); // Assuming you want to get all Evenements
-    
-        return $this->render('client/investissement/show.html.twig', [
-            'investissement' => $investissement,
-            'commentaires' => $commentaires,
-            'evenements' => $evenements,
-        ]);
-    }
+  #[Route('/{id}', name: 'app_investissement_show', methods: ['GET'])]
+  public function show(Investissement $investissement): Response
+  {
+    $commentaires = $investissement->getCommentaires();
+    $evenements = $investissement->getEvenements(); // Assuming you want to get all Evenements
+    $user = $investissement->getUser(); // Assuming there is a method to get the User associated with the Investissement
+
+    return $this->render('client/investissement/show.html.twig', [
+      'investissement' => $investissement,
+      'commentaires' => $commentaires,
+      'evenements' => $evenements,
+      'user' => $user,
+    ]);
+  }
 
 
 
-    
-    #[Route('create/{id}', name: 'app_investissement_show1', methods: ['GET', 'POST'])]
+
+
+  #[Route('create/{id}', name: 'app_investissement_show1', methods: ['GET', 'POST'])]
     public function show1(Request $request, Investissement $investissement, EntityManagerInterface $entityManager): Response
     {
         $commentaires = $investissement->getCommentaires();
         $evenements = $investissement->getEvenements(); // Assuming you want to get all Evenements
-    
+
         $form = $this->createForm(InvestissementType::class, $investissement);
         $form->handleRequest($request);
-    
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-    
+
             return $this->redirectToRoute('app_investissement_listC', [], Response::HTTP_SEE_OTHER);
         }
-    
+
         return $this->render('client/investissement/create.html.twig', [
             'investissement' => $investissement,
             'commentaires' => $commentaires,
@@ -98,7 +104,7 @@ class InvestissementController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    
+
 
 
 
@@ -107,14 +113,14 @@ class InvestissementController extends AbstractController
     {
         $commentaires = $investissement->getCommentaires();
         $evenements = $investissement->getEvenements(); // Assuming you want to get all Evenements
-    
+
         return $this->render('client/investissement/show.html.twig', [
             'investissement' => $investissement,
             'commentaires' => $commentaires,
             'evenements' => $evenements,
         ]);
     }
-    
+
 
     #[Route('/{id}/edit', name: 'app_investissement_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Investissement $investissement, EntityManagerInterface $entityManager): Response
@@ -142,6 +148,6 @@ class InvestissementController extends AbstractController
         $entityManager->flush();
         return $this->redirectToRoute('app_investissement_listA', [], Response::HTTP_SEE_OTHER);
     }
-    
-    
+
+
 }
