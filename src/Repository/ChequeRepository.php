@@ -33,6 +33,15 @@ class ChequeRepository extends ServiceEntityRepository
             ->getResult()
        ;
     }
+    public function save(Cheque $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 
     public function chequeParClient($compte)
     {

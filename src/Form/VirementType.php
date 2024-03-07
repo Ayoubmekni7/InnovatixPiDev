@@ -34,6 +34,7 @@ class VirementType extends AbstractType
                     ])
                 ],
             ])
+            ->add('phoneNumber')
             ->add('Email')
             ->add('TypeVirement',  ChoiceType::class, [
                 'choices' => [

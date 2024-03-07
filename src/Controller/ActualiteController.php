@@ -53,4 +53,11 @@ class ActualiteController extends AbstractController
             'typeCompte' => $typeCompte,
         ]);
     }
+
+    #[Route('/dashbord', name: 'app_dashbord_admin')]
+    public function dashboard(): Response
+    {
+        return $this->render('dashbordAdmin.html.twig');
+    }
+
 }

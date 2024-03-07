@@ -6,7 +6,6 @@ use App\Entity\Cheque;
 use App\Form\ChequeType;
 use App\Repository\ChequeRepository;
 use App\Service\uploadFile;
-use App\Service\uploadPhoto;
 use App\Service\YousignService;
 use Doctrine\Persistence\ManagerRegistry;
 use Dompdf\Dompdf;
@@ -18,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use function MongoDB\BSON\toRelaxedExtendedJSON;
+use Symfony\Component\HttpClient\Response\TraceableResponse;
 
 
 class ChequeController extends AbstractController
@@ -77,7 +77,45 @@ class ChequeController extends AbstractController
         }
 
         return $this->render('frontOffice/Client/cheque/add.html.twig', [
+            'Cheque'=>$cheque,
             'form' => $form->createView()
+        ]);
+    }
+    #[Route('/AfficherDemande', name: 'AfficherDemande')]
+    public function AfficherDemande(ChequeRepository $chequeRepository):Response
+
+    {
+        $liste= $chequeRepository->HistoriqueDesCheques(false);
+        return $this->render('backoffice/admin/cheque/list.html.twig',[
+            'cheques'=>$liste,
+        ]);
+    }
+
+    #[Route('/showListeCheque', name: 'showListeCheque')]
+    public function showListeCheque(ChequeRepository $chequeRepository):Response
+    {
+        $cheque= $chequeRepository->HistoriqueDesCheques(true);
+        return $this->render('backoffice/admin/cheque/historiqueAdmin.html.twig',[
+            'cheques'=>$cheque,
+        ]);
+    }
+    #[Route('/AfficherDemandeE', name: 'AfficherDemandeE')]
+    public function AfficherDemandeE(ChequeRepository $chequeRepository):Response
+
+    {
+        $liste= $chequeRepository->HistoriqueDesCheques(false);
+        return $this->render('backoffice/Employe/cheque/listE.html.twig',[
+            'cheques'=>$liste,
+        ]);
+    }
+
+    #[Route('/showListeChequeE', name: 'showListeChequeE')]
+    public function showListeChequeE(ChequeRepository $chequeRepository):Response
+
+    {
+        $cheque= $chequeRepository->HistoriqueDesCheques(true);
+        return $this->render('backoffice/Employe/cheque/listCheque.html.twig',[
+            'cheques'=>$cheque,
         ]);
     }
 
@@ -101,7 +139,7 @@ class ChequeController extends AbstractController
         $file = $this->getParameter('kernel.project_dir') . '/public/' . $filename;
 
         $cheque->setpdfSansSignature($filename);
-        /*$chequeRepository->save($cheque , true); */
+        $chequeRepository->save($cheque , true);
 
         file_put_contents($file, $output);
         return $this->redirectToRoute('showCheque', ['id' => $cheque->getId()]);
@@ -127,14 +165,22 @@ class ChequeController extends AbstractController
     #[Route('/signature/{id}', name: 'signature')]
     public function signature($id,  Cheque  $cheque, ChequeRepository $chequeRepository,YousignService $yousignService):Response
     {
+        $cheque = $chequeRepository->find($id);
+
+        $cheminFichier = $this->getParameter('cheque').'/'.$cheque->getPdfSansSignature();
         $yousignSignatureRequest= $yousignService->signatureRequest();
-        $cheque->setSignerId($yousignSignatureRequest['id']);
+        $filename = $cheque->getPdfSansSignature();
+        $id = $yousignSignatureRequest['id'];
+
+        $cheque->setSignerId($id);
         $chequeRepository->save ($cheque , true);
 
-        $uploadDocument=$yousignService->uploadDocument($cheque->getSignatureId() , $cheque->getPdfSansSignature() );
-        $cheque->setDocumentId($uploadDocument['id']);
-        $chequeRepository->save ($cheque , true);
+        $uploadDocument=$yousignService->addDocumentToSignatureRequest($id , $filename );
 
+       // $cheque->getPdfSansSignature();
+       // $cheque->getSignatureId();
+         $yesser = $cheque->setDocumentId($uploadDocument['id']);
+        $chequeRepository->save ($cheque , true);
 
         $signerId=$yousignService->addSigner(
             $cheque->getSignerId(),
@@ -169,24 +215,7 @@ class ChequeController extends AbstractController
 
                         /*admin*/
 
-        #[Route('/AfficherDemande', name: 'AfficherDemande')]
-     public function AfficherDemande(ChequeRepository $chequeRepository):Response
 
-    {
-        $liste= $chequeRepository->HistoriqueDesCheques(false);
-        return $this->render('backoffice/admin/cheque/list.html.twig',[
-            'cheques'=>$liste,
-        ]);
-    }
-
-    #[Route('/showListeCheque', name: 'showListeCheque')]
-    public function showListeCheque(ChequeRepository $chequeRepository):Response
-    {
-        $cheque= $chequeRepository->HistoriqueDesCheques(true);
-        return $this->render('backoffice/admin/cheque/historiqueAdmin.html.twig',[
-            'cheques'=>$cheque,
-        ]);
-    }
 
     #[Route('/ApprouverCheque/{id}', name: 'ApprouverCheque')]
     public function ApprouverCheque($id, ManagerRegistry $managerRegistry, ChequeRepository $chequeRepository ,Mailing $mailing):Response
@@ -221,25 +250,7 @@ class ChequeController extends AbstractController
 
                              /*Employe*/
 
-    #[Route('/AfficherDemandeE', name: 'AfficherDemandeE')]
-    public function AfficherDemandeE(ChequeRepository $chequeRepository):Response
 
-    {
-        $liste= $chequeRepository->HistoriqueDesCheques(false);
-        return $this->render('backoffice/Employe/cheque/listE.html.twig',[
-            'cheques'=>$liste,
-        ]);
-    }
-
-    #[Route('/showListeChequeE', name: 'showListeChequeE')]
-    public function showListeChequeE(ChequeRepository $chequeRepository):Response
-
-    {
-        $cheque= $chequeRepository->HistoriqueDesCheques(true);
-        return $this->render('backoffice/Employe/cheque/listCheque.html.twig',[
-            'cheques'=>$cheque,
-        ]);
-    }
 
     #[Route('/ApprouverChequeE/{id}', name: 'ApprouverChequeE')]
     public function ApprouverChequeE($id, ManagerRegistry $managerRegistry, ChequeRepository $chequeRepository):Response

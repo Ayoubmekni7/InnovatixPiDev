@@ -1,0 +1,103 @@
+{% extends 'baseadmin.html.twig' %}
+
+   {% block body %}
+
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card tryal-gradient">
+                                    <div class="card-body tryal row justify-content-center align-items-center">
+                                        <div class="col-xl-7 col-sm-6 text-center">
+                                            <h2>E-Flex Bank</h2>
+                                            <span>Innover, Economiser, Prospérer:</span>
+                                            <span>Tout En Ligne</span>
+                                        </div>
+                                        <div class="col-xl-5 col-sm-6">
+                                            <img src="{{asset('images/chart.png')}}" alt="" class="sd-shape">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-xl-12">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-9">
+                                        <div class="au-card">
+                                            <div class="au-card-inner text-center"> <!-- Ajout de la classe text-center pour centrer le texte -->
+                                                <h3 class="title-2 m-b-40">Statistique des Comptes Approuvés</h3>
+                                                <div class="chart-container" style="position: relative; height:50vh; width:100%;">
+                                                    <canvas id="articleChart" height="200"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- JavaScript pour dessiner le graphique -->
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var ctx = document.getElementById('articleChart').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: ['nombreComptesApprouves'],
+                                    datasets: [{
+                                        label: 'Nombre de Comptes Approuvés', // Label pour la légende
+                                        data: [{{ 'nombreComptesApprouves ' }}], // Utilisation de la variable passée depuis le contrôleur
+                                        backgroundColor: 'rgba(255, 99, 132, 0.2)', // Couleur de fond de la ligne
+                                        borderColor: 'rgba(255, 99, 132, 1)', // Couleur de la ligne
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true
+                                            }
+
+                                        }]
+                                    }
+                                }
+                            });
+
+
+                            // Fonction pour générer une couleur aléatoire
+                            function getRandomColor() {
+                                var red = Math.floor(Math.random() * 256);
+                                var green = Math.floor(Math.random() * 256);
+                                var blue = Math.floor(Math.random() * 256);
+                                return 'rgba(' + red + ',' + green + ',' + blue + ', 0.8)';
+                            }
+                        }
+
+
+                    </script>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+   {% endblock %}

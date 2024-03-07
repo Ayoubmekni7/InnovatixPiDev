@@ -73,6 +73,7 @@ class Compte
     private ?string $sexe = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\LessThanOrEqual("today", message: "La date de naissance ne peut pas être postérieure à aujourd'hui.")]
     private ?\DateTimeInterface $DateNaissance = null;
 
     #[ORM\Column(length: 255)]

@@ -4,43 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="Integration de mon travail">
-      <change afterPath="$PROJECT_DIR$/config/packages/recaptcha.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/client/assets/.vscode/launch.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/client/assets/scss/soft-ui-dashboard/forms/_floating-labels.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/client/assets/scss/soft-ui-dashboard/forms/_form-control.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/client/assets/scss/soft-ui-dashboard/forms/_form-range.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/client/assets/scss/soft-ui-dashboard/forms/_form-text.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/client/assets/scss/soft-ui-dashboard/forms/_validation.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/client/docs/documentation.html" afterDir="false" />
+    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="integration">
+      <change afterPath="$PROJECT_DIR$/config/packages/http_client.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/TwilioSmsService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/baseadmin.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/dashbordAdmin.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_02_2024_00_23_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_02_2024_00_23_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_02_2024_00_23__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_02_2024_00_23__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/notifier.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/notifier.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ActualiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ActualiteController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ChequeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ChequeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/CompteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CompteController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/VirementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/VirementController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Compte.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Compte.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ChequeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ChequeType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Virement.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Virement.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/CompteType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CompteType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/VirementType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/VirementType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/ChequeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ChequeRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CompteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CompteRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/VirementRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/VirementRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Security/LoginAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/LoginAuthenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/backOffice/Employe/virement/listVirementEmpl.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/Employe/virement/listVirementEmpl.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/baseEmploye.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseEmploye.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/baseclient.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseclient.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/compte/creerCompte.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/compte/creerCompte.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/compte/informationsCompte.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/dashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/virement/historiqueV.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/virement/historiqueV.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/YousignService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/YousignService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/BaseFront.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/BaseFront.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/backOffice/admin/cheque/historiqueAdmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/admin/cheque/historiqueAdmin.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/backOffice/admin/cheque/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/admin/cheque/list.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/backOffice/admin/compte/historiqueCompte.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/admin/compte/historiqueCompte.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/backOffice/admin/compte/listCompte.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/admin/compte/listCompte.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/backOffice/admin/virement/Virements.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/admin/virement/Virements.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/backOffice/admin/virement/historiqueVirement.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/admin/virement/historiqueVirement.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/virement/DemandeVirement.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/virement/DemandeVirement.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,6 +221,12 @@
       <path value="$PROJECT_DIR$/vendor/google/recaptcha" />
       <path value="$PROJECT_DIR$/vendor/victor-prdh/recaptcha-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/twig-pack" />
+      <path value="$PROJECT_DIR$/vendor/twilio/sdk" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -357,23 +365,7 @@
       <workItem from="1709471131466" duration="26000" />
       <workItem from="1709471160007" duration="1078000" />
       <workItem from="1709472291924" duration="3274000" />
-      <workItem from="1709576888900" duration="38150000" />
-    </task>
-    <task id="LOCAL-00014" summary="crud de Stage sans design.">
-      <option name="closed" value="true" />
-      <created>1708023797397</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1708023797397</updated>
-    </task>
-    <task id="LOCAL-00015" summary="template affichage des contrats">
-      <option name="closed" value="true" />
-      <created>1708026410808</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1708026410808</updated>
+      <workItem from="1709576888900" duration="102240000" />
     </task>
     <task id="LOCAL-00016" summary="ajout d'attribut état dans Demande Stage entity.">
       <option name="closed" value="true" />
@@ -751,7 +743,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709480927225</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Integration de mon travail">
+      <option name="closed" value="true" />
+      <created>1709734607428</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1709734607428</updated>
+    </task>
+    <task id="LOCAL-00064" summary="integration">
+      <option name="closed" value="true" />
+      <created>1709734653638</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1709734653638</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -772,7 +780,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add template affiche offre backOffice." />
     <MESSAGE value="ajout du formulaire de recherche et la template de Details vide + correction du controlleur de l'offre de stage." />
     <MESSAGE value="mettre à jour le controlleur offre de stage" />
     <MESSAGE value="correction de template de reccrutement et il y'a une erreur au niveau de recherche par le numero" />
@@ -797,7 +804,8 @@
     <MESSAGE value="fix the project" />
     <MESSAGE value="signature" />
     <MESSAGE value="Integration de mon travail" />
-    <option name="LAST_COMMIT_MESSAGE" value="Integration de mon travail" />
+    <MESSAGE value="integration" />
+    <option name="LAST_COMMIT_MESSAGE" value="integration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

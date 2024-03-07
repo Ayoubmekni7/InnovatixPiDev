@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+
 class CompteController extends AbstractController
 {
     public Mailing $emailService;
@@ -67,6 +70,15 @@ class CompteController extends AbstractController
             'controller_name' => 'SuccsesController',
         ]);
     }
+    #[Route('/statistiquesComptesApprouves', name: 'statistiquesComptesApprouves')]
+    public function statistiquesComptesApprouves(CompteRepository $compteRepository): Response
+    {
+        $nombreComptesApprouves = $compteRepository->countAllComptesApprouves();
+
+        return $this->render('dashbordAdmin.html.twig', [
+            'nombreComptesApprouves' => $nombreComptesApprouves,
+        ]);
+    }
 
 
     #[Route('/afficheCompte', name: 'afficheCompte')]
@@ -98,17 +110,24 @@ class CompteController extends AbstractController
     public function ApprouveCompte($id, ManagerRegistry $managerRegistry , CompteRepository $compteRepository , Mailing $mailing): Response
     {
         $compte=$compteRepository->find($id);
+        if (!$compte){
+
+        }
         $compte->setStatut(1);
         $emm=$managerRegistry->getManager();
         $emm->persist($compte);
         $emm->flush();
+        $nombreComptesApprouves = $this->statistiquesComptesApprouves($compteRepository);
+        $lastFourDigits = str_pad(random_int(0, 99999999), 8, '0', STR_PAD_LEFT);
+        $constantDigits = '12345678901234';
+        $ribNumber = $constantDigits . $lastFourDigits;
         $to =$compte->getEmail();
         $nom =$compte->getNom().$compte->getPrenom();
         $subject = "Compte Créer avec succés";
-            $html = "<div>Bonjour {$nom}.<br>Votre Compte a été Créer .<br>";
-            $this->emailService->sendEmail($to, $subject, $html);
+        $html = "<div>Bonjour {$nom},<br>Votre compte a été créé avec succès.<br>Votre RIB est : {$ribNumber}.<br></div>";
+        $this->emailService->sendEmail($to, $subject, $html);
 
-        return $this->redirectToRoute('showHistorique');
+        return $this->redirectToRoute('showHistorique',['nombreComptesApprouves' => $nombreComptesApprouves]);
     }
 
     #[Route('/RefuserCompte/{id}', name: 'RefuserCompte')]

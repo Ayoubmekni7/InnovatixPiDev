@@ -58,6 +58,15 @@
                                 </div>
                             </div>
 
+                            <div class="mb-3 row justify-content-center align-items-center">
+                                <label class="col-sm-3 col-form-label " style="margin-right: 550px ">{{ form_label(form.phoneNumber, 'Numero de telephone') }}</label>
+                                <div class="col-sm-9">
+                                    {{ form_widget(form.phoneNumber, { 'attr': {'class': 'form-control', 'placeholder': 'Entrez votre Numero de telephone'} }) }}
+                                    {{ form_errors(form.phoneNumber, {'attr': {'class': 'valid-feedback'}}) }}
+                                </div>
+                            </div>
+
+
 
                             <div class="mb-3 row justify-content-center align-items-center">
                                 <label class="col-sm-3 col-form-label " style="margin-right: 550px ">{{ form_label(form.Email, 'Email') }}</label>
