@@ -15,3 +15,10 @@ save_article:
   path: '/article/{id}/save'
   controller: 'App\Controller\ArticleController::save'
   methods: ['POST']
+
+
+  # config/routes.yaml
+app_chat:
+    path: '/chat'
+    controller: App\Controller\HomeController::index
+    methods: [GET, POST]

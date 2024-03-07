@@ -4,11 +4,12 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-        uploads_directory: '%kernel.project_dir%/public/uploads_directory'
-        chat_gpt_api_url: '%env(CHAT_GPT_API_URL)%'
-        chat_gpt_api_key: '%env(CHAT_GPT_API_KEY)%'
-        YOUSIGN_SANDBOX_API_KEY : 'vhnTh0zpdi0CE05rH07NCcWvfKtiuBgm'
-        uploads_directory_Rec: '%kernel.project_dir%/public/uploads_directory_rec'
+    uploads_directory: '%kernel.project_dir%/public/uploads_directory'
+    chat_gpt_api_url: '%env(CHAT_GPT_API_URL)%'
+    chat_gpt_api_key: '%env(CHAT_GPT_API_KEY)%'
+    YOUSIGN_SANDBOX_API_KEY : 'vhnTh0zpdi0CE05rH07NCcWvfKtiuBgm'
+    uploads_directory_Rec: '%kernel.project_dir%/public/uploads_directory_rec'
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -27,9 +28,8 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     App\ServiceReclamation\RSSFeedFetcher:
-      arguments:
-        $feedUrl: 'https://rss.app/feeds/v1.1/tVW4ZsKNabUSUsRY.json'
+        arguments:
+            $feedUrl: 'https://rss.app/feeds/v1.1/tVW4ZsKNabUSUsRY.json'
 
-#    App\Service\OpenAITextToSpeechService:
-#      arguments:
-#        $apiKey: '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'
+    App\Controller\HomeController:
+        tags: ['controller.service_arguments']
