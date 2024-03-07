@@ -1,12 +1,25 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+like_article:
+  path: '/article/{id}/like'
+  controller: 'App\Controller\ArticleController::like'
+  methods: ['POST']
 # Définition d'une route pour une page d'accueil
 #index:
  # path: /
  # controller: App\Controller\ChequeController::index
  # methods: GET
 
+dislike_article:
+  path: '/article/{id}/dislike'
+  controller: 'App\Controller\ArticleController::dislike'
+  methods: ['POST']
+
+save_article:
+  path: '/article/{id}/save'
+  controller: 'App\Controller\ArticleController::save'
+  methods: ['POST']
 # Définition d'une route avec un paramètre
 cheque_signature:
   path: /api_public/v3/signature_request/{signatureRequestId}/signer

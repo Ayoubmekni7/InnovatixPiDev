@@ -15,6 +15,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mercure\HubInterface;
+use Symfony\Component\Mercure\Update;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -28,27 +30,6 @@ class DemandeStageController extends AbstractController
     {
         $this->emailService = $emailService;
     }
-    #[Route('/AffichageDesDemandes', name: 'AffichageDesDemandes')]
-    public function AffichageDesDemandes(DemandeStageRepository $demandestageRepository): Response
-  {
-            $titre = "La liste des demandes";
-            $liste = $demandestageRepository->findByEtat("encours");
-////        $now = new DateTime('now');
-////        // Formater le temps réel actuel
-////        $nowFormatted = $now->format('Y-m-d H:i:s');
-////
-////
-////
-////        // Changer le fuseau horaire à "Europe/Berlin" pendant l'été (Central European Summer Time)
-////        $now->setTimezone(new DateTimeZone('Europe/Berlin'));
-//
-//        // Réafficher le temps réel actuel
-//        $nowFormatted = $now->format('Y-m-d H:i:s');
-        return $this->render('backOffice/demande_stage/affichage.html.twig', [
-            'Demandes' => $liste,
-            'titre'=> $titre
-        ]);
-    }
     #[Route('/demandeStage', name: 'demandeStage')]
     public function demandeStage(Request $request,ManagerRegistry $managerRegistry,SluggerInterface $slugger,uploadFile $uploadFile): Response
     {
@@ -60,7 +41,7 @@ class DemandeStageController extends AbstractController
         
         $subject = "Demande effectuer avec succés";
         $html ="<div>Bonjour {$nom}.<br>Votre Demande a été effectuer avec succès  .<br>";
-        $de = $demande->getCv();
+        //$de = $demande->getCv();
         
         if($form->isSubmitted() && $form->isValid()){
             $file =  $form->get('cv')->getData();
@@ -125,7 +106,7 @@ class DemandeStageController extends AbstractController
             $cv = $uploadFile->uploadFile($file);
             // Analyseur de CV
             $cheminFichier = $this->getParameter('uploads_directory').'/'.$cv;
-            $demandeO->setScore($cvAnalyseur->analyseCV($cheminFichier, $offre->getMotsCles()));
+            $demandeO->setScore($cvAnalyseur->analyseCV($cheminFichier , $offre->getMotsCles()));
             $demandeO->setCv($cv);
             $x = $managerRegistry->getManager();
             $demandeO->setOffreStage($offre);
@@ -216,5 +197,39 @@ class DemandeStageController extends AbstractController
             'ancienCv'=> $ancienCv,
         ]);
     }
+    #[Route('/push',  name: 'push')]
+    public function publish(HubInterface $hub): Response
+    {
+        $update = new Update(
+            'https://example.com/books/1',
+            json_encode(['status' => 'OutOfStock'])
+        );
+        
+        $hub->publish($update);
+        
+        return new Response('published!');
+    }
     
+    #[Route('/AffichageDesDemandes', name: 'AffichageDesDemandes')]
+    public function AffichageDesDemandes(DemandeStageRepository $demandestageRepository): Response
+    {
+        $titre = "La liste des demandes";
+        $liste = $demandestageRepository->findByEtat("encours");
+        
+////        $now = new DateTime('now');
+////        // Formater le temps réel actuel
+////        $nowFormatted = $now->format('Y-m-d H:i:s');
+////
+////
+////
+////        // Changer le fuseau horaire à "Europe/Berlin" pendant l'été (Central European Summer Time)
+////        $now->setTimezone(new DateTimeZone('Europe/Berlin'));
+//
+//        // Réafficher le temps réel actuel
+//        $nowFormatted = $now->format('Y-m-d H:i:s');
+        return $this->render('backOffice/demande_stage/affichage.html.twig', [
+            'Demandes' => $liste,
+            'titre'=> $titre
+        ]);
+    }
 }

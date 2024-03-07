@@ -170,6 +170,18 @@
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
     },
+    "symfony/mercure-bundle": {
+        "version": "0.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "0.3",
+            "ref": "851667ac03fd113c5bd2215fb743974f6709bc62"
+        },
+        "files": [
+            "./config/packages/mercure.yaml"
+        ]
+    },
     "symfony/messenger": {
         "version": "5.4",
         "recipe": {
@@ -246,6 +258,15 @@
             "./config/packages/security.yaml"
         ]
     },
+    "symfony/sendgrid-mailer": {
+        "version": "5.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "4.4",
+            "ref": "224aedffb66812dc2b0965dabc14d5f800941da6"
+        }
+    },
     "symfony/translation": {
         "version": "5.4",
         "recipe": {
@@ -297,6 +318,7 @@
             "./config/routes/web_profiler.yaml"
         ]
     },
+
     "symfonycasts/reset-password-bundle": {
         "version": "1.20",
         "recipe": {
@@ -311,6 +333,7 @@
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.16.2"
+
     },
     "twig/extra-bundle": {
         "version": "v3.8.0"

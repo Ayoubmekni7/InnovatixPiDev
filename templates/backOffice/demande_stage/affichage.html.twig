@@ -61,7 +61,13 @@
                                          </td>
 
                                         <td>{{ a.date | date('d F Y')}}</td>
-                                        <td>{{ a.lettremotivation }}</td>
+                                        <td ><p  style="color:#777;
+                                                        font-size: 15px;
+                                                        display: -webkit-box;
+                                                        -webkit-line-clamp: 2;
+                                                        -webkit-box-orient: vertical;
+                                                        overflow: hidden;
+                                                        line-height: 1.5;">{{ a.lettremotivation }}</p></td>
                                         <td>{{ a.domaine }}</td>
                                         <td>
                                             <div class="d-flex">
@@ -83,7 +89,14 @@
         </div>
     </div>
 
+{% block script %}
+<script>
 
+    const eventSource = new EventSource("{{ mercure('https://example.com/books/1')|escape('js') }}");
+    eventSource.onmessage = event => {
 
-
+        document.getElementById('message').innerHTML += "<div class='bg-success'>"+JSON.parse(event.data).status+"</div>";
+    }
+</script>
+{% endblock %}
 {% endblock %}

@@ -47,6 +47,7 @@ class LoginController extends AbstractController
     #[Route(path: '/logoutClient', name: 'app_logoutClient')]
     public function logoutClient(): void
     {
+        
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }

@@ -7,6 +7,8 @@ use App\Form\OffreStageType;
 use App\Form\SearchType;
 use App\Repository\DemandeStageRepository;
 use App\Repository\OffreStageRepository;
+use DateTime;
+use DateTimeZone;
 use Doctrine\Persistence\ManagerRegistry;
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,26 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OffreStagesController extends AbstractController
 {
-    #[Route('/Recrutement', name: 'Recrutement')]
-    public function Recrutement(OffreStageRepository $offreStageRepository,Request $request,DemandeStageRepository $demandeStageRepository): Response
-    {
-        $search = [];
-        $form = $this->createForm(SearchType::class,$search);
-        $form->handleRequest($request);
-        $recherche= $request->get('numero');
-        $domaine = $request->get('domaine');
-        $liste = $offreStageRepository->findAll();
-        if ($form ->isSubmitted() && $form->isValid()){
-            $id = $recherche;
-            return $this->redirectToRoute('rechercheDemande',['numero' =>$id]);
-        }
-        
-        return $this->render('frontOffice/offre_stage/recrutement.html.twig',[
-            'offres' => $liste,
-            'form' => $form->createView(),
-            
-        ]);
-    }
+    
     #[Route('/Recherche', name: 'Recherche')]
     public function Recherche(DemandeStageRepository $demandeStageRepository,Request $request): Response
     {
@@ -82,12 +65,26 @@ class OffreStagesController extends AbstractController
     #[Route('/addOffre', name: 'addOffre')]
     public function addOffre(ManagerRegistry $managerRegistry,Request $request): Response
     {
+                $now = new DateTime('now');
+        // Formater le temps réel actuel
+       // $nowFormatted = $now->format('Y-m-d H:i:s');
+////
+////
+////
+////        // Changer le fuseau horaire à "Europe/Berlin" pendant l'été (Central European Summer Time)
+        $now->setTimezone(new DateTimeZone('Europe/Berlin'));
+//
+//        // Réafficher le temps réel actuel
+        $nowFormatted = $now->format('Y-m-d');
+        
         $ajouter = "ajouter";
         $offre = new OffreStage();
         $form = $this->createForm(OffreStageType::class,$offre);
         $form->handleRequest($request);
         $em = $managerRegistry->getManager();
+        $datePostuObject = DateTime::createFromFormat('Y-m-d', $nowFormatted);
         if($form->isSubmitted() and $form->isValid() ){
+            $offre ->setDatePostu($datePostuObject);
           $em->persist($offre);
           $em->flush();
           return $this->redirectToRoute('afficheOffreStages');
@@ -102,12 +99,12 @@ class OffreStagesController extends AbstractController
     {
         $modifier = 'modifier';
         $offre = $offreStageRepository->find($id);
-        $motCles = $offre->getMotsCles();
-        $niveau = $offre->getNiveau();
-        $language = $offre->getLanguage();
-        $offre->setNiveau(null);
-        $offre->setMotsCles(null);
-        $offre->setLanguage(null);
+//        $motCles = $offre->getMotsCles();
+//        $niveau = $offre->getNiveau();
+//        $language = $offre->getLanguage();
+//        $offre->setNiveau(null);
+//        $offre->setMotsCles(null);
+//        $offre->setLanguage(null);
         $form = $this->createForm(OffreStageType::class,$offre);
         $form->handleRequest($request);
         $em = $managerRegistry->getManager();
@@ -149,7 +146,26 @@ class OffreStagesController extends AbstractController
             'offre'=>$offre
         ]);
     }
-    
+    #[Route('/Recrutement', name: 'Recrutement')]
+    public function Recrutement(OffreStageRepository $offreStageRepository,Request $request,DemandeStageRepository $demandeStageRepository): Response
+    {
+        $search = [];
+        $form = $this->createForm(SearchType::class,$search);
+        $form->handleRequest($request);
+        $recherche= $request->get('numero');
+        $domaine = $request->get('domaine');
+        $liste = $offreStageRepository->findAll();
+        if ($form ->isSubmitted() && $form->isValid()){
+            $id = $recherche;
+            return $this->redirectToRoute('rechercheDemande',['numero' =>$id]);
+        }
+        
+        return $this->render('frontOffice/offre_stage/recrutement.html.twig',[
+            'offres' => $liste,
+            'form' => $form->createView(),
+        
+        ]);
+    }
     #[Route('/DemandeParOffres/{id}', name: 'DemandeParOffres')]
     public function DemandeParOffres($id, DemandeStageRepository $demandestageRepository,OffreStageRepository $offreStageRepository): Response
     {

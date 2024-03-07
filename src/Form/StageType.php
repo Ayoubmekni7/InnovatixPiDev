@@ -15,7 +15,15 @@ class StageType extends AbstractType
     {
         $builder
             ->add('sujet')
-            ->add('date')
+            ->add('date',
+                DateType::class,[
+                'widget'=>'single_text',
+                'html5'=>true,
+                'format'=>'yyyy-MM-dd'
+            
+            
+            
+            ])
             ->add('users')
 //            ->add('submit',SubmitType::class)
         ;
