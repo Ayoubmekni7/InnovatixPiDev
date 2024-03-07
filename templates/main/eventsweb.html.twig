@@ -25,8 +25,23 @@
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
 <style>
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
 
-       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
     .card{
         position: relative;
         width: 100%;
@@ -288,6 +303,75 @@
 .select-image:hover {
 	background: var(--dark-blue);
 }
+
+
+       button.like1 {
+         width: 50px;
+         height: 50px;
+         margin: 0 auto;
+         line-height: 50px; /* corrected misspelling */
+         border-radius: 50%;
+         color: rgba(0, 150, 136, 1);
+         background-color: rgba(38, 166, 154, 0.3);
+         border-color: rgba(0, 150, 136, 1);
+         border-width: 1px;
+         font-size: 15px;
+       }
+
+       button.dislike1 {
+         width: 50px;
+         height: 50px;
+         margin: 0 auto;
+         line-height: 50px; /* corrected misspelling */
+         border-radius: 50%;
+         color: rgba(255, 82, 82, 1);
+         background-color: rgba(255, 138, 128, 0.3);
+         border-color: rgba(255, 82, 82, 1);
+         border-width: 1px;
+         font-size: 15px;
+       }
+
+       button.learnmore {
+         width: 100%;
+         padding: 15px; /* increased padding */
+         border: none;
+         background: rgba(0, 151, 167, 1);
+         border-radius: 5px;
+         text-transform: uppercase;
+         font-size: 16px;
+         color: #fff;
+         letter-spacing: 1px;
+       }
+       .like1, .dislike1 {
+         display: inline-block;
+         width: 40px;
+         height: 40px;
+         margin-right: 10px;
+         border: none;
+         border-radius: 50%;
+         background-color: transparent;
+         font-size: 20px;
+         color: #333;
+         cursor: pointer;
+       }
+
+       .like1:hover, .dislike1:hover {
+         background-color: #f2f2f2;
+       }
+
+       .like1 i, .dislike1 i {
+         line-height: 40px;
+       }
+
+       .like1.active, .dislike1.active {
+         color: #009688; /* Change color to green when active */
+       }
+
+       .like1.disabled, .dislike1.disabled {
+         pointer-events: none; /* Disable clicking when button is disabled */
+         opacity: 0.5; /* Make button slightly transparent */
+       }
+
 </style>
 
 
@@ -300,7 +384,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
           <div class="container-fluid pe-0">
-            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="{{ path('app_main') }}">
+            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="{{ path('app_event') }}">
                Innovatix
             </a>
             <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -538,8 +622,8 @@
                             <i class="fa-regular fa-comment"></i>
                         </div>
                     </div>
-                    <div class="plus">
-                        <i class="fa-solid fa-plus"></i>
+                    <div class="plus"><a href="http://localhost/integrate-stripe-payment-gateway-in-php/index.php">
+                        <i class="fab fa-paypal opacity-10" aria-hidden="true"></i>                      </a>
                     </div>
                     <div class="content">
                         <h1>NexGenTech</h1>
@@ -549,7 +633,9 @@
                             <i class="fa-brands fa-instagram"></i>
                             <i class="fa-brands fa-telegram"></i>
                             <i class="fa-brands fa-github"></i>
-                            <i class="fa-brands fa-twitter"></i>
+                          <a href="http://localhost/integrate-stripe-payment-gateway-in-php/index.php" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                          </a>
                         </div>
 
                       <div class="card-body">
@@ -557,18 +643,23 @@
                         <div class="d-flex justify-content-center align-items-center">
                           <!-- Bouton de like -->
                           <form action="{{ path('app_evenement_like', {'id': evenement.id}) }}" method="post" class="me-3">
-                            <button type="submit" class="btn btn-primary">
-                              <i class="fas fa-thumbs-up"></i> <!-- Icone de like -->
+
+                            <button type="submit" class="like1" style="    animation: bounce 3s infinite;">
+                              <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                             </button>
                             <span class="mx-2">{{ evenement.likes }}</span> <!-- Affichage du nombre de likes -->
                           </form>
 
                           <!-- Bouton de dislike -->
                           <form action="{{ path('app_evenement_dislike', {'id': evenement.id}) }}" method="post" class="me-3">
-                            <button type="submit" class="btn btn-danger">
-                              <i class="fas fa-thumbs-down"></i> <!-- Icone de dislike -->
+
+                            <button type="submit" class="dislike1" style="    animation: bounce 3s infinite;">
+                              <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
                             </button>
-                            <span class="mx-2">{{ evenement.dislikes }}</span> <!-- Affichage du nombre de dislikes -->
+                            <span class="mx-2">{{ evenement.dislikes }}</span>
+
+
+
                           </form>
 
                           <!-- Bouton d'enregistrement -->
@@ -989,5 +1080,56 @@
             });
           }
     </script>
+<script>const button = document.querySelector("button");
+  let timer;
+  let timer2;
+  const audio = new Audio("https://lasonotheque.org/UPLOAD/mp3/1417.mp3");
+
+  button.addEventListener("click", function () {
+    if (!this.classList.contains("added")) {
+      clearTimeout(timer);
+      clearTimeout(timer2);
+    }
+
+    if (
+      this.classList.contains("tapis-roulant") &&
+      !this.classList.contains("added")
+    ) {
+      document.querySelector(
+        ".tapis-roulant>div:nth-child(4)>div"
+      ).style.animationPlayState = "paused";
+      document.querySelector(
+        ".tapis-roulant>div:nth-child(2)>div"
+      ).style.animationPlayState = "paused";
+      this.style.pointerEvents = "none";
+      this.classList.add("canceled");
+      setTimeout(() => {
+        this.style.pointerEvents = "initial";
+        this.classList.remove("tapis-roulant");
+        this.classList.remove("canceled");
+      }, 1000);
+    }
+
+    if (!this.classList.contains("tapis-roulant")) {
+      this.classList.add("tapis-roulant");
+      document.querySelector(
+        ".tapis-roulant>div:nth-child(4)>div"
+      ).style.animationPlayState = "running";
+      document.querySelector(
+        ".tapis-roulant>div:nth-child(2)>div"
+      ).style.animationPlayState = "running";
+      timer = setTimeout(() => {
+        this.classList.add("added");
+        audio.play();
+        this.style.pointerEvents = "none";
+        timer2 = setTimeout(() => {
+          this.classList.remove("added");
+          this.classList.remove("tapis-roulant");
+          this.style.pointerEvents = "initial";
+        }, 1600);
+      }, 1400);
+    }
+  });
+</script>
     <script src="./assets/js/loopple/loopple.js"></script>
 </html>

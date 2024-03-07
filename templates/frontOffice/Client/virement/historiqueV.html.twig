@@ -75,7 +75,7 @@
                                                     <span class="text-secondary text-xs font-weight-bold">{{ i.Montant }}</span>
                                                 </td>
                                                 <td class="align-middle">
-                                                    {% if (i.DecisionV=='Approuvé') %}
+                                                    {% if (i.DecisionV == 'Approuvé') %}
                                                         <span class="badge badge-sm bg-gradient-success">Approuvé</span>
                                                     {% endif %}
 
@@ -94,9 +94,11 @@
                                                     {% endif %}
 
 
-                                                    {% if (i.DecisionV=='Réfuser') %}
+                                                    {% if (i.DecisionV=='Refuser') %}
                                                         <span class="badge badge-sm bg-gradient-danger"> &nbsp; Réfuser &nbsp;  </span>
                                                     {% endif %}
+
+
                                                 </td>
 
                                             </tr>

@@ -4,20 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="fix the project.">
+    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="integration">
+      <change afterPath="$PROJECT_DIR$/config/packages/http_client.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/TwilioSmsService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/baseadmin.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/dashbordAdmin.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_02_2024_13_17__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_18_02_2024_13_17__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_02_2024_11_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_02_2024_11_37__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_02_2024_12_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_02_2024_12_34__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_02_2024_10_54__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_02_2024_10_54__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_03_2024_19_23__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_03_2024_19_23__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_02_2024_00_23_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_02_2024_00_23_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_02_2024_00_23__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_02_2024_00_23__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/EvenementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EvenementController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Evenement.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Evenement.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main/eventsweb.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/eventsweb.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/notifier.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/notifier.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ActualiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ActualiteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ChequeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ChequeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CompteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CompteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/VirementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/VirementController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Compte.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Compte.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Virement.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Virement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/CompteType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CompteType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/VirementType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/VirementType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ChequeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ChequeRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CompteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CompteRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/VirementRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/VirementRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/YousignService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/YousignService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/BaseFront.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/BaseFront.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/backOffice/admin/cheque/historiqueAdmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/admin/cheque/historiqueAdmin.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/backOffice/admin/cheque/list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/admin/cheque/list.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/backOffice/admin/compte/historiqueCompte.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/admin/compte/historiqueCompte.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/backOffice/admin/compte/listCompte.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/admin/compte/listCompte.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/backOffice/admin/virement/Virements.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/admin/virement/Virements.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/backOffice/admin/virement/historiqueVirement.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/admin/virement/historiqueVirement.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/virement/DemandeVirement.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/virement/DemandeVirement.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,9 +51,7 @@
   </component>
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable path="composer" />
-    </execution>
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -41,7 +64,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="f19279d76287dd9b065d55330dccc108b5bf08f0" />
+        <entry key="$PROJECT_DIR$" value="yesser" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -195,15 +218,15 @@
       <path value="$PROJECT_DIR$/vendor/symfonycasts/verify-email-bundle" />
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
-      <path value="$PROJECT_DIR$/vendor/symfony/mercure" />
-      <path value="$PROJECT_DIR$/vendor/symfony/mercure-bundle" />
-      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
-      <path value="$PROJECT_DIR$/vendor/lcobucci/clock" />
-      <path value="$PROJECT_DIR$/vendor/stella-maris/clock" />
-      <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
-      <path value="$PROJECT_DIR$/vendor/psr/clock" />
-      <path value="$PROJECT_DIR$/vendor/symfony/sendgrid-mailer" />
+      <path value="$PROJECT_DIR$/vendor/google/recaptcha" />
+      <path value="$PROJECT_DIR$/vendor/victor-prdh/recaptcha-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/twig-pack" />
       <path value="$PROJECT_DIR$/vendor/twilio/sdk" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -217,41 +240,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Yesser/PI/InnovatixYesser/config/packages&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Admin/PhpstormProjects/InnovatixPiDev",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser\config\packages" />
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser\public" />
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser" />
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser\templates" />
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser\src\Repository" />
+      <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\public\client" />
+      <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\public" />
+      <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\public\client\assets\scss\soft-ui-dashboard\forms" />
+      <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\public\client\assets" />
+      <recent name="C:\Users\Admin\PhpstormProjects\InnovatixPiDev\src\Form" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser\templates\registration" />
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser\public\images" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\templates" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\src\Controller" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\src" />
+      <recent name="C:\Users\Yesser\PI\InnovatixPiDev\public\uploads_directory" />
+      <recent name="C:\Users\Yesser\PI\InnovatixPiDev\public\upload\CV" />
     </key>
   </component>
   <component name="RunManager">
@@ -259,6 +282,13 @@
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-php-predefined-ba97393d7c68-6f8e3395a2b4-com.jetbrains.php.sharedIndexes-PS-233.14015.96" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -335,25 +365,23 @@
       <workItem from="1709471131466" duration="26000" />
       <workItem from="1709471160007" duration="1078000" />
       <workItem from="1709472291924" duration="3274000" />
-      <workItem from="1709490209389" duration="681000" />
-      <workItem from="1709496709170" duration="608000" />
-      <workItem from="1709506912427" duration="146000" />
-      <workItem from="1709507063641" duration="2057000" />
-      <workItem from="1709544985103" duration="2411000" />
-      <workItem from="1709555883570" duration="4032000" />
-      <workItem from="1709562071814" duration="4781000" />
-      <workItem from="1709587097135" duration="4816000" />
-      <workItem from="1709593432722" duration="12000" />
-      <workItem from="1709595153284" duration="985000" />
-      <workItem from="1709596294679" duration="281000" />
-      <workItem from="1709637985708" duration="228000" />
-      <workItem from="1709648593365" duration="460000" />
-      <workItem from="1709681975920" duration="3585000" />
-      <workItem from="1709685828076" duration="367000" />
-      <workItem from="1709686206119" duration="1521000" />
-      <workItem from="1709687808901" duration="1091000" />
-      <workItem from="1709731092276" duration="1657000" />
-      <workItem from="1709753527653" duration="3869000" />
+      <workItem from="1709576888900" duration="102240000" />
+    </task>
+    <task id="LOCAL-00016" summary="ajout d'attribut état dans Demande Stage entity.">
+      <option name="closed" value="true" />
+      <created>1708030281322</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1708030281322</updated>
+    </task>
+    <task id="LOCAL-00017" summary="correction du quelque erreur du code">
+      <option name="closed" value="true" />
+      <created>1708107839645</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1708107839645</updated>
     </task>
     <task id="LOCAL-00018" summary="Structure du projet">
       <option name="closed" value="true" />
@@ -707,51 +735,38 @@
       <option name="project" value="LOCAL" />
       <updated>1709474809561</updated>
     </task>
-    <task id="LOCAL-00062" summary="add mercure bundle.">
+    <task id="LOCAL-00062" summary="Integration de mon travail">
       <option name="closed" value="true" />
-      <created>1709509098729</created>
+      <created>1709480927225</created>
       <option name="number" value="00062" />
       <option name="presentableId" value="LOCAL-00062" />
       <option name="project" value="LOCAL" />
-      <updated>1709509098729</updated>
+      <updated>1709480927225</updated>
     </task>
-    <task id="LOCAL-00063" summary="fix the project.">
+    <task id="LOCAL-00063" summary="Integration de mon travail">
       <option name="closed" value="true" />
-      <created>1709683266851</created>
+      <created>1709734607428</created>
       <option name="number" value="00063" />
       <option name="presentableId" value="LOCAL-00063" />
       <option name="project" value="LOCAL" />
-      <updated>1709683266851</updated>
+      <updated>1709734607428</updated>
     </task>
-    <task id="LOCAL-00064" summary="fix the project.">
+    <task id="LOCAL-00064" summary="integration">
       <option name="closed" value="true" />
-      <created>1709733728466</created>
+      <created>1709734653638</created>
       <option name="number" value="00064" />
       <option name="presentableId" value="LOCAL-00064" />
       <option name="project" value="LOCAL" />
-      <updated>1709733728466</updated>
+      <updated>1709734653638</updated>
     </task>
-    <task id="LOCAL-00065" summary="fix the project.">
-      <option name="closed" value="true" />
-      <created>1709733804866</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1709733804866</updated>
-    </task>
-    <task id="LOCAL-00066" summary="fix the project.">
-      <option name="closed" value="true" />
-      <created>1709755262415</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1709755262415</updated>
-    </task>
-    <option name="localTasksCounter" value="67" />
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -765,7 +780,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add template affiche offre backOffice." />
     <MESSAGE value="ajout du formulaire de recherche et la template de Details vide + correction du controlleur de l'offre de stage." />
     <MESSAGE value="mettre à jour le controlleur offre de stage" />
     <MESSAGE value="correction de template de reccrutement et il y'a une erreur au niveau de recherche par le numero" />
@@ -788,8 +802,20 @@
     <MESSAGE value="Intégration de l'analyseur des CVs." />
     <MESSAGE value="integration de mon travail" />
     <MESSAGE value="fix the project" />
-    <MESSAGE value="add mercure bundle." />
-    <MESSAGE value="fix the project." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix the project." />
+    <MESSAGE value="signature" />
+    <MESSAGE value="Integration de mon travail" />
+    <MESSAGE value="integration" />
+    <option name="LAST_COMMIT_MESSAGE" value="integration" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/frontOffice/Client/dashboard.html.twig</url>
+          <line>29</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

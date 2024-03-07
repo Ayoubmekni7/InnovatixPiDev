@@ -8,6 +8,12 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
+use VictorPrdh\RecaptchaBundle\Form\ReCaptchaType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
+
+
 
 class CompteType extends AbstractType
 {
@@ -25,7 +31,11 @@ class CompteType extends AbstractType
                 // Autres options du champ ChoiceType
             ])
             ->add('cin')
-            ->add('DateDelivranceCin')
+            ->add('DateDelivranceCin' ,   DateType::class, [
+                'label' => 'Date de naissance',
+                'years' => range(1997, 2050), // Définir les années de 1950 à 2050
+                // Autres options du champ DateType
+            ])
             ->add('nom')
             ->add('prenom')
             ->add('sexe', ChoiceType::class, [
@@ -38,7 +48,14 @@ class CompteType extends AbstractType
                 // Autres options du champ ChoiceType
             ])
 
-            ->add('DateNaissance')
+        ->add('DateNaissance', DateType::class, [
+            'label' => 'Date de naissance',
+            'years' => range(1950, 2050), // Limite les années de 1950 à 2024
+            'constraints' => [
+                new LessThanOrEqual('2024-12-31'), // Ajoutez la contrainte de date
+            ],
+            // Autres options du champ DateType
+        ])
             ->add('StatutMarital',   ChoiceType::class, [
                 'choices' => [
                     'Célibataire ' => 'Célibataire',
@@ -71,9 +88,10 @@ class CompteType extends AbstractType
                 'multiple' => false, // Seul un choix peut être sélectionné
                 // Autres options du champ ChoiceType
             ])
-            ->add('submit', SubmitType::class)
+            ->add("recaptcha", ReCaptchaType::class);
 
-        ;
+            ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

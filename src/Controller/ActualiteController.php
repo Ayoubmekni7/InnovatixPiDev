@@ -23,10 +23,17 @@ class ActualiteController extends AbstractController
         ]);
     }
     #[Route('/dashbordClient', name: 'app_dashbordClient')]
-    public function indexdashbordC(): Response
+    public function indexdashbordC(UserRepository $repository): Response
     {
-        return $this->render('baseclient.html.twig', [
-            'controller_name' => 'ActualiteController',
+        $compte = $this->getDoctrine()->getRepository(Compte::class)->findOneBy([]);
+
+        // Assurez-vous que $compte n'est pas null et récupérez le montant total
+        $Montant = ($compte !== null) ? $compte->getMontant() : 0;
+        $users = $compte->getId();
+        $user= $repository->find($users);
+        return $this->render('frontOffice/Client/dashboard.html.twig', [
+            'Montant' => $Montant ,
+            'user'=>$user,
         ]);
     }
     #[Route('/client', name: 'client')]
@@ -50,5 +57,26 @@ class ActualiteController extends AbstractController
             'controller_name' => 'ActualiteController',
         ]);
     }
+
+
+    #[Route('/dashbordClientS', name: 'app_dashbordClientS')]
+    public function indexdashbordCS(): Response
+    {
+        $compte = $this->getDoctrine()->getRepository(Compte::class)->findOneBy([]);
+
+        // Assurez-vous que $compte n'est pas null et récupérez le type de compte
+        $typeCompte = ($compte !== null) ? $compte->getTypeCompte() : '';
+
+        return $this->render('frontOffice/Client/dashboard.html.twig', [
+            'typeCompte' => $typeCompte,
+        ]);
+    }
+
+    #[Route('/dashbord', name: 'app_dashbord_admin')]
+    public function dashboard(): Response
+    {
+        return $this->render('dashbordAdmin.html.twig');
+    }
+
 }
 //        "symfonycasts/reset-password-bundle": "^1.14",

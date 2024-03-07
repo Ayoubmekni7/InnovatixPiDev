@@ -33,6 +33,15 @@ class ChequeRepository extends ServiceEntityRepository
             ->getResult()
        ;
     }
+    public function save(Cheque $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 
     public function chequeParClient($compte)
     {
@@ -43,5 +52,17 @@ class ChequeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-    
+
+    /**
+     * @return Cheque[] Returns an array of Cheque objects
+     */
+    public function HistoriqueDesChequesParClient($value): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.user = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
