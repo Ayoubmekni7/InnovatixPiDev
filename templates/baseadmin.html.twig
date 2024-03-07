@@ -224,7 +224,21 @@
             <span class="nav-text">Actualités</span>
           </a>
           <ul aria-expanded="false">
-            <li><a href="listeArticle.html">Liste des articles</a></li>
+            <li><a href="{{path('app_article_index')}}">Articles</a></li>
+            <li><a href="{{path('app_commentaire_index')}}">Commentaires</a></li>
+            <li><a href="{{path('reponseCommentaire')}}">Mes réponses </a></li>
+
+          </ul>
+
+        </li>
+        <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+            <i class="fa fa-exclamation-circle"></i>
+            <span class="nav-text">Réclamations</span>
+          </a>
+          <ul aria-expanded="false">
+            <li><a href="{{path('app_reclamation_index')}}">Réclamations</a></li>
+
+            <li><a href="{{path('app_reponse_index')}}">Réponses</a></li>
           </ul>
 
         </li>
