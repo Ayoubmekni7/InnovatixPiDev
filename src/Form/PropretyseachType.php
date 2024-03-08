@@ -11,8 +11,6 @@ class PropretyseachType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

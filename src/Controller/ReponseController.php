@@ -85,7 +85,7 @@ public function new($id, $var, Request $request, EntityManagerInterface $entityM
     }
 
     $reponse = new Reponse();
-
+    $reponse->setUser($this->get('security.token_storage')->getToken()->getUser());
     $form = $this->createForm(ReponseType::class, $reponse);
     $form->handleRequest($request);
 

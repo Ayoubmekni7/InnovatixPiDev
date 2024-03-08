@@ -45,7 +45,7 @@
                         <input type="password" class="input" name="password" id="inputPassword" autocomplete="current-password" required>
                     </div>
                 </div>
-                <a href="{{ path ('app_forgot_password_request') }}">Forgot Password?</a>
+                <a href="{{ path ('mdpoublie') }}">Forgot Password?</a>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                 <input type="submit" class="btn" value="Login">
             </form>

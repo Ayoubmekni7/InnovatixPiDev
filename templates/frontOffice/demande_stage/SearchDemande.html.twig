@@ -64,7 +64,13 @@
                                                     </td>
 
                                                     <td>{{ a.date | date('d F Y')}}</td>
-                                                    <td>{{ a.lettremotivation }}</td>
+                                                    <td style="color:#777;
+                                                        font-size: 15px;
+                                                        display: -webkit-box;
+                                                        -webkit-line-clamp: 2;
+                                                        -webkit-box-orient: vertical;
+                                                        overflow: hidden;
+                                                        line-height: 1.5;">{{ a.lettremotivation }}</td>
                                                     <td>{{ a.domaine }}</td>
                                                     <td class="align-middle">
                                                         {% if (a.etat == 'accept') %}

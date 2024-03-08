@@ -46,8 +46,8 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-            ->add("recaptcha", ReCaptchaType::class);
+            ]);
+//            ->add("recaptcha", ReCaptchaType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

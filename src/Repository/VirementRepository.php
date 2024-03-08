@@ -21,7 +21,7 @@ class VirementRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Virement::class);
     }
-
+    
     /**
      * @return Virement[] Returns an array of Virement objects
      */
@@ -32,7 +32,7 @@ class VirementRepository extends ServiceEntityRepository
             ->setParameter('val', $value)
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
     public function listeDesVirementsAccepte($value): array
     {
@@ -52,8 +52,8 @@ class VirementRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
-
-    public function sms(String $num, $var) : void
+    
+    public function sms(String $num) : void
     {
         // Your Account SID and Auth Token from twilio.com/console
         $sid = 'AC8aab9f4433d1f7c8dfec3d6b2817b0e2';
@@ -71,9 +71,13 @@ class VirementRepository extends ServiceEntityRepository
                 // A Twilio phone number you purchased at twilio.com/console
                 'from' => $twilio_number,
                 // the body of the text message you'd like to send
-                'body' => $var
+                'body' => 'Bonjour ' . ', ' .
+                    'Nous sommes heureux de vous informer que votre demande de virement ' .
+                    'a été approuvée avec succès. Vous pouvez désormais accéder aux fonds transférés. ' .
+                    'Cordialement, [ EFB]'
             ]
         );
     }
-
+    
+    
 }

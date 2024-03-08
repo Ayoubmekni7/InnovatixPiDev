@@ -12,7 +12,6 @@ use App\Service\Mailing;
 use DateTime;
 use DateTimeZone;
 use Doctrine\Persistence\ManagerRegistry;
-use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -63,7 +62,7 @@ class OffreStagesController extends AbstractController
         foreach ($listeDemande as $demande) {
             $cheminFichier = $this->getParameter('uploads_directory') . '/' . $demande->getCv();
             $score = $cvAnalyseur->analyseCV($cheminFichier, $mots);
-            if ($score < 60) {
+            if ($score < 100) {
                 $to = $demande->getEmail();
                 $nom = $demande->getNom() . " " . $demande->getPrenom();
                 $subject = "Recommondation pour une offre";
@@ -108,6 +107,8 @@ class OffreStagesController extends AbstractController
         $ajouter = "ajouter";
         $ajouterA = "ajouter avec recommandation";
         $offre = new OffreStage();
+       // $cheque->setUser($this->get('security.token_storage')->getToken()->getUser());
+        $offre->setUser($this->get('security.token_storage')->getToken()->getUser());
         $form = $this->createForm(OffreStageType::class,$offre);
         $form->handleRequest($request);
         $em = $managerRegistry->getManager();

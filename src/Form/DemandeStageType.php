@@ -59,7 +59,6 @@ class DemandeStageType extends AbstractType
     
     
     ])
-        ->add("recaptcha", ReCaptchaType::class)
         ->add('submit',SubmitType::class);
       
     }

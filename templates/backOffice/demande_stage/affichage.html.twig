@@ -38,6 +38,8 @@
                                         <th><strong>date</strong></th>
                                         <th><strong>Lettre De Motivation</strong></th>
                                         <th><strong>Domaine</strong></th>
+                                        <th><strong>score</strong></th>
+
                                         <th><strong>action</strong></th>
                                     </tr>
                                     </thead>
@@ -69,6 +71,7 @@
                                                         overflow: hidden;
                                                         line-height: 1.5;">{{ a.lettremotivation }}</p></td>
                                         <td>{{ a.domaine }}</td>
+                                        <td>{{ a.score }}</td>
                                         <td>
                                             <div class="d-flex">
                                                <a href="{{ path('ApprouverDemande', {'id':a.id}) }}"> <button class="btn btn-success shadow btn-xs sharp me-1">Ap</button></a>

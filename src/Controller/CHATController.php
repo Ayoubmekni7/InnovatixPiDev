@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CHATController extends AbstractController
 {
-   
+
     #[Route('/chat', name: 'send_chat', methods:"POST")]
     public function chat(Request $request): Response
     {
@@ -29,10 +29,10 @@ class CHATController extends AbstractController
         ]);
 
         $response=$result->choices[0]->text;
-  
-        
+
+
         return $this->forward('App\Controller\HomeController::index', [
-           
+
             'question' => $question,
             'response' => $response
         ]);

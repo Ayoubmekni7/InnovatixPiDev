@@ -22,7 +22,8 @@ use App\Service\TwilioSmsService;
 class ChequeController extends AbstractController
 
 {
-    public Mailing $emailService;
+    
+    //public Mailing $emailService;
     public string $directory = 'uploads_directory';
     //public function __construct(Mailing $emailService)
     // {
@@ -54,7 +55,7 @@ class ChequeController extends AbstractController
     public function historique(ChequeRepository $chequeRepository):Response
     
     {
-        $liste= $chequeRepository->findAll();
+        $liste= $chequeRepository->findAll(true);
         return $this->render('frontOffice/Client/cheque/historique.html.twig',[
             'cheques'=>$liste,
         ]);
@@ -64,6 +65,8 @@ class ChequeController extends AbstractController
     public function addcheques(Request $request, ManagerRegistry $managerRegistry, SluggerInterface $slugger, uploadFile $uploadFile): Response
     {
         $cheque = new Cheque();
+        $cheque->setUser($this->get('security.token_storage')->getToken()->getUser());
+        
         $form = $this->createForm(ChequeType::class, $cheque);
         $em= $managerRegistry->getManager();
         $form->handleRequest($request);
@@ -91,7 +94,7 @@ class ChequeController extends AbstractController
     public function AfficherDemande(ChequeRepository $chequeRepository):Response
     
     {
-        $liste= $chequeRepository->HistoriqueDesCheques(false);
+        $liste= $chequeRepository->HistoriqueDesCheques('encours');
         return $this->render('backoffice/admin/cheque/list.html.twig',[
             'cheques'=>$liste,
         ]);
@@ -100,7 +103,7 @@ class ChequeController extends AbstractController
     #[Route('/showListeCheque', name: 'showListeCheque')]
     public function showListeCheque(ChequeRepository $chequeRepository):Response
     {
-        $cheque= $chequeRepository->HistoriqueDesCheques(true);
+        $cheque= $chequeRepository->listeDesChequesAccepte('Approuvé');
         return $this->render('backoffice/admin/cheque/historiqueAdmin.html.twig',[
             'cheques'=>$cheque,
         ]);
@@ -109,7 +112,7 @@ class ChequeController extends AbstractController
     public function AfficherDemandeE(ChequeRepository $chequeRepository):Response
     
     {
-        $liste= $chequeRepository->HistoriqueDesCheques(false);
+        $liste= $chequeRepository->listeDesChequesAccepte('encours');
         return $this->render('backoffice/Employe/cheque/listE.html.twig',[
             'cheques'=>$liste,
         ]);
@@ -119,7 +122,7 @@ class ChequeController extends AbstractController
     public function showListeChequeE(ChequeRepository $chequeRepository):Response
     
     {
-        $cheque= $chequeRepository->HistoriqueDesCheques(true);
+        $cheque= $chequeRepository->HistoriqueDesCheques('Approuvé');
         return $this->render('backoffice/Employe/cheque/listCheque.html.twig',[
             'cheques'=>$cheque,
         ]);
@@ -224,10 +227,10 @@ class ChequeController extends AbstractController
     
     
     #[Route('/deleteDemandeChequeClient/{id}', name: 'deleteDemandeChequeClient')]
-    public function deleteDemandeChequeClient($id, ManagerRegistry $managerRegistry, ChequeRepository $chequeRepository, $repository):Response
+    public function deleteDemandeChequeClient($id, ManagerRegistry $managerRegistry, ChequeRepository $chequeRepository):Response
     {
         $emm=$managerRegistry->getManager();
-        $idremove=$repository->find($id);
+        $idremove=$chequeRepository->find($id);
         $emm->remove($idremove);
         $emm->flush();
         return $this->redirectToRoute('historique');

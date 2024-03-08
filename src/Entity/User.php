@@ -43,10 +43,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
    
     #[ORM\Column]
-    #[Assert\Regex(
-        pattern:"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$^",
-        message: "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial"
-    )]
+//    #[Assert\Regex(
+//        pattern:"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$^",
+//        message: "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial"
+//    )]
     #[Assert\length(
         min:8,
         exactMessage: "Le mot de passe doit contenir au moins {{ limit }} caractères"
@@ -66,10 +66,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     private ?string $tel = null;
 
-   /* #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\NotBlank(message: "Le champ  est obligatoire.")]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
-    private ?string $photo = null;*/
+    private ?string $photo = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
@@ -95,13 +94,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $poste = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $departement = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-
-    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
-    private ?string $dateEambauche = null;
+//    #[ORM\Column(length: 255, nullable: true)]
+//    private ?string $departement = null;
+//
+//    #[ORM\Column(length: 255, nullable: true)]
+//
+//    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
+//    private ?string $dateEambauche = null;
 /*
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\NotBlank(message: "Le champ est obligatoire.")]
@@ -424,7 +423,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-   /* public function getPhoto(): ?string
+    public function getPhoto(): ?string
     {
         return $this->photo;
     }
@@ -434,7 +433,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->photo = $photo;
 
         return $this;
-    }*/
+    }
 
     public function getAdresse(): ?string
     {
@@ -484,29 +483,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getDepartement(): ?string
-    {
-        return $this->departement;
-    }
-
-    public function setDepartement(?string $departement): static
-    {
-        $this->departement = $departement;
-
-        return $this;
-    }
-
-    public function getDateEambauche(): ?string
-    {
-        return $this->dateEambauche;
-    }
-
-    public function setDateEambauche(?string $dateEambauche): static
-    {
-        $this->dateEambauche = $dateEambauche;
-
-        return $this;
-    }
+//    public function getDepartement(): ?string
+//    {
+//        return $this->departement;
+//    }
+//
+//    public function setDepartement(?string $departement): static
+//    {
+//        $this->departement = $departement;
+//
+//        return $this;
+//    }
+//
+//    public function getDateEambauche(): ?string
+//    {
+//        return $this->dateEambauche;
+//    }
+//
+//    public function setDateEambauche(?string $dateEambauche): static
+//    {
+//        $this->dateEambauche = $dateEambauche;
+//
+//        return $this;
+//    }
 /*
     public function getTypeStage(): ?string
     {

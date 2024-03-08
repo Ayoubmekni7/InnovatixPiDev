@@ -7,7 +7,7 @@ use App\Repository\CompteRepository;
 use App\Repository\VirementRepository;
 use App\Service\Mailing;
 use Doctrine\Persistence\ManagerRegistry;
-use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3Validator;
+//use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3Validator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,6 +38,7 @@ class CompteController extends AbstractController
     public function createcompte(CompteRepository $compteRepository, Request $request, ManagerRegistry $managerRegistry, Mailing $mailing,VirementRepository $virementRepository): Response
     {
         $compte = new Compte();
+        
         $form = $this->createForm(CompteType::class, $compte);
         $em = $managerRegistry->getManager();
         $form->handleRequest($request);

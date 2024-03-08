@@ -8,19 +8,16 @@ use App\Form\EditImgType;
 
 use App\Repository\ArticleRepository;
 use App\ServiceReclamation\UploaderServiceRec;
-use App\Service\OpenAITextToSpeechService;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 #[Route('/article')]
 class ArticleController extends AbstractController
@@ -118,7 +115,7 @@ class ArticleController extends AbstractController
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         
-
+        $article->setUser($this->get('security.token_storage')->getToken()->getUser());
         if ($form->isSubmitted() && $form->isValid()) {
             $fileRec = $form->get('piecejointeArt')->getData();
             if ($fileRec) {
@@ -231,7 +228,33 @@ class ArticleController extends AbstractController
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
     }
-
+    
+    #[Route('/articleApi/{id}', name: 'app_article_detailsarticleApi', methods: ['GET'])]
+    public function articleApi(string $id, HttpClientInterface $httpClient): Response
+    {
+        $apiUrl = 'https://rss.app/feeds/v1.1/tVW4ZsKNabUSUsRY.json';
+        $response = $httpClient->request('GET', $apiUrl);
+        $apiArticles = $response->toArray()['items'];
+        
+        // Trouver l'article correspondant dans les articles de l'API
+        $article = null;
+        foreach ($apiArticles as $apiArticle) {
+            if ($apiArticle['id'] == $id) {
+                $article = $apiArticle;
+                break;
+            }
+        }
+        
+        
+        if (!$article) {
+            throw $this->createNotFoundException('Article non trouvé');
+        }
+        
+        return $this->render('front/detailArticleApi.html.twig', [
+            'article' => $article,
+        
+        ]);
+    }
 
     #[Route('/deleteEmp/{id}', name: 'app_ArticleEmploye_delete', methods: ['GET','POST'])]
     public function deleteEmp($id , ManagerRegistry $managerRegistry , ArticleRepository $articleRepository): Response

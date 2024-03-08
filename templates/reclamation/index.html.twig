@@ -2,34 +2,6 @@
 
 {% block nompage %}Liste des réclamations{% endblock %}
 
-{% block recherche %}
-    <li class="nav-item d-flex align-items-center">
-        <div class="input-group search-area">
-            <input type="text" class="form-control" id="searchInput" placeholder="Rechercher ...">
-            <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
-        </div>
-    </li>
-
-    <script>
-        function filterTable() {
-            const filter = document.getElementById('searchInput').value.toUpperCase();
-            const rows = document.querySelectorAll('table tr');
-            for (let i = 1; i < rows.length; i++) {
-                const cols = rows[i].querySelectorAll('td');
-                let visible = false;
-                for (let j = 0; j < cols.length; j++) {
-                    const cell = cols[j];
-                    if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
-                        visible = true;
-                        break;
-                    }
-                }
-                rows[i].style.display = visible ? '' : 'none';
-            }
-        }
-        document.getElementById('searchInput').addEventListener('keyup', filterTable);
-    </script>
-{% endblock %}
 
 {% block body %}
 <div class="content-body">
@@ -38,6 +10,32 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
+                    <li class="nav-item d-flex align-items-center">
+                        <div class="input-group search-area">
+                            <input type="text" class="form-control" id="searchInput" placeholder="Rechercher ...">
+                            <span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+                        </div>
+                    </li>
+
+                    <script>
+                        function filterTable() {
+                            const filter = document.getElementById('searchInput').value.toUpperCase();
+                            const rows = document.querySelectorAll('table tr');
+                            for (let i = 1; i < rows.length; i++) {
+                                const cols = rows[i].querySelectorAll('td');
+                                let visible = false;
+                                for (let j = 0; j < cols.length; j++) {
+                                    const cell = cols[j];
+                                    if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
+                                        visible = true;
+                                        break;
+                                    }
+                                }
+                                rows[i].style.display = visible ? '' : 'none';
+                            }
+                        }
+                        document.getElementById('searchInput').addEventListener('keyup', filterTable);
+                    </script>
                     <div class="card-header ">
                         <h4 class="card-title"  > Liste des Réclamations</h4> <button class="btn btn-outline-success text-center" onclick="toggleColumns()">Afficher/Masquerles colonnes</button>
                     </div>
@@ -77,11 +75,11 @@
                                         <td class="py-2 sortable ">{{ reclamation.depRec }}</td>
                                         <td class="py-2 sortable ">{{ reclamation.objetRec }}</td>
                                         <td class="py-2 sortable additional-column">{{ reclamation.contenuRec }}</td>
-                                        <a href="{{ asset('uploads_directory_rec/' ~ reclamation.pieceJRec) }}" target="_blank"><button class="badge  badge-success">Ouvrir PDF</button></a>
+                                       <td> <a href="{{ asset('uploads_directory_rec/' ~ reclamation.pieceJRec) }}" target="_blank"><button class="badge  badge-success">Ouvrir PDF</button></a>
                                         {#                                    {{ reclamation.pieceJRec }} #}
                                         <a href="{{ asset('uploads_directory_rec/' ~ reclamation.pieceJRec) }}" download="{{reclamation.pieceJRec ~ '_' ~ '.pdf' }}">
                                             <button class="btn-rounded btn-warning">Télécharger  &nbsp;<span class="btn-icon-start text-warning"><i class="fa fa-download color-warning"></i>
-                                    </span></button></a>
+                                    </span></button></a></td>
                                         <td class="py-2 additional-column">{{ reclamation.statutRec }}En cours de traitement</td>
                                         <td class="py-2 additional-column">{{ reclamation.user }}</td>
                                         <td class="py-2 ps-5 sortable additional-column">

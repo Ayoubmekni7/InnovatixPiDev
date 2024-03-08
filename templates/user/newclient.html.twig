@@ -1,31 +1,34 @@
-{% extends 'baseadmin.html.twig' %}
+{% extends 'baseadmin.html.twig'  %}
 
     {% block body %}
-      
-    
-        <div class="container">
-            <div class="row justify-content-center mt-5">
-                <div class="col-md-6">
-                                <br><br><br><br><br><br>
 
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title text-center mb-4">Formulaire pour ajouter un client</h5>
-                            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+        <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <br><br><br><br><br><br>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center mb-4">Formulaire pour ajouter un client</h5>
+                        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                        <div class="mb-3">
+                            {{ form_row(form.id, {'attr': {'class': 'form-control'}, 'id': 'id'}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.name, {'attr': {'class': 'form-control'}, 'id': 'name'}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.photo, {'attr': {'class': 'form-control'}, 'id': 'photo'}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.cin, {'attr': {'class': 'form-control'}, 'id': 'cin'}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.email, {'attr': {'class': 'form-control'}, 'id': 'email'}) }}
+                        </div>
+                        <div class="mb-3">
                             <div class="mb-3">
-                                {{ form_row(form.id, {'attr': {'class': 'form-control'}, 'id': 'id'}) }}
-                            </div>
-                            <div class="mb-3">
-                                {{ form_row(form.name, {'attr': {'class': 'form-control'}, 'id': 'name'}) }}
-                            </div>
-                            <div class="mb-3">
-                                {{ form_row(form.cin, {'attr': {'class': 'form-control'}, 'id': 'cin'}) }}
-                            </div>
-                            <div class="mb-3">
-                                {{ form_row(form.email, {'attr': {'class': 'form-control'}, 'id': 'email'}) }}
-                            </div>
-                            <div class="mb-3">
-                             <div class="mb-3">
                                 {{ form_row(form.password, {'attr': {'class': 'form-control'}, 'id': 'password'}) }}
                             </div>
                             <div class="mb-3">
@@ -43,13 +46,8 @@
                             <div class="mb-3">
                                 {{ form_row(form.poste, {'attr': {'class': 'form-control'}, 'id':  'poste'}) }}
                             </div>
-                              <div class="mb-3">
-                                {{ form_row(form.dateEambauche, {'attr': {'class': 'form-control'}, 'id':  'dateEambauche'}) }}
-                            </div>
-                              <div class="mb-3">
-                                {{ form_row(form.departement, {'attr': {'class': 'form-control'}, 'id':  'departement'}) }}
-                            </div>
-                             <div class="text-center">
+
+                            <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                             {{ form_end(form) }}
