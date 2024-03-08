@@ -12,6 +12,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^2.18",
         "dompdf/dompdf": "^2.0",
+        "knplabs/knp-paginator-bundle": "^5.9",
         "nyholm/psr7": "^1.8",
         "openai-php/client": "^0.8.4",
         "phpdocumentor/reflection-docblock": "^5.3",

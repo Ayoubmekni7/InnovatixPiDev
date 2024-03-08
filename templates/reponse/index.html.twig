@@ -59,7 +59,12 @@ document.getElementById('searchInput').addEventListener('keyup', filterTable);</
                                         <td>{{ reponse.dateRep ? reponse.dateRep|date('Y-m-d') : '' }}</td>
                                         <td>{{ reponse.contenuRep }}</td>
                                         
-                                        <td>{{ reponse.pieceJRep ?: 'Pas de Pièce Jointe' }}</td>
+                                        <td>  <a href="{{ asset('uploads_directory_rec/' ~ reponse.pieceJRep) }}" target="_blank"><button class="badge  badge-success">Ouvrir PDF</button></a>
+                                            {#                                    {{ reclamation.pieceJRec }} #}
+                                            <a href="{{ asset('uploads_directory_rec/' ~ reponse.pieceJRep) }}" download="{{reclamation.pieceJRep ~ '_' ~ '.pdf' }}">
+                                                <button class="btn-rounded btn-warning">Télécharger  &nbsp;<span class="btn-icon-start text-warning"><i class="fa fa-download color-warning"></i>
+                                    </span></button></a>
+                                        </td>
                                         <td>
                                           
                                          <div class="d-flex">

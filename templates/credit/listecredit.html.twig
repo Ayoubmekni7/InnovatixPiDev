@@ -17,6 +17,22 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Liste des demandes</h4>
+                                <li class="nav-item d-flex align-items-center">
+                                    <div class="input-group search-area">
+                                        <input type="text" id="searcharea" name="id" class="form-control" placeholder="Recherche ...">
+                                        <button id="searchBtn" class="input-group-text">
+                                            <i class="flaticon-381-search-2"></i>
+                                        </button>
+                                    </div>
+                                    <div class="input-group search-area">
+                                        <input type="number" id="minAmount" name="minAmount" class="form-control" placeholder="Montant minimum">
+                                        <input type="number" id="maxAmount" name="maxAmount" class="form-control" placeholder="Montant maximum">
+                                        <button id="searchBtn2" class="input-group-text">
+                                            <i class="flaticon-381-search-2"></i>
+                                        </button>
+                                    </div>
+
+                                </li>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -89,8 +105,26 @@
                 </div>
             </div>
         </div>
-     
-                                        
+
+        <script>
+            document.getElementById("searchBtn").addEventListener("click", function() {
+                var searchValue = document.getElementById("searcharea").value;
+                if (searchValue.trim() !== "") {
+                    window.location.href = "{{ path('app_recherchecreditid', {'id': 'PLACEHOLDER'}) }}".replace("PLACEHOLDER", encodeURIComponent(searchValue));
+                }
+            });
+            document.getElementById("searchBtn2").addEventListener("click", function() {
+                var min = document.getElementById("minAmount").value;
+                var max = document.getElementById("maxAmount").value;
+
+                var url = "{{ path('creditminmax', {'min': 'MIN_PLACEHOLDER', 'max': 'MAX_PLACEHOLDER'}) }}";
+                url = url.replace("MIN_PLACEHOLDER", encodeURIComponent(min));
+                url = url.replace("MAX_PLACEHOLDER", encodeURIComponent(max));
+
+                window.location.href = url;
+            });
+
+        </script>
 
 
     {% endblock %}

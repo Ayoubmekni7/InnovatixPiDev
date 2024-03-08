@@ -57,9 +57,9 @@
                                                     <td>
                                                         <div class="d-flex">
                                                             <button class="btn btn-success shadow btn-xs sharp me-1"
-                                                            onclick="window.location.href='{{ path('app_approuvercredit') }}'">Approuver</button>
+                                                            onclick="window.location.href='{{ path('app_approuvercredit',{'id': credit.id}) }}'">Approuver</button>
                                                             <button class="btn btn-danger shadow btn-xs sharp"
-                                                            onclick="window.location.href='{{ path('app_refusercredit') }}'">Rejeter</button>
+                                                            onclick="window.location.href='{{ path('app_refusercredit',{'id': credit.id}) }}'">Rejeter</button>
                                                         </div>
                                                     </td>
                                                     <td>

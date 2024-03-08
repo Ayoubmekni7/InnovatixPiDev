@@ -51,7 +51,7 @@
                                     <th class="sortable"><strong>Adresse Auteur</strong></th>
                                     <th class="py-2 sortable "><strong>Date Rec</strong></th>
                                     <th class="py-2 sortable "><strong>Dép concerné</strong></th>
-                                    <th class="py-2 sortable additional-column"><strong>Objet</strong></th>
+                                    <th class="py-2 sortable "><strong>Objet</strong></th>
                                     <th class="py-2 sortable additional-column"><strong>Contenu</strong></th>
                                     <th class="py-2 sortable additional-column"><strong>Pièce jointe</strong></th>
                                     <th class="py-2 sortable additional-column"><strong>Statut</strong></th>
@@ -77,7 +77,11 @@
                                         <td class="py-2 sortable ">{{ reclamation.depRec }}</td>
                                         <td class="py-2 sortable ">{{ reclamation.objetRec }}</td>
                                         <td class="py-2 sortable additional-column">{{ reclamation.contenuRec }}</td>
-                                        <td class="py-2 sortable additional-column">{{ reclamation.pieceJRec }}</td>
+                                        <a href="{{ asset('uploads_directory_rec/' ~ reclamation.pieceJRec) }}" target="_blank"><button class="badge  badge-success">Ouvrir PDF</button></a>
+                                        {#                                    {{ reclamation.pieceJRec }} #}
+                                        <a href="{{ asset('uploads_directory_rec/' ~ reclamation.pieceJRec) }}" download="{{reclamation.pieceJRec ~ '_' ~ '.pdf' }}">
+                                            <button class="btn-rounded btn-warning">Télécharger  &nbsp;<span class="btn-icon-start text-warning"><i class="fa fa-download color-warning"></i>
+                                    </span></button></a>
                                         <td class="py-2 additional-column">{{ reclamation.statutRec }}En cours de traitement</td>
                                         <td class="py-2 additional-column">{{ reclamation.user }}</td>
                                         <td class="py-2 ps-5 sortable additional-column">

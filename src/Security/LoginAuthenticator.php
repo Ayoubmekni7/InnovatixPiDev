@@ -74,7 +74,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             return $this->urlGenerator->generate(self::LOGIN_ROUTE);
         }
     }
-  /*  public function checkCredentials($credentials, UserInterface $user)
+    public function checkCredentials($credentials, UserInterface $user)
     {
         // Vérifier si l'utilisateur est bloqué
         if ($user->isBlocked()) {
@@ -82,7 +82,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // Votre logique de vérification des identifiants ici
-    }*/
+    }
 
 }
     

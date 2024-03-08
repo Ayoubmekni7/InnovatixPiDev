@@ -38,7 +38,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for reclamation in reclamation %}
+                                {% for reclamation in app.user.reclamation %}
                                 <tr>
                                     <td style="width: 5%;">{{ reclamation.id }}</td>
                                     <td style="width: 5%;">{{ reclamation.dateRec ? reclamation.dateRec|date('Y-m-d') : '' }}</td>
@@ -46,13 +46,13 @@
                                     <td style="width: 5%;">{{ reclamation.objetRec }}</td>
                                     <td style="width: 5%;">{{ reclamation.contenuRec }}</td>
                                     <td style="width: 5%;">{{ reclamation.pieceJRec }}</td>
-   <td class="align-middle text-center text-sm" style="width: 5%;">
-    {% if reclamation.statutRec == 'En cours de traitement' %}
-        <span class="badge badge-sm bg-gradient-warning">{{ reclamation.statutRec }}</span>
-    {% else %}
-        <span class="badge badge-sm bg-gradient-success">{{ reclamation.statutRec }}</span>
-    {% endif %}
-</td>
+                                       <td class="align-middle text-center text-sm" style="width: 5%;">
+                                        {% if reclamation.statutRec == 'En cours de traitement' %}
+                                            <span class="badge badge-sm bg-gradient-warning">{{ reclamation.statutRec }}</span>
+                                        {% else %}
+                                            <span class="badge badge-sm bg-gradient-success">{{ reclamation.statutRec }}</span>
+                                        {% endif %}
+                                    </td>
                                     <td style="width: 5%;">
                                         <a href="{{ path('app_reponseClient_showId', {'id': reclamation.id , 'var': reclamation.depRec}) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">Afficher</a>
                                         <a href="{{ path('app_reclamationclient_delete', {'id': reclamation.id}) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user" onclick="return confirm('Etes-vous sur de vouloir supprimer cet élément ?');"><i class="fa fa-trash"></i></a>

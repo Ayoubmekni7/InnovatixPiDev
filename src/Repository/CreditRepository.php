@@ -37,7 +37,13 @@ class CreditRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-    
+    public function findmontant()
+    {
+        return $this->createQueryBuilder('a')
+            ->setMaxResults(3) // Limite à 3 articles
+            ->getQuery()
+            ->getResult();
+    }
 
 
 //    /**

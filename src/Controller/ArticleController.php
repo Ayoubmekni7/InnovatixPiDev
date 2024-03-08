@@ -41,29 +41,33 @@ class ArticleController extends AbstractController
             'articles' => $articleRepository->findAll(),
         ]);
     }
-
-
+    
+    
     #[Route('/newEmpArt', name: 'app_newEmpArt', methods: ['GET', 'POST'])]
     public function newEmpArt(Request $request, EntityManagerInterface $entityManager, ManagerRegistry $managerRegistry ): Response
     {
+        $employee = $this->getUser(); // Get the currently logged-in employee
+        
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         $em = $managerRegistry->getManager();
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            $article->setEmployee($employee); // Set the employee associated with the article
             $em->persist($article);
             $em->flush();
-
+            
             return $this->redirectToRoute('app_listeArtEmp', [], Response::HTTP_SEE_OTHER);
         }
-
+        
         return $this->renderForm('employe/addArticleEmploye.html.twig', [
             'article' => $article,
             'form' => $form,
         ]);
     }
-
+    
+    
     #[Route('/listeArtEmp', name: 'app_listeArtEmp', methods: ['GET'])]
     public function listeArtEmp(ArticleRepository $articleRepository): Response
     {

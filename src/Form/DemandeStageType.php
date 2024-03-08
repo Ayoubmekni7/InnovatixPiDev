@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use VictorPrdh\RecaptchaBundle\Form\ReCaptchaType;
 
 
 class DemandeStageType extends AbstractType
@@ -58,6 +59,7 @@ class DemandeStageType extends AbstractType
     
     
     ])
+        ->add("recaptcha", ReCaptchaType::class)
         ->add('submit',SubmitType::class);
       
     }

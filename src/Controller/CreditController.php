@@ -284,7 +284,7 @@ public function authersearchbybook(CreditRepository $creditRepository, $min, $ma
 }
 
 #[Route('/listecreditsorted', name: 'sortedlist')]
-public function asortedcredit(CreditRepository $creditRepository, Request $request): Response
+public function asortedcredit(CreditRepository $creditRepository): Response
 {
     $credit = $creditRepository->findAllSortedByMontant();
     return $this->render('credit/sortedcreditd.html.twig', [

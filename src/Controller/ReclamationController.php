@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Reclamation;
 use App\Form\ReclamationType;
+use App\Service\Mailing;
 use App\ServiceReclamation\UploaderServiceRec;
 
 use App\Repository\ReclamationRepository;
@@ -29,7 +30,11 @@ class ReclamationController extends AbstractController
     //{
     //    $this->uploadServiceRec = $uploadServiceRec;
     //}
-    
+    public Mailing $emailService;
+    public function __construct(Mailing $emailService)
+    {
+        $this->emailService = $emailService;
+    }
     #[Route('/', name: 'app_reclamation_index', methods: ['GET'])]
     public function index(ReclamationRepository $reclamationRepository): Response
     {
@@ -45,42 +50,43 @@ class ReclamationController extends AbstractController
             'reclamations' => $reclamationRepository->findAll(),
         ]);
     }
-
-
-
-
+    
+    
+    
+    
     #[Route('/new', name: 'app_reclamation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, UploaderServiceRec $uploadServiceRec ): Response
     {
-
+        $user = $this->getUser(); // Get the currently logged-in user
+        
         $reclamation = new Reclamation();
         $form = $this->createForm(ReclamationType::class, $reclamation);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
-
+            
             $fileRec = $form->get('pieceJRec')->getData();
             if ($fileRec) {
-            $fileName = $uploadServiceRec->uploadFileRec($fileRec);
-            $reclamation->setPieceJRec($fileName);
-                }
-
+                $fileName = $uploadServiceRec->uploadFileRec($fileRec);
+                $reclamation->setPieceJRec($fileName);
+            }
+            
             $dateAujourdhui = new DateTime();
             $reclamation->setDateRec($dateAujourdhui);
             $reclamation->setStatutRec("En cours de traitement");
-
+            $reclamation->setUser($user); // Set the user associated with the reclamation
             $entityManager->persist($reclamation);
             $entityManager->flush();
-
+            
             return $this->redirectToRoute('app_reclamation_showId', ['id' => $reclamation->getId()], Response::HTTP_SEE_OTHER);
         }
-
+        
         return $this->renderForm('reclamation/new.html.twig', [
             'reclamation' => $reclamation,
             'form' => $form,
         ]);
     }
-  
+    
     #[Route('/newFrontFooter', name: 'reclamation_ajouter', methods: ['GET', 'POST'])]
 
     public function ajouterReclamation(Request $request, EntityManagerInterface $entityManager): Response
@@ -138,6 +144,10 @@ class ReclamationController extends AbstractController
     // Enregistrer la réclamation dans la base de données
     $entityManager->persist($reclamation);
     $entityManager->flush();
+        $subject = "Réclamation envoyée avec succès";
+        $html = "Votre reclamation a été envoyée avec succès. <br>
+        Nous vous répondre ultérierement.";
+        $this->emailService->sendEmail($adresse,$subject,$html);
 
         // Redirection vers une autre page après l'ajout de la réclamation
         return $this->redirectToRoute('frontVisiteur');

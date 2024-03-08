@@ -68,7 +68,11 @@
                                 <textarea class="form-control bg-transparent" rows="15" readonly>{{ reponse.contenuRep }}</textarea>
                             </div>
                        <div class="mb-3">
-                                <textarea class="form-control bg-transparent" rows="15" readonly>{{ reponse.pieceJRep }}</textarea>
+                           <a href="{{ asset('uploads_directory_rec/' ~ reponse.pieceJRep) }}" target="_blank"><button class="badge  badge-success">Ouvrir PDF</button></a>
+                           {#                                    {{ reclamation.pieceJRec }} #}
+                           <a href="{{ asset('uploads_directory_rec/' ~ reponse.pieceJRep) }}" download="{{reclamation.pieceJRep ~ '_' ~ '.pdf' }}">
+                               <button class="btn-rounded btn-warning">Télécharger  &nbsp;<span class="btn-icon-start text-warning"><i class="fa fa-download color-warning"></i>
+                                    </span></button></a>
                             </div>
                            
                                    <div class="text-start mt-4 mb-3">

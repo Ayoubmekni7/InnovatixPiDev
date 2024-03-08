@@ -70,6 +70,13 @@
             {{ form_row(registrationForm.agreeTerms) }}
           </div>
 
+          <div class="col-md-4 offset-md-4 text-center" >
+            <div class="form-group">
+              {{ form_row(registrationForm.recaptcha) }}
+              {{ form_errors(registrationForm.recaptcha,{'attr':{'class': 'text-danger'}}) }}
+            </div>
+          </div>
+
         <button type="submit" class="btn">Register</button>
    
          {{ form_end(registrationForm) }}
