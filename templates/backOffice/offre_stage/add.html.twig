@@ -1,5 +1,5 @@
 
-{% extends 'base.html.twig' %}
+{% extends 'baseadmin.html.twig' %}
 {% block nompage %}Offre de stage{% endblock %}
 
 {% block body %}
@@ -108,7 +108,7 @@
                                                             <div >{{ form_widget(form.pfeBook, {'attr': {'class': 'form-control', 'type':'file', 'placeholder': 'Upload votre pfeBook'}}) }}</div>
                                                             {{ form_errors(form.pfeBook, {'attr': {'class': 'valid-feedback'}}) }}
                                                         </div>
-                                                        <button class="btn btn-warning btn-lg " type="submit" style=" margin-bottom: 20px">{{ ajouter }}</button> <a href="{{ path('addOffreParRecomendatio') }}"><button class="btn btn-warning btn-lg " type="submit" style=" margin-bottom: 20px">{{ ajouterA }}</button></a>
+                                                        <button class="btn btn-primary btn-lg btn-block " type="submit" style=" margin-bottom: 20px">{{ ajouter }}</button>
                                                     </form>
                                                 </div>
                                         </div>

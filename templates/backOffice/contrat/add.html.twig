@@ -1,4 +1,4 @@
-{% extends 'base.html.twig'  %}
+{% extends 'baseadmin.html.twig'  %}
 {% block title %} Les contrat{% endblock %}
 {% block nompage %} Contrat {% endblock %}
 {% block body %}
@@ -65,7 +65,7 @@
                                                                 <div>{{ form_widget(form.user, {'attr': {'class': 'form-control', 'placeholder': 'Nom Stagiaire'}}) }}</div>
                                                                 {{ form_errors(form.user, {'attr': {'class': 'valid-feedback'}}) }}
                                                             </div>
-                                                            <button class="btn btn-primary" type="submit">Ajouter</button>                                                        </form>
+                                                            <button class="btn btn-primary btn-lg btn-block" type="submit">Ajouter</button>                                                        </form>
 
                                                 </div>
                                             </div>

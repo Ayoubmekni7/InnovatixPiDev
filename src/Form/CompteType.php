@@ -22,7 +22,7 @@ class CompteType extends AbstractType
         $builder
             ->add('Email')
             ->add('confirmationEmail')
-            ->add('TypeCin' , ChoiceType::class, [
+            ->add('TypeCin', ChoiceType::class, [
                 'choices' => [
                     'Passeport ' => 'Passeport',
                     'Cin' => 'Cin',
@@ -31,7 +31,7 @@ class CompteType extends AbstractType
                 // Autres options du champ ChoiceType
             ])
             ->add('cin')
-            ->add('DateDelivranceCin' ,   DateType::class, [
+            ->add('DateDelivranceCin', DateType::class, [
                 'label' => 'Date de naissance',
                 'years' => range(1997, 2050), // Définir les années de 1950 à 2050
                 // Autres options du champ DateType
@@ -47,16 +47,15 @@ class CompteType extends AbstractType
                 'multiple' => false, // Seul un choix peut être sélectionné
                 // Autres options du champ ChoiceType
             ])
-
-        ->add('DateNaissance', DateType::class, [
-            'label' => 'Date de naissance',
-            'years' => range(1950, 2050), // Limite les années de 1950 à 2024
-            'constraints' => [
-                new LessThanOrEqual('2024-12-31'), // Ajoutez la contrainte de date
-            ],
-            // Autres options du champ DateType
-        ])
-            ->add('StatutMarital',   ChoiceType::class, [
+            ->add('DateNaissance', DateType::class, [
+                'label' => 'Date de naissance',
+                'years' => range(1950, 2050), // Limite les années de 1950 à 2024
+                'constraints' => [
+                    new LessThanOrEqual('2024-12-31'), // Ajoutez la contrainte de date
+                ],
+                // Autres options du champ DateType
+            ])
+            ->add('StatutMarital', ChoiceType::class, [
                 'choices' => [
                     'Célibataire ' => 'Célibataire',
                     'Marié' => 'Marié',
@@ -81,19 +80,17 @@ class CompteType extends AbstractType
             ->add('NumeroTelephone')
             ->add('PreferenceCommunic', ChoiceType::class, [
                 'choices' => [
-                    'SMS' => 'sms',
-                    'Email' => 'email',
+                    'SMS' => 'SMS',
+                    'Email' => 'Email',
                 ],
                 'expanded' => true, // Définit le champ comme des boutons radio
                 'multiple' => false, // Seul un choix peut être sélectionné
                 // Autres options du champ ChoiceType
             ])
-            ->add("recaptcha", ReCaptchaType::class);
-
-            ;
-
+            ->add("recaptcha", ReCaptchaType::class);;
+        
     }
-
+    
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

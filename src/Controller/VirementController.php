@@ -105,9 +105,13 @@ class VirementController extends AbstractController
     public function ApprouverVirementEmp($id, ManagerRegistry $managerRegistry, VirementRepository $virementRepository): Response
 
     {
+        $text = "Bonjour.<br>
+              Nous sommes heureux de vous informer que votre demande de virement. <br>
+               a été approuvée avec succès. Vous pouvez désormais accéder aux fonds transférés. <br>
+               Cordialement, [ EFB]";
         $virement = $virementRepository->find($id);
         $virement->setDecisionV("Approuvé");
-        $virementRepository->sms('+21628160626');
+        $virementRepository->sms('+21628160626',$text);
 
         $emm = $managerRegistry->getManager();
         $emm->persist($virement);
@@ -130,10 +134,16 @@ class VirementController extends AbstractController
     #[Route('/deleteVirementAdm/{id}', name: 'deleteVirementAdm', methods: ['GET', 'POST'])]
     public function deleteVirementAdm($id, ManagerRegistry $managerRegistry, VirementRepository $virementRepository): Response
     {
+        $text= "Bonjour <br>
+               Malheureusement votre demande de Virement a été réfuser.
+               <br>
+               Cordialement, [ EFB]'";
 
         $emm = $managerRegistry->getManager();
         $idremove = $virementRepository->find($id);
         $idremove->setDecisionV('Refuser');
+        $virementRepository->sms('+21628160626',$text);
+        
         $emm->persist($idremove);
         $emm->flush();
         return $this->redirectToRoute('showHistoriqueV');
@@ -144,9 +154,13 @@ class VirementController extends AbstractController
     public function ApprouverVirement($id, ManagerRegistry $managerRegistry , VirementRepository $virementRepository , TwilioSmsService $twilioSmsService ):Response
 
     {
+        $text = "Bonjour.<br>
+              Nous sommes heureux de vous informer que votre demande de virement. <br>
+               a été approuvée avec succès. Vous pouvez désormais accéder aux fonds transférés. <br>
+               Cordialement, [ EFB]";
         $virement=$virementRepository->find($id);
         $virement->setDecisionV("Approuvé");
-        $virementRepository->sms('+21628160626');
+        $virementRepository->sms('+21628160626',$text);
         $emm=$managerRegistry->getManager();
         $emm->persist($virement);
         $emm->flush();

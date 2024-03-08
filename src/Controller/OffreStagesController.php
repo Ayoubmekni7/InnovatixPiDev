@@ -53,6 +53,27 @@ class OffreStagesController extends AbstractController
             
         ]);
     }
+    #[Route('/yesserA/{id}', name: 'yesserA')]
+    public function yesserYesser($id,DemandeStageRepository $demandeStageRepository,AnalyseCv $cvAnalyseur,OffreStageRepository $offreStageRepository): Response
+    {
+        $offre = $offreStageRepository->find($id);
+        $mots = $offre->getMotsCles();
+        $title = $offre->getTitle();
+        $listeDemande = $demandeStageRepository->findAll();
+        foreach ($listeDemande as $demande) {
+            $cheminFichier = $this->getParameter('uploads_directory') . '/' . $demande->getCv();
+            $score = $cvAnalyseur->analyseCV($cheminFichier, $mots);
+            if ($score < 60) {
+                $to = $demande->getEmail();
+                $nom = $demande->getNom() . " " . $demande->getPrenom();
+                $subject = "Recommondation pour une offre";
+                $html = "<div>Bonjour {$nom}.<br>Vous etes recommondé pour l'offre {$title} sous ce chemin  127.0.0.1:8000/DetailsOffre/{$id} .<br>";
+                $this->emailService->sendEmail($to, $subject, $html);
+            }
+        }
+        return $this->redirectToRoute("afficheOffreStages");
+    }
+    
     #[Route('/rechercheOffreStages', name: 'rechercheOffreStages')]
     public function rechercheOffreStages(OffreStageRepository $offreStageRepository,Request $request): Response
     {
@@ -104,8 +125,8 @@ class OffreStagesController extends AbstractController
             
         ]);
     }
-    #[Route('/addOffreParRecomendatio', name: 'addOffreParRecomendatio')]
-    public function addOffreParRecomendatio(ManagerRegistry $managerRegistry,Request $request,DemandeStageRepository $demandeStageRepository,AnalyseCv $cvAnalyseur): Response
+    #[Route('/addOffreParRecomendation', name: 'addOffreParRecomendation')]
+    public function addOffreParRecomendation(ManagerRegistry $managerRegistry,Request $request): Response
     {
         $now = new DateTime('now');
         // Formater le temps réel actuel
@@ -118,7 +139,7 @@ class OffreStagesController extends AbstractController
 //
 //        // Réafficher le temps réel actuel
         $nowFormatted = $now->format('Y-m-d');
-        $listeDemande = $demandeStageRepository->findAll();
+//        $listeDemande = $demandeStageRepository->findAll();
         $ajouter = "ajouter";
         $ajouterA = "ajouter avec recommandation";
         $offre = new OffreStage();
@@ -126,28 +147,18 @@ class OffreStagesController extends AbstractController
         $form->handleRequest($request);
         $em = $managerRegistry->getManager();
         $datePostuObject = DateTime::createFromFormat('Y-m-d', $nowFormatted);
-        $mots = $form->get('motsCles')->getData();
-        
+//        $mots = $form->get('motsCles')->getData();
         if($form->isSubmitted() and $form->isValid() ){
+            
             $offre ->setDatePostu($datePostuObject);
             $em->persist($offre);
-            $title = $offre->getTitle();
+            //$title = $offre->getTitle();
             $em->flush();
             $id = $offre->getId();
-            
-            foreach ( $listeDemande as $demande){
-                $cheminFichier = $this->getParameter('uploads_directory').'/'.$demande->getCv();
-                $score = $cvAnalyseur->analyseCV($cheminFichier , $mots);
-//                dd($score,$id,$demande);
-                if ($score < 50){
-                    $to = $demande->getEmail();
-                    $nom = $demande->getNom()." ".$demande->getPrenom();
-                    $subject = "Recommondation pour une offre";
-                    $html ="<div>Bonjour {$nom}.<br>Vous etes recommondé pour l'offre {$title} sous ce chemin  127.0.0.1/DetailsOffre/{$id} .<br>";
-                    $this->emailService->sendEmail($to,$subject,$html);
-                }
-            }
-            return $this->redirectToRoute('afficheOffreStages');
+//            $this->yesserA($id);
+            return $this->redirectToRoute('yesserA',[
+                'id' => $id
+            ]);
         }
         return $this->render('backOffice/offre_stage/add.html.twig', [
             'form' => $form->createView(),
@@ -160,12 +171,6 @@ class OffreStagesController extends AbstractController
     {
         $modifier = 'modifier';
         $offre = $offreStageRepository->find($id);
-//        $motCles = $offre->getMotsCles();
-//        $niveau = $offre->getNiveau();
-//        $language = $offre->getLanguage();
-//        $offre->setNiveau(null);
-//        $offre->setMotsCles(null);
-//        $offre->setLanguage(null);
         $form = $this->createForm(OffreStageType::class,$offre);
         $form->handleRequest($request);
         $em = $managerRegistry->getManager();
@@ -250,6 +255,27 @@ class OffreStagesController extends AbstractController
             'offre' => $offre
         ]);
     }
+//    #[Route('/yesserA/{id}', name: 'yesserA')]
+//    public function yesserA($id,DemandeStageRepository $demandeStageRepository,AnalyseCv $cvAnalyseur,OffreStageRepository $offreStageRepository): Response
+//    {
+//        $offre = $offreStageRepository->find($id);
+//        $mots = $offre->getMotsCles();
+//        $title = $offre->getTitle();
+//        $listeDemande = $demandeStageRepository->findAll();
+//        foreach ($listeDemande as $demande) {
+//            $cheminFichier = $this->getParameter('uploads_directory') . '/' . $demande->getCv();
+//            $score = $cvAnalyseur->analyseCV($cheminFichier, $mots);
+//            //                dd($score,$id,$demande);
+//            if ($score < 50) {
+//                $to = $demande->getEmail();
+//                $nom = $demande->getNom() . " " . $demande->getPrenom();
+//                $subject = "Recommondation pour une offre";
+//                $html = "<div>Bonjour {$nom}.<br>Vous etes recommondé pour l'offre {$title} sous ce chemin  127.0.0.1:8000/DetailsOffre/{$id} .<br>";
+//                $this->emailService->sendEmail($to, $subject, $html);
+//            }
+//        }
+//        return $this->redirectToRoute("afficheOffreStages");
+//    }
     
     
 }

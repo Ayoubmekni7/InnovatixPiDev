@@ -1,16 +1,19 @@
 {% extends 'baseadmin.html.twig' %}
-{% block nompage %}Liste des Comptes{% endblock %}
+{% block nompage %}Les Listes des Comptes{% endblock %}
 
 {% block body %}
-
     <div class="content-body">
     <div class="container-fluid">
+
+
     <!-- row -->
+
     <div class="row">
     <div class="col-lg-12">
     <div class="card">
     <div class="card-header">
-        <h4 class="card-title">Liste Des Compte </h4>
+
+        <h4 class="card-title"  > les listes  des comptes </h4> <button class="btn btn-outline-success " onclick="toggleColumns()">Afficher/Masquerles colonnes</button>
         <li class="nav-item d-flex align-items-center">
             <div class="input-group search-area">
                 <input type="text" class="form-control" id="searchInput" placeholder="Rechercher ...">
@@ -36,29 +39,34 @@
                     rows[i].style.display = visible ? '' : 'none';
                 }
             }
-            document.getElementById('searchInput').addEventListener('keyup', filterTable);</script>
-
+            document.getElementById('searchInput').addEventListener('keyup', filterTable);
+        </script>
     </div>
+
     <div class="card-body">
+
     <div class="table-responsive">
+
     <table class="table table-sm mb-0 table-striped">
+
         <thead>
         <tr>
             <th ><strong></strong></th>
-            <th ><strong>Email</strong></th>
-            <th ><strong>Cin</strong></th>
-            <th ><strong>Type de Cin</strong></th>
-            <th ><strong>Date Delivrance Cin</strong></th>
-            <th ><strong>nom</strong></th>
-            <th ><strong>prenom </strong></th>
-            <th ><strong>sexe</strong></th>
-            <th ><strong>Date de Naissance</strong></th>
-            <th ><strong>Statut Marital</strong></th>
-            <th ><strong>Proffesion</strong></th>
-            <th ><strong>Nationalité</strong></th>
-            <th ><strong>type de Compte</strong></th>
-            <th ><strong>Montant de depot initial </strong></th>
-            <th ><strong>Numéro de telephone</strong></th>
+            <th class="sortable "><strong>Email</strong></th>
+            <th class="sortable "><strong>Cin</strong></th>
+            <th class="sortable "><strong>Type de Cin</strong></th>
+            <th class="sortable "><strong>Date Delivrance Cin</strong></th>
+            <th class="sortable "><strong>nom</strong></th>
+            <th class="sortable "><strong>prenom </strong></th>
+            <th class="sortable additional-column "><strong>sexe</strong></th>
+            <th class="sortable additional-column "><strong>Date de Naissance</strong></th>
+            <th class="sortable additional-column "><strong>Statut Marital</strong></th>
+            <th class="sortable additional-column "><strong>Proffesion</strong></th>
+            <th class="sortable additional-column "><strong>Nationalité</strong></th>
+            <th class="sortable additional-column "><strong>type de Compte</strong></th>
+            <th class="sortable additional-column "><strong>Montant de depot initial </strong></th>
+            <th class="sortable additional-column "><strong>Numéro de telephone</strong></th>
+
 
         </tr>
         </thead>
@@ -75,23 +83,22 @@
                     </a>
                 </td>
 
-                <td class="py-2">{{comptes.Email }}</a></td>
-                <td class="py-2" style="">{{comptes.Cin }}</td>
-                <td class="py-2" style=" padding-left: 50px">{{comptes.TypeCin }}</td>
-                <td class="py-2">{{comptes.DateDelivranceCin | date('d F Y')}}</td>
-                <td class="py-2">{{comptes.nom }}</td>
-                <td class="py-2">{{comptes.prenom}}</td>
-                <td class="py-2">{{comptes.sexe}}</td>
-                <td class="py-2">{{comptes.DateNaissance | date('d F Y')}}</td>
-                <td class="py-2">{{comptes.StatutMarital}}</td>
-                <td class="py-2">{{comptes.proffesion}}</td>
-                <td class="py-2">{{comptes.Nationalite}}</td>
-                <td class="py-2">{{comptes.typeCompte}}</td>
-                <td class="py-2">{{comptes.Montant}}</td>
-                <td class="py-2">{{comptes.NumeroTelephone}}</td>
+                <td class="py-2 sortable">{{comptes.Email }}</a></td>
+                <td class="py-2 sortable" style="">{{comptes.Cin }}</td>
+                <td class="py-2 sortable" style=" padding-left: 50px">{{comptes.TypeCin }}</td>
+                <td class="py-2 sortable">{{comptes.DateDelivranceCin | date('d F Y')}}</td>
+                <td class="py-2 sortable">{{comptes.nom }}</td>
+                <td class="py-2 sortable">{{comptes.prenom}}</td>
+                <td class="py-2 sortable additional-column">{{comptes.sexe}}</td>
+                <td class="py-2 sortable additional-column">{{comptes.DateNaissance | date('d F Y')}}</td>
+                <td class="py-2 sortable additional-column">{{comptes.StatutMarital}}</td>
+                <td class="py-2 sortable additional-column">{{comptes.proffesion}}</td>
+                <td class="py-2 sortable additional-column">{{comptes.Nationalite}}</td>
+                <td class="py-2 sortable additional-column">{{comptes.typeCompte}}</td>
+                <td class="py-2 sortable additional-column">{{comptes.Montant}}</td>
+                <td class="py-2 sortable additional-column">{{comptes.NumeroTelephone}}</td>
 
 
-                </td>
 
             </tr>
 
@@ -103,4 +110,51 @@
         {% endfor %}
         </tbody>
     </table>
+    <script>
+
+        var headers = document.querySelectorAll('th.sortable');
+
+        headers.forEach(function(header) {
+            header.addEventListener('click', function() {
+                // Obtient le numéro de colonne à trier
+                var columnIndex = Array.prototype.indexOf.call(header.parentNode.children, header);
+
+                // Obtient toutes les lignes du tableau, sauf la première (en-tête)
+                var rows = Array.from(document.querySelectorAll('tbody tr')).slice(1);
+
+                // Trie les lignes en fonction du contenu de la colonne cliquée
+                rows.sort(function(a, b) {
+                    var aValue = a.cells[columnIndex].innerText;
+                    var bValue = b.cells[columnIndex].innerText;
+
+                    return aValue - bValue;
+                });
+
+                // Met à jour le tableau avec les lignes triées
+                rows.forEach(function(row) {
+                    row.parentNode.appendChild(row);
+                });
+            });
+        });
+        var hidden = false;
+
+        function toggleColumns() {
+            var additionalColumns = document.querySelectorAll('.additional-column');
+            var rows = document.querySelectorAll('tbody tr');
+
+            if (hidden) {
+                // Affiche les colonnes supplémentaires
+                additionalColumns.forEach(function(column) {
+                    column.style.display = 'table-cell';
+                });
+                hidden = false;
+            } else {
+                // Masque les colonnes supplémentaires
+                additionalColumns.forEach(function(column) {
+                    column.style.display = 'none';
+                });
+                hidden = true;
+            }
+        }
+    </script>
 {% endblock %}

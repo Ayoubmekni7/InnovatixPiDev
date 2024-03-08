@@ -73,7 +73,7 @@ class CreditController extends AbstractController
             $credit->setUser($user); 
             $file = $form->get('fichesalire')->getData(); // Use get('fieldName')->getData() to retrieve file data from the form
             if ($file) {
-                $uploads_directory = $this->getParameter('upload_directory');
+                $uploads_directory = $this->getParameter('uploads_directory');
                 $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 // Generate a safe filename to avoid conflicts
                 $safeFilename = $slugger->slug($originalFilename);

@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Compte;
 use App\Form\CompteType;
 use App\Repository\CompteRepository;
+use App\Repository\VirementRepository;
 use App\Service\Mailing;
 use Doctrine\Persistence\ManagerRegistry;
 use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3Validator;
@@ -34,7 +35,7 @@ class CompteController extends AbstractController
     }
 
     #[Route('/createcompte', name: 'createcompte')]
-    public function createcompte(CompteRepository $compteRepository, Request $request, ManagerRegistry $managerRegistry, Mailing $mailing): Response
+    public function createcompte(CompteRepository $compteRepository, Request $request, ManagerRegistry $managerRegistry, Mailing $mailing,VirementRepository $virementRepository): Response
     {
         $compte = new Compte();
         $form = $this->createForm(CompteType::class, $compte);
@@ -42,13 +43,23 @@ class CompteController extends AbstractController
         $form->handleRequest($request);
         $to = $compte->getEmail();
         $nom = $compte->getNom() . '' . $compte->getPrenom();
+        $option = $compte->getPreferenceCommunic();
         $subject = "Demande effectuer avec succés";
         $html = "<div> Bonjour {$nom}.<br>Votre Demande compte .<br>";
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($compte);
             $em->flush();
-            $this->emailService->sendEmail($to, $subject, $html);;
+            if($option == "Email"){
+                $this->emailService->sendEmail($to, $subject, $html);
+            }
+            if($option == "SMS"){
+                $text = "Bonjour.<br>
+              Votre demande a été envoyée avec succes. <br>
+               Cordialement, [ EFB]";
+                $virementRepository->sms('+21628160626',$text);
+            }
+            
             return $this->redirectToRoute('succses');
             {#return new Response('creation de compte');#}
             }

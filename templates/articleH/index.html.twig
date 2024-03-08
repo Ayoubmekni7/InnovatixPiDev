@@ -34,7 +34,7 @@
         <div class="row page-titles">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Liste des Articles</h4>
+                    <h4 class="card-title"  > Liste des Articles </h4> <button class="btn btn-outline-success " onclick="toggleColumns()">Afficher/Masquerles colonnes</button>
                     <div class="mb-4">
                         <a href="{{ path('app_article_new')}}" class="btn btn-outline-success btn-rounded fs-18">+ Nouvel Article</a>
                     </div>
@@ -47,35 +47,35 @@
                                     <table class="table table-sm mb-0">
                                         <thead>
                                             <tr>
-                                                <th class="align-middle">Id</th>
-                                                <th class="align-middle">Image</th>
-                                                <th class="align-middle">Titre Article</th>
-                                                <th class="align-middle pe-7">Contenu</th>
+                                                <th class="align-middle sortable">Id</th>
+                                                <th class="align-middle sortable additional-column">Image</th>
+                                                <th class="align-middle sortable">Titre Article</th>
+                                                <th class="align-middle pe-7 sortable additional-column">Contenu</th>
                                                 <th class="align-middle" style="min-width: 12.5rem;">Adresse auteur</th>
-                                                <th class="align-middle ">Catégorie</th>
-                                                <th class="align-middle ">Piéce jointe</th>
-                                                <th class="align-middle ">Date pub</th>
-                                                <th class="no-sort">Durée</th>
-                                                <th class="no-sort">Action</th>
+                                                <th class="align-middle  sortable">Catégorie</th>
+                                                <th class="align-middle sortable additional-column">Piéce jointe</th>
+                                                <th class="align-middle sortable ">Date pub</th>
+                                                <th class="no-sort sortable additional-column">Durée</th>
+                                                <th class="no-sort sortable ">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="orders">
                                             {% for article in articles %}
                                             <tr class="btn-reveal-trigger">
-                                                <td class="py-2">{{article.id}}</td>
+                                                <td class="py-2 sortable ">{{article.id}}</td>
                                                 <td class="py-2">
                                                     <div class="media me-2">
                                                         <img alt="image" width="50" src="{{ asset('/uploads_directory_rec/' ~ article.imageArt) }}">
                                                     </div>
                                                 </td>
-                                                <td class="py-2">{{article.titreArt}}</td>
-                                                <td class="py-2">{{article.contenuArt}} </td>
-                                                <td class="py-2 ">{{article.adrAutArt}}</td>
-                                                <td class="py-2 ">{{article.categorieArt}}</td>
+                                                <td class="py-2 sortable ">{{article.titreArt}}</td>
+                                                <td class="py-2 sortable">{{article.contenuArt}} </td>
+                                                <td class="py-2 sortable additional-column ">{{article.adrAutArt}}</td>
+                                                <td class="py-2  sortable additional-column">{{article.categorieArt}}</td>
                                                 <td class="py-2"><a href="{{ asset('uploads_directory_rec/' ~ article.piecejointeArt) }}" target="_blank">Consulter la pièce jointe</a>
 </td>
-                                                <td class="py-2 ">{{article.datePubArt ? article.datePubArt|date('Y-m-d') : '' }}</td>
-                                                <td class="py-2 ">{{article.dureeArt}}</td>
+                                                <td class="py-2  sortable ">{{article.datePubArt ? article.datePubArt|date('Y-m-d') : '' }}</td>
+                                                <td class="py-2 sortable additional-column ">{{article.dureeArt}}</td>
                                                 <td class="py-2 ps-5"> 
                                                     <div class="d-flex">
                                                         <a href="{{ path('app_article_show', {'id': article.id}) }}" class="btn btn-primary shadow btn-xs sharp me-1""><i class="bi bi-eye"></i></a>
@@ -101,4 +101,54 @@
         </div>
     </div>
 </div>
+
+    <script>
+
+
+        var headers = document.querySelectorAll('th.sortable');
+
+        headers.forEach(function(header) {
+            header.addEventListener('click', function() {
+                // Obtient le numéro de colonne à trier
+                var columnIndex = Array.prototype.indexOf.call(header.parentNode.children, header);
+
+                // Obtient toutes les lignes du tableau, sauf la première (en-tête)
+                var rows = Array.from(document.querySelectorAll('tbody tr')).slice(1);
+
+                // Trie les lignes en fonction du contenu de la colonne cliquée
+                rows.sort(function(a, b) {
+                    var aValue = a.cells[columnIndex].innerText;
+                    var bValue = b.cells[columnIndex].innerText;
+
+                    return aValue - bValue;
+                });
+
+                // Met à jour le tableau avec les lignes triées
+                rows.forEach(function(row) {
+                    row.parentNode.appendChild(row);
+                });
+            });
+        });
+        var hidden = false;
+
+        function toggleColumns() {
+            var additionalColumns = document.querySelectorAll('.additional-column');
+            var rows = document.querySelectorAll('tbody tr');
+
+            if (hidden) {
+                // Affiche les colonnes supplémentaires
+                additionalColumns.forEach(function(column) {
+                    column.style.display = 'table-cell';
+                });
+                hidden = false;
+            } else {
+                // Masque les colonnes supplémentaires
+                additionalColumns.forEach(function(column) {
+                    column.style.display = 'none';
+                });
+                hidden = true;
+            }
+        }
+    </script>
+
 {% endblock %}

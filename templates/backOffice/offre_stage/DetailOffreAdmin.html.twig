@@ -1,4 +1,4 @@
-{% extends 'base.html.twig'  %}
+{% extends 'baseadmin.html.twig'  %}
 {% block title %} Recrutement {% endblock %}
 {% block nompage %} Recrutement {% endblock %}
 
@@ -104,7 +104,7 @@
                 <div class="col-lg-12">
                     <div class="card" style="background-color: white">
                         <div class="card-header">
-                            <h4 class="card-title">Les détails de l'offre " {{ offre.title }} "</h4> </div>
+                            <h4 class="card-title">Les détails de l'offre " {{ offre.title }} "</h4> <a href="{{ path('yesserA',{'id': offre.id}) }}"><button class="btn btn-warning btn-lg " type="submit" style=" margin-bottom: 20px">Yesser</button></a></div>
                         <div  style="background: #fdfdfd; margin: 100px  50px;border-radius: 30px;border-color: #0D0A0A">
                             <h4 class="text-center" style="padding-top: 20px;text-align: center;">{{ offre.title }}</h4>
                             <table border="2" style="margin-top: 50px;margin-left: 200px;table-layout: fixed;

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseadmin.html.twig' %}
 
     {% block body %}
         {% block nompage %}Liste des crédits{% endblock %}
@@ -55,7 +55,7 @@
                                                     <td>
                                                         <div class="d-flex">
                                                             <button class="btn btn-success shadow btn-xs sharp me-1"
-                                                            onclick="window.location.href='{{ path('app_approuvercredit') }}'">Approuver</button>
+                                                            onclick="window.location.href='{{ path('app_approuvercredit',{'id': credit.id}) }}'">Approuver</button>
                                                             <button class="btn btn-danger shadow btn-xs sharp">Rejeter</button>
                                                         </div>
                                                     </td>
