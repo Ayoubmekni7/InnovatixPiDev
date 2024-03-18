@@ -4,6 +4,7 @@ namespace App\Service;
 
 /*use Symfony\Component\Mime\Part\DataPart;*/
 
+use PhpParser\Node\Scalar\String_;
 use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Component\Mime\Part\Multipart\FormDataPart;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -15,7 +16,8 @@ class YousignService
     private const path = "C:\Users\Admin\PhpstormProjects\InnovatixPiDev\public\ ";
 
     private HttpClientInterface $yousignClient;
-
+    private $path = "C:\Users\Admin\PhpstormProjects\InnovatixPiDev\public\uploads_directory\ ";
+    
     public function __construct(
        // private HttpClientInterface $yousignClient,
         HttpClientInterface $yousignClient
@@ -57,14 +59,17 @@ class YousignService
      */
     public function addDocumentToSignatureRequest(string $signatureRequestId , string $filename): array
     {
+        
 
         $formFields = [
             'nature'=>'signable_document',
-            'file' => DataPart::fromPath(self::PATHFILE . $filename )
-
+            'file' => DataPart::fromPath($this->path .$filename )
+//    self::PATHFILE .
 
         ];
+        
         $formData=new FormDataPart($formFields);
+        
         $headers= $formData->getPreparedHeaders()->toArray();
 
         $response =$this ->yousignClient->request(
@@ -75,6 +80,7 @@ class YousignService
                 'body'=>$formData->bodyToIterable(),
             ]
         );
+//        dd($response->toArray());
         /*$statusCode = $response ->getStatusCode();
         if($statusCode != 201){
             throw new \Exception('Error while uploading document');
@@ -83,7 +89,10 @@ class YousignService
 
     }
     public function addSigner(
-
+        string $signatureID,
+        string $documentID,
+        string $email,
+        string $nom
     ) : array{
         $signatureRequestId = 'c3fd4243-de20-48b3-849a-ca1012ed2b59';
         $documentId = '34972edf-d033-40c0-9305-3341c3ce3744';
@@ -94,8 +103,8 @@ class YousignService
                 'body'=> <<<JSON
                       {
                       "info": {
-                      "first_name": "yesser",
-                      "email": "yesser.khaloui@etudiant-fst.utm.tn",
+                      "first_name": "$nom",
+                      "email": "$email",
                       "locale": "fr"
                       },
                       "fields" : [

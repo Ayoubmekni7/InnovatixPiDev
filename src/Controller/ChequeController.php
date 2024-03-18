@@ -5,6 +5,7 @@ use App\Entity\Cheque;
 use App\Form\ChequeType;
 use App\Repository\ChequeRepository;
 use App\Service\uploadFile;
+use App\Service\YousignService;
 use Doctrine\Persistence\ManagerRegistry;
 use Dompdf\Dompdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -172,55 +173,92 @@ class ChequeController extends AbstractController
     
     
     #[Route('/signature/{id}', name: 'signature')]
-    public function signature($id,Cheque $cheque, ChequeRepository $chequeRepository,YousignService $yousignService):Response
+    public function signature($id, ChequeRepository $chequeRepository,YousignService $yousignService):Response
     {
-        /* // $cheque = $chequeRepository->find($id);
-  
-          $cheminFichier = $this->getParameter('uploads_directory').'/'.$cheque->getPdfSansSignature();
-          $yousignSignatureRequest= $yousignService->signatureRequest();
-          $filename = $cheque->getPdfSansSignature();
-          $id = $yousignSignatureRequest['id'];
-  
-          $cheque->setSignerId($id);
-          $chequeRepository->save ($cheque , true);
-  
-          $uploadDocument=$yousignService->addDocumentToSignatureRequest($id , $filename );
-  
-         // $cheque->getPdfSansSignature();
-         // $cheque->getSignatureId();
-           $yesser = $cheque->setDocumentId($uploadDocument['id']);
-          $chequeRepository->save ($cheque , true);
-  
-          $signerId=$yousignService->addSigner(
-              $cheque->getSignerId(),
-              $cheque->getDocumentId(),
-              $cheque->getEmail(),
-              $cheque->getNomPrenom()
-          );
-          $cheque->setSignerId($signerId['id']);
-          $chequeRepository->save($cheque , true);
-  
-          $yousignService->activateSignatureRequest($cheque->getSignatureId());
-          return $this->redirectToRoute('showCheque', ['id' => $cheque-> getId ()] , Response:: HTTP_SEE_OTHER);
-  
-  */
+        $cheque = $chequeRepository->find($id);
+        //1 création de la demande de signature
         $yousignSignatureRequest = $yousignService->signatureRequest();
         $cheque->setSignatureId($yousignSignatureRequest['id']);
         $chequeRepository->save($cheque, true);
+//        dd($cheque->getPdfSansSignature());
         
-        $uploadDocument = $yousignService->addDocumentToSignatureRequest($cheque->getSignatureId(), $cheque->getPdfSansSignature() );
+        
+        
+        //2 upload du document
+        $uploadDocument = $yousignService->addDocumentToSignatureRequest($cheque->getSignatureId(), "cheque_1.pdf" );
         $cheque->setDocumentId($uploadDocument['id']);
         $chequeRepository->save($cheque, true);
         
-        $signerId = $yousignService->addDocumentToSignatureRequest(
+        //3 ajout des signataires
+        $signerId = $yousignService->addSignerToSignatureRequest(
             $cheque->getSignatureId(),
             $cheque->getDocumentId(),
+            $cheque->getEmail(),
+            $cheque->getNomPrenom(),
         );
         
         $cheque->setSignerId($signerId['id']);
         $chequeRepository->save($cheque,true);
+        
+        
+        //4 Envoi de la demande de signature
         $yousignService->activateSignatureRequest($cheque->getSignatureId());
-        return $this->redirectToRoute('showCheque', ['id' => $cheque-> getId ()] , Response:: HTTP_SEE_OTHER);
+        
+        return $this->redirectToRoute('app_constat_show', ['id' => $cheque->getId()], Response::HTTP_SEE_OTHER);
+    
+    
+    
+    
+    
+    /* // $cheque = $chequeRepository->find($id);
+
+      $cheminFichier = $this->getParameter('uploads_directory').'/'.$cheque->getPdfSansSignature();
+      $yousignSignatureRequest= $yousignService->signatureRequest();
+      $filename = $cheque->getPdfSansSignature();
+      $id = $yousignSignatureRequest['id'];
+
+      $cheque->setSignerId($id);
+      $chequeRepository->save ($cheque , true);
+
+      $uploadDocument=$yousignService->addDocumentToSignatureRequest($id , $filename );
+
+     // $cheque->getPdfSansSignature();
+     // $cheque->getSignatureId();
+       $yesser = $cheque->setDocumentId($uploadDocument['id']);
+      $chequeRepository->save ($cheque , true);
+
+      $signerId=$yousignService->addSigner(
+          $cheque->getSignerId(),
+          $cheque->getDocumentId(),
+          $cheque->getEmail(),
+          $cheque->getNomPrenom()
+      );
+      $cheque->setSignerId($signerId['id']);
+      $chequeRepository->save($cheque , true);
+
+      $yousignService->activateSignatureRequest($cheque->getSignatureId());
+      return $this->redirectToRoute('showCheque', ['id' => $cheque-> getId ()] , Response:: HTTP_SEE_OTHER);
+
+*/
+//        $cheque = $chequeRepository->find($id);
+//        $yousignSignatureRequest = $yousignService->signatureRequest();
+//        $cheque->setSignatureId($yousignSignatureRequest['id']);
+//        $chequeRepository->save($cheque, true);
+////        dd($cheque);
+////        $cheque->setPdfSansSignature()
+//        $uploadDocument = $yousignService->addDocumentToSignatureRequest($cheque->getSignatureId(), $cheque->getPdfSansSignature() );
+//        $cheque->setDocumentId($uploadDocument['id']);
+//        $chequeRepository->save($cheque, true);
+//        $signerId = $yousignService->addDocumentToSignatureRequest(
+//            $cheque->getSignatureId(),
+//            $cheque->getDocumentId(),
+//        );
+////        dd($signerId);
+//
+//        $cheque->setSignerId($signerId['id']);
+//        $chequeRepository->save($cheque,true);
+//        $yousignService->activateSignatureRequest($cheque->getSignatureId());
+//        return $this->redirectToRoute('showCheque', ['id' => $cheque-> getId ()] , Response:: HTTP_SEE_OTHER);
     }
     
     

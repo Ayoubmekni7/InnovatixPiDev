@@ -4,72 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="fix the project 2.">
-      <change afterPath="$PROJECT_DIR$/src/Form/ForgotpasswordType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/front/detailArticleApi.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/security/forgotpass.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/edit_profileA.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/edit_profileC.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/edit_profileE.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/pdf.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/profilA.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/profilC.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/user/profilE.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Innovatix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Innovatix.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="fix the project 3.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/cheque_1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/public/cheque_1.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ActualiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ActualiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CHATController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CHATController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/cheque_1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads_directory/cheque_1.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ChequeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ChequeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CompteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CompteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/InvestissementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InvestissementController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/OffreStagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/OffreStagesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProjectController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ReponseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReponseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/VirementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/VirementController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Investissement.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Investissement.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/DemandeStageType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/DemandeStageType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/InvestissementType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/InvestissementType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/PropretyseachType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/PropretyseachType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/RegistrationFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/VirementRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/VirementRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Security/EmailVerifier.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/EmailVerifier.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ServiceReclamation/OpenAITextToSpeechService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServiceReclamation/OpenAITextToSpeechService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/backOffice/demande_stage/affichage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/backOffice/demande_stage/affichage.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/baseEmploye.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseEmploye.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/baseadmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseadmin.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/baseclient.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseclient.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashbordAdmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashbordAdmin.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/detailArticle.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/detailArticle.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/listeArticles.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/listeArticles.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/dashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/demande_stage/SearchDemande.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/demande_stage/SearchDemande.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/demande_stage/demande.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/demande_stage/demande.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/reclamation/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/loginClient.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/loginClient.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/editclient.html .twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/editclient.html .twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/editemploye.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/editemploye.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/listclient.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/listclient.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/listemploye.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/listemploye.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/newEmploye.html .twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/newEmploye.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/newclient.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/newclient.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/showclient.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/showclient.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/showemploye.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/showemploye.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/yesser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/yesser.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/YousignService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/YousignService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +36,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -317,11 +255,11 @@
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Yesser\PI\InnovatixYesser\public\uploads_directory" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\public\images" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\public" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\templates\registration" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\templates" />
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser\src\Controller" />
     </key>
   </component>
   <component name="RunManager">
@@ -429,23 +367,9 @@
       <workItem from="1709881631823" duration="12140000" />
       <workItem from="1709894346440" duration="1783000" />
       <workItem from="1709896278563" duration="7041000" />
-      <workItem from="1709904872854" duration="7813000" />
-    </task>
-    <task id="LOCAL-00021" summary="coerrection edit DemandeStage.">
-      <option name="closed" value="true" />
-      <created>1708189429321</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1708189429321</updated>
-    </task>
-    <task id="LOCAL-00022" summary="coerrection edit DemandeStage.">
-      <option name="closed" value="true" />
-      <created>1708247701197</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1708247701197</updated>
+      <workItem from="1709904872854" duration="9434000" />
+      <workItem from="1710020411796" duration="873000" />
+      <workItem from="1710066489731" duration="3058000" />
     </task>
     <task id="LOCAL-00023" summary="ajout de template offre de stage.">
       <option name="closed" value="true" />
@@ -823,7 +747,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709890729735</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="fix the project 3.">
+      <option name="closed" value="true" />
+      <created>1709914744053</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1709914744053</updated>
+    </task>
+    <task id="LOCAL-00071" summary="fix the project 3.">
+      <option name="closed" value="true" />
+      <created>1709914752137</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1709914752137</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -841,7 +781,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="correction de template de reccrutement et il y'a une erreur au niveau de recherche par le numero" />
     <MESSAGE value="recruttement marche sans recherche" />
     <MESSAGE value="correction de template recrutement." />
     <MESSAGE value="Recherche des demandes." />
@@ -866,6 +805,7 @@
     <MESSAGE value="commit yesser." />
     <MESSAGE value="fix the project 1." />
     <MESSAGE value="fix the project 2." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix the project 2." />
+    <MESSAGE value="fix the project 3." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix the project 3." />
   </component>
 </project>
