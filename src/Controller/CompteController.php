@@ -7,7 +7,7 @@ use App\Repository\CompteRepository;
 use App\Repository\VirementRepository;
 use App\Service\Mailing;
 use Doctrine\Persistence\ManagerRegistry;
-//use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3Validator;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3Validator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

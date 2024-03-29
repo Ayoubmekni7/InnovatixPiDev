@@ -207,7 +207,20 @@ class VirementController extends AbstractController
             'form' => $form
         ]);
     }
-    
+
+
+    public function virements(VirementRepository $virementRepository): Response
+    {
+        // Récupérer le nombre de virements effectués par le client par type
+        $TypeVirement = $virementRepository->getNombreVirementsParType($this->getUser(), 'Ecoresponsabilité');
+
+
+        return $this->render('frontOffice/Client/dashboard.html.twig', [
+            'TypeVirement' => $TypeVirement,
+        ]);
+    }
+
+
 //    #[Route('/virements', name: 'virements')]
 //    public function virements(VirementRepository $virementRepository): Response
 //    {
