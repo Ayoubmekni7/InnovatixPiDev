@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -41,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
-   
+
     #[ORM\Column]
 //    #[Assert\Regex(
 //        pattern:"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$^",
@@ -115,23 +115,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $name = null;
-    
+
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
     #[ORM\Column(type: "boolean")]
     private $isBlocked = false;
     #[ORM\ManyToMany(targetEntity: Stage::class, inversedBy: 'users',orphanRemoval: true)]
     private Collection $stage;
-    
+
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: OffreStage::class)]
     private Collection $offreStages;
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Virement::class)]
     private Collection $virements;
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Project::class)]
     private Collection $projects;
-    
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Investissement::class)]
-    private Collection $investissements;
+
+
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: CommentaireHadhemi::class)]
     private Collection $commentaire;
 
@@ -146,7 +145,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ReponseCommentaire::class)]
     private Collection $reponseCommentaire;
-    
+
     public function getVirements(): Collection
     {
         return $this->virements;
@@ -174,7 +173,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $compte;
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Credit::class)]
     private Collection $credit;
-    
+
      public function __construct()
      {
          $this->stage = new ArrayCollection();
@@ -195,14 +194,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      {
          return $this->credit;
      }
- 
+
      public function addCredit(credit $credit): static
      {
          if (!$this->credit->contains($credit)) {
              $this->credit->add($credit);
              $credit->setUser($this);
          }
- 
+
          return $this;
      }
      public function removeCredit(credit $credit): static
@@ -216,12 +215,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-     
 
 
-    
-    
-    
+
+
+
+
     /**
      * @return Collection<int, Stage>
      */
@@ -229,26 +228,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->stage;
     }
-    
+
     public function addStage(Stage $stage): static
     {
         if (!$this->stage->contains($stage)) {
             $this->stage->add($stage);
         }
-        
+
         return $this;
     }
-    
+
     public function removeStage(Stage $stage): static
     {
         $this->stage->removeElement($stage);
-        
+
         return $this;
     }
     public  function __toString() : String {
         return (String)$this->getId();
     }
-    
+
     /**
      * @return Collection<int, OffreStage>
      */
@@ -256,17 +255,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->offreStages;
     }
-    
+
     public function addOffreStage(OffreStage $offreStage): static
     {
         if (!$this->offreStages->contains($offreStage)) {
             $this->offreStages->add($offreStage);
             $offreStage->setUser($this);
         }
-        
+
         return $this;
     }
-    
+
     public function removeOffreStage(OffreStage $offreStage): static
     {
         if ($this->offreStages->removeElement($offreStage)) {
@@ -275,7 +274,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $offreStage->setUser(null);
             }
         }
-        
+
         return $this;
     }
 
@@ -363,7 +362,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    
+
 
     /**
      * Returning a salt is only needed, if you are not using a modern
@@ -385,7 +384,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-  
+
 
     public function getCin(): ?string
     {

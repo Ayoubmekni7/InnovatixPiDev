@@ -167,8 +167,6 @@
 
                 </li>
 
-
-
                 <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                         <i class="fas fa-file-alt"></i>
                         <span class="nav-text">Crédits</span>
@@ -183,24 +181,9 @@
                         <li><a href="{{path('app_rdv')}}">CALANDER</a></li>
                         <li><a href="{{path('app_home')}}">reminder RDV</a></li>
 
-
-
-
                     </ul>
                 </li>
 
-                <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                        <i class="fas fa-chart-line"></i>
-                        <span class="nav-text">Investissement</span>
-                    </a>
-                    <ul aria-expanded="false">
-
-                        <li><a  href="{{ path('app_investissement_listA') }}">Liste des investissements</a></li>
-                        <li><a  href="{{ path('app_evenement_index') }}">Liste des événements</a></li>
-
-                    </ul>
-
-                </li>
                 <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                         <i class="bi bi-clipboard-data-fill"></i>
                         <span class="nav-text">Projet</span>
@@ -211,6 +194,15 @@
 
                 </li>
 
+              <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                  <i class="bi bi-clipboard-data-fill"></i>
+                  <span class="nav-text">Evenement</span>
+                </a>
+                <ul aria-expanded="false">
+                  <li><a href="{{ path('app_evenement_eventsA') }}">Liste des evenements</a></li>
+                </ul>
+
+              </li>
                 <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                         <i class="bi bi-person-down"></i>
                         <span class="nav-text">Stages</span>
@@ -222,12 +214,8 @@
                         <li><a href="{{ path('AffichageDesContrats') }}">Liste des Contrats</a></li>
                         <li><a href="{{ path('AfficheStage') }}">Liste des stages</a></li>
                         <li><a href="{{ path('afficheOffreStages') }}">Liste des offres</a></li>
-
                     </ul>
                 </li>
-
-
-
 
 
                 <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">

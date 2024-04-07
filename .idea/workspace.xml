@@ -5,10 +5,90 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="fix the project 3.">
+      <change afterPath="$PROJECT_DIR$/migrations/Version20240307154607.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Innovatix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Innovatix.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03_03_2024_19_23__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_06_03_2024_11_12_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_03_2024_00_39__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_03_2024_3_53_PM__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_03_2024_4_35_PM__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/cheque_1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/public/uploads_directory/cheque_1.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ChequeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ChequeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/YousignService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/YousignService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/client/assets/css/soft-ui-dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/client/assets/css/soft-ui-dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/client/assets/css/soft-ui-dashboard.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/client/assets/css/soft-ui-dashboard.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CommentaireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommentaireController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/EvenementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EvenementController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/InvestissementController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MainController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProjectController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Commentaire.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Commentaire.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Evenement.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Evenement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Investissement.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/EvenementType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/EvenementType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/InvestissementType.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/InvestissementRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/evenement/_delete_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/evenement/_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/evenement/edit.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/evenement/events.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/evenement/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/evenement/new.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/evenement/show.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/investissement/_delete_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/investissement/_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/investissement/edit.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/investissement/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/investissement/investissements.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/investissement/new.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/investissement/show.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/project/_delete_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/project/_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/project/edit.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/project/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/project/new.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/project/projects.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/project/show.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/baseEmploye.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseEmploye.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/baseadmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseadmin.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/baseclient.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseclient.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/afficherRecRep.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/dashboard.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/evenement/_delete_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/evenement/_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/evenement/edit.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/evenement/events.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/evenement/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/evenement/new.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/evenement/show.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/investissement/_delete_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/investissement/_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/investissement/create.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/investissement/edit.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/investissement/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/investissement/investissements.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/investissement/new.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/investissement/show.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/project/_delete_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/project/_form.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/project/edit.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/project/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/project/new.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/project/print.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/project/projects.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/project/show.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/reclamation.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/employe/investissement/investissements.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employe/investissement/investissements.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/employe/project/projects.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employe/project/projects.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evenement/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/evenement/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main/eventsweb.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/main/payement.html.twig" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +116,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -231,7 +312,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Yesser/PI/InnovatixYesser/templates/user&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Yesser/PI/InnovatixYesser/config/packages&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -239,6 +320,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -248,18 +330,18 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser\templates\user" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\config\packages" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\public" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser" />
       <recent name="C:\Users\Yesser\PI\InnovatixYesser\templates" />
+      <recent name="C:\Users\Yesser\PI\InnovatixYesser\src\Repository" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser\public\uploads_directory" />
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser\public\images" />
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser\public" />
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser\templates\registration" />
-      <recent name="C:\Users\Yesser\PI\InnovatixYesser\templates" />
+      <recent name="C:\Users\ayoub\Desktop\Innovatix\Innovatix\templates" />
+      <recent name="C:\Users\ayoub\Desktop\Innovatix\Innovatix\src\Controller" />
+      <recent name="C:\Users\ayoub\Desktop\Innovatix\Innovatix\src\Form" />
+      <recent name="C:\Users\ayoub\Desktop\Innovatix\Innovatix\src\Entity" />
+      <recent name="C:\Users\ayoub\Desktop\Innovatix\Innovatix\src\Repository" />
     </key>
   </component>
   <component name="RunManager">
@@ -267,6 +349,13 @@
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml.dist" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-php-predefined-ba97393d7c68-6f8e3395a2b4-com.jetbrains.php.sharedIndexes-PS-233.14475.35" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -364,12 +453,35 @@
       <workItem from="1709753527653" duration="3869000" />
       <workItem from="1709842788344" duration="3360000" />
       <workItem from="1709849281939" duration="27731000" />
-      <workItem from="1709881631823" duration="12140000" />
-      <workItem from="1709894346440" duration="1783000" />
-      <workItem from="1709896278563" duration="7041000" />
-      <workItem from="1709904872854" duration="9434000" />
-      <workItem from="1710020411796" duration="873000" />
-      <workItem from="1710066489731" duration="3058000" />
+      <workItem from="1709881631823" duration="8537000" />
+      <workItem from="1711641938326" duration="3477000" />
+      <workItem from="1711717444228" duration="6853000" />
+      <workItem from="1711807968269" duration="7381000" />
+      <workItem from="1712495961679" duration="327000" />
+    </task>
+    <task id="LOCAL-00020" summary="ajout du service mailing + service upload file + integration de template actualité.">
+      <option name="closed" value="true" />
+      <created>1708182362344</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1708182362344</updated>
+    </task>
+    <task id="LOCAL-00021" summary="coerrection edit DemandeStage.">
+      <option name="closed" value="true" />
+      <created>1708189429321</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1708189429321</updated>
+    </task>
+    <task id="LOCAL-00022" summary="coerrection edit DemandeStage.">
+      <option name="closed" value="true" />
+      <created>1708247701197</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1708247701197</updated>
     </task>
     <task id="LOCAL-00023" summary="ajout de template offre de stage.">
       <option name="closed" value="true" />
@@ -739,31 +851,7 @@
       <option name="project" value="LOCAL" />
       <updated>1709867123094</updated>
     </task>
-    <task id="LOCAL-00069" summary="fix the project 2.">
-      <option name="closed" value="true" />
-      <created>1709890729735</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1709890729735</updated>
-    </task>
-    <task id="LOCAL-00070" summary="fix the project 3.">
-      <option name="closed" value="true" />
-      <created>1709914744053</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1709914744053</updated>
-    </task>
-    <task id="LOCAL-00071" summary="fix the project 3.">
-      <option name="closed" value="true" />
-      <created>1709914752137</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1709914752137</updated>
-    </task>
-    <option name="localTasksCounter" value="72" />
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -781,6 +869,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="mettre à jour le controlleur offre de stage" />
+    <MESSAGE value="correction de template de reccrutement et il y'a une erreur au niveau de recherche par le numero" />
     <MESSAGE value="recruttement marche sans recherche" />
     <MESSAGE value="correction de template recrutement." />
     <MESSAGE value="Recherche des demandes." />
@@ -804,8 +894,6 @@
     <MESSAGE value="fix the project." />
     <MESSAGE value="commit yesser." />
     <MESSAGE value="fix the project 1." />
-    <MESSAGE value="fix the project 2." />
-    <MESSAGE value="fix the project 3." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix the project 3." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix the project 1." />
   </component>
 </project>

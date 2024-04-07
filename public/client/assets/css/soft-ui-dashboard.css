@@ -5787,7 +5787,7 @@ fieldset:disabled .btn {
 }
 
 .alert-primary {
-  --bs-alert-color: #7a075f;
+  --bs-alert-color: #a4c639;
   --bs-alert-bg: #f5ceec;
   --bs-alert-border-color: #efb6e2;
 }
@@ -6230,20 +6230,20 @@ fieldset:disabled .btn {
 }
 
 .list-group-item-primary {
-  color: #7a075f;
+  color: #a4c639;
   background-color: #f5ceec;
 }
 
 .list-group-item-primary.list-group-item-action:hover,
 .list-group-item-primary.list-group-item-action:focus {
-  color: #7a075f;
+  color: #a4c639;
   background-color: #ddb9d4;
 }
 
 .list-group-item-primary.list-group-item-action.active {
   color: #fff;
-  background-color: #7a075f;
-  border-color: #7a075f;
+  background-color: #a4c639;
+  border-color: #a4c639;
 }
 
 .list-group-item-secondary {
@@ -20262,21 +20262,21 @@ fieldset:disabled .btn {
 }
 
 /*!
-  
+
   =========================================================
   * Soft UI Dashboard - v1.0.7
   =========================================================
-  
+
   * Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
   * Copyright 2023 Creative Tim (https://www.creative-tim.com)
   * Licensed under MIT (site.license)
-  
+
   * Coded by www.creative-tim.com
-  
+
   =========================================================
-  
+
   * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-  
+
   */
 .alert-primary {
   background-image: linear-gradient(310deg, #a4c639 0%, #d6006c 100%);
