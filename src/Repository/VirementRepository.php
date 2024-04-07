@@ -73,11 +73,25 @@ class VirementRepository extends ServiceEntityRepository
                 // the body of the text message you'd like to send
                 'body' => 'Bonjour ' . ', ' .
                     'Nous sommes heureux de vous informer que votre demande de virement ' .
-                    'a été approuvée avec succès. Vous pouvez désormais accéder aux fonds transférés. ' .
+                    'a été approuvée avec succès. ' .
                     'Cordialement, [ EFB]'
             ]
         );
     }
-    
-    
+
+    public function getNombreVirementsParType($user, $typeVirement): int
+    {
+        return $this->createQueryBuilder('v')
+            ->select('COUNT(v.id)')
+            ->andWhere('v.user = :user')
+            ->andWhere('v.TypeVirement = :type')
+            ->setParameter('user', $user)
+            ->setParameter('type', $typeVirement )
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+
+
+
 }

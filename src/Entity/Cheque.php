@@ -64,12 +64,7 @@ class Cheque
     
     #[ORM\ManyToOne(inversedBy: 'cheque')]
     private ?User $user = null;
-    
-    #[ORM\Column(nullable: true)]
-    private ?int $ActionsC = 0;
-    
-    #[ORM\Column(nullable: true)]
-    private ?int $ActionsE = null;
+
     
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photoCin = null;
@@ -214,30 +209,7 @@ class Cheque
         
         return $this;
     }
-    
-    public function getActionsC(): ?int
-    {
-        return $this->ActionsC;
-    }
-    
-    public function setActionsC(?int $ActionsC): static
-    {
-        $this->ActionsC = $ActionsC;
-        
-        return $this;
-    }
-    
-    public function getActionsE(): ?int
-    {
-        return $this->ActionsE;
-    }
-    
-    public function setActionsE(?int $ActionsE): static
-    {
-        $this->ActionsE = $ActionsE;
-        
-        return $this;
-    }
+
     
     public function getPhotoCin(): ?string
     {

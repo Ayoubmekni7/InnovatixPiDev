@@ -72,11 +72,7 @@ class Virement
     #[ORM\ManyToOne(inversedBy: 'virements')]
     private ?User $user = null;
 
-    #[ORM\Column]
-    private ?int $ActionsV = 0;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $ActionsEm = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photoCinV = null;
@@ -225,29 +221,6 @@ class Virement
         return $this;
     }
 
-    public function getActionsV(): ?int
-    {
-        return $this->ActionsV;
-    }
-
-    public function setActionsV(?int $ActionsV): static
-    {
-        $this->ActionsV = $ActionsV;
-
-        return $this;
-    }
-
-    public function getActionsEm(): ?int
-    {
-        return $this->ActionsEm;
-    }
-
-    public function setActionsEm(?int $ActionsEm): static
-    {
-        $this->ActionsEm = $ActionsEm;
-
-        return $this;
-    }
 
     public function getPhotoCinV(): ?string
     {
