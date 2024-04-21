@@ -1,12 +1,12 @@
 <?php
 
-namespace App\ServiceReclamation;
+namespace App\ServiceProjet;
 
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-class UploaderServiceRec
+class UploaderServiceProjet
 {
     public function __construct(private SluggerInterface $slugger) {}
     public function uploadFileRec(

@@ -88,9 +88,9 @@ class Demandestage
     #[ORM\Column(nullable: true)]
     private ?float $score = null;
     
-    public function __construct() {
-        $this->date = new \DateTime('2021-02-01');
-    }
+//    public function __construct() {
+//        $this->date = new \DateTime('2021-02-01');
+//    }
 
     public function getId(): ?int
     {

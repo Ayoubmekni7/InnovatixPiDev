@@ -37,7 +37,7 @@
                                                 <th><strong>Email</strong></th>
                                                 <th><strong>Numéro de téléphone</strong></th>
                                                 <th><strong>CV</strong></th>
-                                                <th><strong>date</strong></th>
+{#                                                <th><strong>date</strong></th>#}
                                                 <th><strong>Lettre De Motivation</strong></th>
                                                 <th><strong>Domaine</strong></th>
                                                 <th style="margin-left: 20px"><strong>Etat de demande</strong></th>
@@ -63,7 +63,7 @@
 
                                                     </td>
 
-                                                    <td>{{ a.date | date('d F Y')}}</td>
+{#                                                    <td>{{ a.date | date('d F Y') }}</td>#}
                                                     <td style="color:#777;
                                                         font-size: 15px;
                                                         display: -webkit-box;
@@ -83,13 +83,17 @@
                                                         {% if (a.etat == 'encours') %}
 
                                                             <span class="badge badge-sm bg-gradient-secondary" style="background-color: #d5bc11;font-size: 18px">En cours</span>
-                                                            <a href="{{ path('modifierDemande', {'id':a.id,'numero':a.numerotelephone}) }}">
+
+
+                                                          <td> <span> <a href="{{ path('modifierDemande', {'id':a.id,'numero':a.numerotelephone}) }}">
                                                                 <button class="btn btn-success shadow btn-xs sharp me-1">modifier</button></a>
                                                             <a href="{{ path('deleteDemande', {'id':a.id,'numero':a.numerotelephone}) }}">
                                                                 <button class="btn btn-danger shadow btn-xs sharp">supprimer</button></a>
+                                                                  </span>
+                                                          </td>
+                                                    {% endif %}
 
-                                                        {% endif %}
-                                                    </td>
+
 
 
                                                 </tr>

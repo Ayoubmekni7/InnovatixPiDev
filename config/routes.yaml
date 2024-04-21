@@ -24,9 +24,13 @@ save_article:
 
   # config/routes.yaml
 app_chat:
-    path: '/chat'
+    path: '/AnalyseurCvApi/{id}/{cv}'
     controller: App\Controller\HomeController::index
     methods: [GET, POST]
+app_cht:
+      path: '/Recommandation'
+      controller: App\Controller\HomeController::index
+      methods: [ GET, POST ]
 # Définition d'une route avec un paramètre
 cheque_signature:
   path: /api_public/v3/signature_request/{signatureRequestId}/signer
