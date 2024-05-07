@@ -80,6 +80,13 @@ class Cheque
     
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $pdfSansSignature = null;
+
+    #[ORM\Column]
+    private ?int $Rib = null;
+    
+
+
+    
     
     
     
@@ -270,5 +277,21 @@ class Cheque
         
         return $this;
     }
+
+    public function getRib(): ?int
+    {
+        return $this->Rib;
+    }
+
+    public function setRib(int $Rib): static
+    {
+        $this->Rib = $Rib;
+
+        return $this;
+    }
+    
+
+   
+    
     
 }

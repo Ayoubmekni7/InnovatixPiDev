@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 use App\Entity\Cheque;
+use App\Entity\User;
 use App\Form\ChequeType;
 use App\Repository\ChequeRepository;
+use App\Repository\UserRepository;
 use App\Service\uploadFile;
 use App\Service\YousignService;
 use Doctrine\Persistence\ManagerRegistry;
@@ -54,43 +56,41 @@ class ChequeController extends AbstractController
     
     #[Route('/historique', name: 'historique')]
     public function historique(ChequeRepository $chequeRepository):Response
-    
     {
-        $liste= $chequeRepository->findAll(true);
+        $liste= $chequeRepository->findAll();
         return $this->render('frontOffice/Client/cheque/historique.html.twig',[
             'cheques'=>$liste,
         ]);
     }
     
     #[Route('/addcheques', name: 'addcheques')]
-    public function addcheques(Request $request, ManagerRegistry $managerRegistry, SluggerInterface $slugger, uploadFile $uploadFile): Response
+    public function addcheques(Request $request, ManagerRegistry $managerRegistry, SluggerInterface $slugger, uploadFile $uploadFile,UserRepository $repository): Response
     {
         $cheque = new Cheque();
-        $cheque->setUser($this->get('security.token_storage')->getToken()->getUser());
+        $user = $this->getUser();
+//        $cheque->setUser($user);
+       $cheque->setRib($user->getRib());
         
         $form = $this->createForm(ChequeType::class, $cheque);
-        $em= $managerRegistry->getManager();
+        $em = $managerRegistry->getManager();
         $form->handleRequest($request);
-        
-        
-        $subject = "Demande effectuer avec succés";
         
         if ($form->isSubmitted() && $form->isValid()) {
             $photo = $form->get('photoCin')->getData();
             $photoCin = $uploadFile->uploadFile($photo);
             $cheque->setPhotoCin($photoCin);
             $cheque->setDecision("encours");
-            $x = $managerRegistry->getManager();
-            $x->persist($cheque);
-            $x->flush();
+            $em->persist($cheque);
+            $em->flush();
             return $this->redirectToRoute('historique');
         }
         
         return $this->render('frontOffice/Client/cheque/add.html.twig', [
-            'Cheque'=>$cheque,
+            'Cheque' => $cheque,
             'form' => $form->createView()
         ]);
     }
+    
     #[Route('/AfficherDemande', name: 'AfficherDemande')]
     public function AfficherDemande(ChequeRepository $chequeRepository):Response
     

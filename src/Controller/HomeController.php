@@ -73,5 +73,34 @@ class HomeController extends AbstractController
         
         return new JsonResponse($data, JsonResponse::HTTP_OK);
     }
-    
+    #[Route('/mailingRefuser/{email}/{id}', name: 'mailingRefuser', methods:["POST", "GET"])]
+    public function mailingRefuser($email,$id,DemandeStageRepository $demandeStageRepository): JsonResponse
+    {
+        $demande = $demandeStageRepository->find($id);
+        $subject = "Malheuresement";
+        $nom = $demande->getNom();
+        $html ="<div>Bonjour {$nom}.<br>Votre Demande a été réfusé .<br>";
+        $this->emailService->sendEmail($email,$subject,$html);
+        $data = [
+            'message' => 'Ceci est un exemple de réponse depuis Symfony',
+            'score' => 2
+        ];
+        
+        return new JsonResponse($data, JsonResponse::HTTP_OK);
+    }
+    #[Route('/mailingApprouver/{email}/{id}', name: 'mailingApprouver', methods:["POST", "GET"])]
+    public function mailingApprouver($email,$id,DemandeStageRepository $demandeStageRepository): JsonResponse
+    {
+        $demande = $demandeStageRepository->find($id);
+        $subject = "Félécitations";
+        $nom = $demande->getNom();
+        $html ="<div>Bonjour {$nom}.<br>Félécitations votre demande est accepter .<br>";
+        $this->emailService->sendEmail($email,$subject,$html);
+        $data = [
+            'message' => 'Ceci est un exemple de réponse depuis Symfony',
+            'score' => 1
+        ];
+        
+        return new JsonResponse($data, JsonResponse::HTTP_OK);
+    }
 }

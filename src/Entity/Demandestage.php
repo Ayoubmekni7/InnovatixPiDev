@@ -13,6 +13,12 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 #[ORM\Entity(repositoryClass: DemandeStageRepository::class)]
 class Demandestage
 {
+    public function __construct()
+    {
+        // Initialise la date avec la date actuelle
+        $this->date = new \DateTime();
+    }
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -58,7 +64,7 @@ class Demandestage
     
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Assert\NotBlank(message: 'Veuillez saisir une lettre de motivation')]
-    #[Assert\Length(max: 500,minMessage: 'La lettre de motivation doit etre moins 500 characters ')]
+    #[Assert\Length(max: 5000,minMessage: 'La lettre de motivation doit etre moins 500 characters ')]
     private ?string $lettremotivation = null;
 
     #[ORM\Column(length: 50, nullable: true)]

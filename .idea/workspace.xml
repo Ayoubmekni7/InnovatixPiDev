@@ -4,16 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="fix the project 3.">
+    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="add Api for JavaProject">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Innovatix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Innovatix.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CHATController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CHATController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ChequeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ChequeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/DemandeStageFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/DemandeStageFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Cheque.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Cheque.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Demandestage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Demandestage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ServiceProjet/UploaderServiceProjet.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServiceProjet/UploaderServiceProjet.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/demande_stage/SearchDemande.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/demande_stage/SearchDemande.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ChequeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ChequeType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/cheque/add.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/cheque/add.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/dashboard.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/listclient.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/listclient.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,6 +227,28 @@
       <path value="$PROJECT_DIR$/vendor/victor-prdh/recaptcha-bundle" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/openai/openai" />
+      <path value="$PROJECT_DIR$/vendor/riverline/multipart-parser" />
+      <path value="$PROJECT_DIR$/vendor/fig/http-message-util" />
+      <path value="$PROJECT_DIR$/vendor/kreait/firebase-tokens" />
+      <path value="$PROJECT_DIR$/vendor/kreait/firebase-php" />
+      <path value="$PROJECT_DIR$/vendor/kreait/clock" />
+      <path value="$PROJECT_DIR$/vendor/google/gax" />
+      <path value="$PROJECT_DIR$/vendor/google/common-protos" />
+      <path value="$PROJECT_DIR$/vendor/google/cloud-core" />
+      <path value="$PROJECT_DIR$/vendor/google/auth" />
+      <path value="$PROJECT_DIR$/vendor/google/cloud-storage" />
+      <path value="$PROJECT_DIR$/vendor/google/grpc-gcp" />
+      <path value="$PROJECT_DIR$/vendor/google/protobuf" />
+      <path value="$PROJECT_DIR$/vendor/google/longrunning" />
+      <path value="$PROJECT_DIR$/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/vendor/mtdowling/jmespath.php" />
+      <path value="$PROJECT_DIR$/vendor/grpc/grpc" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/vendor/ramsey/collection" />
+      <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/vendor/brick/math" />
+      <path value="$PROJECT_DIR$/vendor/rize/uri-template" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -396,14 +428,24 @@
       <workItem from="1713521357782" duration="1407000" />
       <workItem from="1713647872078" duration="1784000" />
       <workItem from="1713657630041" duration="2298000" />
-    </task>
-    <task id="LOCAL-00023" summary="ajout de template offre de stage.">
-      <option name="closed" value="true" />
-      <created>1708256984378</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1708256984378</updated>
+      <workItem from="1713690710966" duration="349000" />
+      <workItem from="1713701362833" duration="734000" />
+      <workItem from="1713787526778" duration="626000" />
+      <workItem from="1713949446753" duration="76000" />
+      <workItem from="1714042184409" duration="446000" />
+      <workItem from="1714044966503" duration="115000" />
+      <workItem from="1714049497334" duration="70000" />
+      <workItem from="1714083239791" duration="601000" />
+      <workItem from="1714090149782" duration="240000" />
+      <workItem from="1714122997583" duration="866000" />
+      <workItem from="1714126798224" duration="74000" />
+      <workItem from="1714158832435" duration="617000" />
+      <workItem from="1714416986816" duration="1286000" />
+      <workItem from="1714514799259" duration="2153000" />
+      <workItem from="1714661857220" duration="1501000" />
+      <workItem from="1714900787139" duration="623000" />
+      <workItem from="1714906814387" duration="2239000" />
+      <workItem from="1714909201282" duration="3479000" />
     </task>
     <task id="LOCAL-00024" summary="création de formulaire d'offre avec la template de l'ajout et la template de frontOffice des offres.">
       <option name="closed" value="true" />
@@ -789,7 +831,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709914752137</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="add Api for JavaProject">
+      <option name="closed" value="true" />
+      <created>1713690958023</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1713690958023</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -807,7 +857,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="recruttement marche sans recherche" />
     <MESSAGE value="correction de template recrutement." />
     <MESSAGE value="Recherche des demandes." />
     <MESSAGE value="Début de coding de details." />
@@ -832,6 +881,7 @@
     <MESSAGE value="fix the project 1." />
     <MESSAGE value="fix the project 2." />
     <MESSAGE value="fix the project 3." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix the project 3." />
+    <MESSAGE value="add Api for JavaProject" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Api for JavaProject" />
   </component>
 </project>

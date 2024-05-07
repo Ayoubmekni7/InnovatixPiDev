@@ -16,7 +16,7 @@ class ChequeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('compte')
+            ->add('Rib')
             ->add('Cin')
             ->add('photoCin', FileType::class, [
                 'label' => 'Choisir une photo',

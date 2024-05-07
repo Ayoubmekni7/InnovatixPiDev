@@ -84,12 +84,12 @@
                                         google.charts.load('current', {'packages':['corechart']});
                                         google.charts.setOnLoadCallback(drawChart);
 
-                                        function drawChart() {
-                                            var data = google.visualization.arrayToDataTable([
-                                                ['Type de virement', 'Nombre de virements'],
-                                                ['Ecoresponsabilité', {{ TypeVirement }}],
-                                                // Ajoutez d'autres types de virement si nécessaire
-                                            ]);
+                                        {#function drawChart() {#}
+                                        {#    var data = google.visualization.arrayToDataTable([#}
+                                        {#        ['Type de virement', 'Nombre de virements'],#}
+                                        {#        ['Ecoresponsabilité', {{ TypeVirement }}],#}
+                                        {#        // Ajoutez d'autres types de virement si nécessaire#}
+                                        {#    ]);#}
 
                                             var options = {
                                                 title: 'Nombre de virements par type',

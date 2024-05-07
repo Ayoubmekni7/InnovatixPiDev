@@ -25,6 +25,7 @@ class DemandeStageFixtures extends Fixture implements FixtureGroupInterface
                     
                     J'ai eu l'occasion de travailler dans divers contextes professionnels, allant de [mentionner une expérience particulière pertinente] à [mentionner une autre expérience pertinente]. Ces expériences m'ont permis de développer mes compétences en [mentionner les compétences pertinentes pour le poste] et d'affiner ma capacité à [mentionner une autre compétence pertinente]. En particulier, je me suis spécialisé(e) dans [mentionner un domaine d'expertise pertinent pour le poste].");
         $demande->setDomaine("Informatique");
+        $demande->setCv("5e9f8fa9-6a2a-4a62-87db-17322506ffef.pdf");
         
         $manager->persist($demande);
         $manager->flush();

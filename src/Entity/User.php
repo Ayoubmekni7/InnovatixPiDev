@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+use PhpParser\Node\Scalar\String_;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 //use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -174,6 +175,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Credit::class)]
     private Collection $credit;
 
+    #[ORM\Column]
+    private ?int $Rib = null;
+
+    #[ORM\OneToMany(mappedBy: 'Rib', targetEntity: Cheque::class)]
+    private Collection $cheques;
+
      public function __construct()
      {
          $this->stage = new ArrayCollection();
@@ -187,6 +194,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
          $this->reclamation = new ArrayCollection();
          $this->reponse = new ArrayCollection();
          $this->reponseCommentaire = new ArrayCollection();
+         $this->cheques = new ArrayCollection();
 
 
      }
@@ -245,7 +253,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
     public  function __toString() : String {
-        return (String)$this->getId();
+        return (String)$this->getRib();
     }
 
     /**
@@ -395,6 +403,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->cin = $cin;
 
+        return $this;
+    }
+    public function getRib(): ?int
+    {
+        return $this->Rib;
+    }
+    
+    public function setRib(?int $Rib): static
+    {
+        $this->Rib = $Rib;
+        
         return $this;
     }
 
@@ -725,5 +744,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+    
 
+ 
+    
+    
 }
