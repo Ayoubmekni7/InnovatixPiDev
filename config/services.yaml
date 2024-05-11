@@ -40,7 +40,7 @@ services:
     # please note that last definitions always *replace* previous ones
     App\ServiceReclamation\RSSFeedFetcher:
         arguments:
-            $feedUrl: 'https://rss.app/feeds/v1.1/tVW4ZsKNabUSUsRY.json'
+            $feedUrl: 'https://rss.app/feeds/v1.1/t5o4esA1qatzvC6u.json'
 
     App\Controller\HomeController:
         tags: ['controller.service_arguments']

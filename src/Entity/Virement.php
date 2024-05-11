@@ -48,7 +48,7 @@ class Virement
     #[ORM\ManyToOne(inversedBy: 'idVirement')]
     #[ORM\JoinColumn(nullable: true)]
     private ?Compte $compte = null;
-
+    
     #[ORM\Column]
     #[Assert\Length(min: 8, max: 8, exactMessage: 'Le numéro de CIN doit contenir 8 chiffres ')]
     #[Assert\Regex(pattern: '/^(1|0)[0-9]{7}$/', message: 'Le numéro de cin doit commencer par 1 ou 0 ')]

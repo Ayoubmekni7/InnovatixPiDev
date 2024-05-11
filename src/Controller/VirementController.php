@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Compte;
 use App\Entity\Virement;
 use App\Form\VirementType;
+use App\Repository\CompteRepository;
 use App\Repository\VirementRepository;
 use App\Service\uploadFile;
 use Doctrine\Persistence\ManagerRegistry;
@@ -36,10 +38,16 @@ class VirementController extends AbstractController
     }
     
     #[Route('/addvirement', name: 'addvirement')]
-    public function addvirement(VirementRepository $virementRepository, Request $request, ManagerRegistry $managerRegistry, SluggerInterface $slugger, uploadFile $uploadFile): Response
+    public function addvirement(CompteRepository $repository, Request $request, ManagerRegistry $managerRegistry, SluggerInterface $slugger, uploadFile $uploadFile): Response
     {
         $virement = new Virement ();
-        $virement->setUser($this->get('security.token_storage')->getToken()->getUser());
+        
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $rib = $user->getRib();
+        $compte = $repository->findOneBySomeField($rib);
+        $virement->setRIB($user->getRib());
+        $virement->setCompte($compte);
+        $virement->setUser($user);
         $form = $this->createForm(VirementType::class, $virement);
         $em = $managerRegistry->getManager();
         $form->handleRequest($request);
@@ -48,6 +56,7 @@ class VirementController extends AbstractController
             $photoCinV = $uploadFile->uploadFile($photo);
             $virement->setPhotoCinV($photoCinV);
             $virement->setDecisionV("encours");
+            
             $em->persist($virement);
             $em->flush();
             return $this->redirectToRoute('historiqueV');

@@ -68,8 +68,8 @@ class ChequeController extends AbstractController
     {
         $cheque = new Cheque();
         $user = $this->getUser();
-//        $cheque->setUser($user);
-       $cheque->setRib($user->getRib());
+        $cheque->setUser($user);
+        $cheque->setRib($user->getRib());
         
         $form = $this->createForm(ChequeType::class, $cheque);
         $em = $managerRegistry->getManager();

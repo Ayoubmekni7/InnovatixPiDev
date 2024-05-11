@@ -40,8 +40,13 @@ app_c:
   path: '/mailingRefuser/{email}/{id}'
   controller: App\Controller\HomeController::index
   methods: [ GET, POST ]
+app_L:
+    path: '/Mailing/{email}'
+    controller: App\Controller\HomeController::index
+    methods: [ GET, POST ]
 # Définition d'une route avec un paramètre
 cheque_signature:
   path: /api_public/v3/signature_request/{signatureRequestId}/signer
   controller: App\Controller\ChequeController::signature
   methods: POST
+

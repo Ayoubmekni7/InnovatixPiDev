@@ -52,13 +52,15 @@ class HomeController extends AbstractController
     public function Recommandation($id, OffreStageRepository $offreStageRepository, AnalyseCv $analyseCv,DemandeStageRepository $demandeStageRepository): JsonResponse
     {
         $offre = $offreStageRepository->find($id);
+//        dd($offre);
         $mots = $offre->getMotsCles();
         $title = $offre->getTitle();
         $listeDemande = $demandeStageRepository->findAll();
+//        dd($mots);
         foreach ($listeDemande as $demande) {
             $cheminFichier = $this->getParameter('uploads_directory') . '/' . $demande->getCv();
             $score = $analyseCv->analyseCV($cheminFichier, $mots);
-            if ($score < 100) {
+            if ($score > 30) {
                 $to = $demande->getEmail();
                 $nom = $demande->getNom() . " " . $demande->getPrenom();
                 $subject = "Recommondation pour une offre";
@@ -95,6 +97,22 @@ class HomeController extends AbstractController
         $subject = "Félécitations";
         $nom = $demande->getNom();
         $html ="<div>Bonjour {$nom}.<br>Félécitations votre demande est accepter .<br>";
+        $this->emailService->sendEmail($email,$subject,$html);
+        $data = [
+            'message' => 'Ceci est un exemple de réponse depuis Symfony',
+            'score' => 1
+        ];
+        
+        return new JsonResponse($data, JsonResponse::HTTP_OK);
+    }
+    #[Route('/Mailing/{email}', name: 'mailingApprouver', methods:["POST", "GET"])]
+    public function mailing($email,DemandeStageRepository $demandeStageRepository): JsonResponse
+    {
+//        $demande = $demandeStageRepository->find($id);
+        $subject = "Félécitations";
+//        $nom = $demande->getNom();
+        $html ="<div>Bonjour {$email}.<br>Félécitations votre demande est accepter .<br>";
+        
         $this->emailService->sendEmail($email,$subject,$html);
         $data = [
             'message' => 'Ceci est un exemple de réponse depuis Symfony',

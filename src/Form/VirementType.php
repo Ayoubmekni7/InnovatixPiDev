@@ -15,7 +15,7 @@ class VirementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('compte')
+            ->add('rib')
             ->add('NometPrenom')
             ->add('Cin')
             ->add('photoCinV', FileType::class, [

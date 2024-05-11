@@ -36,17 +36,18 @@ class CompteRepository extends ServiceEntityRepository
     /**
      * @return Compte[] Returns an array of Compte objects
      */
-
-
-   public function findOneBySomeField($value): ?Compte
+    
+    
+    public function findOneBySomeField($value): ?Compte
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
+            ->andWhere('c.RIB = :val')
             ->setParameter('val', $value)
             ->getQuery()
-          ->getOneOrNullResult() ;
-   }
-
+            ->getOneOrNullResult();
+    }
+    
+    
     public function countAllComptesApprouves(): int
     {
         return $this->createQueryBuilder('c')

@@ -17,6 +17,7 @@ class RSSFeedFetcher
     public function fetchFeed(): array
     {
         $response = $this->client->request('GET', $this->feedUrl);
+//        dd($response);
         $content = $response->toArray();
 
         return $content['items'];

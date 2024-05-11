@@ -4,26 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="add Api for JavaProject">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="Fix the project,add the Rib to user and fix cheque with idUser.">
       <change beforePath="$PROJECT_DIR$/.idea/Innovatix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Innovatix.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ChequeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ChequeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/DemandeStageFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/DemandeStageFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Cheque.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Cheque.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Demandestage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Demandestage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ChequeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ChequeType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/cheque/add.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/cheque/add.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/dashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/listclient.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/listclient.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/VirementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/VirementController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Virement.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Virement.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/VirementType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/VirementType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CompteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CompteRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ServiceReclamation/RSSFeedFetcher.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServiceReclamation/RSSFeedFetcher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front/detailArticle.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/detailArticle.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front/detailArticleApi.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/detailArticleApi.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/front/listeArticles.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/listeArticles.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/virement/DemandeVirement.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/virement/DemandeVirement.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reclamation/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reponse/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reponse/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/yesser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/yesser.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -446,14 +449,13 @@
       <workItem from="1714900787139" duration="623000" />
       <workItem from="1714906814387" duration="2239000" />
       <workItem from="1714909201282" duration="3479000" />
-    </task>
-    <task id="LOCAL-00024" summary="création de formulaire d'offre avec la template de l'ajout et la template de frontOffice des offres.">
-      <option name="closed" value="true" />
-      <created>1708262144421</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1708262144421</updated>
+      <workItem from="1715081465017" duration="2655000" />
+      <workItem from="1715099404178" duration="1000" />
+      <workItem from="1715101016077" duration="3445000" />
+      <workItem from="1715304049501" duration="2909000" />
+      <workItem from="1715336336261" duration="2615000" />
+      <workItem from="1715425606595" duration="2092000" />
+      <workItem from="1715462538276" duration="3170000" />
     </task>
     <task id="LOCAL-00025" summary="h">
       <option name="closed" value="true" />
@@ -839,7 +841,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713690958023</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Fix the project,add the Rib to user and fix cheque with idUser.">
+      <option name="closed" value="true" />
+      <created>1715081689768</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1715081689768</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -857,7 +867,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="correction de template recrutement." />
     <MESSAGE value="Recherche des demandes." />
     <MESSAGE value="Début de coding de details." />
     <MESSAGE value="mettre en place la card." />
@@ -882,6 +891,7 @@
     <MESSAGE value="fix the project 2." />
     <MESSAGE value="fix the project 3." />
     <MESSAGE value="add Api for JavaProject" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Api for JavaProject" />
+    <MESSAGE value="Fix the project,add the Rib to user and fix cheque with idUser." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix the project,add the Rib to user and fix cheque with idUser." />
   </component>
 </project>
