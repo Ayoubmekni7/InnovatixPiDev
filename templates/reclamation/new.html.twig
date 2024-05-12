@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title> Ajouter Réclamation</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        Ajouter Réclamation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ asset('reclamation/images/icons/favicon.ico') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/vendor/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
@@ -12,8 +13,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/vendor/select2/select2.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('reclamation/css/main.css') }}">
-    </head>
-    <body>
+</head>
+<body>
 <div class="contact1">
     <div class="container-contact1">
         <div class="contact1-pic js-tilt" data-tilt>
@@ -22,84 +23,69 @@
         {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'contact1-form validate-form'}}) }}
 
         <span class="contact1-form-title">
-            Réclamation
-        </span>
-        <div class="wrap-input1 validate-input" data-validate="Adresse is required">
-        {{ form_label(form.nomAutRec, 'Nom :') }}
-            {{ form_row(form.nomAutRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Nom'}) }}
-        </div>
-        <div class="wrap-input1 validate-input" data-validate="Adresse is required">
-        {{ form_label(form.adrRec, 'Adresse :') }}
-            {{ form_row(form.adrRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Adresse'}) }}
-            
-
-        </div>
-
-        <div class="wrap-input1 validate-input" data-validate="Département is required" >
-        {{ form_label(form.depRec, 'Département concerné :') }}
-            {{ form_row(form.depRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Département'}) }}
-        </div>
+					Réclamation
+				</span>
 
 
         <div class="wrap-input1 validate-input" data-validate="Objet is required">
-        {{ form_label(form.objetRec, 'Objet de la réclamation :') }}
+            {{ form_label(form.objetRec, 'Objet de la réclamation :') }}
             {{ form_row(form.objetRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Objet'}) }}
         </div>
-
+        <div class="wrap-input1 validate-input" data-validate="Département is required">
+            {{ form_label(form.depRec, 'Département concerné :') }}
+            {{ form_row(form.depRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Département'}) }}
+        </div>
         <div class="wrap-input1 validate-input" data-validate="Contenu is required">
-        {{ form_label(form.contenuRec, 'Contenu de la réclamation :') }}
+            {{ form_label(form.contenuRec, 'Contenu de la réclamation :') }}
             {{ form_row(form.contenuRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Contenu'}) }}
         </div>
-      
+
 
         <div class="wrap-input1 validate-input" data-validate="Contenu is required">
-             {{ form_label(form.pieceJRec, 'Pièce jointe :') }}
+            {{ form_label(form.pieceJRec, 'Pièce jointe :') }}
 
             {{ form_row(form.pieceJRec, {'attr': {'class': 'input1'}, 'label': false, 'placeholder': 'Contenu'}) }}
         </div>
 
-        
-        
 
-      
         <div class="container-contact1-form-btn">
             <button class="contact1-form-btn" type="submit">
-                <span>
-                    Envoyer
-                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                </span>
+						<span>
+							Envoyer
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						</span>
             </button>
         </div>
         {{ form_end(form) }}
     </div>
 </div>
 <!--===============================================================================================-->
-	<script src="{{ asset('vendor/jquery/jquery-3.2.1.min.js')}}"></script>
+<script src="{{ asset('vendor/jquery/jquery-3.2.1.min.js')}}"></script>
 <!--===============================================================================================-->
-	<script src="{{ asset('vendor/bootstrap/js/popper.js')}}"></script>
-	<script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{ asset('vendor/bootstrap/js/popper.js')}}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 <!--===============================================================================================-->
-	<script src="{{ asset('vendor/select2/select2.min.js')}}"></script>
+<script src="{{ asset('vendor/select2/select2.min.js')}}"></script>
 <!--===============================================================================================-->
-	<script src="{{ asset('vendor/tilt/tilt.jquery.min.js')}}"></script>
-	<script >
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
-	</script>
+<script src="{{ asset('vendor/tilt/tilt.jquery.min.js')}}"></script>
+<script>
+    $('.js-tilt').tilt({scale: 1.1})
+</script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="{{ asset('https://www.googletagmanager.com/gtag/js?id=UA-23581568-13')}}"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
 
-  gtag('config', 'UA-23581568-13');
+    gtag('config', 'UA-23581568-13');
 </script>
 
 <!--===============================================================================================-->
-	<script src="{{ asset('js/main.js')}}"></script>
+<script src="{{ asset('js/main.js')}}"></script>
 
 </body>
 

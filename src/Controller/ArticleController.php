@@ -8,19 +8,17 @@ use App\Form\EditImgType;
 
 use App\Repository\ArticleRepository;
 use App\ServiceReclamation\UploaderServiceRec;
-//use App\Service\OpenAITextToSpeechService;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use DateTime;
 
 #[Route('/article')]
 class ArticleController extends AbstractController
@@ -46,12 +44,15 @@ class ArticleController extends AbstractController
     #[Route('/newEmpArt', name: 'app_newEmpArt', methods: ['GET', 'POST'])]
     public function newEmpArt(Request $request, EntityManagerInterface $entityManager, ManagerRegistry $managerRegistry ): Response
     {
+        $employee = $this->getUser(); // Get the currently logged-in employee
+        
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         $em = $managerRegistry->getManager();
         
         if ($form->isSubmitted() && $form->isValid()) {
+            $article->setEmployee($employee); // Set the employee associated with the article
             $em->persist($article);
             $em->flush();
             
@@ -63,6 +64,7 @@ class ArticleController extends AbstractController
             'form' => $form,
         ]);
     }
+    
     
     #[Route('/listeArtEmp', name: 'app_listeArtEmp', methods: ['GET'])]
     public function listeArtEmp(ArticleRepository $articleRepository): Response
@@ -80,11 +82,11 @@ class ArticleController extends AbstractController
         $articles = $articleRepository->findAll();
         
         // Récupérer les articles de l'API
-        $apiUrl = 'https://rss.app/feeds/v1.1/t5o4esA1qatzvC6u.json';
+        $apiUrl = 'https://rss.app/feeds/v1.1/t9AIvL6SZLnwsI91.json';
         $httpClient = HttpClient::create();
         $response = $httpClient->request('GET', $apiUrl);
         $apiArticles = $response->toArray()['items'];
-//        dd($apiArticles[3]["image"]);
+        
         
         
         // Passer les articles fusionnés au rendu du template
@@ -113,8 +115,11 @@ class ArticleController extends AbstractController
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
-        
-        
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $article->setUser($user);
+        $userAddress = $user->getEmail();
+        $userName=$user->getName();
+        $article->setUser($this->get('security.token_storage')->getToken()->getUser());
         if ($form->isSubmitted() && $form->isValid()) {
             $fileRec = $form->get('piecejointeArt')->getData();
             if ($fileRec) {
@@ -127,6 +132,13 @@ class ArticleController extends AbstractController
                 $fileNameImg = $uploadServiceRec->uploadFileRec($fileImg);
                 $article->setImageArt($fileNameImg);
             }
+            $dateAujourdhui = new DateTime();
+            $article->setDatePubArt($dateAujourdhui);
+            $article->setAdrAutArt($userAddress);
+            $article->setNomAutArt("admin");
+            
+            $article->setDureeArt(2);
+            
             
             $entityManager->persist($article);
             $entityManager->flush();
@@ -166,6 +178,7 @@ class ArticleController extends AbstractController
         ]);
     }
     
+    
     #[Route('/articlefront/{id}', name: 'app_articlefront_show', methods: ['GET'])]
     public function articlefront(Article $article): Response
     {
@@ -173,44 +186,6 @@ class ArticleController extends AbstractController
             'article' => $article,
         ]);
     }
-    
-    
-    
-    
-    
-    #[Route('/articleApi/{id}', name: 'app_article_detailsarticleApi', methods: ['GET'])]
-    public function articleApi(string $id, HttpClientInterface $httpClient): Response
-    {
-        $apiUrl = 'https://rss.app/feeds/v1.1/tVW4ZsKNabUSUsRY.json';
-        $response = $httpClient->request('GET', $apiUrl);
-        $apiArticles = $response->toArray()['items'];
-        
-        // Trouver l'article correspondant dans les articles de l'API
-        $article = null;
-        foreach ($apiArticles as $apiArticle) {
-            if ($apiArticle['id'] == $id) {
-                $article = $apiArticle;
-                break;
-            }
-        }
-        
-        
-        if (!$article) {
-            throw $this->createNotFoundException('Article non trouvé');
-        }
-        
-        return $this->render('front/detailArticleApi.html.twig', [
-            'article' => $article,
-        
-        ]);
-    }
-    
-    
-    
-    
-    
-    
-    
     #[Route('/edit/{id}', name: 'app_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Article $article, EntityManagerInterface $entityManager, UploaderServiceRec $uploadServiceRec): Response
     {
@@ -218,7 +193,10 @@ class ArticleController extends AbstractController
         $form = $this->createForm(EditImgType::class, $article);
         
         $form->handleRequest($request);
-        
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $article->setUser($user);
+        $userAddress = $user->getEmail();
+        $userName=$user->getName();
         
         if ($form->isSubmitted() && $form->isValid()) {
             // Récupérer le fichier pièce jointe
@@ -240,6 +218,11 @@ class ArticleController extends AbstractController
                 // Si aucun nouveau fichier n'est téléversé, conservez le nom de fichier existant
                 $article->setPiecejointeArt($anciennePieceJointe);
             }
+            $dateAujourdhui = new DateTime();
+            $article->setDatePubArt($dateAujourdhui);
+            $article->setAdrAutArt($userAddress);
+            $article->setNomAutArt("admin");
+            $article->setDureeArt(2);
             
             $entityManager->flush();
             
@@ -265,6 +248,32 @@ class ArticleController extends AbstractController
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
     }
     
+    #[Route('/articleApi/{id}', name: 'app_article_detailsarticleApi', methods: ['GET'])]
+    public function articleApi(string $id, HttpClientInterface $httpClient): Response
+    {
+        $apiUrl = 'https://rss.app/feeds/v1.1/t9AIvL6SZLnwsI91.json';
+        $response = $httpClient->request('GET', $apiUrl);
+        $apiArticles = $response->toArray()['items'];
+        
+        // Trouver l'article correspondant dans les articles de l'API
+        $article = null;
+        foreach ($apiArticles as $apiArticle) {
+            if ($apiArticle['id'] == $id) {
+                $article = $apiArticle;
+                break;
+            }
+        }
+        
+        
+        if (!$article) {
+            throw $this->createNotFoundException('Article non trouvé');
+        }
+        
+        return $this->render('front/detailArticleApi.html.twig', [
+            'article' => $article,
+        
+        ]);
+    }
     
     #[Route('/deleteEmp/{id}', name: 'app_ArticleEmploye_delete', methods: ['GET','POST'])]
     public function deleteEmp($id , ManagerRegistry $managerRegistry , ArticleRepository $articleRepository): Response

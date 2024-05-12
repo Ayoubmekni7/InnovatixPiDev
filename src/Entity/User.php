@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-use PhpParser\Node\Scalar\String_;
+//use PhpParser\Node\Scalar\String_;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 //use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -19,15 +19,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-
+    
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Assert\Length(
-        min: 8,
-        max: 8,
-        exactMessage: "Le numéro d'inscription doit contenir exactement 8 chiffres."
-    )]
     private ?int $id = null;
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\Regex(
@@ -35,46 +31,46 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         message: "adresse email doit se terminer par @gmail.com"
     )]
     private ?string $email = null;
-
+    
     #[ORM\Column]
     private array $roles = [];
-
+    
     /**
      * @var string The hashed password
      */
-
+    
     #[ORM\Column]
 //    #[Assert\Regex(
 //        pattern:"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$^",
 //        message: "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial"
 //    )]
-    #[Assert\length(
+    #[Assert\Length(
         min:8,
         exactMessage: "Le mot de passe doit contenir au moins {{ limit }} caractères"
     )]
     private ?string $password = null;
-
+    
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 8 caractères.")]
     private ?string $cin = null;
-
+    
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $dateNaissance = null;
-
+    
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 8, maxMessage: " numéro de téléphone doit contenir 8 chiffres")]
-
+    
     private ?string $tel = null;
-
+    
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $photo = null;
-
+    
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $adresse = null;
-
+    
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(
         min: 2,
@@ -86,11 +82,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         message: "Le salaire minimum est de 200."
     )]
     private ?string $salaire = null;
-
+    
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $profession = null;
-
+    
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $poste = null;
@@ -102,17 +98,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 //
 //    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
 //    private ?string $dateEambauche = null;
-/*
-    #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\NotBlank(message: "Le champ est obligatoire.")]
-    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
-    private ?string $typeStage = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\NotBlank(message: "Le champ est obligatoire.")]
-    #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
-    private ?string $dureeStage = null;*/
-
+    /*
+        #[ORM\Column(length: 255, nullable: true)]
+        #[Assert\NotBlank(message: "Le champ est obligatoire.")]
+        #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
+        private ?string $typeStage = null;
+    
+        #[ORM\Column(length: 255, nullable: true)]
+        #[Assert\NotBlank(message: "Le champ est obligatoire.")]
+        #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
+        private ?string $dureeStage = null;*/
+    
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255, maxMessage: "La longueur maximale est de 255 caractères.")]
     private ?string $name = null;
@@ -175,7 +171,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Credit::class)]
     private Collection $credit;
 
-    #[ORM\Column]
+    #[ORM\Column( nullable: true)]
     private ?int $Rib = null;
 
     #[ORM\OneToMany(mappedBy: 'Rib', targetEntity: Cheque::class)]

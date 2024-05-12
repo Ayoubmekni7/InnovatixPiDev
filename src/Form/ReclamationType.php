@@ -19,27 +19,17 @@ class ReclamationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-
-
-        ->add('nomAutRec' , TextType::class, [
-            'attr' => [
-                'placeholder' => 'Nom',
-            ]
-        ])
-
-        ->add('adrRec',EmailType::class, [
-            'attr' => [
-                'placeholder' => 'Adresse',
-            ]
-        ])
-        
-
-         ->add('objetRec' , TextType::class, [
+            
+            
+            
+            
+            
+            ->add('objetRec' , TextType::class, [
                 'attr' => [
-                'placeholder' => 'Objet',
+                    'placeholder' => 'Objet',
                 ]
             ])
-
+            
             
             ->add('contenuRec',TextAreaType::class, [
                 'attr' => [
@@ -57,22 +47,22 @@ class ReclamationType extends AbstractType
                     'Crédits et prêts' => 'Crédits et prêts',
                 ],
                 'placeholder' => 'Sélectionnez une option', // optionnel
-                ])
-              
-                ->add('pieceJRec', FileType::class, [
-                    'label' => 'Choisir une pièce jointe',
-                    'required' => false,
-                    'constraints' => [
-                        new File([
-                            'mimeTypesMessage' => 'Veuillez uploader un fichier PDF valide',
-                        ])
-                    ],
-                ])
-    
+            ])
             
+            ->add('pieceJRec', FileType::class, [
+                'label' => 'Choisir une pièce jointe',
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'mimeTypesMessage' => 'Veuillez uploader un fichier PDF valide',
+                    ])
+                ],
+            ])
+        
+        
         ;
     }
-
+    
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

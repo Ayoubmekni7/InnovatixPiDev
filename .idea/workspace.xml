@@ -4,29 +4,51 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="Fix the project,add the Rib to user and fix cheque with idUser.">
+    <list default="true" id="a9cba383-0b0f-412f-b74f-bef7508b49d7" name="Changes" comment="Fix shayma's work.">
+      <change afterPath="$PROJECT_DIR$/templates/backOffice/Employe/cheque/chat.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/editClientClient.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Innovatix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Innovatix.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ActualiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ActualiteController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ChequeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ChequeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/VirementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/VirementController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Virement.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Virement.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/VirementType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/VirementType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/CompteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CompteRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ServiceReclamation/RSSFeedFetcher.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServiceReclamation/RSSFeedFetcher.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/detailArticle.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/detailArticle.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/detailArticleApi.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/detailArticleApi.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ReclamationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReclamationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ReponseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ReponseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Article.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Reclamation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reclamation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Reponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Reponse.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ArticleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArticleType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/EditImgType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/EditImgType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ReclamationType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ReclamationType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ReponseType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ReponseType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/articleH/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/articleH/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/articleH/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/articleH/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/articleH/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/articleH/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/articleH/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/articleH/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/baseadmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseadmin.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/baseclient.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseclient.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/afficherRecRep.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/afficherRecRep.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/client/reclamation.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client/reclamation.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/commentaireHadhemi/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/commentaireHadhemi/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/credit/stats.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/credit/stats.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/front/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/front/listeArticles.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/front/listeArticles.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/frontOffice/Client/virement/DemandeVirement.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/frontOffice/Client/virement/DemandeVirement.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/reclamation/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reclamation/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reclamation/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reclamation/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reponse/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reponse/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/reponse/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reponse/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/yesser.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/yesser.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reponse/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reponse/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/reponse/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reponse/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/editclient.html .twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/editclient.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/listemploye.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/listemploye.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -455,15 +477,10 @@
       <workItem from="1715304049501" duration="2909000" />
       <workItem from="1715336336261" duration="2615000" />
       <workItem from="1715425606595" duration="2092000" />
-      <workItem from="1715462538276" duration="3170000" />
-    </task>
-    <task id="LOCAL-00025" summary="h">
-      <option name="closed" value="true" />
-      <created>1708268907816</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1708268907816</updated>
+      <workItem from="1715462538276" duration="3279000" />
+      <workItem from="1715471293957" duration="927000" />
+      <workItem from="1715505944750" duration="837000" />
+      <workItem from="1715511649241" duration="7586000" />
     </task>
     <task id="LOCAL-00026" summary="h">
       <option name="closed" value="true" />
@@ -849,7 +866,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715081689768</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Fix shayma's work.">
+      <option name="closed" value="true" />
+      <created>1715465811983</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1715465811983</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -867,7 +892,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Recherche des demandes." />
     <MESSAGE value="Début de coding de details." />
     <MESSAGE value="mettre en place la card." />
     <MESSAGE value="modification dans Details des offres." />
@@ -892,6 +916,7 @@
     <MESSAGE value="fix the project 3." />
     <MESSAGE value="add Api for JavaProject" />
     <MESSAGE value="Fix the project,add the Rib to user and fix cheque with idUser." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix the project,add the Rib to user and fix cheque with idUser." />
+    <MESSAGE value="Fix shayma's work." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix shayma's work." />
   </component>
 </project>

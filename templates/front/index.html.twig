@@ -219,7 +219,7 @@
 
 <body>
 
-<!-- ***** Preloader Start ***** -->
+<!-- *** Preloader Start *** -->
 <div id="preloader">
     <div class="jumper">
         <div></div>
@@ -227,7 +227,7 @@
         <div></div>
     </div>
 </div>
-<!-- ***** Preloader End ***** -->
+<!-- *** Preloader End *** -->
 
 <!-- Header -->
 <div class="sub-header">
@@ -257,7 +257,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
 
-            <a class="navbar-brand" href="index.html"><h2>E-FlexBank</h2></a>
+            <a class="navbar-brand" href="#"><h2>E-FlexBank</h2></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -472,16 +472,7 @@
                     <div class="contact-form">
                         <form action="{{ path('app_reclamationFront_new') }}" method="post">
                             <div class="row">
-                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                    <fieldset>
-                                        <input name="objetRec" type="text" class="form-control" id="objetRec" placeholder="Objet" required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                    <fieldset>
-                                        <input name="contenuRec" type="text" class="form-control" id="contenuRec" placeholder="Contenu" required="">
-                                    </fieldset>
-                                </div>
+
                                 <div class="col-lg-4 col-md-12 col-sm-12">
                                     <fieldset>
                                         <input name="adrRec" type="text" class="form-control" id="adrRec" placeholder="Adresse" required="">
@@ -499,9 +490,15 @@
                                 </div>
                                 <div class="col-lg-4 col-md-12 col-sm-12">
                                     <fieldset>
-                                        <input name="pieceJRec" type="text" class="form-control" id="pieceJRec" placeholder="Pièce jointe">
+                                        <input name="objetRec" type="text" class="form-control" id="objetRec" placeholder="Objet" required="">
                                     </fieldset>
                                 </div>
+                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                    <fieldset>
+                                        <input name="contenuRec" type="text" class="form-control" id="contenuRec" placeholder="Contenu" required="">
+                                    </fieldset>
+                                </div>
+
 
                                 <div class="col-lg-12">
                                     <fieldset>
@@ -631,16 +628,14 @@
                                 <fieldset>
                                     <input name="objetRec" type="text" class="form-control" id="objetRec" placeholder="Objet" required="">
                                 </fieldset>
-                                <fieldset>
-                                    <textarea name="contenuRec" rows="6" class="form-control" id="contenuRec" placeholder="Contenu" required=""></textarea>
-                                </fieldset>
+
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <fieldset>
                                     <input name="depRec" type="text" class="form-control" id="depRec" placeholder="Département" required="">
                                 </fieldset>
                                 <fieldset>
-                                    <input name="pieceJRec" type="text" class="form-control" id="pieceJRec" placeholder="Pièce jointe">
+                                    <textarea name="contenuRec" rows="6" class="form-control" id="contenuRec" placeholder="Contenu" required=""></textarea>
                                 </fieldset>
 
                             </div>

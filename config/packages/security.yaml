@@ -43,6 +43,7 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/listecredit, roles: ROLE_ADMIN }
+#         - { path: ^/login, roles: ROLE_USER }
         # - { path: ^/profile, roles: ROLE_USER }
 
 

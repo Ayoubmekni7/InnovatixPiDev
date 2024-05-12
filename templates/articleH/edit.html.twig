@@ -11,18 +11,7 @@
                     <div class="card-body">
                         <h5 class="card-title text-center mb-4">Formulaire pour modifier un article</h5>
                         {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-                        <div class="mb-3">
-                            {{ form_row(form.nomAutArt, {'label': 'Nom :', 'attr': {'class': 'form-control'}, 'id': 'nomAutArt'}) }}
-                        </div>
-                        <div class="mb-3">
-                            {{ form_row(form.adrAutArt, {'label': 'Adresse :', 'attr': {'class': 'form-control'}, 'id': 'adrAutArt'}) }}
-                        </div>
-                        <div class="mb-3">
-                            {{ form_row(form.datePubArt, {'label': 'Date de la publication :', 'attr': {'class': 'form-control'}, 'id': 'datePubArt'}) }}
-                        </div>
-                        <div class="mb-3">
-                            {{ form_row(form.dureeArt, {'label': 'Durée de la publication :', 'attr': {'class': 'form-control'}, 'id': 'dureeArt'}) }}
-                        </div>
+
                         <div class="mb-3">
                             {{ form_row(form.categorieArt, {'label': 'Catégorie de l\'article :', 'attr': {'class': 'form-control'}, 'id': 'categorieArt'}) }}
                         </div>
@@ -33,8 +22,8 @@
                             {{ form_row(form.contenuArt, {'label': 'Contenu de l\'article:', 'attr': {'class': 'form-control'}, 'id': 'contenuArt'}) }}
                         </div>
                         <div class="mb-3">
-                          
-                        <a href="{{ asset('uploads_directory_rec/' ~ article.piecejointeArt) }}" target="_blank">Consulter la pièce jointe</a>
+
+                            <a href="{{ asset('uploads_directory_rec/' ~ article.piecejointeArt) }}" target="_blank">Consulter la pièce jointe</a>
                         </div>
 
                         <div class="mb-3">

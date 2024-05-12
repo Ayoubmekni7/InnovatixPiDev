@@ -12,18 +12,15 @@ class EditImgType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nomAutArt')
-            ->add('adrAutArt')
-            ->add('datePubArt')
-            ->add('dureeArt')
+            
             ->add('categorieArt')
             ->add('titreArt')
             ->add('contenuArt')
             ->add('piecejointeArt')
-           
+        
         ;
     }
-
+    
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

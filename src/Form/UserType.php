@@ -76,9 +76,6 @@ class UserType extends AbstractType
             ->add('photo',FileType::class,array(
                 'data_class' => null
             ))            ;
-        
-        
-        ;
     }
     
     public function configureOptions(OptionsResolver $resolver): void

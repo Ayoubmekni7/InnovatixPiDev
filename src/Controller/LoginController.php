@@ -74,7 +74,6 @@ class LoginController extends AbstractController
     {
         $form = $this->createForm(ForgotpasswordType::class);
         $form->handleRequest($request);
-        
         if ($form->isSubmitted() && $form->isValid()) {
             $formData = $form->getData();
             $user = $userRepository->findOneBy(['email' => $formData['email']]);

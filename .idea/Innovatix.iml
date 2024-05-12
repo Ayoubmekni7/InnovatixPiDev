@@ -48,17 +48,20 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="swiper" level="application" />
     <orderEntry type="library" name="a81368914c" level="application" />
     <orderEntry type="library" name="64d58efce2" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="firebase-app" level="application" />
     <orderEntry type="library" name="firebase-auth" level="application" />
-    <orderEntry type="library" name="42d5adcbca" level="application" />
     <orderEntry type="library" name="loader" level="application" />
-    <orderEntry type="library" name="nucleo-icons" level="application" />
-    <orderEntry type="library" name="nucleo-svg" level="application" />
-    <orderEntry type="library" name="font-awesome" level="application" />
+    <orderEntry type="library" name="42d5adcbca" level="application" />
     <orderEntry type="library" name="swiper" level="application" />
+    <orderEntry type="library" name="nucleo-svg" level="application" />
+    <orderEntry type="library" name="nucleo-icons" level="application" />
+    <orderEntry type="library" name="font-awesome" level="application" />
+    <orderEntry type="library" name="42d5adcbca" level="application" />
+    <orderEntry type="library" name="fullcalendar" level="application" />
+    <orderEntry type="library" name="bootstrap-icons" level="application" />
+    <orderEntry type="library" name="nepcha-analytics" level="application" />
   </component>
 </module>

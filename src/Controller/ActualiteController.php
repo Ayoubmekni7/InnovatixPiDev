@@ -35,11 +35,17 @@ class ActualiteController extends AbstractController
         $compte = $this->getDoctrine()->getRepository(Compte::class)->findOneBy([]);
         
         // Assurez-vous que $compte n'est pas null et récupérez le montant total
-        $Montant = ($compte !== null) ? $compte->getMontant() : 0;
-        $users = $compte->getId();
-        $user = $repository->find($users);
+        // $Montant = ($compte !== null) ? $compte->getMontant() : 0;
+        // dd($compte);
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        
+        //$users = $compte->getId();
+        //$user = $repository->find($users);
+        
+        
+        
         return $this->render('frontOffice/Client/dashboard.html.twig', [
-            'Montant' => $Montant,
+            'Montant' => '$Montant',
             'user' => $user,
         ]);
     }
@@ -51,6 +57,7 @@ class ActualiteController extends AbstractController
             'controller_name' => 'ActualiteController',
         ]);
     }
+   
     
     #[Route('/clientall', name: 'clientall')]
     public function clientall(): Response

@@ -128,6 +128,42 @@ class ChequeController extends AbstractController
             'cheques'=>$cheque,
         ]);
     }
+    #[Route('/chatN', name: 'chatN')]
+    public function chatN():Response
+    
+    {
+        
+        
+        $client = new \GuzzleHttp\Client();
+        
+        $response = $client->request('POST', 'https://custom-chatbot-api.p.rapidapi.com/chatbotapi', [
+                    'body' => '{
+            "bot_id": "OEXJ8qFp5E5AwRwymfPts90vrHnmr8yZgNE171101852010w2S0bCtN3THp448W7kDSfyTf3OpW5TUVefz",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "ou se trouve la tunisie"
+                }
+            ],
+            "user_id": "",
+            "temperature": 0.9,
+            "top_k": 5,
+            "top_p": 0.9,
+            "max_tokens": 256,
+            "model": "matag2.0"
+                 }',
+                    'headers' => [
+                        'X-RapidAPI-Host' => 'custom-chatbot-api.p.rapidapi.com',
+                        'X-RapidAPI-Key' => '6335f0e1b6mshe51bdb6be5175a1p1914fajsn7770537fdb84',
+                        'content-type' => 'application/json',
+                    ],
+                ]);
+        
+//        echo $response->getBody();
+        return $this->render('backoffice/Employe/cheque/chat.html.twig',[
+            'response'=>$response->getBody(),
+        ]);
+    }
     
     
     

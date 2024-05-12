@@ -19,38 +19,22 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-
-            ->add('nomAutArt' , TextType::class, [
-                'attr' => [
-                    'placeholder' => 'Votre nom',
-                ]
-            ])
-
-
-            ->add('dureeArt')
-
-
+            
+            
+            
+            
             ->add('titreArt' , TextType::class, [
                 'attr' => [
                     'placeholder' => 'Titre',
                 ]
             ])
-
+            
             ->add('contenuArt',TextAreaType::class, [
                 'attr' => [
                     'placeholder' => 'Contenu article',
                 ]
             ])
-            ->add('adrAutArt' , TextType::class, [
-                'attr' => [
-                    'placeholder' => 'Adresse',
-                ]
-            ])
-            ->add('datePubArt', DateTimeType::class, [
-                'widget' => 'single_text',
-                'html5'=>true,
-                'attr'=>['min'=>(new DateTime())->format('Y-m-d')],
-            ])
+            
             ->add('categorieArt',  ChoiceType::class, [
                 'choices' => [
                     'RH' => 'RH',
@@ -60,14 +44,14 @@ class ArticleType extends AbstractType
                 ],
                 'placeholder' => 'Sélectionnez une option', // optionnel
             ])
-
-
-
+            
+            
+            
             ->add('piecejointeArt' ,FileType::class,[
                 'label' => 'Choisir une piece jointe',
                 'data_class' => null,
             ])
-
+            
             ->add('imageArt', FileType::class, [
                 'attr' => [
                     'placeholder' => 'Entrer une image',
@@ -85,11 +69,11 @@ class ArticleType extends AbstractType
                 'label' => 'Image :',
                 'required' => false, // Rendre le champ facultatif si nécessaire
             ])
-
-
+        
+        
         ;
     }
-
+    
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
